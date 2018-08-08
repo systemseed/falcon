@@ -1,0 +1,14 @@
+# PHPStorm directory.
+.idea
+
+# MacOS Desktop Services Store files.
+.DS_Store
+
+# Environment overrides.
+/.env
+
+# Composer dependencies.
+/vendor
+
+# Locally built site.
+/web

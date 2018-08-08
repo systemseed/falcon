@@ -1,0 +1,70 @@
+version: '2'
+
+services:
+
+  mariadb:
+    image: wodby/mariadb:$MARIADB_TAG
+    container_name: "${PROJECT_NAME}_mariadb"
+    stop_grace_period: 30s
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+
+  php:
+    image: wodby/drupal-php:$PHP_TAG
+    container_name: "${PROJECT_NAME}_php"
+    environment:
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      DB_HOST: $DB_HOST
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_DRIVER: $DB_DRIVER
+
+  nginx:
+    image: wodby/drupal-nginx:$NGINX_TAG
+    container_name: "${PROJECT_NAME}_nginx"
+    depends_on:
+    - php
+    environment:
+#      NGINX_PAGESPEED: "on"
+      NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "off"
+      NGINX_ERROR_LOG_LEVEL: debug
+      NGINX_BACKEND_HOST: php
+      NGINX_SERVER_ROOT: /var/www/html/web
+#      NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
+    labels:
+    - 'traefik.backend=nginx'
+    - 'traefik.port=80'
+    - 'traefik.frontend.rule=Host:falcon.${PROJECT_BASE_URL}'
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: "${PROJECT_NAME}_mailhog"
+    labels:
+    - 'traefik.backend=mailhog'
+    - 'traefik.port=8025'
+    - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
+
+  portainer:
+    image: portainer/portainer
+    container_name: "${PROJECT_NAME}_portainer"
+    command: --no-auth -H unix:///var/run/docker.sock
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+    - 'traefik.backend=portainer'
+    - 'traefik.port=9000'
+    - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+
+  traefik:
+    image: traefik
+    container_name: "${PROJECT_NAME}_traefik"
+    command: -c /dev/null --web --docker --logLevel=INFO
+    ports:
+    - '80:80'
+    - '8080:8080' # Dashboard
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock

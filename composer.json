@@ -1,0 +1,96 @@
+{
+  "name": "systemseed/falcon",
+  "description": "",
+  "type": "drupal-profile",
+  "authors": [
+    {
+      "name": "SystemSeed",
+      "homepage": "http://systemseed.com",
+      "role": "Company"
+    }
+  ],
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "process-timeout": 0,
+    "sort-packages": true
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "scripts": {
+    "post-install-cmd": [
+      "@drupal:scaffold",
+      "@falcon:scaffold"
+    ],
+    "post-update-cmd": [
+      "@drupal:scaffold",
+      "@falcon:scaffold"
+    ],
+    "drupal:scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "falcon:scaffold": [
+      "mkdir -p web/profiles/contrib/falcon",
+      "@falcon:links"
+    ],
+    "falcon:links": "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* .",
+    "code:check": [
+      "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+      "vendor/bin/phpcs --standard=Drupal --encoding=utf-8 --colors -n modules tests",
+      "vendor/bin/phpcpd modules tests"
+    ],
+    "code:fix": [
+      "vendor/bin/phpcbf --standard=Drupal --encoding=utf-8 -n modules tests"
+    ]
+  },
+  "extra": {
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "drupal-scaffold": {
+      "source": "https://raw.githubusercontent.com/drupal/drupal/{version}/{path}",
+      "initial": {
+        "sites/default/default.services.yml": "sites/default/services.yml",
+        "sites/default/default.settings.php": "sites/default/settings.php"
+      }
+    },
+    "enable-patching": true,
+    "patches": {}
+  },
+  "require": {
+    "composer/installers": "^1.5.0",
+    "cweagans/composer-patches": "^1.6.0",
+    "drupal-composer/drupal-scaffold": "^2.5.0",
+    "drupal/admin_toolbar": "^1.23",
+    "drupal/consumer_image_styles": "^2.0@rc",
+    "drupal/consumers": "^1.0@beta",
+    "drupal/core": "^8.5.6",
+    "drupal/jsonapi": "^1.16",
+    "drupal/jsonapi_extras": "^2.0",
+    "drupal/material_admin": "^1.0@alpha"
+  },
+  "require-dev": {
+    "drupal/coder": "^8.2"
+  }
+}
