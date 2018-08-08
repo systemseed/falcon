@@ -10,8 +10,9 @@ Quick start
 Follow instractions in :doc:`install` section.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    install
+   contributing
 
