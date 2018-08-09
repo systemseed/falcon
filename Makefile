@@ -1,6 +1,6 @@
 .PHONY: default pull up stop down exec-www-data exec exec-root drush \
 prepare prepare-composer prepare-files \
-install
+install test2
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
@@ -39,7 +39,7 @@ down:
 	docker-compose down -v --remove-orphans
 
 clean: | up
-	$(call message,PHP: Removing vendor and web directories)
+	$(call message,$(PROJECT_NAME): Removing vendor and web directories)
 	$(call docker-root, php rm -rf vendor)
 	$(call docker-root, php rm -rf web)
 	$(MAKE) -s down
@@ -71,21 +71,26 @@ drush:
 prepare: | up prepare-composer prepare-files prepare-settings
 
 prepare-composer:
-	$(call message,PHP: Installing/updating composer dependencies)
+	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)
 
 prepare-files:
-	$(call message,PHP: Preparing public files directory)
+	$(call message,$(PROJECT_NAME): Preparing public files directory)
 	$(call docker-wodby, php mkdir -p web/sites/default/files)
 	$(call docker-root, php chown -R www-data: web/sites/default/files)
 
 prepare-settings:
-	$(call message,PHP: Making settings.php writable)
+	$(call message,$(PROJECT_NAME): Making settings.php writable)
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
 
 install: | prepare
-	$(call message,PHP: Installing site)
-	$(call docker-www-data, php drush -r /var/www/html/web si falcon --db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --account-pass=admin --yes)
+	$(call message,$(PROJECT_NAME): Installing Drupal)
+	$(call docker-www-data, php drush -r /var/www/html/web si falcon \
+--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
+install_configure_form.enable_update_status_module=NULL --yes)
+ifeq ($(ENV), development)
+	$(MAKE) -s drush en $(DEVELOPMENT_MODULES)
+endif
 
 # https://stackoverflow.com/a/6273809/1826109
 %:

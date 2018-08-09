@@ -8,15 +8,16 @@ services:
 
   php:
     environment:
-      ## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
+      TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
+## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
       PHP_XDEBUG: 1
-    #      PHP_XDEBUG_DEFAULT_ENABLE: 1
-    #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
-    #      PHP_IDE_CONFIG: serverName=my-ide
-    #      PHP_XDEBUG_REMOTE_HOST: host.docker.internal # Docker 18.03+ & Linux/Mac/Win
-    #      PHP_XDEBUG_REMOTE_HOST: 172.17.0.1 # Linux, Docker < 18.03
-    #      PHP_XDEBUG_REMOTE_HOST: 10.254.254.254 # macOS, Docker < 18.03
-    #      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
+#      PHP_XDEBUG_DEFAULT_ENABLE: 1
+#      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+#      PHP_IDE_CONFIG: serverName=my-ide
+#      PHP_XDEBUG_REMOTE_HOST: host.docker.internal # Docker 18.03+ & Linux/Mac/Win
+#      PHP_XDEBUG_REMOTE_HOST: 172.17.0.1 # Linux, Docker < 18.03
+#      PHP_XDEBUG_REMOTE_HOST: 10.254.254.254 # macOS, Docker < 18.03
+#      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
     volumes:
     - ../:/var/www/html:cached
 
@@ -24,7 +25,7 @@ services:
     volumes:
     - ../:/var/www/html:cached
 
-# Uncomment if you want to auto-build the docs locally in docs/_build/html
+## Uncomment if you want to auto-build the docs locally in docs/_build/html
 #  sphinxdocs:
 #    image: nickjer/docker-sphinx:latest
 #    container_name: "${PROJECT_NAME}_sphinxdocs"
