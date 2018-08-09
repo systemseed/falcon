@@ -23,3 +23,11 @@ services:
   nginx:
     volumes:
     - ../:/var/www/html:cached
+
+# Uncomment if you want to auto-build the docs locally in docs/_build/html
+#  sphinxdocs:
+#    image: nickjer/docker-sphinx:latest
+#    container_name: "${PROJECT_NAME}_sphinxdocs"
+#    command: 'sphinx-autobuild . _build/html'
+#    volumes:
+#    - ../docs:/doc:cached
