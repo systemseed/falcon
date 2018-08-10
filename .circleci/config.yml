@@ -1,0 +1,52 @@
+version: 2
+
+jobs:
+  build_and_test:
+
+    machine:
+      enabled: true
+      image: circleci/classic:201808-01
+
+    steps:
+      - checkout
+
+      - run:
+          name: Prepare local environment file
+          command: |
+            cp -n \.env\.default \.env
+            # The project setup is Mac by default, so we need to change to Linux image.
+            # Uncomment all the strings containing `PHP_TAG`.
+            sed -i '/PHP_TAG/s/^# //g' \.env
+            # Comment all the strings containing `-dev-macos-`.
+            sed -i '/-dev-macos-/s/^/# /g' \.env
+            ## Uncomment to put MySQL into memory - it doesn't provide huge performance boost.
+            ## Site-install command stats: 9m 14s (usual MySQL directory) VS 8m 52s / 9m 5s (in memory).
+            #sed -i 's/MYSQL_DATA_DIR=.\/mysql/MYSQL_DATA_DIR=\/dev\/shm/g' \.env
+
+      - run:
+          name: Make local environment
+          command: make install
+          no_output_timeout: 20m
+
+      - run:
+          name: Add hosts into /etc/hosts
+          command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
+
+      - run:
+          name: Test frontpage
+          command: curl -sSf http://falcon.docker.localhost | grep '<title>Log in | falcon</title>'
+
+      - run:
+          name: Check drush status
+          command: make drush status
+
+      - run:
+          name: Cleanup local environment
+          command: make clean
+
+workflows:
+  version: 2
+
+  build_and_test:
+    jobs:
+      - build_and_test
