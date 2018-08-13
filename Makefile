@@ -116,6 +116,8 @@ ifeq ($(ENV), development)
 endif
 
 test:
+	$(call message,$(PROJECT_NAME): Run Codeception tests)
+	docker-compose run --rm codecept build
 	docker-compose run --rm codecept run api --debug
 
 # https://stackoverflow.com/a/6273809/1826109
