@@ -1,3 +1,6 @@
+# Documentation
+Latest documentation is available at https://falcon-platform.readthedocs.io/
+
 # Installation
 
 ### Install Docker

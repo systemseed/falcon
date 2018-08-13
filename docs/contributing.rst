@@ -4,7 +4,7 @@ Contributing
 
 Documentation
 --------------
-We'd love to have your helping with Falcon documentation.
+We'd love to have you helping with Falcon documentation.
 
 All documentation is stored in the main Falcon repo in ``docs`` folder. We use
 reStructuredText format and readthedocs.org hosting for our documentation.

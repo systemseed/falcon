@@ -14,43 +14,72 @@ distribution:
 
 dependencies:
   # Core modules
-  - node
   - block
-  - block_content
+  - breakpoint
   - ckeditor
   - config
-  - contextual
   - contact
-  - menu_link_content
   - datetime
-  - block_content
-  - quickedit
+  - dblog
+  - dynamic_page_cache
   - editor
   - entity_reference
+  - field
+  - field_ui
+  - file
+  - filter
   - help
   - image
+  - link
+  - media
+  - menu_link_content
   - menu_ui
+  - node
   - options
   - path
   - page_cache
-  - taxonomy
-  - shortcut
-  - field_ui
-  - file
-  - views_ui
-  - dblog
-  - link
-  - dynamic_page_cache
-  - breakpoint
   - responsive_image
-  - layout_discovery
+  - rest
+  - serialization
+  - shortcut
+  - system
+  - taxonomy
+  - telephone
+  - text
+  - toolbar
+  - user
+  - views
+  - views_ui
 
   # Contrib modules
-#  - admin_toolbar
-#  - consumers
-#  - consumer_image_styles
-#  - jsonapi
-#  - jsonapi_extras
+  - admin_toolbar
+  - admin_toolbar_tools
+  - config_filter
+  - config_ignore
+  - config_pages
+  - config_split
+  - config_update
+  - consumers
+  - consumer_image_styles
+  - contact_message_rest
+  - eck
+  - entity
+  - entity_reference_revisions
+#  - features
+#  - features_ui
+  - field_group
+  - fieldable_path
+  - jsonapi
+  - jsonapi_extras
+  - mailsystem
+  - metatag
+  - paragraphs
+  - redirect
+  - restui
+  - rest_absolute_urls
+  - scheduler
+  - smtp
+  - token
 
   # Custom modules
 

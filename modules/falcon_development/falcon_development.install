@@ -1,0 +1,76 @@
+<?php
+
+
+use Drupal\user\Entity\Role;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_install().
+ */
+function falcon_development_install() {
+  activateTestUsers();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function falcon_development_uninstall() {
+  deactivateTestUsers();
+}
+
+/**
+ * Active test users.
+ */
+function activateTestUsers() {
+  /* @var $role \Drupal\user\Entity\Role */
+  foreach (Role::loadMultiple() as $role) {
+    if ($role->id() == 'anonymous') {
+      continue;
+    }
+
+    $username = $role->id() . '.test';
+
+    /* @var $account \Drupal\user\Entity\User */
+    $account = user_load_by_name($username);
+    if (empty($account)) {
+      $account = User::create();
+      $account->enforceIsNew();
+      $account->setEmail('test+falcon-' . $role->id() . '@systemseed.com');
+      $account->setUsername($role->id() . '.test');
+      $account->activate();
+
+      if ($role->id() !== 'authenticated') {
+        $account->addRole($role->id());
+      }
+
+      drupal_set_message(t('User @username was created.', ['@username' => $account->getUsername()]));
+    }
+    else {
+      $account->activate();
+    }
+
+    if (!empty(getenv('TEST_USERS_PASSWORD'))) {
+      $account->setPassword(getenv('TEST_USERS_PASSWORD'));
+    }
+    else {
+      $account->setPassword('password');
+    }
+    $account->save();
+  }
+}
+
+/**
+ * Deactivate test users.
+ */
+function deactivateTestUsers() {
+  /* @var $role \Drupal\user\Entity\Role */
+  foreach (Role::loadMultiple() as $role) {
+
+    /* @var $account \Drupal\user\Entity\User */
+    $account = user_load_by_name($role->id() . '.test');
+    if (!empty($account)) {
+      $account->block();
+      $account->save();
+    }
+  }
+}
