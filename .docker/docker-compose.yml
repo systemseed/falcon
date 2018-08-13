@@ -60,6 +60,19 @@ services:
     - 'traefik.port=9000'
     - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
 
+  codecept:
+    image: systemseed/codeception:2.4.5
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      URL: 'http://falcon.${PROJECT_BASE_URL}'
+      TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
+    volumes:
+    - ../tests:/project/tests:cached
+    - ../tests/codeception.yml:/project/codeception.yml
+
   traefik:
     image: traefik
     container_name: "${PROJECT_NAME}_traefik"
@@ -69,3 +82,7 @@ services:
     - '8080:8080' # Dashboard
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      default:
+        aliases:
+          - falcon.${PROJECT_BASE_URL}

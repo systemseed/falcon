@@ -43,12 +43,8 @@ jobs:
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 
       - run:
-          name: Test frontpage
-          command: curl -sSf http://falcon.docker.localhost | grep '<title>Log in | falcon</title>'
-
-      - run:
-          name: Check drush status
-          command: make drush status
+          name: Run tests
+          command: make test
 
       - run:
           name: Cleanup local environment

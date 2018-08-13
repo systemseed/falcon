@@ -1,0 +1,19 @@
+paths:
+  tests: tests
+  output: tests/_output
+  data: tests/_data
+  support: tests/_support
+actor_suffix: Tester
+extensions:
+  enabled:
+  - Codeception\Extension\RunFailed
+params:
+  - env
+modules:
+  config:
+    Db:
+      dsn: 'mysql:host=%DB_HOST%;dbname=%DB_NAME%'
+      user: '%DB_USER%'
+      password: '%DB_PASSWORD%'
+    REST:
+      url: '%URL%'

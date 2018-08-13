@@ -115,6 +115,9 @@ ifeq ($(ENV), development)
 	$(MAKE) -s drush en $(DEVELOPMENT_MODULES)
 endif
 
+test:
+	docker-compose run --rm codecept run api --debug
+
 # https://stackoverflow.com/a/6273809/1826109
 %:
 	@:
