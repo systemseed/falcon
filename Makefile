@@ -1,6 +1,6 @@
-.PHONY: default pull up stop down exec-www-data exec exec-root drush \
-prepare prepare-composer prepare-files \
-install test2
+.PHONY: default pull up stop down clean exec exec-wodby exec-root drush \
+prepare prepare-composer prepare-files prepare-settings \
+install
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
@@ -85,7 +85,7 @@ prepare-settings:
 
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)
-	$(call docker-www-data, php drush -r /var/www/html/web si falcon \
+	$(call docker-www-data, php drush -r /var/www/html/web site-install falcon \
 --db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
 install_configure_form.enable_update_status_module=NULL --yes)
 ifeq ($(ENV), development)

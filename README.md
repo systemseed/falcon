@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/systemseed/falcon/tree/master.svg?style=svg)](https://circleci.com/gh/systemseed/falcon/tree/master)
+
 # Documentation
 Latest documentation is available at https://falcon-platform.readthedocs.io/
 
