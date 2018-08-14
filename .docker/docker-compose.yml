@@ -70,6 +70,7 @@ services:
       DB_NAME: ${DB_NAME}
       URL: 'http://falcon.${PROJECT_BASE_URL}'
       TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
+      DEVELOPMENT_MODULES: ${DEVELOPMENT_MODULES}
     volumes:
     - ../tests:/project/tests:cached
     - ../tests/codeception.yml:/project/codeception.yml

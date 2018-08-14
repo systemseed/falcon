@@ -7,3 +7,5 @@ modules:
     enabled:
         - Asserts
         - \Helper\Unit
+        - Db
+        - \Codeception\Module\Drupal8\Drupal8

@@ -1,10 +1,17 @@
 <?php
 namespace Helper;
 
-// here you can define custom actions
-// all public methods declared in helper class will be available in $I
-
 class Unit extends \Codeception\Module
 {
 
+    /**
+     * Returns names of Drupal development modules.
+     *
+     * @return array
+     */
+    public function getDevelopmentModules()
+    {
+        $modules = explode(' ', getenv('DEVELOPMENT_MODULES'));
+        return (empty($modules) ? [] : $modules);
+    }
 }

@@ -47,10 +47,19 @@ jobs:
           command: make tests-prepare
 
       - run:
+          name: Run unit (integration) tests
+          command: |
+            make tests-run unit || true
+            make tests-run-failed unit
+
+      - run:
           name: Run API tests
           command: |
             make tests-run api || true
             make tests-run-failed api
+
+      - store_artifacts:
+          path: tests/_output
 
       - run:
           name: Cleanup local environment
