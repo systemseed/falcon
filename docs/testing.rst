@@ -7,9 +7,10 @@ Overview
 Falcon uses Codeception framework to test its functions, modules, features and
 API endpoints. Tests are integrated in development workflow using Circle CI.
 
-Every time when someone opens a new pull request on Github, Circle CI execlutes
+Every time when someone opens a new pull request on Github, Circle CI executes
 the following tasks:
-- Checkout code from the corresponing git branch.
+
+- Checkout code from the corresponding git branch.
 - Spin up docker containers.
 - Install Falcon and all its features.
 - Run tests.
@@ -19,7 +20,7 @@ If you are interested in details of Falcon CI setup,  you can find latest Circle
 Running tests on local
 ----------------------
 
-First, run ``make tests-prepare`` to initialise testing framework.
+First, run ``make tests-prepare`` to initialize testing framework.
 Now, you can run all Codeception tests using ``make tests-run`` command. You can
 run a specific test suite by passing its name a second parameter: ::
 
@@ -38,7 +39,7 @@ implement sophisticated and granular tests.
 API tests
 ~~~~~~~~~
 
-This type of tests is suitable for testing of API (REST) endponts.
+This type of tests is suitable for testing of API (REST) endpoints.
 You can find examples of API tests here: https://github.com/systemseed/falcon/tree/master/tests/api
 
 Read more: https://codeception.com/docs/modules/REST#Actions
@@ -61,7 +62,7 @@ as Falcon module or feature which is being tested. For example, if you want to
 test function ``falcon_development_install`` you need to put your test in
 ``tests/unit/falcon_development/`` folder.
 
-Before you start writing tests we recomment to run the following command: ::
+Before you start writing tests we recommend to run the following command: ::
 
   # Optional. Creates ".codecept" folder with Codeception sources in project root.
   make tests-autocomplete-on
