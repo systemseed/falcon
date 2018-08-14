@@ -4,6 +4,7 @@ modules:
         - \Helper\Api
         - Asserts
         - Db
+        - \Codeception\Module\Drupal8\Drupal8
         - REST:
               depends: PhpBrowser
               timeout: 90

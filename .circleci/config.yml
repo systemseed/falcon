@@ -43,8 +43,14 @@ jobs:
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 
       - run:
-          name: Run tests
-          command: make test
+          name: Prepare tests
+          command: make tests-prepare
+
+      - run:
+          name: Run API tests
+          command: |
+            make tests-run api || true
+            make tests-run-failed api
 
       - run:
           name: Cleanup local environment

@@ -1,6 +1,6 @@
 <?php
 
-namespace core;
+namespace jsonapi;
 
 use Codeception\Util\HttpCode;
 
@@ -9,7 +9,7 @@ use Codeception\Util\HttpCode;
  *
  * Example API test with database connection.
  *
- * @package Core
+ * @package Jsonapi
  */
 class DemoCest
 {
@@ -21,8 +21,11 @@ class DemoCest
      */
     public function accessJsonapiIndex(\ApiTester $I)
     {
+        $path_prefix = \Drupal::config('jsonapi_extras.settings')
+            ->get('path_prefix');
+
         $I->amGoingTo('Send not authenticated request to the index endpoint.');
-        $I->sendGET('/jsonapi');
+        $I->sendGET("/$path_prefix");
         $I->expectTo('See an error.');
         $I->dontSeeResponseCodeIs(HttpCode::OK);
 
@@ -30,7 +33,7 @@ class DemoCest
         $this->loginAsAdministrator($I);
 
         $I->amGoingTo('Send request to the index endpoint as an administrator.');
-        $I->sendGET('/jsonapi');
+        $I->sendGET("/$path_prefix");
 
         $I->expectTo('Successful response.');
         $I->seeResponseCodeIs(HttpCode::OK);

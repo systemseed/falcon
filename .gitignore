@@ -12,3 +12,6 @@
 
 # Locally built site.
 /web
+
+# Codeception code base for IDE autocomplete purposes only.
+/.codecept

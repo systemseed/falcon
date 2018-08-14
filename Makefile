@@ -115,10 +115,31 @@ ifeq ($(ENV), development)
 	$(MAKE) -s drush en $(DEVELOPMENT_MODULES)
 endif
 
-test:
-	$(call message,$(PROJECT_NAME): Run Codeception tests)
+tests-prepare:
+	$(call message,$(PROJECT_NAME): Prepare Codeception tests)
 	docker-compose run --rm codecept build
-	docker-compose run --rm codecept run api --debug
+
+tests-autocomplete-on:
+	$(call message,$(PROJECT_NAME): Copy Codeception code in .codecept folder to enable IDE autocomplete)
+	rm -rf .codecept
+	docker cp $(PROJECT_NAME)_codecept:/repo/ .codecept
+	rm -rf .codecept/.git
+
+tests-run:
+	$(call message,$(PROJECT_NAME): Run Codeception tests)
+	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
+	$(eval TARGET := $(firstword $(ARGS)))
+	docker-compose run --rm codecept run $(TARGET) --debug
+
+tests-run-failed:
+	$(call message,$(PROJECT_NAME): Run Codeception tests)
+	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
+	$(eval TARGET := $(firstword $(ARGS)))
+	docker-compose run --rm codecept run $(TARGET) -g failed --debug
+
+tests-cli:
+	$(call message,$(PROJECT_NAME): Open Codeception container CLI)
+	docker-compose run --rm --entrypoint bash codecept
 
 # https://stackoverflow.com/a/6273809/1826109
 %:
