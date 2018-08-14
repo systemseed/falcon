@@ -24,6 +24,7 @@ settings out of date - you need to update the `.env` and
 ``docker/docker-compose.override.yml`` files. There are 2 ways to do it - just
 remove them and run any ``make`` command or review them manually and compare with
 the sources:
+
 * ``.env`` file comes from ``.env.default``
 * ``.docker/docker-compose.override.yml`` comes from ``.docker/docker-compose.override.default.yml``.
 
