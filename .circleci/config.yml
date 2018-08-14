@@ -48,15 +48,11 @@ jobs:
 
       - run:
           name: Run unit (integration) tests
-          command: |
-            make tests-run unit || true
-            make tests-run-failed unit
+          command: make tests-run unit
 
       - run:
           name: Run API tests
-          command: |
-            make tests-run api || true
-            make tests-run-failed api
+          command: make tests-run api
 
       - store_artifacts:
           path: tests/_output

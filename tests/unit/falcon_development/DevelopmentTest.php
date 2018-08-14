@@ -25,7 +25,7 @@ class DevelopmentTest extends \Codeception\Test\Unit
     }
 
     /**
-     * Checks that test users esist and enabled.
+     * Checks that test users exist and enabled.
      */
     public function testTestUsersEnabled()
     {

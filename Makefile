@@ -132,7 +132,7 @@ tests-run:
 	docker-compose run --rm codecept run $(TARGET) --debug
 
 tests-run-failed:
-	$(call message,$(PROJECT_NAME): Run Codeception tests)
+	$(call message,$(PROJECT_NAME): Run failed Codeception tests)
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose run --rm codecept run $(TARGET) -g failed --debug
