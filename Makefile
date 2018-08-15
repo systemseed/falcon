@@ -1,5 +1,6 @@
 .PHONY: default pull up stop down clean exec exec-wodby exec-root drush \
 prepare prepare-composer prepare-files prepare-settings \
+phpcs phpcbf eslint \
 install
 
 # Create local environment files.
@@ -25,6 +26,8 @@ default: up
 pull:
 	$(call message,$(PROJECT_NAME): Updating Docker images)
 	docker-compose pull
+	docker pull $(DOCKER_PHPCS)
+	docker pull $(DOCKER_ESLINT)
 
 up:
 	$(call message,$(PROJECT_NAME): Build and run containers)
@@ -82,6 +85,26 @@ prepare-files:
 prepare-settings:
 	$(call message,$(PROJECT_NAME): Making settings.php writable)
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
+
+phpcs:
+	$(call message,$(PROJECT_NAME): Checking PHP code)
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcs \
+		-s --colors --standard=Drupal,DrupalPractice .
+
+phpcbf:
+	$(call message,$(PROJECT_NAME): Auto-fixing PHP code)
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcbf \
+		-s --colors --standard=Drupal,DrupalPractice .
+
+eslint:
+	$(call message,$(PROJECT_NAME): Checking JS code)
+	$(eval ESLINT_PARAMS := $(filter-out $@,$(MAKECMDGOALS)))
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules \
+		-v $(shell pwd)/.eslintrc.json:/app/.eslintrc.json \
+		$(DOCKER_ESLINT) -c /app/.eslintrc.json $(ESLINT_PARAMS) /app
 
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)

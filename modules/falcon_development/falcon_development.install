@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ * Install, update and uninstall functions for Falcon Development.
+ */
 
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
@@ -8,20 +12,20 @@ use Drupal\user\Entity\User;
  * Implements hook_install().
  */
 function falcon_development_install() {
-  activateTestUsers();
+  falcon_development_activate_test_users();
 }
 
 /**
  * Implements hook_uninstall().
  */
 function falcon_development_uninstall() {
-  deactivateTestUsers();
+  falcon_development_deactivate_test_users();
 }
 
 /**
  * Active test users.
  */
-function activateTestUsers() {
+function falcon_development_activate_test_users() {
   /* @var $role \Drupal\user\Entity\Role */
   foreach (Role::loadMultiple() as $role) {
     if ($role->id() == 'anonymous') {
@@ -62,7 +66,7 @@ function activateTestUsers() {
 /**
  * Deactivate test users.
  */
-function deactivateTestUsers() {
+function falcon_development_deactivate_test_users() {
   /* @var $role \Drupal\user\Entity\Role */
   foreach (Role::loadMultiple() as $role) {
 

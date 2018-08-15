@@ -24,6 +24,16 @@ jobs:
             #sed -i 's/MYSQL_DATA_DIR=.\/mysql/MYSQL_DATA_DIR=\/dev\/shm/g' \.env
 
       - run:
+          name: Lint PHP code using Drupal code standards.
+          command: make phpcs
+          when: always
+
+      - run:
+          name: Lint JS code using Drupal code standards.
+          command: make eslint
+          when: always
+
+      - run:
           name: Make local environment
           command: make install
           no_output_timeout: 20m
