@@ -1,7 +1,8 @@
 .PHONY: default pull up stop down clean exec exec-wodby exec-root drush \
 prepare prepare-composer prepare-files prepare-settings \
 phpcs phpcbf eslint \
-install
+install \
+tests-prepare tests-autocomplete-on tests-run tests-cli
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
@@ -128,14 +129,7 @@ tests-autocomplete-on:
 tests-run:
 	$(call message,$(PROJECT_NAME): Run Codeception tests)
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
-	$(eval TARGET := $(firstword $(ARGS)))
-	docker-compose run --rm codecept run $(TARGET) --debug
-
-tests-run-failed:
-	$(call message,$(PROJECT_NAME): Run failed Codeception tests)
-	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
-	$(eval TARGET := $(firstword $(ARGS)))
-	docker-compose run --rm codecept run $(TARGET) -g failed --debug
+	docker-compose run --rm codecept run $(ARGS) --debug
 
 tests-cli:
 	$(call message,$(PROJECT_NAME): Open Codeception container CLI)

@@ -22,12 +22,17 @@ Running tests on local
 
 First, run ``make tests-prepare`` to initialize testing framework.
 Now, you can run all Codeception tests using ``make tests-run`` command. You can
-run a specific test suite by passing its name a second parameter: ::
+run a specific test suite by passing its name as a second parameter: ::
 
   # Run API test suite only
   make tests-run api
   # Run unit test suite only
   make tests-run unit
+
+You can pass any extra options to ``codecept`` bin if you need: ::
+
+  # Run API tests from group "failed".
+  make tests-run api -- -g failed
 
 Tests structure
 ---------------
@@ -75,7 +80,7 @@ To access ``codecept`` cli directly run: ::
   make tests-cli
 
 It will allow you to run codecept commands to generate new tests or run a specific
-test if you need. See list available commands here: https://codeception.com/docs/reference/Commands
+test if you need. See list of available commands here: https://codeception.com/docs/reference/Commands
 
 
 
