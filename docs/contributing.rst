@@ -1,6 +1,17 @@
 Contributing
 ============
 
+Coding Standards
+----------------
+
+Falcon follows `Drupal 8 Coding standards <https://www.drupal.org/docs/develop/standards>`_.
+
+To check code on your local environment, run the following commands:
+
+#. ``make phpcs`` - checks all PHP code against `Drupal` and `DrupalPractice` standards.
+#. ``make phpcbf`` - attempts to automatically fix some of found issues in PHP code.
+#. ``make eslint`` - checks JavaScript code using `Drupal core eslint config <https://www.drupal.org/docs/develop/standards/javascript/eslint-settings>`_.
+#. ``make eslint -- --fix`` - attempts to automatically fix some of found issues in JS code.
 
 Documentation
 --------------
