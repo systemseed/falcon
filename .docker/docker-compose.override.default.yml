@@ -25,6 +25,12 @@ services:
     volumes:
     - ../:/var/www/html:cached
 
+  codecept:
+    volumes:
+    - ../tests:/project/tests:cached
+    - ../tests/codeception.yml:/project/codeception.yml
+    - ../:/app:cached
+
 ## Uncomment if you want to auto-build the docs locally in docs/_build/html
 #  sphinxdocs:
 #    image: nickjer/docker-sphinx:latest

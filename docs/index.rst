@@ -14,5 +14,6 @@ Follow instructions in :doc:`install` section.
    :caption: Contents:
 
    install
-   contributing
    configuration_management
+   testing
+   contributing

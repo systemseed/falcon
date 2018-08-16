@@ -43,12 +43,19 @@ jobs:
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 
       - run:
-          name: Test frontpage
-          command: curl -sSf http://falcon.docker.localhost | grep '<title>Log in | falcon</title>'
+          name: Prepare tests
+          command: make tests-prepare
 
       - run:
-          name: Check drush status
-          command: make drush status
+          name: Run unit (integration) tests
+          command: make tests-run unit
+
+      - run:
+          name: Run API tests
+          command: make tests-run api
+
+      - store_artifacts:
+          path: tests/_output
 
       - run:
           name: Cleanup local environment

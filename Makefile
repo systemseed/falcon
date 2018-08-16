@@ -1,7 +1,8 @@
 .PHONY: default pull up stop down clean exec exec-wodby exec-root drush \
 prepare prepare-composer prepare-files prepare-settings \
 phpcs phpcbf eslint \
-install
+install \
+tests-prepare tests-autocomplete-on tests-run tests-cli
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
@@ -114,6 +115,25 @@ install_configure_form.enable_update_status_module=NULL --yes)
 ifeq ($(ENV), development)
 	$(MAKE) -s drush en $(DEVELOPMENT_MODULES)
 endif
+
+tests-prepare:
+	$(call message,$(PROJECT_NAME): Prepare Codeception tests)
+	docker-compose run --rm codecept build
+
+tests-autocomplete-on:
+	$(call message,$(PROJECT_NAME): Copy Codeception code in .codecept folder to enable IDE autocomplete)
+	rm -rf .codecept
+	docker cp $(PROJECT_NAME)_codecept:/repo/ .codecept
+	rm -rf .codecept/.git
+
+tests-run:
+	$(call message,$(PROJECT_NAME): Run Codeception tests)
+	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
+	docker-compose run --rm codecept run $(ARGS) --debug
+
+tests-cli:
+	$(call message,$(PROJECT_NAME): Open Codeception container CLI)
+	docker-compose run --rm --entrypoint bash codecept
 
 # https://stackoverflow.com/a/6273809/1826109
 %:
