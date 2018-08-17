@@ -1,7 +1,7 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
 code\:check code\:fix \
-install \
+prepare install \
 tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
 # Create local environment files.
@@ -83,6 +83,11 @@ prepare: | up
 	# Prepare settings.php file.
 	$(call message,$(PROJECT_NAME): Making settings.php writable)
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
+	# Prepare git hooks.
+	$(call message,$(PROJECT_NAME): Setting up git hooks)
+	git config core.hooksPath .git-hooks
+	ln -s $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks/
+
 
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)
@@ -96,25 +101,25 @@ install: | prepare
 code\:check:
 	# PHP coding standards check.
 	$(call message,$(PROJECT_NAME): Checking PHP for compliance with Drupal coding standards...)
-	docker run -it --rm \
+	docker run --rm \
 		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcs \
 		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
 	# Javascript coding standards check.
 	$(call message,$(PROJECT_NAME): Checking Javascript for compliance with Drupal coding standards...)
-	docker run -it --rm \
-		-v $(shell pwd)/modules:/app/modules \
-		-v $(shell pwd)/.eslintrc.json:/app/.eslintrc.json \
-		$(DOCKER_ESLINT) -c /app/.eslintrc.json /app
+	docker run --rm \
+		-v $(shell pwd)/modules:/eslint/modules \
+		-v $(shell pwd)/.eslintrc.json:/eslint/.eslintrc.json \
+		$(DOCKER_ESLINT) .
 
 code\:fix:
 	$(call message,$(PROJECT_NAME): Auto-fixing coding style issues...)
-	docker run -it --rm \
+	docker run --rm \
 		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcbf \
 		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
-	docker run -it --rm \
-		-v $(shell pwd)/modules:/app/modules \
-		-v $(shell pwd)/.eslintrc.json:/app/.eslintrc.json \
-		$(DOCKER_ESLINT) -c /app/.eslintrc.json --fix /app
+	docker run --rm \
+		-v $(shell pwd)/modules:/eslint/modules \
+		-v $(shell pwd)/.eslintrc.json:/eslint/.eslintrc.json \
+		$(DOCKER_ESLINT) --fix .
 
 tests\:prepare:
 	$(call message,$(PROJECT_NAME): Preparing Codeception framework for testing...)
