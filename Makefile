@@ -91,6 +91,7 @@ prepare: | up
 
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)
+	sleep 5
 	$(call docker-www-data, php drush -r /var/www/html/web site-install falcon \
 		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
 		install_configure_form.enable_update_status_module=NULL --yes)
