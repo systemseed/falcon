@@ -1,8 +1,8 @@
-.PHONY: default pull up stop down clean exec exec-wodby exec-root drush \
-prepare prepare-composer prepare-files prepare-settings \
-phpcs phpcbf eslint \
+# Define here list of available make commands.
+.PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
+code\:check code\:fix \
 install \
-tests-prepare tests-autocomplete-on tests-run tests-cli
+tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
@@ -49,91 +49,91 @@ clean: | up
 	$(MAKE) -s down
 
 exec:
-# Remove the first argument from the list of make commands.
+	# Remove the first argument from the list of make commands.
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose exec --user=82:82 $(TARGET) sh
 
-exec-wodby:
-# Remove the first argument from the list of make commands.
+exec\:wodby:
+	# Remove the first argument from the list of make commands.
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose exec $(TARGET) sh
 
-exec-root:
-# Remove the first argument from the list of make commands.
+exec\:root:
+	# Remove the first argument from the list of make commands.
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose exec --user=0:0 $(TARGET) sh
 
 drush:
-# Remove the first argument from the list of make commands.
+	# Remove the first argument from the list of make commands.
 	$(eval COMMAND_ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(call message,Executing \"drush -r /var/www/html/web $(COMMAND_ARGS) --yes\")
 	$(call docker-www-data, php drush -r /var/www/html/web $(COMMAND_ARGS) --yes)
 
-prepare: | up prepare-composer prepare-files prepare-settings
-
-prepare-composer:
+prepare: | up
+	# Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)
-
-prepare-files:
+	# Prepare public files folder.
 	$(call message,$(PROJECT_NAME): Preparing public files directory)
 	$(call docker-wodby, php mkdir -p web/sites/default/files)
 	$(call docker-root, php chown -R www-data: web/sites/default/files)
-
-prepare-settings:
+	# Prepare settings.php file.
 	$(call message,$(PROJECT_NAME): Making settings.php writable)
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
-
-phpcs:
-	$(call message,$(PROJECT_NAME): Checking PHP code)
-	docker run -it --rm \
-		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcs \
-		-s --colors --standard=Drupal,DrupalPractice .
-
-phpcbf:
-	$(call message,$(PROJECT_NAME): Auto-fixing PHP code)
-	docker run -it --rm \
-		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcbf \
-		-s --colors --standard=Drupal,DrupalPractice .
-
-eslint:
-	$(call message,$(PROJECT_NAME): Checking JS code)
-	$(eval ESLINT_PARAMS := $(filter-out $@,$(MAKECMDGOALS)))
-	docker run -it --rm \
-		-v $(shell pwd)/modules:/app/modules \
-		-v $(shell pwd)/.eslintrc.json:/app/.eslintrc.json \
-		$(DOCKER_ESLINT) -c /app/.eslintrc.json $(ESLINT_PARAMS) /app
 
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)
 	$(call docker-www-data, php drush -r /var/www/html/web site-install falcon \
---db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
-install_configure_form.enable_update_status_module=NULL --yes)
-ifeq ($(ENV), development)
-	$(MAKE) -s drush en $(DEVELOPMENT_MODULES)
-endif
+		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
+		install_configure_form.enable_update_status_module=NULL --yes)
+	@if [ $(ENV) = "development" ]; then \
+		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
+	fi
 
-tests-prepare:
-	$(call message,$(PROJECT_NAME): Prepare Codeception tests)
+code\:check:
+	# PHP coding standards check.
+	$(call message,$(PROJECT_NAME): Checking PHP for compliance with Drupal coding standards...)
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcs \
+		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
+	# Javascript coding standards check.
+	$(call message,$(PROJECT_NAME): Checking Javascript for compliance with Drupal coding standards...)
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules \
+		-v $(shell pwd)/.eslintrc.json:/app/.eslintrc.json \
+		$(DOCKER_ESLINT) -c /app/.eslintrc.json /app
+
+code\:fix:
+	$(call message,$(PROJECT_NAME): Auto-fixing coding style issues...)
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcbf \
+		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
+	docker run -it --rm \
+		-v $(shell pwd)/modules:/app/modules \
+		-v $(shell pwd)/.eslintrc.json:/app/.eslintrc.json \
+		$(DOCKER_ESLINT) -c /app/.eslintrc.json --fix /app
+
+tests\:prepare:
+	$(call message,$(PROJECT_NAME): Preparing Codeception framework for testing...)
 	docker-compose run --rm codecept build
 
-tests-autocomplete-on:
-	$(call message,$(PROJECT_NAME): Copy Codeception code in .codecept folder to enable IDE autocomplete)
-	rm -rf .codecept
-	docker cp $(PROJECT_NAME)_codecept:/repo/ .codecept
-	rm -rf .codecept/.git
-
-tests-run:
+tests\:run:
 	$(call message,$(PROJECT_NAME): Run Codeception tests)
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	docker-compose run --rm codecept run $(ARGS) --debug
 
-tests-cli:
+tests\:cli:
 	$(call message,$(PROJECT_NAME): Open Codeception container CLI)
 	docker-compose run --rm --entrypoint bash codecept
+
+tests\:autocomplete:
+	$(call message,$(PROJECT_NAME): Copy Codeception code in .codecept folder to enable IDE autocomplete)
+	rm -rf .codecept
+	docker cp $(PROJECT_NAME)_codecept:/repo/ .codecept
+	rm -rf .codecept/.git
 
 # https://stackoverflow.com/a/6273809/1826109
 %:
