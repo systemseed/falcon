@@ -28,4 +28,4 @@ the sources:
 * `.docker/docker-compose.override.yml` comes from `.docker/docker-compose.override.default.yml`.
 
 ### Access the site
-Go to http://falcon.docker.localhost
+Go to `http://falcon.docker.localhost`

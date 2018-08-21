@@ -59,7 +59,7 @@ class DemoCest
         // Fail if user is not found.
         $I->assertNotEmpty($uid, 'Test admin uid should not be empty');
 
-        // Login using Drupal core endpoint. It will set sesstion cookie.
+        // Login using Drupal core endpoint. It will set session cookie.
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendPOST(
             '/user/login?_format=json',

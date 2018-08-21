@@ -20,19 +20,19 @@ If you are interested in details of Falcon CI setup,  you can find latest Circle
 Running tests on local
 ----------------------
 
-First, run ``make tests-prepare`` to initialize testing framework.
-Now, you can run all Codeception tests using ``make tests-run`` command. You can
+First, run ``make tests:prepare`` to initialize testing framework.
+Now, you can run all Codeception tests using ``make tests:run`` command. You can
 run a specific test suite by passing its name as a second parameter: ::
 
   # Run API test suite only
-  make tests-run api
+  make tests:run api
   # Run unit test suite only
-  make tests-run unit
+  make tests:run unit
 
 You can pass any extra options to ``codecept`` bin if you need: ::
 
   # Run API tests from group "failed".
-  make tests-run api -- -g failed
+  make tests:run api -- -g failed
 
 Tests structure
 ---------------
@@ -70,18 +70,14 @@ test function ``falcon_development_install`` you need to put your test in
 Before you start writing tests we recommend to run the following command: ::
 
   # Optional. Creates ".codecept" folder with Codeception sources in project root.
-  make tests-autocomplete-on
+  make tests:autocomplete
 
 It will enable autocomplete of available test methods in most of popular IDEs.
-Now you can start writing tests and run them using ``make tests-run``.
+Now you can start writing tests and run them using ``make tests:run``.
 
 To access ``codecept`` cli directly run: ::
 
-  make tests-cli
+  make tests:cli
 
 It will allow you to run codecept commands to generate new tests or run a specific
 test if you need. See list of available commands here: https://codeception.com/docs/reference/Commands
-
-
-
-

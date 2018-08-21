@@ -1,11 +1,11 @@
 {
   "name": "systemseed/falcon",
-  "description": "",
+  "description": "Open sourced repository for charity organizations.",
   "type": "drupal-profile",
   "authors": [
     {
       "name": "SystemSeed",
-      "homepage": "http://systemseed.com",
+      "homepage": "https://systemseed.com",
       "role": "Company"
     }
   ],
@@ -36,15 +36,7 @@
       "mkdir -p web/profiles/contrib/falcon",
       "@falcon:links"
     ],
-    "falcon:links": "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* .",
-    "code:check": [
-      "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
-      "vendor/bin/phpcs --standard=Drupal --encoding=utf-8 --colors -n modules tests",
-      "vendor/bin/phpcpd modules tests"
-    ],
-    "code:fix": [
-      "vendor/bin/phpcbf --standard=Drupal --encoding=utf-8 -n modules tests"
-    ]
+    "falcon:links": "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* ."
   },
   "extra": {
     "installer-paths": {

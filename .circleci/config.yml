@@ -19,18 +19,10 @@ jobs:
             sed -i '/PHP_TAG/s/^# //g' \.env
             # Comment all the strings containing `-dev-macos-`.
             sed -i '/-dev-macos-/s/^/# /g' \.env
-            ## Uncomment to put MySQL into memory - it doesn't provide huge performance boost.
-            ## Site-install command stats: 9m 14s (usual MySQL directory) VS 8m 52s / 9m 5s (in memory).
-            #sed -i 's/MYSQL_DATA_DIR=.\/mysql/MYSQL_DATA_DIR=\/dev\/shm/g' \.env
 
       - run:
-          name: Lint PHP code using Drupal code standards.
-          command: make phpcs
-          when: always
-
-      - run:
-          name: Lint JS code using Drupal code standards.
-          command: make eslint
+          name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
+          command: make code:check
           when: always
 
       - run:
@@ -39,27 +31,23 @@ jobs:
           no_output_timeout: 20m
 
       - run:
-          name: Add hosts into /etc/hosts
+          name: Add Falcon domain host into /etc/hosts
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 
       - run:
           name: Prepare tests
-          command: make tests-prepare
+          command: make tests:prepare
 
       - run:
           name: Run unit (integration) tests
-          command: make tests-run unit
+          command: make tests:run unit
 
       - run:
           name: Run API tests
-          command: make tests-run api
+          command: make tests:run api
 
       - store_artifacts:
           path: tests/_output
-
-      - run:
-          name: Cleanup local environment
-          command: make clean
 
 workflows:
   version: 2
