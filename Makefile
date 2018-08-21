@@ -18,9 +18,9 @@ message = @echo "${cyan}${bold}${1}${reset}"
 
 # Define 3 users with different permissions within the container.
 # docker-www-data is applicable only for php container.
-docker-www-data = docker-compose exec --user=82:82 $(firstword ${1}) time sh -c "$(filter-out $(firstword ${1}), ${1})"
-docker-wodby = docker-compose exec $(firstword ${1}) time sh -c "$(filter-out $(firstword ${1}), ${1})"
-docker-root = docker-compose exec --user=0:0 $(firstword ${1}) time sh -c "$(filter-out $(firstword ${1}), ${1})"
+docker-www-data = docker-compose exec --user=82:82 $(firstword ${1}) sh -c "$(filter-out $(firstword ${1}), ${1})"
+docker-wodby = docker-compose exec $(firstword ${1}) sh -c "$(filter-out $(firstword ${1}), ${1})"
+docker-root = docker-compose exec --user=0:0 $(firstword ${1}) sh -c "$(filter-out $(firstword ${1}), ${1})"
 
 default: up
 
