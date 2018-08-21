@@ -36,7 +36,7 @@
       "mkdir -p web/profiles/contrib/falcon",
       "@falcon:links"
     ],
-    "falcon:links": "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* .",
+    "falcon:links": "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* ."
   },
   "extra": {
     "installer-paths": {
