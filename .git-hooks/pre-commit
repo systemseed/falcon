@@ -20,15 +20,11 @@ then
   exit 0
 fi
 
-# Run PHP checks (all codebase).
-make --quiet phpcs
-PHPCS_RESULT=$?
+# Run code standards checks.
+make --quiet code:check
+CHECKS_RESULT=$?
 
-# Run JS checks (all codebase).
-make --quiet eslint
-ESLINT_RESULT=$?
-
-if [ $PHPCS_RESULT -ne 0 ] || [ $ESLINT_RESULT -ne 0 ]
+if [ $CHECKS_RESULT -ne 0 ]
 then
 
   echo "${white}${bg_red}"
