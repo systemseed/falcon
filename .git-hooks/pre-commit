@@ -1,0 +1,41 @@
+#!/bin/sh
+
+#######################################
+####### FALCON PRE-COMMIT HOOK ########
+#######################################
+
+# Define colors for error message.
+white='\033[38;5;7m'
+bg_red='\033[48;5;1m'
+bold='\033[1m'
+reset='\033[0m'
+
+# Always run this hook from repository root.
+cd "."
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMRT | tr '\r\n' ' ')
+# Skip if there were not code changes.
+if [ -z "$STAGED_FILES" ]
+then
+  exit 0
+fi
+
+# Run code standards checks.
+make --quiet code:check
+CHECKS_RESULT=$?
+
+if [ $CHECKS_RESULT -ne 0 ]
+then
+
+  echo "${white}${bg_red}"
+  cat <<\EOF
+
+    Code styling checks failed. Commit has been aborted.
+    Please fix the issues listed above and commit again.
+EOF
+  echo ${reset}
+  echo "If you need to skip this check please use --no-verify option (not recommended)."
+  exit 1
+fi
+
+exit 0
