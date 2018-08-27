@@ -85,7 +85,7 @@ prepare: | up
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
 	# Prepare git hooks.
 	$(call message,$(PROJECT_NAME): Setting up git hooks)
-	ln -s $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
+	ln -sf $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
 
 
 install: | prepare
