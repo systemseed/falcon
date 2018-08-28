@@ -1,7 +1,7 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-code\:check code\:fix \
 prepare install \
+code\:check code\:fix \
 tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
 # Create local environment files.
@@ -86,7 +86,6 @@ prepare: | up
 	# Prepare git hooks.
 	$(call message,$(PROJECT_NAME): Setting up git hooks)
 	ln -sf $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
-
 
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)

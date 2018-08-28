@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: falcon_example
+label: 'Falcon Example'
+effects:
+  d64ca01c-1674-4ceb-b50a-cbda2717a118:
+    uuid: d64ca01c-1674-4ceb-b50a-cbda2717a118
+    id: image_scale
+    weight: 1
+    data:
+      width: 250
+      height: 250
+      upscale: false

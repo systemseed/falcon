@@ -1,0 +1,8 @@
+name: 'Falcon Example'
+description: 'Example Falcon feature.'
+type: module
+core: 8.x
+dependencies:
+  - image
+version: 8.x-1.0
+package: Falcon

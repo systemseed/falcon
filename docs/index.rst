@@ -17,3 +17,5 @@ Follow instructions in :doc:`install` section.
    configuration_management
    testing
    contributing
+   development_falcon
+   development_client_site
