@@ -58,15 +58,12 @@ dependencies:
   - config_ignore
   - config_pages
   - config_split
-  - config_update
   - consumers
   - consumer_image_styles
   - contact_message_rest
   - eck
   - entity
   - entity_reference_revisions
-#  - features
-#  - features_ui
   - field_group
   - fieldable_path
   - jsonapi
@@ -82,6 +79,7 @@ dependencies:
   - token
 
   # Custom modules
+  - falcon_deploy
 
 themes:
   - seven

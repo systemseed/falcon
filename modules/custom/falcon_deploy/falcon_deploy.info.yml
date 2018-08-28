@@ -1,0 +1,5 @@
+name: Falcon Deploy
+type: module
+description: Update/deploy procedures for Falcon distribution.
+core: 8.x
+package: Falcon
