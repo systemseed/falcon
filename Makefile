@@ -18,9 +18,9 @@ message = @echo "${cyan}${bold}${1}${reset}"
 
 # Define 3 users with different permissions within the container.
 # docker-www-data is applicable only for php container.
-docker-www-data = docker-compose exec --user=82:82 $(firstword ${1}) sh -c "$(filter-out $(firstword ${1}), ${1})"
-docker-wodby = docker-compose exec $(firstword ${1}) sh -c "$(filter-out $(firstword ${1}), ${1})"
-docker-root = docker-compose exec --user=0:0 $(firstword ${1}) sh -c "$(filter-out $(firstword ${1}), ${1})"
+docker-www-data = docker-compose exec --user=82:82 $(firstword ${1}) time -f"%E" sh -c "$(filter-out $(firstword ${1}), ${1})"
+docker-wodby = docker-compose exec $(firstword ${1}) time -f"%E" sh -c "$(filter-out $(firstword ${1}), ${1})"
+docker-root = docker-compose exec --user=0:0 $(firstword ${1}) time -f"%E" sh -c "$(filter-out $(firstword ${1}), ${1})"
 
 default: up
 
@@ -46,44 +46,44 @@ clean: | up
 	$(call message,$(PROJECT_NAME): Removing vendor and web directories)
 	$(call docker-root, php rm -rf vendor)
 	$(call docker-root, php rm -rf web)
-	$(MAKE) -s down
+	@$(MAKE) -s down
 
 exec:
-	# Remove the first argument from the list of make commands.
+    # Remove the first argument from the list of make commands.
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose exec --user=82:82 $(TARGET) sh
 
 exec\:wodby:
-	# Remove the first argument from the list of make commands.
+    # Remove the first argument from the list of make commands.
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose exec $(TARGET) sh
 
 exec\:root:
-	# Remove the first argument from the list of make commands.
+    # Remove the first argument from the list of make commands.
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval TARGET := $(firstword $(ARGS)))
 	docker-compose exec --user=0:0 $(TARGET) sh
 
 drush:
-	# Remove the first argument from the list of make commands.
+    # Remove the first argument from the list of make commands.
 	$(eval COMMAND_ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(call message,Executing \"drush -r /var/www/html/web $(COMMAND_ARGS) --yes\")
 	$(call docker-www-data, php drush -r /var/www/html/web $(COMMAND_ARGS) --yes)
 
 prepare: | up
-	# Prepare composer dependencies.
+    # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)
-	# Prepare public files folder.
+    # Prepare public files folder.
 	$(call message,$(PROJECT_NAME): Preparing public files directory)
 	$(call docker-wodby, php mkdir -p web/sites/default/files)
 	$(call docker-root, php chown -R www-data: web/sites/default/files)
-	# Prepare settings.php file.
+    # Prepare settings.php file.
 	$(call message,$(PROJECT_NAME): Making settings.php writable)
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
-	# Prepare git hooks.
+    # Prepare git hooks.
 	$(call message,$(PROJECT_NAME): Setting up git hooks)
 	ln -sf $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
 
@@ -96,14 +96,15 @@ install: | prepare
 	@if [ $(ENV) = "development" ]; then \
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
 	fi
+	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
 
 code\:check:
-	# PHP coding standards check.
+    # PHP coding standards check.
 	$(call message,$(PROJECT_NAME): Checking PHP for compliance with Drupal coding standards...)
 	docker run --rm \
 		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcs \
 		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
-	# Javascript coding standards check.
+    # Javascript coding standards check.
 	$(call message,$(PROJECT_NAME): Checking Javascript for compliance with Drupal coding standards...)
 	docker run --rm \
 		-v $(shell pwd)/modules:/eslint/modules \
