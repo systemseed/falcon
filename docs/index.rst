@@ -19,3 +19,5 @@ Follow instructions in :doc:`install` section.
    contributing
    development_falcon
    development_client_site
+   information_architecture
+   roles
