@@ -3,16 +3,16 @@ Client-site Development
 
 General approach
 ----------------
-Falcon is using `Features module<https://drupal.org/project/features>`_ to
+Falcon is using `Features module <https://drupal.org/project/features>`_ to
 package configurations.
-Please see `Features handbook<https://www.drupal.org/docs/8/modules/features>`_
+Please see `Features handbook <https://www.drupal.org/docs/8/modules/features>`_
 for detailed information on Features.
 
 When feature is installed for the first time its configuration files are
 getting imported into site configuration - once it is done then this
 configuration is owned by the site.
 
-It is recommended to use the `Config Distro<https://www.drupal.org/project/config_distro>`_
+It is recommended to use the `Config Distro <https://www.drupal.org/project/config_distro>`_
 module to manage configuration updates coming from Falcon distribution.
 
 How to install Falcon feature?
