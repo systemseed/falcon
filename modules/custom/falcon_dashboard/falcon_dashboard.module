@@ -1,0 +1,137 @@
+<?php
+
+/**
+ * @file
+ * Falcon_dashboard.module file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function falcon_dashboard_toolbar_alter(&$items) {
+
+  // Sites can override home button url in settings.php:
+  // $config['falcon_dashboard']['home_url'] = 'https://example.com'
+  $home_url = \Drupal::config('falcon_dashboard')->get('home_url');
+  if (empty($home_url)) {
+    $home_url = Url::fromRoute('<front>');
+  }
+  else {
+    $home_url = Url::fromUri($home_url);
+  }
+
+  // Enahanced "Back to site" button.
+  $items['home'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Back to site'),
+      '#url' => $home_url,
+      '#options' => [
+        'attributes' => [
+          'title' => t('Return to site content'),
+          'class' => [
+            'toolbar-item',
+            'toolbar-icon',
+            'toolbar-icon-escape-admin',
+          ],
+        ],
+      ],
+    ],
+    '#weight' => -20,
+  ];
+
+  // Dashboard menu item.
+  $items['dashboard'] = [
+    '#type' => 'toolbar_item',
+    '#attached' => [
+      'library' => ['admin_toolbar/toolbar.tree'],
+    ],
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Dashboard'),
+      '#url' => Url::fromRoute('falcon.dashboard'),
+      '#attributes' => [
+        'title' => t('Dashboard'),
+        'class' => ['toolbar-icon', 'toolbar-icon-menu'],
+      ],
+    ],
+    'tray' => [
+      '#heading' => t('Dashboard'),
+      'toolbar_dashboard' => [
+        '#pre_render' => [
+          'falcon_dashboard_prerender_toolbar_tray',
+        ],
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['toolbar-menu-administration'],
+        ],
+      ],
+    ],
+    '#weight' => -19,
+  ];
+
+  // Hide administration menu if the user doesn't have privileged permissions.
+  if (!\Drupal::currentUser()->hasPermission('use default admin toolbar')) {
+    unset($items['administration']);
+  }
+  else {
+    $items['administration']['tab']['#title'] = t('Administration');
+  }
+}
+
+/**
+ * Renders the toolbar's dashboard tray.
+ *
+ * This is a clone of admin_toolbar_prerender_toolbar_administration_tray()
+ * function, which uses 'falcon.dashboard' menu as a tray root.
+ *
+ * @param array $element
+ *   A renderable array.
+ *
+ * @return array
+ *   The updated renderable array.
+ *
+ * @see toolbar_prerender_toolbar_administration_tray()
+ */
+function falcon_dashboard_prerender_toolbar_tray(array $element) {
+  // Default root menu item is Falcon Dashboard.
+  $root = 'falcon.dashboard';
+
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+
+  $menu_tree = \Drupal::service('toolbar.menu_tree');
+  $parameters = new MenuTreeParameters();
+  $parameters->setRoot($root)->excludeRoot()->setMaxDepth(4)->onlyEnabledLinks();
+  $tree = $menu_tree->load(NULL, $parameters);
+  $tree = $menu_tree->transform($tree, $manipulators);
+  $element['dashboard_menu'] = $menu_tree->build($tree);
+
+  return $element;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add submit redirect to the dashboard page.
+ */
+function falcon_dashboard_form_user_login_form_alter(&$form) {
+  $form['#submit'][] = 'falcon_dashboard_form_submit_handler';
+}
+
+/**
+ * Login form submit handler.
+ *
+ * Redirects users to the dashboard. This redirect can be overridden by
+ * Drupal destination query param if needed.
+ */
+function falcon_dashboard_form_submit_handler($form, FormStateInterface $form_state) {
+  $form_state->setRedirect('falcon.dashboard');
+}

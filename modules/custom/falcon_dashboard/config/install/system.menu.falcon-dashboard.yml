@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: falcon-dashboard
+label: Dashboard
+description: 'Links displayed on Falcon Dashboard screen.'
+locked: true

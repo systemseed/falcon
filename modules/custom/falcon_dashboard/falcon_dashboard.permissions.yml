@@ -1,0 +1,3 @@
+use default admin toolbar:
+  title: 'Use default admin toolbar'
+  description: 'Grant this permission to users who need access to the entire admin menu from the toolbar.'
