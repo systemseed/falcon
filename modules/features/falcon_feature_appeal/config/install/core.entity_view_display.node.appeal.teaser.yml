@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.appeal.field_blocks
+    - field.field.node.appeal.field_donation_min_amount
+    - field.field.node.appeal.field_donation_suggested_amounts
+    - field.field.node.appeal.field_donation_type
+    - field.field.node.appeal.field_path
+    - field.field.node.appeal.field_thankyou_email_body
+    - field.field.node.appeal.field_thankyou_email_subject
+    - field.field.node.appeal.field_thankyou_page_blocks
+    - field.field.node.appeal.field_thankyou_page_title
+    - node.type.appeal
+  module:
+    - user
+id: node.appeal.teaser
+targetEntityType: node
+bundle: appeal
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_blocks: true
+  field_donation_min_amount: true
+  field_donation_suggested_amounts: true
+  field_donation_type: true
+  field_path: true
+  field_thankyou_email_body: true
+  field_thankyou_email_subject: true
+  field_thankyou_page_blocks: true
+  field_thankyou_page_title: true

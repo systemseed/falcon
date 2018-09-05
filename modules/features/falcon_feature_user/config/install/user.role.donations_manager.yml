@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+id: donations_manager
+label: 'Donations manager'
+weight: 5
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'view the administration theme'

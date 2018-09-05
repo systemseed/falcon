@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: content_manager
+label: 'Content manager'
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access toolbar'
+  - 'schedule publishing of nodes'
+  - 'view scheduled content'
+  - 'view the administration theme'

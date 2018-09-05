@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: manager
+label: Manager
+weight: 2
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access toolbar'
+  - 'schedule publishing of nodes'
+  - 'view scheduled content'
+  - 'view the administration theme'
