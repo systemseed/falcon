@@ -1,4 +1,4 @@
-name: 'Falcon User'
+name: 'Falcon User feature'
 description: 'Falcon user roles and permissions.'
 type: module
 core: 8.x

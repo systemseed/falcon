@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+id: donation
+label: Donation
+description: ''
+variationType: donation
+injectVariationFields: true
+traits: {  }
+locked: false

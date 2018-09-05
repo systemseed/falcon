@@ -6,5 +6,9 @@ label: 'Donations manager'
 weight: 5
 is_admin: null
 permissions:
+  - 'access administration pages'
+  - 'access commerce administration pages'
+  - 'access commerce_order overview'
   - 'access toolbar'
+  - 'view commerce_order'
   - 'view the administration theme'

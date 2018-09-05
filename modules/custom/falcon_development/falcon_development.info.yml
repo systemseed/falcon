@@ -6,3 +6,4 @@ package: Falcon
 
 dependencies:
   - features
+  - falcon_feature_user

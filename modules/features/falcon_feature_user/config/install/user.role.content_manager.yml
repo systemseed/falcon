@@ -7,7 +7,13 @@ weight: 3
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access content overview'
+  - 'access files overview'
+  - 'access media overview'
   - 'access toolbar'
+  - 'create media'
+  - 'create url aliases'
   - 'schedule publishing of nodes'
+  - 'update any media'
   - 'view scheduled content'
   - 'view the administration theme'

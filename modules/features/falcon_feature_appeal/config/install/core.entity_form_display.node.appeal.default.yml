@@ -1,4 +1,3 @@
-uuid: b5f0a07f-aa80-4861-b4b4-6de604ccb80e
 langcode: en
 status: true
 dependencies:
@@ -97,8 +96,6 @@ third_party_settings:
         direction: horizontal
       label: Tabs
       region: content
-_core:
-  default_config_hash: jZ_FYswcjbD_1Cz2BUEoaHWEK_T47LNtr_exQvpc7mk
 id: node.appeal.default
 targetEntityType: node
 bundle: appeal
@@ -140,7 +137,7 @@ content:
     weight: 4
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_thankyou_email_body:
     weight: 7

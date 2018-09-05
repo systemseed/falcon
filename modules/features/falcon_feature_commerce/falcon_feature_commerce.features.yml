@@ -1,0 +1,13 @@
+bundle: falcon_feature
+excluded:
+  - config_snapshot.snapshot.config_sync.module.falcon_commerce
+  - config_snapshot.snapshot.config_sync.module.falcon_feature_commerce
+  - config_snapshot.snapshot.config_sync.module.commerce
+  - config_snapshot.snapshot.config_sync.module.commerce_cart
+  - config_snapshot.snapshot.config_sync.module.commerce_checkout
+  - config_snapshot.snapshot.config_sync.module.commerce_order
+  - config_snapshot.snapshot.config_sync.module.commerce_payment
+  - config_snapshot.snapshot.config_sync.module.commerce_price
+  - config_snapshot.snapshot.config_sync.module.commerce_product
+  - config_snapshot.snapshot.config_sync.module.commerce_store
+required: true

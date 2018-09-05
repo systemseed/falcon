@@ -1,0 +1,26 @@
+donation:
+  id: donation
+  group: commerce_order
+  label: 'Donation'
+  states:
+    draft:
+      label: Draft
+    pending:
+      label: Pending
+    completed:
+      label: Completed
+    rejected:
+      label: Rejected
+  transitions:
+    place:
+      label: 'Place order'
+      from: [draft]
+      to: pending
+    complete:
+      label: 'Complete order'
+      from: [pending]
+      to: completed
+    reject:
+      label: 'Reject order'
+      from: [draft, pending]
+      to: rejected

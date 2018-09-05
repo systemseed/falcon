@@ -1,4 +1,4 @@
-name: Appeal
+name: 'Falcon Appeal feature'
 description: 'Provides Appeal content type and related configuration.'
 type: module
 core: 8.x
