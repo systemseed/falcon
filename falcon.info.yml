@@ -32,6 +32,7 @@ dependencies:
   - image
   - link
   - media
+  - menu_link_config
   - menu_link_content
   - menu_ui
   - node
@@ -41,7 +42,6 @@ dependencies:
   - responsive_image
   - rest
   - serialization
-  - shortcut
   - system
   - taxonomy
   - telephone
@@ -79,8 +79,8 @@ dependencies:
   - token
 
   # Custom modules
+  - falcon_dashboard
   - falcon_deploy
 
 themes:
   - seven
-  - material_admin

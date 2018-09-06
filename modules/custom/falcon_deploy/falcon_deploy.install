@@ -4,3 +4,26 @@
  * @file
  * Install, update and uninstall functions for Falcon Deploy.
  */
+
+use Drupal\Core\Config\FileStorage;
+
+/**
+ * Install Falcon Dashboard.
+ */
+function falcon_deploy_update_8005() {
+  // Load Falcon configs from file system.
+  $config_path = drupal_get_path('profile', 'falcon') . '/config/install';
+  $source = new FileStorage($config_path);
+  $config_storage = \Drupal::service('config.storage');
+
+  // Re-install system.theme config.
+  $config_storage->write('system.theme', $source->read('system.theme'));
+  \Drupal::service('theme_installer')->uninstall(['material_admin']);
+  // Uninstall Shortcut module.
+  \Drupal::service('module_installer')->uninstall(['shortcut']);
+
+  \Drupal::service('module_installer')->install([
+    'menu_link_config',
+    'falcon_dashboard',
+  ]);
+}

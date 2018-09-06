@@ -1,0 +1,10 @@
+falcon.dashboard:
+  path: '/dashboard'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::overview'
+    link_id: 'falcon.dashboard'
+    _title: 'Dashboard'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'access administration pages'

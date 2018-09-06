@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_example_add_a_new_user
+title: 'Add a new user'
+route_name: user.admin_create
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_category_example'
+weight: 0
+description: ''

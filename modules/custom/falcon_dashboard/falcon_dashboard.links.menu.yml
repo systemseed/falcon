@@ -1,0 +1,5 @@
+falcon.dashboard:
+  title: Dashboard
+  route_name: falcon.dashboard
+  weight: 0
+  menu_name: falcon-dashboard

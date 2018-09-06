@@ -1,0 +1,5 @@
+name: Falcon Dashboard
+type: module
+description: Falcon Dashboard
+core: 8.x
+package: Falcon
