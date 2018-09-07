@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_thankyou_email_body
+    - node.type.appeal
+  module:
+    - text
+id: node.appeal.field_thankyou_email_body
+field_name: field_thankyou_email_body
+entity_type: node
+bundle: appeal
+label: 'Email body'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

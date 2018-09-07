@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_thankyou_email_subject
+    - node.type.appeal
+id: node.appeal.field_thankyou_email_subject
+field_name: field_thankyou_email_subject
+entity_type: node
+bundle: appeal
+label: 'Email subject'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+label: Donation
+id: donation
+purchasableEntityType: commerce_product_variation
+orderType: donation
+traits: {  }
+locked: false

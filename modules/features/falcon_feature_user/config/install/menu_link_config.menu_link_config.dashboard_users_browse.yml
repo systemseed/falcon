@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_users_browse
+title: 'Browse all users'
+route_name: entity.user.collection
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_users_category'
+weight: 0
+description: 'Overview and search.'

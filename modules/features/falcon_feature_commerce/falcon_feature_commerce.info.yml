@@ -1,0 +1,26 @@
+name: 'Falcon Commerce feature'
+type: module
+core: 8.x
+dependencies:
+  - address
+  - commerce
+  - commerce_cart
+  - commerce_checkout
+  - commerce_order
+  - commerce_payment
+  - commerce_price
+  - commerce_product
+  - commerce_store
+  - falcon_commerce
+  - field
+  - inline_entity_form
+  - menu_link_config
+  - node
+  - options
+  - path
+  - state_machine
+  - text
+  - user
+version: 8.x-1.0
+package: Falcon
+description: 'Falcon Commerce feature.'

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: donation
+label: Donation
+orderItemType: donation
+generateTitle: false
+traits: {  }
+locked: false

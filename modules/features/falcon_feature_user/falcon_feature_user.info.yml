@@ -1,0 +1,9 @@
+name: 'Falcon User feature'
+description: 'Falcon user roles and permissions.'
+type: module
+core: 8.x
+dependencies:
+  - menu_link_config
+  - user
+version: 8.x-1.0
+package: Falcon

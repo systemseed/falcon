@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies: {  }
+id: manager
+label: Manager
+weight: 2
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access commerce administration pages'
+  - 'access commerce_order overview'
+  - 'access content overview'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'administer nodes'
+  - 'administer users'
+  - 'bypass node access'
+  - 'create media'
+  - 'create url aliases'
+  - 'schedule publishing of nodes'
+  - 'update any media'
+  - 'view commerce_order'
+  - 'view scheduled content'
+  - 'view the administration theme'

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies: {  }
+id: appeals_manager
+label: 'Appeals manager'
+weight: 4
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'create appeal content'
+  - 'create media'
+  - 'create url aliases'
+  - 'delete any appeal content'
+  - 'delete appeal revisions'
+  - 'delete own appeal content'
+  - 'edit any appeal content'
+  - 'edit own appeal content'
+  - 'revert appeal revisions'
+  - 'schedule publishing of nodes'
+  - 'update any media'
+  - 'view appeal revisions'
+  - 'view scheduled content'
+  - 'view the administration theme'

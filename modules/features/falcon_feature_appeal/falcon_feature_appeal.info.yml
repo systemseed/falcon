@@ -1,0 +1,20 @@
+name: 'Falcon Appeal feature'
+description: 'Provides Appeal content type and related configuration.'
+type: module
+core: 8.x
+dependencies:
+  - entity_reference_revisions
+  - field
+  - field_group
+  - fieldable_path
+  - menu_link_config
+  - menu_ui
+  - node
+  - options
+  - paragraphs
+  - path
+  - scheduler
+  - text
+  - user
+version: 8.x-1.0
+package: Falcon
