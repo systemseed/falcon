@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_users_add_a_new_user
+title: 'Add a new user'
+route_name: user.admin_create
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_users_category'
+weight: 0
+description: 'Create a new user in the system.'
