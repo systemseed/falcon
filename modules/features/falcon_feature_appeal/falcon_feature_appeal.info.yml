@@ -7,6 +7,7 @@ dependencies:
   - field
   - field_group
   - fieldable_path
+  - menu_link_config
   - menu_ui
   - node
   - options

@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_appeals_create_a_new_appeal
+title: 'Create a new appeal'
+route_name: node.add
+route_parameters:
+  node_type: 6252511c-5599-4655-9d19-033d16deb721
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_appeals_category'
+weight: -50
+description: 'Create a new appeal.'

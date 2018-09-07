@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_browse_appeals
+title: 'Browse all appeals'
+route_name: system.admin_content
+route_parameters: {  }
+options:
+  query:
+    type: appeal
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_appeals_category'
+weight: -49
+description: 'Overview and search.'

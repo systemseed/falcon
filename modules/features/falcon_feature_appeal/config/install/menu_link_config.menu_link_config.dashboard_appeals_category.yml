@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_appeals_category
+title: Appeals
+route_name: system.admin_content
+route_parameters: {  }
+options:
+  query:
+    type: appeal
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: falcon.dashboard
+weight: 0
+description: 'Create and manage appeals.'

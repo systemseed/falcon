@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_users_category
+title: Users
+route_name: entity.user.collection
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: falcon.dashboard
+weight: 30
+description: 'Create and manage users.'

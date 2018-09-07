@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_browse_donations
+title: 'Browse all donations'
+route_name: entity.commerce_order.collection
+route_parameters: {  }
+options:
+  query:
+    type: donation
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_donations_category'
+weight: -49
+description: 'Overview and search orders of Donation time'
