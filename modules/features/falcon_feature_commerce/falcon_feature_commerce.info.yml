@@ -18,7 +18,9 @@ dependencies:
   - node
   - options
   - path
+  - profile
   - state_machine
+  - telephone
   - text
   - user
 version: 8.x-1.0

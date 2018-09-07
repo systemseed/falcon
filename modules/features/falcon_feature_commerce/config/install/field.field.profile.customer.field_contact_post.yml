@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_contact_post
+    - profile.type.customer
+id: profile.customer.field_contact_post
+field_name: field_contact_post
+entity_type: profile
+bundle: customer
+label: 'Allow Contact by Post'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

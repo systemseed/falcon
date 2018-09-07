@@ -5,22 +5,16 @@ donation:
   states:
     draft:
       label: Draft
-    pending:
-      label: Pending
     completed:
       label: Completed
-    rejected:
-      label: Rejected
+    canceled:
+      label: Canceled
   transitions:
     place:
       label: 'Place order'
       from: [draft]
-      to: pending
-    complete:
-      label: 'Complete order'
-      from: [pending]
       to: completed
-    reject:
+    cancel:
       label: 'Reject order'
-      from: [draft, pending]
-      to: rejected
+      from: [draft]
+      to: canceled

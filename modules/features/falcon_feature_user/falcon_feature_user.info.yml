@@ -3,6 +3,7 @@ description: 'Falcon user roles and permissions.'
 type: module
 core: 8.x
 dependencies:
+  - field
   - menu_link_config
   - user
 version: 8.x-1.0
