@@ -3,4 +3,8 @@ excluded:
   - config_snapshot.snapshot.config_sync.module.falcon_feature_user
   - config_snapshot.snapshot.config_sync.module.user
   - core.entity_view_mode.user.token
+  - core.entity_form_display.user.user.default
+  - core.entity_view_display.user.user.default
+  - field.field.user.user.commerce_remote_id
+  - field.storage.user.commerce_remote_id
 required: true

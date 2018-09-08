@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.donation
+    - field.storage.commerce_order.field_appeal
+    - node.type.appeal
+id: commerce_order.donation.field_appeal
+field_name: field_appeal
+entity_type: commerce_order
+bundle: donation
+label: Appeal
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      appeal: appeal
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
