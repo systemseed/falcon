@@ -61,16 +61,17 @@ dependencies:
   - consumers
   - consumer_image_styles
   - contact_message_rest
+  - decoupled_router
   - eck
   - entity
   - entity_reference_revisions
   - field_group
-  - fieldable_path
   - jsonapi
   - jsonapi_extras
   - mailsystem
   - metatag
   - paragraphs
+  - pathauto
   - redirect
   - restui
   - rest_absolute_urls

@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.appeal.field_donation_min_amount
     - field.field.node.appeal.field_donation_suggested_amounts
     - field.field.node.appeal.field_donation_type
-    - field.field.node.appeal.field_path
     - field.field.node.appeal.field_thankyou_email_body
     - field.field.node.appeal.field_thankyou_email_subject
     - field.field.node.appeal.field_thankyou_page_blocks
@@ -28,7 +27,6 @@ hidden:
   field_donation_min_amount: true
   field_donation_suggested_amounts: true
   field_donation_type: true
-  field_path: true
   field_thankyou_email_body: true
   field_thankyou_email_subject: true
   field_thankyou_page_blocks: true

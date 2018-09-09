@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.appeal.field_donation_min_amount
     - field.field.node.appeal.field_donation_suggested_amounts
     - field.field.node.appeal.field_donation_type
-    - field.field.node.appeal.field_path
     - field.field.node.appeal.field_thankyou_email_body
     - field.field.node.appeal.field_thankyou_email_subject
     - field.field.node.appeal.field_thankyou_page_blocks
@@ -14,7 +13,6 @@ dependencies:
     - node.type.appeal
   module:
     - entity_reference_revisions
-    - fieldable_path
     - options
     - text
     - user
@@ -56,13 +54,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
-    region: content
-  field_path:
-    weight: 102
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: fieldable_path_formatter
     region: content
   field_thankyou_email_body:
     weight: 110

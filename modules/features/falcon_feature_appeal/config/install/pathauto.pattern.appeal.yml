@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: appeal
+label: Appeal
+type: 'canonical_entities:node'
+pattern: 'donate/[node:title]'
+selection_criteria:
+  76ce8add-a285-4f04-a9a2-1ab662153d1f:
+    id: node_type
+    bundles:
+      appeal: appeal
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 76ce8add-a285-4f04-a9a2-1ab662153d1f
+selection_logic: and
+weight: -5
+relationships: {  }
