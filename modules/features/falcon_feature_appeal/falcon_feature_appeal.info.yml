@@ -6,13 +6,13 @@ dependencies:
   - entity_reference_revisions
   - field
   - field_group
-  - fieldable_path
   - menu_link_config
   - menu_ui
   - node
   - options
   - paragraphs
   - path
+  - pathauto
   - scheduler
   - text
   - user
