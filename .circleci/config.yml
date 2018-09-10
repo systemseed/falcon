@@ -31,10 +31,6 @@ jobs:
           no_output_timeout: 20m
 
       - run:
-          name: Enable all Falcon features
-          command: make drush en $(ls -m modules/features)
-
-      - run:
           name: Add Falcon domain host into /etc/hosts
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 

@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Falcon Donation module.
+ */
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function falcon_donation_entity_type_build(array &$entity_types) {
+  // Register entity level constraints for Commerce Order entity type.
+  $entity_types['commerce_order']->addConstraint('falcon_donation__min_donation_amount');
+  $entity_types['commerce_order']->addConstraint('falcon_donation__donation_type');
+  $entity_types['commerce_order']->addConstraint('falcon_donation__unpublished_appeal');
+
+  // Register entity level constraints for Commerce Order Item entity type.
+  $entity_types['commerce_order_item']->addConstraint('falcon_donation__zero_donation_amount');
+}
