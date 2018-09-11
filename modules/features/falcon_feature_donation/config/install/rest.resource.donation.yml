@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - falcon_donation
+    - serialization
+    - user
+id: donation
+plugin_id: donation
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - cookie

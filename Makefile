@@ -96,6 +96,7 @@ install: | prepare
 	@if [ $(ENV) = "development" ]; then \
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
 	fi
+	$(MAKE) -s drush en $(shell ls -m modules/features)
 	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
 
 code\:check:
