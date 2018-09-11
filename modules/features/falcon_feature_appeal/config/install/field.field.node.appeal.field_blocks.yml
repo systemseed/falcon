@@ -21,4 +21,11 @@ settings:
   handler_settings:
     negate: 0
     target_bundles: null
+    target_bundles_drag_drop:
+      donate_money_handles_item:
+        weight: 3
+        enabled: false
+      donate_with_money_handles:
+        weight: 4
+        enabled: false
 field_type: entity_reference_revisions

@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.donate_money_handles_item.field_amount
+    - field.field.paragraph.donate_money_handles_item.field_money_handles_text
+    - paragraphs.paragraphs_type.donate_money_handles_item
+id: paragraph.donate_money_handles_item.default
+targetEntityType: paragraph
+bundle: donate_money_handles_item
+mode: default
+content:
+  field_amount:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_money_handles_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

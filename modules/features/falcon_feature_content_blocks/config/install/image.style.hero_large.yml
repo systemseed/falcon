@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.hero_large
+  module:
+    - crop
+name: hero_large
+label: 'Hero Large'
+effects:
+  6ed704b4-c2a6-4783-84c0-6c151d588d91:
+    uuid: 6ed704b4-c2a6-4783-84c0-6c151d588d91
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: hero_large
+  6a74e9ab-c511-495c-bbae-4fb8b0387912:
+    uuid: 6a74e9ab-c511-495c-bbae-4fb8b0387912
+    id: image_resize
+    weight: 2
+    data:
+      width: 1600
+      height: 500

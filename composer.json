@@ -89,6 +89,7 @@
     "drupal/entity_reference_revisions": "^1.5",
     "drupal/field_group": "^3.0@beta",
     "drupal/fieldable_path": "^1.0@rc",
+    "drupal/image_widget_crop": "^2.2",
     "drupal/jsonapi": "^1.23",
     "drupal/jsonapi_extras": "^2.5",
     "drupal/mailsystem": "^4.1",

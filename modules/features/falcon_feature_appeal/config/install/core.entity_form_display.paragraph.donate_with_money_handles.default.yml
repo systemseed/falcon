@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.donate_with_money_handles.field_blocks
+    - paragraphs.paragraphs_type.donate_with_money_handles
+  module:
+    - paragraphs
+id: paragraph.donate_with_money_handles.default
+targetEntityType: paragraph
+bundle: donate_with_money_handles
+mode: default
+content:
+  field_blocks:
+    type: paragraphs
+    weight: 0
+    settings:
+      title: Item
+      title_plural: Items
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: donate_money_handles_item
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

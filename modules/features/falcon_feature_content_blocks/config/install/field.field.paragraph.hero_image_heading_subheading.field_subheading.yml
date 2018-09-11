@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.hero_image_heading_subheading
+id: paragraph.hero_image_heading_subheading.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: hero_image_heading_subheading
+label: Subheading
+description: 'The optional text below the heading.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

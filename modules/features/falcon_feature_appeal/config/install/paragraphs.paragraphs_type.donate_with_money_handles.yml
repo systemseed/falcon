@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: donate_with_money_handles
+label: 'Donate - With Money Handles'
+icon_uuid: null
+description: 'Place this block on the appeal page to add Money Handle blocks with Donate buttons. Supports single and regular donations.'
+behavior_plugins: {  }

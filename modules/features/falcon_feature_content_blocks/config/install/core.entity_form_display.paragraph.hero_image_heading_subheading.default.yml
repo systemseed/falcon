@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_image_heading_subheading.field_heading
+    - field.field.paragraph.hero_image_heading_subheading.field_image
+    - field.field.paragraph.hero_image_heading_subheading.field_subheading
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.hero_image_heading_subheading
+  module:
+    - image_widget_crop
+id: paragraph.hero_image_heading_subheading.default
+targetEntityType: paragraph
+bundle: hero_image_heading_subheading
+mode: default
+content:
+  field_heading:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_image:
+    weight: 0
+    settings:
+      show_crop_area: true
+      show_default_crop: true
+      preview_image_style: thumbnail
+      crop_preview_image_style: crop_thumbnail
+      progress_indicator: throbber
+      crop_list:
+        - hero_large
+      crop_types_required:
+        - hero_large
+      warn_multiple_usages: false
+    third_party_settings: {  }
+    type: image_widget_crop
+    region: content
+  field_subheading:
+    weight: 2
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true
