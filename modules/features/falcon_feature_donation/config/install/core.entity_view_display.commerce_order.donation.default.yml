@@ -7,6 +7,7 @@ dependencies:
     - field.field.commerce_order.donation.order_items
   module:
     - commerce_order
+    - entity_reference_revisions
     - state_machine
     - user
 id: commerce_order.donation.default
@@ -14,10 +15,19 @@ targetEntityType: commerce_order
 bundle: donation
 mode: default
 content:
+  billing_profile:
+    type: entity_reference_revisions_entity_view
+    weight: 9
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   completed:
     label: above
     type: timestamp
-    weight: 0
+    weight: 2
     region: content
     settings:
       date_format: medium
@@ -25,7 +35,7 @@ content:
       timezone: ''
     third_party_settings: {  }
   field_appeal:
-    weight: 11
+    weight: 0
     label: above
     settings:
       link: true
@@ -33,25 +43,33 @@ content:
     type: entity_reference_label
     region: content
   ip_address:
-    label: above
     type: string
-    weight: 0
+    weight: 6
     region: content
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   mail:
     label: above
-    type: string
-    weight: 0
+    type: basic_string
+    weight: 5
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  order_items:
+    type: entity_reference_entity_view
+    weight: 1
+    region: content
+    label: above
     settings:
-      link_to_entity: false
+      view_mode: default
+      link: false
     third_party_settings: {  }
   placed:
     label: above
     type: timestamp
-    weight: 0
+    weight: 3
     region: content
     settings:
       date_format: medium
@@ -61,27 +79,25 @@ content:
   state:
     label: hidden
     type: state_transition_form
-    weight: 10
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   total_price:
     label: hidden
     type: commerce_order_total_summary
-    weight: 0
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   uid:
     label: above
     type: author
-    weight: 0
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  billing_profile: true
   changed: true
-  order_items: true
   order_number: true
   store_id: true

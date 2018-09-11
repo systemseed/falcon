@@ -7,32 +7,20 @@ dependencies:
     - field.field.commerce_order.donation.order_items
   module:
     - commerce_order
+    - inline_entity_form
 id: commerce_order.donation.default
 targetEntityType: commerce_order
 bundle: donation
 mode: default
 content:
-  adjustments:
-    type: commerce_adjustment_default
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   billing_profile:
     type: commerce_billing_profile
-    weight: 0
+    weight: 2
     settings: {  }
-    region: content
-    third_party_settings: {  }
-  cart:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 20
     region: content
     third_party_settings: {  }
   field_appeal:
-    weight: 21
+    weight: 0
     settings:
       match_operator: CONTAINS
       size: 60
@@ -40,10 +28,27 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  order_items:
+    type: inline_entity_form_complex
+    weight: 1
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
 hidden:
+  adjustments: true
+  cart: true
   ip_address: true
   mail: true
-  order_items: true
   order_number: true
   state: true
   store_id: true

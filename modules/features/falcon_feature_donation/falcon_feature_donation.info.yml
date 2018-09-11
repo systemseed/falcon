@@ -8,7 +8,9 @@ dependencies:
   - commerce_cart
   - commerce_checkout
   - commerce_order
+  - commerce_price
   - commerce_product
+  - entity_reference_revisions
   - falcon_donation
   - falcon_feature_appeal
   - falcon_feature_commerce

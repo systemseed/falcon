@@ -4,6 +4,7 @@ dependencies:
   config:
     - commerce_order.commerce_order_item_type.donation
     - core.entity_form_mode.commerce_order_item.add_to_cart
+    - field.field.commerce_order_item.donation.field_donation_type
   module:
     - commerce_order
 id: commerce_order_item.donation.add_to_cart
@@ -30,4 +31,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_donation_type: true
   unit_price: true
