@@ -23,7 +23,8 @@ content:
   address:
     type: address_default
     weight: 0
-    settings: {  }
+    settings:
+      default_country: null
     third_party_settings: {  }
     region: content
   field_contact_email:
