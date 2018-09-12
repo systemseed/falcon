@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: donate_money_handles_item
+label: 'Money Handles Item'
+icon_uuid: null
+description: 'An individual Money Handles item.'
+behavior_plugins: {  }

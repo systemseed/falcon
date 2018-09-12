@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_money_handles_text
+    - paragraphs.paragraphs_type.donate_money_handles_item
+id: paragraph.donate_money_handles_item.field_money_handles_text
+field_name: field_money_handles_text
+entity_type: paragraph
+bundle: donate_money_handles_item
+label: Description
+description: 'The optional description below the amount.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

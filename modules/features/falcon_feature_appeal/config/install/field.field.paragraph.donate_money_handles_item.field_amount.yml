@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount
+    - paragraphs.paragraphs_type.donate_money_handles_item
+id: paragraph.donate_money_handles_item.field_amount
+field_name: field_amount
+entity_type: paragraph
+bundle: donate_money_handles_item
+label: Amount
+description: 'Enter the amount without currency code.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

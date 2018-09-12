@@ -107,15 +107,21 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_blocks:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 1
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
+      title: Block
+      title_plural: Blocks
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: select
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
     third_party_settings: {  }
     region: content
   field_donation_min_amount:
@@ -155,15 +161,21 @@ content:
     type: string_textfield
     region: content
   field_thankyou_page_blocks:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 3
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
+      title: Block
+      title_plural: Blocks
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: select
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
     third_party_settings: {  }
     region: content
   field_thankyou_page_title:

@@ -1,0 +1,13 @@
+name: 'Falcon Content Blocks feature'
+description: 'Collection of general purpose paragraphs.'
+type: module
+core: 8.x
+dependencies:
+  - crop
+  - field
+  - file
+  - image
+  - image_widget_crop
+  - paragraphs
+version: 8.x-1.0
+package: Falcon
