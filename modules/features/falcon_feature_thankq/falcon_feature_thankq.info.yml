@@ -1,5 +1,5 @@
 name: 'Falcon ThankQ feature'
-description: 'Provides ThankQ source codes / donation synchronization.'
+description: 'Provides Source Codes / Donations synchronization with ThankQ CRM.'
 type: module
 core: 8.x
 dependencies:
