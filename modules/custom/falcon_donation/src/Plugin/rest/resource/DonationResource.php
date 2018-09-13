@@ -11,6 +11,7 @@ use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
+use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OnsitePaymentGatewayInterface;
 use Drupal\commerce_price\Price;
 
 /**
@@ -117,11 +118,15 @@ class DonationResource extends ResourceBase {
     // TODO: check if we can get this data some other way provided by REST.
     // Look into the serialization_class.
     $this->data = json_decode($request->getContent(), TRUE);
+    if ($this->data == NULL) {
+      $this->logger->warning("The received data isn't valid JSON and couldn't be decoded.");
+      throw new HttpException(500, 'Internal Server Error');
+    }
 
     $order = $this->createOrder();
-    $this->processPayment($order);
+    $result = $this->processPayment($order);
 
-    $response = new ResourceResponse($order, 200);
+    $response = new ResourceResponse($result, 200);
 
     return $response;
   }
@@ -222,13 +227,77 @@ class DonationResource extends ResourceBase {
    *   Order.
    */
   protected function processPayment(OrderInterface $order) {
-    // TODO: add payment processing.
+    // Initialize payment gateway.
+    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+    $payment_gateway = $this->entityTypeManager->getStorage('commerce_payment_gateway')->load($this->data['payment']['gateway']);
+    if ($payment_gateway == NULL) {
+      $this->logger->warning("Couldn't load payment gateway.");
+      throw new HttpException(500, 'Internal Server Error');
+    }
 
-    // Complete the order.
-    $order_state = $order->getState();
-    $order_state_transitions = $order_state->getTransitions();
-    $order_state->applyTransition($order_state_transitions['place']);
-    $order->save();
+    // Create payment method.
+    /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
+    $payment_method = $this->entityTypeManager->getStorage('commerce_payment_method')->create([
+      'payment_gateway' => $this->data['payment']['gateway'],
+      'type' => $this->data['payment']['method']['type'],
+    ]);
+
+    // Get user and profile objects.
+    $account = $this->getUser();
+    $profile = $this->getProfile();
+
+    // Set user and profile info for payment method.
+    $payment_method->setOwner($account);
+    $payment_method->setBillingProfile($profile);
+
+    // For security reasons the returned errors need to be more generic.
+    try {
+      /** @var \Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsStoredPaymentMethodsInterface $payment_gateway_plugin */
+      $payment_gateway_plugin = $payment_gateway->getPlugin();
+      $payment_gateway_plugin->createPaymentMethod($payment_method, $this->data['payment']['method']['options']);
+    }
+    catch (\Exception $e) {
+      watchdog_exception('falcon_donation', $e);
+      throw new HttpException(500, 'Internal Server Error', $e);
+    }
+
+    $payment = $this->entityTypeManager->getStorage('commerce_payment')->create([
+      'state' => 'new',
+      'amount' => $order->getTotalPrice(),
+      'payment_gateway' => $payment_gateway->id(),
+      'order_id' => $order->id(),
+      'payment_method' => $payment_method,
+    ]);
+
+    if (!$payment_gateway_plugin instanceof OnsitePaymentGatewayInterface) {
+      $this->logger->warning('The payment gateway is not an instance of OnsitePaymentGatewayInterface.');
+      throw new HttpException(500, 'Internal Server Error');
+    }
+
+    try {
+      // Process payment.
+      $payment_gateway_plugin->createPayment($payment, TRUE);
+      $order->payment_gateway = $payment->payment_gateway;
+      $order->payment_method = $payment->payment_method;
+
+      // Complete the order.
+      $order_state = $order->getState();
+      $order_state_transitions = $order_state->getTransitions();
+      $order_state->applyTransition($order_state_transitions['place']);
+      $order->save();
+
+      // Return data with order status.
+      return [
+        'order' => [
+          'id' => $order->id(),
+          'uuid' => $order->uuid(),
+          'status' => $order->getState()->value,
+        ],
+      ];
+    }
+    catch (\Exception $e) {
+      throw new HttpException(500, 'Internal Server Error', $e);
+    }
   }
 
   /**
