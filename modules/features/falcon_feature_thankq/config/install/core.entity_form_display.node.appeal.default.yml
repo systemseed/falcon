@@ -14,6 +14,7 @@ dependencies:
     - node.type.appeal
   module:
     - field_group
+    - inline_entity_form
     - paragraphs
     - path
     - scheduler
@@ -163,13 +164,16 @@ content:
     type: options_buttons
     region: content
   field_source_codes:
-    type: entity_reference_autocomplete
+    type: inline_entity_form_simple
     weight: 0
     region: content
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
     third_party_settings: {  }
   field_thankyou_email_body:
     weight: 28

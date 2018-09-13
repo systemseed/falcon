@@ -11,6 +11,7 @@ dependencies:
   - falcon_feature_thankq
   - field
   - field_group
+  - inline_entity_form
   - node
   - options
   - paragraphs
