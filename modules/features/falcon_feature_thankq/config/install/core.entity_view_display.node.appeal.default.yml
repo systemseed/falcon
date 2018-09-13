@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.appeal.field_donation_min_amount
     - field.field.node.appeal.field_donation_suggested_amounts
     - field.field.node.appeal.field_donation_type
+    - field.field.node.appeal.field_source_codes
     - field.field.node.appeal.field_thankyou_email_body
     - field.field.node.appeal.field_thankyou_email_subject
     - field.field.node.appeal.field_thankyou_page_blocks
@@ -90,4 +91,7 @@ content:
   links:
     weight: 0
     region: content
-hidden: {  }
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_source_codes: true

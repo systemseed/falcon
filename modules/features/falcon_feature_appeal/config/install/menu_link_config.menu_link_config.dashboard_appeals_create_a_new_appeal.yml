@@ -5,7 +5,7 @@ id: dashboard_appeals_create_a_new_appeal
 title: 'Create a new appeal'
 route_name: node.add
 route_parameters:
-  node_type: a20fc5bb-9ead-46f6-9f00-46b39cef1058
+  node_type: appeal
 options: {  }
 expanded: false
 menu_name: falcon-dashboard
