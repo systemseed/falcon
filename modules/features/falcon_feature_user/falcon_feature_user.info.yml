@@ -5,6 +5,7 @@ core: 8.x
 dependencies:
   - field
   - menu_link_config
+  - path
   - user
 version: 8.x-1.0
 package: Falcon
