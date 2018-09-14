@@ -4,6 +4,7 @@ dependencies:
   config:
     - commerce_order.commerce_order_type.donation
     - field.field.commerce_order.donation.field_appeal
+    - field.field.commerce_order.donation.field_source_code
     - field.field.commerce_order.donation.order_items
   module:
     - commerce_order
@@ -41,6 +42,14 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_source_code:
+    weight: 1
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   ip_address:
     type: string

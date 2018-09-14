@@ -1,2 +1,4 @@
 bundle: falcon_feature
+excluded:
+  - config_snapshot.snapshot.config_sync.module.falcon_feature_content_blocks
 required: true

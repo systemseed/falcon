@@ -142,7 +142,7 @@ class DonationResource extends ResourceBase {
     // Create order item object with found product variation.
     /** @var \Drupal\commerce_order\Entity\OrderItemInterface $order_item */
     $order_item = $this->entityTypeManager->getStorage('commerce_order_item')->create([
-      'title' => $this->t('Donation'),
+      'title' => ucfirst(str_replace('_', ' ', $this->data['donation_type'])),
       'type' => self::ORDER_ITEM_TYPE,
       'purchased_entity' => $variation,
       'quantity' => 1,

@@ -4,6 +4,7 @@ dependencies:
   config:
     - commerce_order.commerce_order_type.donation
     - field.field.commerce_order.donation.field_appeal
+    - field.field.commerce_order.donation.field_source_code
     - field.field.commerce_order.donation.order_items
   module:
     - commerce_order
@@ -27,6 +28,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_source_code:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   order_items:
     type: inline_entity_form_complex
