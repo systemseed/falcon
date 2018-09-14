@@ -3,3 +3,5 @@ type: module
 description: ThankQ integration and modifications for Falcon.
 core: 8.x
 package: Falcon
+dependencies:
+  - inline_entity_form

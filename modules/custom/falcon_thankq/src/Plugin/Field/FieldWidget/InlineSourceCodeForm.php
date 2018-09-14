@@ -2,6 +2,7 @@
 
 namespace Drupal\falcon_thankq\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -30,7 +31,7 @@ class InlineSourceCodeForm extends InlineEntityFormComplex {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
 
     // Change field label to the one related to source codes.
-    $element['entities']['#table_fields']['label']['label'] = t('Source code');
+    $element['entities']['#table_fields']['label']['label'] = $this->t('Source code');
 
     foreach (Element::children($element['entities']) as $key) {
 
@@ -39,17 +40,17 @@ class InlineSourceCodeForm extends InlineEntityFormComplex {
       $entity = $element['entities'][$key]['#entity'];
 
       // Grab source code & human readable label.
-      $source_code = $entity->get('field_source_code')->getString();
-      $label = $entity->get('field_label')->getString();
+      $source_code = $entity->field_source_code->value;
+      $label = $entity->field_label->value;
       $date = '';
 
       // Render availability date in the human readable format.
       $availability = $entity->get('field_availability')->getValue();
       if (!empty($availability[0]['value'])) {
-        $date .= format_string('from @from ', ['@from' => $availability[0]['value']]);
+        $date .= new FormattableMarkup('from @from ', ['@from' => $availability[0]['value']]);
       }
       if (!empty($availability[0]['end_value'])) {
-        $date .= format_string('until @to', ['@to' => $availability[0]['end_value']]);
+        $date .= new FormattableMarkup('until @to', ['@to' => $availability[0]['end_value']]);
       }
       $date = $date ? '(' . $date . ')' : '';
 
