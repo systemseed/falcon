@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_payment_example
+id: example
+label: Example
+weight: null
+plugin: example_onsite
+configuration:
+  api_key: API_KEY
+  display_label: Example
+  mode: test
+  payment_method_types:
+    - credit_card
+conditions: {  }
+conditionOperator: AND
