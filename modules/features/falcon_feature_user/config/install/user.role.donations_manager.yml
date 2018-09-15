@@ -10,5 +10,7 @@ permissions:
   - 'access commerce administration pages'
   - 'access commerce_order overview'
   - 'access toolbar'
+  - 'update donation commerce_order'
   - 'view commerce_order'
+  - 'view donation commerce_order'
   - 'view the administration theme'
