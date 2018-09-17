@@ -1,0 +1,27 @@
+name: 'Falcon ThankQ feature'
+description: 'Provides Source Codes / Donations synchronization with ThankQ CRM.'
+type: module
+core: 8.x
+dependencies:
+  - commerce_order
+  - config_snapshot
+  - datetime_range
+  - eck
+  - entity_reference_revisions
+  - falcon_feature_appeal
+  - falcon_feature_donation
+  - falcon_feature_thankq
+  - falcon_thankq
+  - field
+  - field_group
+  - inline_entity_form
+  - node
+  - options
+  - paragraphs
+  - path
+  - scheduler
+  - state_machine
+  - text
+  - user
+version: 8.x-1.0
+package: Falcon

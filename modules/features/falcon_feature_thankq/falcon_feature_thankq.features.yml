@@ -1,0 +1,5 @@
+bundle: falcon_feature
+excluded:
+  - config_snapshot.snapshot.config_sync.module.falcon_feature_thankq
+  - config_snapshot.snapshot.config_sync.module.falcon_thankq
+required: true
