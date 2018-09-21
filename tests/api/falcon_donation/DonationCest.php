@@ -27,7 +27,7 @@ class DonationCest {
     'payment' => [
       'amount' => 15,
       'currency_code' => 'EUR',
-      'gateway' => 'example',
+      'gateway' => 'example_test',
       'method' => [
         'type' => 'credit_card',
         'options' => [
