@@ -3,12 +3,12 @@ status: true
 dependencies:
   module:
     - commerce_payment_example
-id: example
-label: Example
+id: example_test
+label: 'Example Test'
 weight: null
 plugin: example_onsite
 configuration:
-  api_key: API_KEY
+  api_key: API_KEY_TEST
   display_label: Example
   mode: test
   payment_method_types:
