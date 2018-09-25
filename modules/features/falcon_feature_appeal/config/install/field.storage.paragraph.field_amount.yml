@@ -6,11 +6,10 @@ dependencies:
 id: paragraph.field_amount
 field_name: field_amount
 entity_type: paragraph
-type: string
+type: integer
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1

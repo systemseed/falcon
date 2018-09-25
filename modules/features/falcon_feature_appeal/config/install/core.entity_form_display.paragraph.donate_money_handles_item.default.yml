@@ -13,10 +13,9 @@ content:
   field_amount:
     weight: 0
     settings:
-      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: number
     region: content
   field_money_handles_text:
     weight: 1
