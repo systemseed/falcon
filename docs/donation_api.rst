@@ -46,7 +46,7 @@ Example:
      "payment": {
      "amount": 10,
        "currency_code": "EUR",
-       "gateway": "example",
+       "gateway": "example_test",
        "method": {
          "type": "credit_card",
          "options": {
@@ -83,4 +83,25 @@ Payment Gateways
 
 Falcon provides several payment gateways encapsulated into features:
 
-    - Example payment gateway for testing purposes; supports only `credit_card` payment method type.
+    - Example payment gateways for testing purposes (`example_test` and `example_live`); supports only `credit_card` payment method type.
+
+Payment Modes
+-------------
+
+Every payment gateway has live and test payment modes.
+
+Falcon allows to use test payment modes on any non-production environments.
+For the production environment test payments are restricted. To use test
+payment mode on production environment you need to set special environment
+variables: PAYMENT_SECRET_HEADER_NAME and PAYMENT_SECRET_HEADER_VALUE - and
+then set local storage value in the browser using the supplied name and value.
+
+Example:
+
+.. code-block:: php
+
+   PAYMENT_SECRET_HEADER_NAME = X-Payment-Secret
+   PAYMENT_SECRET_HEADER_VALUE = 76a67787-af11-4870-b384-b8e85c4fe3b8
+
+And then browser local storage should have
+X-Payment-Secret / 76a67787-af11-4870-b384-b8e85c4fe3b8

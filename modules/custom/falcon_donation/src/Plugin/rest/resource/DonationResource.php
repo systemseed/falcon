@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OnsitePaymentGatewayInterface;
 use Drupal\commerce_price\Price;
+use Drupal\falcon_common\PaymentModeInterface;
 
 /**
  * Provides a resource for donations.
@@ -40,6 +41,13 @@ class DonationResource extends ResourceBase {
    * @var \Drupal\Component\Datetime\TimeInterface
    */
   protected $time;
+
+  /**
+   * The payment mode.
+   *
+   * @var \Drupal\falcon_common\PaymentModeInterface
+   */
+  protected $paymentMode;
 
   /**
    * An array of data given from front end.
@@ -83,11 +91,14 @@ class DonationResource extends ResourceBase {
    *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The time service.
+   * @param \Drupal\falcon_common\PaymentModeInterface $payment_mode
+   *   The payment mode.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, PaymentModeInterface $payment_mode) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
     $this->entityTypeManager = $entity_type_manager;
     $this->time = $time;
+    $this->paymentMode = $payment_mode;
   }
 
   /**
@@ -101,7 +112,8 @@ class DonationResource extends ResourceBase {
       $container->getParameter('serializer.formats'),
       $container->get('logger.factory')->get('falcon_donation'),
       $container->get('entity_type.manager'),
-      $container->get('datetime.time')
+      $container->get('datetime.time'),
+      $container->get('falcon_common.payment_mode')
     );
   }
 
@@ -232,6 +244,13 @@ class DonationResource extends ResourceBase {
     $payment_gateway = $this->entityTypeManager->getStorage('commerce_payment_gateway')->load($this->data['payment']['gateway']);
     if ($payment_gateway == NULL) {
       $this->logger->warning("Couldn't load payment gateway.");
+      throw new HttpException(500, 'Internal Server Error');
+    }
+
+    // Check payment gateway mode.
+    $payment_mode = $payment_gateway->getPluginConfiguration()['mode'];
+    if ($payment_mode == 'test' && !$this->paymentMode->isTestModeAllowed()) {
+      $this->logger->warning('Payment test mode is not allowed.');
       throw new HttpException(500, 'Internal Server Error');
     }
 
