@@ -42,8 +42,8 @@ class DonationCest {
     ],
     'profile' => [
       'email'  => 'test@systemseed.com',
-      'field_first_name' => 'John',
-      'field_last_name' => 'Snow',
+      'field_first_name' => 'Generous',
+      'field_last_name' => 'Donor',
       'field_phone' => '88001234567',
       'field_contact_email' => 1,
       'field_contact_phone' => 0,
@@ -116,7 +116,7 @@ class DonationCest {
       'title' => 'Test appeal',
       'status' => 1,
       'field_donation_min_amount' => 10,
-      'field_donation_type' => 'single_donation',
+      'field_donation_type' => ['single_donation', 'recurring_donation'],
       'field_thankyou_page_title' => 'Thank you page title',
       'field_thankyou_email_subject' => 'Thank you email subject',
       'field_thankyou_email_body' => 'Thank you email body',
@@ -135,16 +135,76 @@ class DonationCest {
   }
 
   /**
-   * Successful donation.
+   * Successful single donation via Example Test payment gateway.
    *
    * @param \ApiTester $I
    */
-  public function donationSuccess(\ApiTester $I) {
+  public function donationSingleExampleSuccess(\ApiTester $I) {
     $I->amGoingTo('Post correct order to Donation API endpoint.');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
+    $I->sendPOST(self::ENDPOINT, $post);
+
+    $I->expectTo('See successful response.');
+    $I->seeResponseCodeIs(HttpCode::OK);
+  }
+
+  /**
+   * Successful recurring donation via Direct Debit Test payment gateway - SEPA.
+   *
+   * @param \ApiTester $I
+   */
+  public function donationRecurringDirectDebitSEPASuccess(\ApiTester $I) {
+    $I->amGoingTo('Post correct order to Donation API endpoint.');
+    $I->haveHttpHeader('Content-Type', 'application/json');
+
+    $post = $this->post;
+    $post['order']['field_appeal'] = $this->appeal->id();
+    $post['donation_type'] = 'recurring_donation';
+    $post['payment']['gateway'] = 'direct_debit_test';
+    $post['payment']['method'] = [
+      'type' => 'direct_debit_sepa',
+      'options' => [
+        'account_name' => 'Generous Donor',
+        'swift' => 'BOFIIE2D',
+        'iban' => 'DE89 3704 0044 0532 0130 00',
+        'debit_date' => 2,
+        'accept_direct_debits' => 1,
+        'one_signatory' => 1,
+      ],
+    ];
+    $I->sendPOST(self::ENDPOINT, $post);
+
+    $I->expectTo('See successful response.');
+    $I->seeResponseCodeIs(HttpCode::OK);
+  }
+
+  /**
+   * Successful recurring donation via Direct Debit Test payment gateway - UK.
+   *
+   * @param \ApiTester $I
+   */
+  public function donationRecurringDirectDebitUKSuccess(\ApiTester $I) {
+    $I->amGoingTo('Post correct order to Donation API endpoint.');
+    $I->haveHttpHeader('Content-Type', 'application/json');
+
+    $post = $this->post;
+    $post['order']['field_appeal'] = $this->appeal->id();
+    $post['donation_type'] = 'recurring_donation';
+    $post['payment']['gateway'] = 'direct_debit_test';
+    $post['payment']['method'] = [
+      'type' => 'direct_debit_uk',
+      'options' => [
+        'account_name' => 'Generous Donor',
+        'sort_code' => '123456',
+        'account_number' => '12345678',
+        'debit_date' => 2,
+        'accept_direct_debits' => 1,
+        'one_signatory' => 1,
+      ],
+    ];
     $I->sendPOST(self::ENDPOINT, $post);
 
     $I->expectTo('See successful response.');

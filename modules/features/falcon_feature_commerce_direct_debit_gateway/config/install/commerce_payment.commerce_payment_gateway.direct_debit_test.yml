@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_directdebit
+id: direct_debit_test
+label: 'Direct Debit Test'
+weight: null
+plugin: direct_debit
+configuration:
+  display_label: 'Direct Debit'
+  mode: test
+  payment_method_types:
+    - direct_debit_sepa
+    - direct_debit_uk
+conditions: {  }
+conditionOperator: AND

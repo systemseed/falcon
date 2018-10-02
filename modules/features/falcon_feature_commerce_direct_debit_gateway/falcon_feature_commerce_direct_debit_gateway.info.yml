@@ -1,0 +1,9 @@
+name: 'Falcon Commerce Direct Debit Gateway feature'
+description: 'Direct Debit gateways.'
+type: module
+core: 8.x
+dependencies:
+  - commerce_payment
+  - commerce_directdebit
+version: 8.x-1.0
+package: Falcon
