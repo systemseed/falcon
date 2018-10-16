@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fe20f071ea9d5aa19c412acbb93084d",
+    "content-hash": "e95be7ce1526d91d09afaa790f72e957",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1542,7 +1542,7 @@
         },
         {
             "name": "drupal/commerce_paypal_ec",
-            "version": "dev-master",
+            "version": "dev-8.x-1.x",
             "source": {
                 "type": "git",
                 "url": "https://github.com/systemseed/commerce_paypal_ec.git",
