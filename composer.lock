@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "686b283676eb46f18abf3f281dd28ae6",
+    "content-hash": "4e5cf8d57a48fea21bef457f1973ff7d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1288,6 +1288,41 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/commerce"
             }
+        },
+        {
+            "name": "drupal/commerce_directdebit",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/sandbox/duozersk/3005285.git",
+                "reference": "189b605c2909a20dec9691289187b7ae38db1917"
+            },
+            "require": {
+                "globalcitizen/php-iban": "^2.6.9"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "SystemSeed",
+                    "homepage": "https://systemseed.com",
+                    "role": "Company"
+                },
+                {
+                    "name": "Andrew Berezovsky",
+                    "email": "andrew.berezovsky@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides direct debit payment gateway.",
+            "homepage": "https://www.drupal.org/project/commerce_directdebit",
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/commerce_directdebit",
+                "source": "https://cgit.drupalcode.org/commerce_directdebit"
+            },
+            "time": "2018-10-09T22:56:06+00:00"
         },
         {
             "name": "drupal/config_filter",
@@ -3761,6 +3796,34 @@
                 "validator"
             ],
             "time": "2017-02-03T22:48:59+00:00"
+        },
+        {
+            "name": "globalcitizen/php-iban",
+            "version": "v2.6.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/globalcitizen/php-iban.git",
+                "reference": "16b8c416e8a4047b52dca00794f161bfa68afb7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/globalcitizen/php-iban/zipball/16b8c416e8a4047b52dca00794f161bfa68afb7a",
+                "reference": "16b8c416e8a4047b52dca00794f161bfa68afb7a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "oophp-iban.php",
+                    "php-iban.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "description": "php-iban is a library for parsing and validating IBAN (and IIBAN) bank account information.",
+            "time": "2018-08-14T00:04:02+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -6526,6 +6589,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/commerce_directdebit": 20,
         "drupal/consumer_image_styles": 5,
         "drupal/consumers": 10,
         "drupal/contact_message_rest": 15,

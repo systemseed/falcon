@@ -21,6 +21,10 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "vcs",
+      "url": "https://git.drupal.org/sandbox/duozersk/3005285.git"
     }
   ],
   "scripts": {
@@ -75,6 +79,7 @@
     "drupal-composer/drupal-scaffold": "^2.5.0",
     "drupal/admin_toolbar": "^1.23",
     "drupal/commerce": "^2.9",
+    "drupal/commerce_directdebit": "dev-8.x-1.x",
     "drupal/config_filter": "^1.2",
     "drupal/config_ignore": "^2.1",
     "drupal/config_pages": "^2.2",
