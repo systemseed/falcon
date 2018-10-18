@@ -1546,12 +1546,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/systemseed/commerce_paypal_ec.git",
-                "reference": "629c0a68dd02587d03dfb7a8900034e003f47da0"
+                "reference": "884230394d1587a1cd72644d8a29c5ffedafb96f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/systemseed/commerce_paypal_ec/zipball/629c0a68dd02587d03dfb7a8900034e003f47da0",
-                "reference": "629c0a68dd02587d03dfb7a8900034e003f47da0",
+                "url": "https://api.github.com/repos/systemseed/commerce_paypal_ec/zipball/884230394d1587a1cd72644d8a29c5ffedafb96f",
+                "reference": "884230394d1587a1cd72644d8a29c5ffedafb96f",
                 "shasum": ""
             },
             "require": {
@@ -1568,7 +1568,7 @@
                 "source": "https://github.com/systemseed/commerce_paypal_ec/tree/master",
                 "issues": "https://github.com/systemseed/commerce_paypal_ec/issues"
             },
-            "time": "2018-10-16T15:22:32+00:00"
+            "time": "2018-10-18T15:05:30+00:00"
         },
         {
             "name": "drupal/commerce_price",
