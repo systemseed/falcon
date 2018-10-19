@@ -69,8 +69,7 @@ class DonationResource extends ResourceBase {
   const ORDER_TYPE = 'donation';
 
   /**
-   * Constructs a Drupal\falcon_donation\Plugin\rest\resource\DonationResource
-   * object.
+   * Constructs a new object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -181,7 +180,8 @@ class DonationResource extends ResourceBase {
         throw new \Exception('Order item violations.');
       }
       $order_item->save();
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       watchdog_exception('falcon_donation', $e);
       throw new HttpException(500, 'Internal Server Error', $e);
     }
@@ -219,7 +219,8 @@ class DonationResource extends ResourceBase {
         throw new \Exception('Order violations.');
       }
       $order->save();
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       watchdog_exception('falcon_donation', $e);
       throw new HttpException(500, 'Internal Server Error', $e);
     }
@@ -230,9 +231,10 @@ class DonationResource extends ResourceBase {
   }
 
   /**
-   * TODO.
+   * Handles payment params sent from the frontend.
    *
    * @param \Drupal\commerce_order\Entity\OrderInterface $order
+   *   Commerce order object.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -274,7 +276,8 @@ class DonationResource extends ResourceBase {
       /** @var \Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsStoredPaymentMethodsInterface $payment_gateway_plugin */
       $payment_gateway_plugin = $payment_gateway->getPlugin();
       $payment_gateway_plugin->createPaymentMethod($payment_method, $this->data['payment']['method']['options']);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       watchdog_exception('falcon_donation', $e);
       throw new HttpException(500, 'Internal Server Error', $e);
     }
@@ -304,7 +307,8 @@ class DonationResource extends ResourceBase {
       $order_state_transitions = $order_state->getTransitions();
       $order_state->applyTransition($order_state_transitions['place']);
       $order->save();
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       throw new HttpException(500, 'Internal Server Error', $e);
     }
   }
@@ -331,7 +335,8 @@ class DonationResource extends ResourceBase {
 
     try {
       $profile->save();
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       watchdog_exception('falcon_donation', $e);
       throw new HttpException(500, 'Internal Server Error', $e);
     }
@@ -368,7 +373,8 @@ class DonationResource extends ResourceBase {
 
       try {
         $account->save();
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         watchdog_exception('falcon_donation', $e);
         throw new HttpException(500, 'Internal Server Error', $e);
       }
