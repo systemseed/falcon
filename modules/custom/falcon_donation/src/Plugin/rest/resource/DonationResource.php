@@ -133,7 +133,7 @@ class DonationResource extends ResourceBase {
       'id' => $order->id(),
       'uuid' => $order->uuid(),
       'status' => $order->getState()->value,
-    ], 201);
+    ], 200);
 
     return $response;
   }
