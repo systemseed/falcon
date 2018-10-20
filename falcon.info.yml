@@ -80,6 +80,7 @@ dependencies:
   - token
 
   # Custom modules
+  - falcon_common
   - falcon_dashboard
   - falcon_deploy
 

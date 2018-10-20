@@ -1,0 +1,7 @@
+services:
+  falcon_common.environment:
+    class: Drupal\falcon_common\Environment
+# TODO: Move the payment mode service into falcon_commerce module?
+  falcon_common.payment_mode:
+    class: Drupal\falcon_common\PaymentMode
+    arguments: ['@request_stack', '@falcon_common.environment']

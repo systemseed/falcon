@@ -8,4 +8,5 @@ is_admin: false
 permissions:
   - 'access content'
   - 'restful post donation'
+  - 'view any source_code entities'
   - 'view media'

@@ -22,3 +22,4 @@ Follow instructions in :doc:`install` section.
    information_architecture
    roles
    donation_api
+   environment
