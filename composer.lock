@@ -1397,7 +1397,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/commerce_decoupled_checkout",
-                "reference": "6e1c81471787cbda4759dced9b7f004272958e6f"
+                "reference": "5da84d0c5a3875eac6a21d8538390b4bf3d9ec08"
             },
             "require": {
                 "drupal/commerce_checkout": "*",
@@ -1426,6 +1426,18 @@
                 {
                     "name": "Spleshka",
                     "homepage": "https://www.drupal.org/user/810676"
+                },
+                {
+                    "name": "duozersk",
+                    "homepage": "https://www.drupal.org/user/378397"
+                },
+                {
+                    "name": "kalabro",
+                    "homepage": "https://www.drupal.org/user/1399638"
+                },
+                {
+                    "name": "skorzh",
+                    "homepage": "https://www.drupal.org/user/813560"
                 }
             ],
             "description": "Implementation of Express Checkout feature of PayPal for Drupal Commerce.",
@@ -1433,7 +1445,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/commerce_decoupled_checkout"
             },
-            "time": "2018-10-16T15:11:58+00:00"
+            "time": "2018-10-21T11:44:46+00:00"
         },
         {
             "name": "drupal/commerce_directdebit",
