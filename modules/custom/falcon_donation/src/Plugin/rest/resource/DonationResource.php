@@ -142,6 +142,7 @@ class DonationResource extends ResourceBase {
     // TODO: Normalize properly.
     return new ResourceResponse([
       'id' => $order->id(),
+      'status' => $order->getState()->value,
     ], 200);
   }
 
