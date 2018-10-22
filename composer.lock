@@ -1397,7 +1397,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/commerce_decoupled_checkout",
-                "reference": "5da84d0c5a3875eac6a21d8538390b4bf3d9ec08"
+                "reference": "4ec72cf41c9d5f8e88f86567928a11db65a3265d"
             },
             "require": {
                 "drupal/commerce_checkout": "*",
@@ -1411,7 +1411,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1539702784",
+                    "datestamp": "1540122481",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -1445,7 +1445,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/commerce_decoupled_checkout"
             },
-            "time": "2018-10-21T11:44:46+00:00"
+            "time": "2018-10-22T10:06:10+00:00"
         },
         {
             "name": "drupal/commerce_directdebit",
@@ -1593,12 +1593,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/systemseed/commerce_paypal_ec.git",
-                "reference": "884230394d1587a1cd72644d8a29c5ffedafb96f"
+                "reference": "725f3f11a9dbf41619778b89fd4b15a73120746d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/systemseed/commerce_paypal_ec/zipball/884230394d1587a1cd72644d8a29c5ffedafb96f",
-                "reference": "884230394d1587a1cd72644d8a29c5ffedafb96f",
+                "url": "https://api.github.com/repos/systemseed/commerce_paypal_ec/zipball/725f3f11a9dbf41619778b89fd4b15a73120746d",
+                "reference": "725f3f11a9dbf41619778b89fd4b15a73120746d",
                 "shasum": ""
             },
             "require": {
@@ -1615,7 +1615,7 @@
                 "source": "https://github.com/systemseed/commerce_paypal_ec/tree/master",
                 "issues": "https://github.com/systemseed/commerce_paypal_ec/issues"
             },
-            "time": "2018-10-18T15:05:30+00:00"
+            "time": "2018-10-22T10:03:00+00:00"
         },
         {
             "name": "drupal/commerce_price",
