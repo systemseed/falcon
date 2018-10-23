@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "431b6413ebca3a38792c800fdb95d5b5",
+    "content-hash": "8a508fa1312be83905921503814e6f0c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1397,7 +1397,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/commerce_decoupled_checkout",
-                "reference": "4ec72cf41c9d5f8e88f86567928a11db65a3265d"
+                "reference": "09227d78dde17c9f8450817fe0ef890a92d50105"
             },
             "require": {
                 "drupal/commerce_checkout": "*",
@@ -1411,7 +1411,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1540122481",
+                    "datestamp": "1540219081",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -1440,12 +1440,12 @@
                     "homepage": "https://www.drupal.org/user/813560"
                 }
             ],
-            "description": "Implementation of Express Checkout feature of PayPal for Drupal Commerce.",
+            "description": "Provides API endpoints for decoupled Drupal Commerce experience.",
             "homepage": "https://www.drupal.org/project/commerce_decoupled_checkout",
             "support": {
                 "source": "http://cgit.drupalcode.org/commerce_decoupled_checkout"
             },
-            "time": "2018-10-22T10:06:10+00:00"
+            "time": "2018-10-23T15:12:28+00:00"
         },
         {
             "name": "drupal/commerce_directdebit",
@@ -7081,7 +7081,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/commerce_decoupled_checkout": 20,
         "drupal/commerce_directdebit": 20,
         "drupal/commerce_paypal_ec": 20,
         "drupal/consumer_image_styles": 5,
