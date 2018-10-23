@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_decoupled_checkout
+    - serialization
+    - user
+id: commerce_decoupled_checkout_payment_create
+plugin_id: commerce_decoupled_checkout_payment_create
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - cookie
