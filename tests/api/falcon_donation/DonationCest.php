@@ -226,7 +226,7 @@ class DonationCest {
     $I->sendPOST(self::ENDPOINT, $post);
 
     $I->expectTo('See failure response.');
-    $I->seeResponseCodeIs(HttpCode::INTERNAL_SERVER_ERROR);
+    $I->seeResponseCodeIs(HttpCode::NOT_ACCEPTABLE);
   }
 
   /**
@@ -244,7 +244,7 @@ class DonationCest {
     $I->sendPOST(self::ENDPOINT, $post);
 
     $I->expectTo('See failure response.');
-    $I->seeResponseCodeIs(HttpCode::INTERNAL_SERVER_ERROR);
+    $I->seeResponseCodeIs(HttpCode::NOT_ACCEPTABLE);
   }
 
 }

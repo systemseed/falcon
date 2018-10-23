@@ -71,11 +71,13 @@ class DonationResource extends ResourceBase {
   private $profile;
 
   const VARIATION_SKU = 'donation';
+
   const ORDER_ITEM_TYPE = 'donation';
+
   const ORDER_TYPE = 'donation';
 
   /**
-   * Constructs a Drupal\falcon_donation\Plugin\rest\resource\DonationResource object.
+   * Constructs a new object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -118,60 +120,65 @@ class DonationResource extends ResourceBase {
   }
 
   /**
-   * Handle POST requests.
+   * Handles POST request.
    *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   Request object.
+   * Receives donation from the frontend.
+   *
+   * @param array $data
+   *   Data sent from the frontend.
    *
    * @return \Drupal\rest\ResourceResponse
-   *   Response object.
+   *   Created order data.
    */
-  public function post(Request $request) {
-    // TODO: check if we can get this data some other way provided by REST.
-    // Look into the serialization_class.
-    $this->data = json_decode($request->getContent(), TRUE);
-    if ($this->data == NULL) {
-      $this->logger->warning("The received data isn't valid JSON and couldn't be decoded.");
-      throw new HttpException(500, 'Internal Server Error');
-    }
+  public function post(array $data) {
+    $this->data = $data;
 
+    // Create a new order from received data.
     $order = $this->createOrder();
-    $result = $this->processPayment($order);
 
-    $response = new ResourceResponse($result, 200);
+    // Process payment details if exists in the received data.
+    $this->processPayment($order);
 
-    return $response;
+    // TODO: Normalize properly.
+    return new ResourceResponse([
+      'id' => $order->id(),
+      'status' => $order->getState()->value,
+    ], 200);
   }
 
   /**
    * Creates an order from given data.
    */
   protected function createOrder() {
-    // Find out the product variation.
-    /** @var \Drupal\commerce_product\Entity\ProductVariationInterface $variation */
-    $variations = $this->entityTypeManager->getStorage('commerce_product_variation')->loadByProperties(['sku' => self::VARIATION_SKU]);
-    $variation = reset($variations);
-
-    // Get store ID from the product variation.
-    $product = $variation->getProduct();
-    $store_ids = $product->getStoreIds();
-
-    // Create order item object with found product variation.
-    /** @var \Drupal\commerce_order\Entity\OrderItemInterface $order_item */
-    $order_item = $this->entityTypeManager->getStorage('commerce_order_item')->create([
-      'title' => ucfirst(str_replace('_', ' ', $this->data['donation_type'])),
-      'type' => self::ORDER_ITEM_TYPE,
-      'purchased_entity' => $variation,
-      'quantity' => 1,
-      'field_donation_type' => $this->data['donation_type'],
-    ]);
-
-    // Set price.
-    $unit_price = new Price($this->data['payment']['amount'], $this->data['payment']['currency_code']);
-    $order_item->setUnitPrice($unit_price, TRUE);
-
-    // Validate and save order item.
     try {
+
+      // Find out the product variation.
+      /** @var \Drupal\commerce_product\Entity\ProductVariationInterface $variation */
+      $variations = $this->entityTypeManager->getStorage('commerce_product_variation')
+        ->loadByProperties(['sku' => self::VARIATION_SKU]);
+      $variation = reset($variations);
+
+      // Get store ID from the product variation.
+      $product = $variation->getProduct();
+      $store_ids = $product->getStoreIds();
+
+      // Create order item object with found product variation.
+      /** @var \Drupal\commerce_order\Entity\OrderItemInterface $order_item */
+      $order_item = $this->entityTypeManager->getStorage('commerce_order_item')
+        ->create([
+          'title' => ucfirst(str_replace('_', ' ', $this->data['donation_type'])),
+          'type' => self::ORDER_ITEM_TYPE,
+          'purchased_entity' => $variation,
+          'quantity' => 1,
+          'field_donation_type' => $this->data['donation_type'],
+        ]);
+
+      // Set price.
+      $unit_price = new Price($this->data['payment']['amount'], $this->data['payment']['currency_code']);
+      $order_item->setUnitPrice($unit_price, TRUE);
+
+      // Validate and save order item.
+
       // We need only entity level violations.
       /** @var \Drupal\Core\Entity\EntityConstraintViolationListInterface $violations */
       $violations = $order_item->validate()->getEntityViolations();
@@ -183,33 +190,27 @@ class DonationResource extends ResourceBase {
         throw new \Exception('Order item violations.');
       }
       $order_item->save();
-    }
-    catch (\Exception $e) {
-      watchdog_exception('falcon_donation', $e);
-      throw new HttpException(500, 'Internal Server Error', $e);
-    }
 
-    // Get user and profile objects.
-    $account = $this->getUser();
-    $profile = $this->getProfile();
+      // Get user and profile objects.
+      $account = $this->getUser();
+      $profile = $this->getProfile();
 
-    // Create an order with created order item.
-    /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
-    $order = $this->entityTypeManager->getStorage('commerce_order')->create(array_merge($this->data['order'],
-      [
-        'type' => self::ORDER_TYPE,
-        'state' => 'draft',
-        'mail' => $account->getEmail(),
-        'uid' => $account->id(),
-        'billing_profile' => $profile,
-        'store_id' => reset($store_ids),
-        'order_items' => [$order_item],
-        'placed' => $this->time->getRequestTime(),
-      ])
-    );
+      // Create an order with created order item.
+      /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
+      $order = $this->entityTypeManager->getStorage('commerce_order')
+        ->create(array_merge($this->data['order'],
+            [
+              'type' => self::ORDER_TYPE,
+              'state' => 'draft',
+              'mail' => $account->getEmail(),
+              'uid' => $account->id(),
+              'billing_profile' => $profile,
+              'store_id' => reset($store_ids),
+              'order_items' => [$order_item],
+              'placed' => $this->time->getRequestTime(),
+            ])
+        );
 
-    // Validate and save order.
-    try {
       // We need only entity level violations.
       /** @var \Drupal\Core\Entity\EntityConstraintViolationListInterface $violations */
       $violations = $order->validate()->getEntityViolations();
@@ -217,105 +218,104 @@ class DonationResource extends ResourceBase {
         foreach ($violations as $violation) {
           $this->logger->warning($violation->getPropertyPath() ?: 'Entity' . ': ' . $violation->getMessage());
         }
-
         throw new \Exception('Order violations.');
       }
       $order->save();
-    }
-    catch (\Exception $e) {
-      watchdog_exception('falcon_donation', $e);
-      throw new HttpException(500, 'Internal Server Error', $e);
-    }
 
-    $order->setOrderNumber($order->id());
-    $order->save();
-    return $order;
+      // Set order number.
+      $order->setOrderNumber($order->id());
+      $order->save();
+
+      return $order;
+    }
+    catch (\Exception $exception) {
+      watchdog_exception('falcon_donation', $exception);
+      throw new HttpException(406, $exception->getMessage());
+    }
   }
 
   /**
-   * Process payment.
+   * Handles payment params sent from the frontend.
    *
    * @param \Drupal\commerce_order\Entity\OrderInterface $order
-   *   Order.
+   *   Commerce order object.
    */
   protected function processPayment(OrderInterface $order) {
-    // Initialize payment gateway.
-    /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
-    $payment_gateway = $this->entityTypeManager->getStorage('commerce_payment_gateway')->load($this->data['payment']['gateway']);
-    if ($payment_gateway == NULL) {
-      $this->logger->warning("Couldn't load payment gateway.");
-      throw new HttpException(500, 'Internal Server Error');
+
+    // Do not process order submissions without gateway.
+    if (empty($this->data['payment']['gateway']) || empty($this->data['payment']['method']['type'])) {
+      return;
     }
 
-    // Check payment gateway mode.
-    $payment_mode = $payment_gateway->getPluginConfiguration()['mode'];
-    if ($payment_mode == 'test' && !$this->paymentMode->isTestModeAllowed()) {
-      $this->logger->warning('Payment test mode is not allowed.');
-      throw new HttpException(500, 'Internal Server Error');
-    }
-
-    // Create payment method.
-    /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
-    $payment_method = $this->entityTypeManager->getStorage('commerce_payment_method')->create([
-      'payment_gateway' => $this->data['payment']['gateway'],
-      'type' => $this->data['payment']['method']['type'],
-    ]);
-
-    // Get user and profile objects.
-    $account = $this->getUser();
-    $profile = $this->getProfile();
-
-    // Set user and profile info for payment method.
-    $payment_method->setOwner($account);
-    $payment_method->setBillingProfile($profile);
-
-    // For security reasons the returned errors need to be more generic.
     try {
+
+      // Initialize payment gateway.
+      /** @var \Drupal\commerce_payment\Entity\PaymentGatewayInterface $payment_gateway */
+      $payment_gateway = $this->entityTypeManager->getStorage('commerce_payment_gateway')
+        ->load($this->data['payment']['gateway']);
+      if ($payment_gateway == NULL) {
+        $message = $this->t('Could not load payment gateway.');
+        $this->logger->error($message);
+        throw new \Exception($message);
+      }
+
+      // Check payment gateway mode.
+      $payment_mode = $payment_gateway->getPluginConfiguration()['mode'];
+      if ($payment_mode == 'test' && !$this->paymentMode->isTestModeAllowed()) {
+        $message = $this->t('Payment test mode is not allowed.');
+        $this->logger->error($message);
+        throw new \Exception($message);
+      }
+
+      // Create payment method.
+      /** @var \Drupal\commerce_payment\Entity\PaymentMethodInterface $payment_method */
+      $payment_method = $this->entityTypeManager->getStorage('commerce_payment_method')
+        ->create([
+          'payment_gateway' => $this->data['payment']['gateway'],
+          'type' => $this->data['payment']['method']['type'],
+        ]);
+
+      // Get user and profile objects.
+      $account = $this->getUser();
+      $profile = $this->getProfile();
+
+      // Set user and profile info for payment method.
+      $payment_method->setOwner($account);
+      $payment_method->setBillingProfile($profile);
+
       /** @var \Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsStoredPaymentMethodsInterface $payment_gateway_plugin */
       $payment_gateway_plugin = $payment_gateway->getPlugin();
       $payment_gateway_plugin->createPaymentMethod($payment_method, $this->data['payment']['method']['options']);
-    }
-    catch (\Exception $e) {
-      watchdog_exception('falcon_donation', $e);
-      throw new HttpException(500, 'Internal Server Error', $e);
-    }
 
-    $payment = $this->entityTypeManager->getStorage('commerce_payment')->create([
-      'state' => 'new',
-      'amount' => $order->getTotalPrice(),
-      'payment_gateway' => $payment_gateway->id(),
-      'order_id' => $order->id(),
-      'payment_method' => $payment_method,
-    ]);
+      /** @var \Drupal\commerce_payment\Entity\PaymentInterface $payment */
+      $payment = $this->entityTypeManager->getStorage('commerce_payment')
+        ->create([
+          'amount' => $order->getTotalPrice(),
+          'payment_gateway' => $payment_gateway->id(),
+          'order_id' => $order->id(),
+          'payment_method' => $payment_method,
+        ]);
 
-    if (!$payment_gateway_plugin instanceof OnsitePaymentGatewayInterface) {
-      $this->logger->warning('The payment gateway is not an instance of OnsitePaymentGatewayInterface.');
-      throw new HttpException(500, 'Internal Server Error');
-    }
+      if (!$payment_gateway_plugin instanceof OnsitePaymentGatewayInterface) {
+        $message = $this->t('The payment gateway is not an instance of OnsitePaymentGatewayInterface.');
+        $this->logger->error($message);
+        throw new \Exception($message);
+      }
 
-    try {
       // Process payment.
       $payment_gateway_plugin->createPayment($payment, TRUE);
-      $order->payment_gateway = $payment->payment_gateway;
-      $order->payment_method = $payment->payment_method;
+      $order->payment_gateway = $payment->getPaymentGatewayId();
+      $order->payment_method = $payment->getPaymentMethodId();
 
       // Complete the order.
       $order_state = $order->getState();
       $order_state_transitions = $order_state->getTransitions();
       $order_state->applyTransition($order_state_transitions['place']);
       $order->save();
-
-      // Return data with order status.
-      return [
-        'order' => [
-          'id' => $order->id(),
-          'uuid' => $order->uuid(),
-          'status' => $order->getState()->value,
-        ],
-      ];
     }
-    catch (\Exception $e) {
-      throw new HttpException(500, 'Internal Server Error', $e);
+    catch (\Exception $exception) {
+      watchdog_exception('falcon_donation', $exception);
+      throw new HttpException(406, $exception->getMessage());
     }
   }
 
@@ -331,12 +331,13 @@ class DonationResource extends ResourceBase {
     }
 
     $user = $this->getUser();
-    $profile = $this->entityTypeManager->getStorage('profile')->create(array_merge($this->data['profile'],
-      [
-        'type' => 'customer',
-        'uid' => $user->id(),
-      ])
-    );
+    $profile = $this->entityTypeManager->getStorage('profile')
+      ->create(array_merge($this->data['profile'],
+          [
+            'type' => 'customer',
+            'uid' => $user->id(),
+          ])
+      );
 
     try {
       $profile->save();
@@ -367,13 +368,14 @@ class DonationResource extends ResourceBase {
       $this->account = $account;
     }
     else {
-      $account = $this->entityTypeManager->getStorage('user')->create(array_merge($this->data['profile'],
-        [
-          'name' => $email,
-          'mail' => $email,
-          'status' => 0,
-        ])
-      );
+      $account = $this->entityTypeManager->getStorage('user')
+        ->create(array_merge($this->data['profile'],
+            [
+              'name' => $email,
+              'mail' => $email,
+              'status' => 0,
+            ])
+        );
 
       try {
         $account->save();
