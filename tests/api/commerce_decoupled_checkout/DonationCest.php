@@ -2,6 +2,7 @@
 
 namespace falcon_commerce;
 
+use Codeception\Util\Debug;
 use Codeception\Util\HttpCode;
 use Drupal\commerce_price\Price;
 
@@ -92,6 +93,7 @@ class DonationCest {
       'postal_code' => '19901',
     ];
 
+    /** @var \Drupal\commerce_store\Entity\StoreInterface $this->store */
     $this->store = $entity_type_manager->getStorage('commerce_store')->create([
       'type' => 'online',
       'uid' => 1,
@@ -102,6 +104,10 @@ class DonationCest {
       'billing_countries' => [],
     ]);
     $this->store->save();
+
+    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store  */
+    $commerce_store = $entity_type_manager->getStorage('commerce_store');
+    $commerce_store->markAsDefault($this->store);
 
     // Create product variation.
     $this->variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
@@ -165,6 +171,12 @@ class DonationCest {
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
     $I->sendPOST('/commerce/order/create', $post);
+
+    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store */
+    //$commerce_store = \Drupal::entityTypeManager()
+    //  ->getStorage('commerce_store');
+
+    //Debug::debug($commerce_store->loadDefault());
 
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
