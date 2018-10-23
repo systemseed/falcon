@@ -3,3 +3,5 @@ type: module
 description: Falcon Dashboard
 core: 8.x
 package: Falcon
+dependencies:
+  - menu_link_config
