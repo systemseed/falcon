@@ -13,7 +13,6 @@ dependencies:
   - commerce_price
   - commerce_product
   - commerce_store
-  - config_snapshot
   - falcon_commerce
   - field
   - inline_entity_form
