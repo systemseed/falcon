@@ -17,7 +17,7 @@ Falcon provides several payment gateways encapsulated into features:
 
 Examples:
 
-.. code-block:: javascript
+.. code-block:: php
    :linenos:
 
    {
@@ -70,7 +70,7 @@ Examples:
      },
    }
 
-.. code-block:: javascript
+.. code-block:: php
    :linenos:
 
       {
