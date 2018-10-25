@@ -54,6 +54,7 @@ dependencies:
   # Contrib modules
   - admin_toolbar
   - admin_toolbar_tools
+  - commerce_decoupled_checkout
   - config_filter
   - config_ignore
   - config_pages

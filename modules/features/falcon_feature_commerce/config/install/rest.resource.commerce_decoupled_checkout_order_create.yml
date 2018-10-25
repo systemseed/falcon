@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - falcon_donation
+    - commerce_decoupled_checkout
     - serialization
     - user
-id: donation
-plugin_id: donation
+id: commerce_decoupled_checkout_order_create
+plugin_id: commerce_decoupled_checkout_order_create
 granularity: resource
 configuration:
   methods:

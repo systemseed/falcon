@@ -6,6 +6,8 @@ dependencies:
   - commerce
   - commerce_cart
   - commerce_checkout
+  - commerce_decoupled_checkout
+  - commerce_directdebit
   - commerce_order
   - commerce_payment
   - commerce_price
@@ -19,10 +21,12 @@ dependencies:
   - options
   - path
   - profile
+  - rest
+  - serialization
   - state_machine
   - telephone
   - text
   - user
-version: 8.x-1.0
+version: 8.x-1.1
 package: Falcon
 description: 'Falcon Commerce feature.'

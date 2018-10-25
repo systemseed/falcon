@@ -19,29 +19,28 @@ class DonationCest {
   private $product;
   private $appeal;
 
+  /**
+   * @var array
+   */
   private $post = [
-    'donation_type' => 'single_donation',
     'order' => [
+      'type' => 'donation',
       'field_appeal' => '',
-    ],
-    'payment' => [
-      'amount' => 15,
-      'currency_code' => 'EUR',
-      'gateway' => 'example_test',
-      'method' => [
-        'type' => 'credit_card',
-        'options' => [
-          'type' => 'visa',
-          'number' => '4111111111111111',
-          'expiration' => [
-            'month' => '01',
-            'year' => '2022',
+      'order_items' => [
+        [
+          'type' => 'donation',
+          'unit_price' => [
+            'number' => 15,
+            'currency_code' => 'EUR',
           ],
+          'purchased_entity' => [
+            'sku' => 'donation',
+          ],
+          'field_donation_type' => 'single_donation',
         ],
       ],
     ],
     'profile' => [
-      'email'  => 'test@systemseed.com',
       'field_first_name' => 'Generous',
       'field_last_name' => 'Donor',
       'field_phone' => '88001234567',
@@ -54,14 +53,33 @@ class DonationCest {
         'address_line1' => '1098 Alta Ave',
         'locality' => 'Mountain View',
         'administrative_area' => 'CA',
-        'postal_code' => '94043'
+        'postal_code' => '94043',
+      ],
+    ],
+    'user' => [
+      'mail' => 'test+suite@systemseed.com',
+    ],
+    'payment' => [
+      'gateway' => 'example_test',
+      'type' => 'credit_card',
+      'details' => [
+        'type' => 'visa',
+        'number' => '4111111111111111',
+        'expiration' => [
+          'month' => '01',
+          'year' => '2022',
+        ],
       ],
     ],
   ];
 
-  const ENDPOINT = '/falcon/donation';
-
-  public function _before(\ApiTester $I) {
+  /**
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function _before() {
     $entity_type_manager = \Drupal::entityTypeManager();
 
     // Create default Commerce Store.
@@ -74,7 +92,8 @@ class DonationCest {
       'postal_code' => '19901',
     ];
 
-    $store = $entity_type_manager->getStorage('commerce_store')->create([
+    /** @var \Drupal\commerce_store\Entity\StoreInterface $this->store */
+    $this->store = $entity_type_manager->getStorage('commerce_store')->create([
       'type' => 'online',
       'uid' => 1,
       'name' => 'General Store',
@@ -83,34 +102,34 @@ class DonationCest {
       'default_currency' => 'EUR',
       'billing_countries' => [],
     ]);
-    $store->save();
-    $this->store = $store;
+    $this->store->save();
+
+    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store  */
+    $commerce_store = $entity_type_manager->getStorage('commerce_store');
+    $commerce_store->markAsDefault($this->store);
 
     // Create product variation.
-    $price = new Price('0', 'EUR');
-    $variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
+    $this->variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
       'type' => 'donation',
       'title' => 'Donation',
       'sku' => 'donation',
       'status' => 1,
-      'price' => $price,
+      'price' => new Price('0', 'EUR'),
     ]);
-    $variation->save();
-    $this->variation = $variation;
+    $this->variation->save();
 
     // Create product.
-    $product = $entity_type_manager->getStorage('commerce_product')->create([
+    $this->product = $entity_type_manager->getStorage('commerce_product')->create([
       'uid' => 1,
       'type' => 'donation',
       'title' => 'Donation',
-      'stores' => [$store],
-      'variations' => [$variation],
+      'stores' => [$this->store],
+      'variations' => [$this->variation],
     ]);
-    $product->save();
-    $this->product = $product;
+    $this->product->save();
 
     // Create appeal.
-    $appeal = $entity_type_manager->getStorage('node')->create([
+    $this->appeal = $entity_type_manager->getStorage('node')->create([
       'uid' => 1,
       'type' => 'appeal',
       'title' => 'Test appeal',
@@ -121,11 +140,16 @@ class DonationCest {
       'field_thankyou_email_subject' => 'Thank you email subject',
       'field_thankyou_email_body' => 'Thank you email body',
     ]);
-    $appeal->save();
-    $this->appeal = $appeal;
+    $this->appeal->save();
   }
 
-  public function _after(\ApiTester $I) {
+  /**
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function _after() {
     $entity_type_manager = \Drupal::entityTypeManager();
 
     $entity_type_manager->getStorage('commerce_store')->delete([$this->store]);
@@ -140,15 +164,21 @@ class DonationCest {
    * @param \ApiTester $I
    */
   public function donationSingleExampleSuccess(\ApiTester $I) {
-    $I->amGoingTo('Post correct order to Donation API endpoint.');
+    $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
-    $I->sendPOST(self::ENDPOINT, $post);
+    $I->sendPOST('/commerce/order/create', $post);
+
+    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store */
+    //$commerce_store = \Drupal::entityTypeManager()
+    //  ->getStorage('commerce_store');
+
+    //Debug::debug($commerce_store->loadDefault());
 
     $I->expectTo('See successful response.');
-    $I->seeResponseCodeIs(HttpCode::OK);
+    $I->seeResponseCodeIs(HttpCode::CREATED);
   }
 
   /**
@@ -157,28 +187,26 @@ class DonationCest {
    * @param \ApiTester $I
    */
   public function donationRecurringDirectDebitSEPASuccess(\ApiTester $I) {
-    $I->amGoingTo('Post correct order to Donation API endpoint.');
+    $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
-    $post['donation_type'] = 'recurring_donation';
+    $post['order']['order_items'][0]['field_donation_type'] = 'recurring_donation';
     $post['payment']['gateway'] = 'direct_debit_test';
-    $post['payment']['method'] = [
-      'type' => 'direct_debit_sepa',
-      'options' => [
+    $post['payment']['type'] = 'direct_debit_sepa';
+    $post['payment']['details'] = [
         'account_name' => 'Generous Donor',
         'swift' => 'BOFIIE2D',
         'iban' => 'DE89 3704 0044 0532 0130 00',
         'debit_date' => 2,
         'accept_direct_debits' => 1,
         'one_signatory' => 1,
-      ],
     ];
-    $I->sendPOST(self::ENDPOINT, $post);
+    $I->sendPOST('/commerce/order/create', $post);
 
     $I->expectTo('See successful response.');
-    $I->seeResponseCodeIs(HttpCode::OK);
+    $I->seeResponseCodeIs(HttpCode::CREATED);
   }
 
   /**
@@ -187,28 +215,26 @@ class DonationCest {
    * @param \ApiTester $I
    */
   public function donationRecurringDirectDebitUKSuccess(\ApiTester $I) {
-    $I->amGoingTo('Post correct order to Donation API endpoint.');
+    $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
-    $post['donation_type'] = 'recurring_donation';
+    $post['order']['order_items'][0]['field_donation_type'] = 'recurring_donation';
     $post['payment']['gateway'] = 'direct_debit_test';
-    $post['payment']['method'] = [
-      'type' => 'direct_debit_uk',
-      'options' => [
-        'account_name' => 'Generous Donor',
-        'sort_code' => '123456',
-        'account_number' => '12345678',
-        'debit_date' => 2,
-        'accept_direct_debits' => 1,
-        'one_signatory' => 1,
-      ],
+    $post['payment']['type'] = 'direct_debit_uk';
+    $post['payment']['details'] = [
+      'account_name' => 'Generous Donor',
+      'sort_code' => '123456',
+      'account_number' => '12345678',
+      'debit_date' => 2,
+      'accept_direct_debits' => 1,
+      'one_signatory' => 1,
     ];
-    $I->sendPOST(self::ENDPOINT, $post);
+    $I->sendPOST('/commerce/order/create', $post);
 
     $I->expectTo('See successful response.');
-    $I->seeResponseCodeIs(HttpCode::OK);
+    $I->seeResponseCodeIs(HttpCode::CREATED);
   }
 
   /**
@@ -222,11 +248,11 @@ class DonationCest {
 
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
-    $post['payment']['amount'] = 5;
-    $I->sendPOST(self::ENDPOINT, $post);
+    $post['order']['order_items'][0]['unit_price']['number'] = 5;
+    $I->sendPOST('/commerce/order/create', $post);
 
     $I->expectTo('See failure response.');
-    $I->seeResponseCodeIs(HttpCode::NOT_ACCEPTABLE);
+    $I->seeResponseCodeIs(HttpCode::BAD_REQUEST);
   }
 
   /**
@@ -241,7 +267,7 @@ class DonationCest {
     $post = $this->post;
     $post['order']['field_appeal'] = $this->appeal->id();
     $post['payment']['gateway'] = 'missing';
-    $I->sendPOST(self::ENDPOINT, $post);
+    $I->sendPOST('/commerce/order/create', $post);
 
     $I->expectTo('See failure response.');
     $I->seeResponseCodeIs(HttpCode::NOT_ACCEPTABLE);
