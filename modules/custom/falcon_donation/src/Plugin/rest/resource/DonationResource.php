@@ -1,10 +1,10 @@
 <?php
 
 namespace Drupal\falcon_donation\Plugin\rest\resource;
+
 use Drupal\rest\Plugin\ResourceBase;
 
 /**
- * Provides a resource for donations.
  * TODO: Legacy & should be removed in the future releases.
  *
  * @RestResource(
