@@ -5,7 +5,7 @@ dependencies:
     - commerce_payment_example
 id: example_live
 label: 'Example Live'
-weight: null
+weight: -4
 plugin: example_onsite
 configuration:
   api_key: API_KEY_LIVE
