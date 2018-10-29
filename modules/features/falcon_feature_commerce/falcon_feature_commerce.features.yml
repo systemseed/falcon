@@ -10,4 +10,8 @@ excluded:
   - config_snapshot.snapshot.config_sync.module.commerce_price
   - config_snapshot.snapshot.config_sync.module.commerce_product
   - config_snapshot.snapshot.config_sync.module.commerce_store
+  - config_snapshot.snapshot.config_sync.module.commerce_decoupled_checkout
+  - config_snapshot.snapshot.config_sync.module.commerce_directdebit
+  - config_snapshot.snapshot.config_sync.module.commerce_globalpayments
+  - config_snapshot.snapshot.config_sync.module.commerce_paypal_ec
 required: true

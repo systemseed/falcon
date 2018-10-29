@@ -8,12 +8,19 @@ dependencies:
   - commerce_checkout
   - commerce_decoupled_checkout
   - commerce_directdebit
+  - commerce_globalpayments
   - commerce_order
   - commerce_payment
+  - commerce_paypal_ec
   - commerce_price
   - commerce_product
   - commerce_store
+  - config_snapshot
+  - entity_reference_revisions
   - falcon_commerce
+  - falcon_feature_appeal
+  - falcon_feature_thankq
+  - falcon_feature_user
   - field
   - inline_entity_form
   - menu_link_config
@@ -27,6 +34,7 @@ dependencies:
   - telephone
   - text
   - user
+  - views
 version: 8.x-1.1
 package: Falcon
 description: 'Falcon Commerce feature.'

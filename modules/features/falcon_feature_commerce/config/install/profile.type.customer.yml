@@ -8,7 +8,13 @@ id: customer
 label: Customer
 registration: false
 multiple: true
-roles: {  }
+roles:
+  administrator: '0'
+  authenticated: '0'
+  manager: '0'
+  content_manager: '0'
+  appeals_manager: '0'
+  donations_manager: '0'
 weight: 0
 use_revisions: false
-description: null
+description: ''
