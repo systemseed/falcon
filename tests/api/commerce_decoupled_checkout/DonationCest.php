@@ -44,7 +44,6 @@ class DonationCest {
       'field_phone' => '88001234567',
       'field_contact_email' => 'allowed',
       'field_contact_phone' => 'allowed',
-      'field_contact_post' => 'not_asked',
       'field_contact_sms' => 'denied',
       'address' => [
         'country_code' => 'US',
