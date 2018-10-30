@@ -5,7 +5,5 @@ core: 8.x
 dependencies:
   - commerce_directdebit
   - commerce_payment
-  - config_snapshot
-  - falcon_feature_commerce_direct_debit_gateway
 version: 8.x-1.0
 package: Falcon
