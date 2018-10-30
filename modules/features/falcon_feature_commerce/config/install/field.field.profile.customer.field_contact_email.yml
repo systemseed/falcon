@@ -12,7 +12,7 @@ entity_type: profile
 bundle: customer
 label: 'Contact by Email'
 description: ''
-required: true
+required: false
 translatable: false
 default_value:
   -

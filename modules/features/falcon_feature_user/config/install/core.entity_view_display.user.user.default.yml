@@ -3,8 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.user.user.commerce_remote_id
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_last_name
   module:
     - user
 id: user.user.default
@@ -12,22 +10,6 @@ targetEntityType: user
 bundle: user
 mode: default
 content:
-  field_first_name:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_last_name:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   profile_customer:
     weight: 2
     region: content

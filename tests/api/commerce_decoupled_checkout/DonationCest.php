@@ -46,6 +46,8 @@ class DonationCest {
       'field_contact_phone' => 'allowed',
       'field_contact_sms' => 'denied',
       'address' => [
+        'given_name' => 'Generous',
+        'family_name' => 'Donor',
         'country_code' => 'US',
         'address_line1' => '1098 Alta Ave',
         'locality' => 'Mountain View',
@@ -55,8 +57,6 @@ class DonationCest {
     ],
     'user' => [
       'mail' => 'test+suite@systemseed.com',
-      'field_first_name' => 'Generous',
-      'field_last_name' => 'Donor',
     ],
     'payment' => [
       'gateway' => 'example_test',
