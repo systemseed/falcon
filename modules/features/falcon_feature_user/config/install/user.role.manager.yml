@@ -15,6 +15,7 @@ permissions:
   - 'access toolbar'
   - 'access user profiles'
   - 'administer commerce_order'
+  - 'administer commerce_payment'
   - 'administer commerce_payment_gateway'
   - 'administer nodes'
   - 'administer users'

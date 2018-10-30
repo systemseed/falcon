@@ -27,6 +27,7 @@ dependencies:
   - telephone
   - text
   - user
+  - views
 version: 8.x-1.1
 package: Falcon
 description: 'Falcon Commerce feature.'

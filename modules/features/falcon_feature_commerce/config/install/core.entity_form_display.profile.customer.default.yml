@@ -28,32 +28,28 @@ content:
     third_party_settings: {  }
     region: content
   field_contact_email:
-    weight: 4
-    settings:
-      display_label: true
+    weight: 6
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
+    type: options_select
     region: content
   field_contact_phone:
-    weight: 2
-    settings:
-      display_label: true
+    weight: 9
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
+    type: options_select
     region: content
   field_contact_post:
-    weight: 5
-    settings:
-      display_label: true
+    weight: 8
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
+    type: options_select
     region: content
   field_contact_sms:
-    weight: 3
-    settings:
-      display_label: true
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
+    type: options_select
     region: content
   field_phone:
     weight: 1
