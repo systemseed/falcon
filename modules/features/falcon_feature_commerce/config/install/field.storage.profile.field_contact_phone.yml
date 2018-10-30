@@ -2,13 +2,25 @@ langcode: en
 status: true
 dependencies:
   module:
+    - options
     - profile
 id: profile.field_contact_phone
 field_name: field_contact_phone
 entity_type: profile
-type: boolean
-settings: {  }
-module: core
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: allowed
+      label: Allowed
+    -
+      value: denied
+      label: Denied
+    -
+      value: not_asked
+      label: 'Not asked'
+  allowed_values_function: ''
+module: options
 locked: false
 cardinality: 1
 translatable: true

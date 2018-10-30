@@ -5,7 +5,7 @@ dependencies:
     - commerce_payment_example
 id: example_test
 label: 'Example Test'
-weight: null
+weight: -3
 plugin: example_onsite
 configuration:
   api_key: API_KEY_TEST

@@ -4,19 +4,19 @@ dependencies:
   config:
     - field.storage.profile.field_contact_email
     - profile.type.customer
+  module:
+    - options
 id: profile.customer.field_contact_email
 field_name: field_contact_email
 entity_type: profile
 bundle: customer
-label: 'Allow Contact by Email'
+label: 'Contact by Email'
 description: ''
-required: false
+required: true
 translatable: false
 default_value:
   -
-    value: 0
+    value: not_asked
 default_value_callback: ''
-settings:
-  on_label: 'On'
-  off_label: 'Off'
-field_type: boolean
+settings: {  }
+field_type: list_string

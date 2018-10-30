@@ -41,13 +41,10 @@ class DonationCest {
       ],
     ],
     'profile' => [
-      'field_first_name' => 'Generous',
-      'field_last_name' => 'Donor',
       'field_phone' => '88001234567',
-      'field_contact_email' => 1,
-      'field_contact_phone' => 0,
-      'field_contact_post' => 0,
-      'field_contact_sms' => 0,
+      'field_contact_email' => 'allowed',
+      'field_contact_phone' => 'allowed',
+      'field_contact_sms' => 'denied',
       'address' => [
         'country_code' => 'US',
         'address_line1' => '1098 Alta Ave',
@@ -58,6 +55,8 @@ class DonationCest {
     ],
     'user' => [
       'mail' => 'test+suite@systemseed.com',
+      'field_first_name' => 'Generous',
+      'field_last_name' => 'Donor',
     ],
     'payment' => [
       'gateway' => 'example_test',

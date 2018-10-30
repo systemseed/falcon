@@ -14,7 +14,7 @@ dependencies:
       - commerce_order
   module:
     - address
-    - telephone
+    - options
 id: profile.customer.default
 targetEntityType: profile
 bundle: customer
@@ -28,51 +28,39 @@ content:
     third_party_settings: {  }
     region: content
   field_contact_email:
-    weight: 4
+    weight: 6
     label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
+    settings: {  }
     third_party_settings: {  }
-    type: boolean
+    type: list_default
     region: content
   field_contact_phone:
-    weight: 2
+    weight: 9
     label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
+    settings: {  }
     third_party_settings: {  }
-    type: boolean
+    type: list_default
     region: content
   field_contact_post:
-    weight: 5
+    weight: 8
     label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
+    settings: {  }
     third_party_settings: {  }
-    type: boolean
+    type: list_default
     region: content
   field_contact_sms:
-    weight: 3
+    weight: 7
     label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
+    settings: {  }
     third_party_settings: {  }
-    type: boolean
+    type: list_default
     region: content
   field_phone:
     weight: 1
-    label: inline
+    label: hidden
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: telephone_link
+    type: string
     region: content
 hidden: {  }

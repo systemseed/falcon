@@ -5,7 +5,7 @@ dependencies:
     - commerce_directdebit
 id: direct_debit_live
 label: 'Direct Debit Live'
-weight: null
+weight: -6
 plugin: direct_debit
 configuration:
   display_label: 'Direct Debit'
