@@ -4,8 +4,38 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c947b7746f8b1879e15c247fb654e8d",
+    "content-hash": "22d04d747f723c6b5436a07b020d9207",
     "packages": [
+        {
+            "name": "apache/log4php",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git-wip-us.apache.org/repos/asf/logging-log4php.git",
+                "reference": "cac428b6f67d2035af39784da1d1a299ef42fcf2"
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/main/php/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A versatile logging framework for PHP",
+            "homepage": "http://logging.apache.org/log4php/",
+            "keywords": [
+                "log",
+                "logging",
+                "php"
+            ],
+            "time": "2012-10-26T09:13:25+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.2.0",
@@ -57,6 +87,59 @@
                 "stack"
             ],
             "time": "2017-12-20T14:37:45+00:00"
+        },
+        {
+            "name": "bpol/rxp-remote-php",
+            "version": "v1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/skiner87/rxp-remote-php.git",
+                "reference": "a77ad8c18f084d148c3d292bb6a8136611f64dd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/skiner87/rxp-remote-php/zipball/a77ad8c18f084d148c3d292bb6a8136611f64dd3",
+                "reference": "a77ad8c18f084d148c3d292bb6a8136611f64dd3",
+                "shasum": ""
+            },
+            "require": {
+                "apache/log4php": "2.3.0",
+                "hafriedlander/phockito": "1.0.0",
+                "php": ">=5.3.9",
+                "symfony/property-access": "^3.0",
+                "symfony/serializer": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "com\\realexpayments\\remote\\sdk\\": [
+                        "src/main/php/com-realexpayments-remote-sdk",
+                        "test/main/php/com-realexpayments-remote-sdk"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Realex Payments",
+                    "homepage": "https://www.realexpayments.com/"
+                },
+                {
+                    "name": "Victor Palomares",
+                    "homepage": "http://www.softwaredesign.ie",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SDK to send requests and parse responses from Realex Payments using Remote",
+            "keywords": [
+                "payments",
+                "realex",
+                "remote"
+            ],
+            "time": "2017-03-23T13:49:58+00:00"
         },
         {
             "name": "commerceguys/addressing",
@@ -1486,6 +1569,59 @@
                 "source": "https://cgit.drupalcode.org/commerce_directdebit"
             },
             "time": "2018-10-09T22:56:06+00:00"
+        },
+        {
+            "name": "drupal/commerce_globalpayments",
+            "version": "1.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/commerce_globalpayments",
+                "reference": "8.x-1.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/commerce_globalpayments-8.x-1.0-beta6.zip",
+                "reference": "8.x-1.0-beta6",
+                "shasum": "f43c0063acaca7529cb454b1804a7adf7d765513"
+            },
+            "require": {
+                "bpol/rxp-remote-php": "^1.3",
+                "drupal/commerce_payment": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta6",
+                    "datestamp": "1540979884",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Spleshka",
+                    "homepage": "https://www.drupal.org/user/810676"
+                },
+                {
+                    "name": "kalabro",
+                    "homepage": "https://www.drupal.org/user/1399638"
+                }
+            ],
+            "description": "Provides Commerce integration for Global Payments (Realex).",
+            "homepage": "https://www.drupal.org/project/commerce_globalpayments",
+            "support": {
+                "source": "http://cgit.drupalcode.org/commerce_globalpayments"
+            }
         },
         {
             "name": "drupal/commerce_order",
@@ -4465,6 +4601,45 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
+            "name": "hafriedlander/phockito",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hafriedlander/phockito.git",
+                "reference": "548d1da8eebbf80a2c1b22d22cd78efae76dac2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hafriedlander/phockito/zipball/548d1da8eebbf80a2c1b22d22cd78efae76dac2c",
+                "reference": "548d1da8eebbf80a2c1b22d22cd78efae76dac2c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "."
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Hamish Friedlander",
+                    "email": "hamish@silverstripe.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Mocking framework inspired by Mockito for Java",
+            "keywords": [
+                "mockito",
+                "mocks",
+                "testing"
+            ],
+            "time": "2013-08-15T23:44:47+00:00"
+        },
+        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.7",
             "source": {
@@ -5406,6 +5581,64 @@
             "time": "2018-10-03T12:03:34+00:00"
         },
         {
+            "name": "symfony/inflector",
+            "version": "v4.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/inflector.git",
+                "reference": "07810b5c88ec0c2e98972571a40a126b44664e13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/inflector/zipball/07810b5c88ec0c2e98972571a40a126b44664e13",
+                "reference": "07810b5c88ec0c2e98972571a40a126b44664e13",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Inflector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Inflector Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "inflection",
+                "pluralize",
+                "singularize",
+                "string",
+                "symfony",
+                "words"
+            ],
+            "time": "2018-07-26T08:55:25+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.9.0",
             "source": {
@@ -5687,6 +5920,74 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+            "time": "2018-10-02T12:28:39+00:00"
+        },
+        {
+            "name": "symfony/property-access",
+            "version": "v3.4.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/property-access.git",
+                "reference": "a62b882330f24b43f4409e50a0692aa433947460"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/a62b882330f24b43f4409e50a0692aa433947460",
+                "reference": "a62b882330f24b43f4409e50a0692aa433947460",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/inflector": "~3.1|~4.0",
+                "symfony/polyfill-php70": "~1.0"
+            },
+            "require-dev": {
+                "symfony/cache": "~3.1|~4.0"
+            },
+            "suggest": {
+                "psr/cache-implementation": "To cache access methods."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\PropertyAccess\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony PropertyAccess Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "access",
+                "array",
+                "extraction",
+                "index",
+                "injection",
+                "object",
+                "property",
+                "property path",
+                "reflection"
+            ],
             "time": "2018-10-02T12:28:39+00:00"
         },
         {
@@ -6718,7 +7019,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0-beta1",
-                    "datestamp": "1536339780",
+                    "datestamp": "1540497780",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -7106,6 +7407,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/commerce_directdebit": 20,
+        "drupal/commerce_globalpayments": 10,
         "drupal/commerce_paypal_ec": 20,
         "drupal/consumer_image_styles": 5,
         "drupal/consumers": 10,
