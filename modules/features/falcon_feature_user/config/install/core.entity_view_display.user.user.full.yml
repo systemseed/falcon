@@ -4,31 +4,13 @@ dependencies:
   config:
     - core.entity_view_mode.user.full
     - field.field.user.user.commerce_remote_id
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_last_name
   module:
     - user
 id: user.user.full
 targetEntityType: user
 bundle: user
 mode: full
-content:
-  field_first_name:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_last_name:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
+content: {  }
 hidden:
   commerce_remote_id: true
   member_for: true

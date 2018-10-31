@@ -39,14 +39,14 @@ Examples:
        ],
      },
      "profile": {
-       "field_first_name": "John",
-       "field_last_name": "Snow",
        "field_phone": "88001234567",
        "field_contact_email": 1,
        "field_contact_phone": 0,
        "field_contact_post": 0,
        "field_contact_sms": 0,
        "address": {
+         "given_name": "John",
+         "family_name": "Snow",
          "country_code": "US",
          "address_line1": "1098 Alta Ave",
          "locality": "Mountain View",
@@ -92,14 +92,14 @@ Examples:
           ],
         },
         "profile": {
-          "field_first_name": "John",
-          "field_last_name": "Snow",
           "field_phone": "88001234567",
           "field_contact_email": 1,
           "field_contact_phone": 0,
           "field_contact_post": 0,
           "field_contact_sms": 0,
           "address": {
+            "given_name": "John",
+            "family_name": "Snow",
             "country_code": "US",
             "address_line1": "1098 Alta Ave",
             "locality": "Mountain View",
