@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_thankyou_page_blocks
     - node.type.appeal
+    - paragraphs.paragraphs_type.hero_image_heading_subheading
   module:
     - entity_reference_revisions
 id: node.appeal.field_thankyou_page_blocks
@@ -20,7 +21,8 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles: null
+    target_bundles:
+      hero_image_heading_subheading: hero_image_heading_subheading
     target_bundles_drag_drop:
       donate_money_handles_item:
         weight: 4
@@ -29,6 +31,6 @@ settings:
         weight: 5
         enabled: false
       hero_image_heading_subheading:
+        enabled: true
         weight: 6
-        enabled: false
 field_type: entity_reference_revisions
