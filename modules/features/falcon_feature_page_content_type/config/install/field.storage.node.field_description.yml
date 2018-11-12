@@ -3,16 +3,15 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_donation_suggested_amounts
-field_name: field_donation_suggested_amounts
+    - text
+id: node.field_description
+field_name: field_description
 entity_type: node
-type: integer
-settings:
-  unsigned: false
-  size: normal
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
-cardinality: 3
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

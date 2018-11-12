@@ -5,7 +5,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.appeal.field_blocks
     - field.field.node.appeal.field_donation_min_amount
-    - field.field.node.appeal.field_donation_suggested_amounts
     - field.field.node.appeal.field_donation_type
     - field.field.node.appeal.field_thankyou_email_body
     - field.field.node.appeal.field_thankyou_email_subject
@@ -25,7 +24,6 @@ content:
 hidden:
   field_blocks: true
   field_donation_min_amount: true
-  field_donation_suggested_amounts: true
   field_donation_type: true
   field_thankyou_email_body: true
   field_thankyou_email_subject: true

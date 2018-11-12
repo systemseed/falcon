@@ -1,0 +1,25 @@
+name: 'Falcon News content type'
+description: 'Showcasing News content type.'
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Falcon
+dependencies:
+  - entity_reference_revisions
+  - falcon_feature_appeal
+  - falcon_feature_content_blocks
+  - falcon_feature_country_content_type
+  - falcon_feature_key_programme_areas
+  - falcon_feature_page_content_type
+  - falcon_feature_person_content_type
+  - falcon_feature_story_content_type
+  - field
+  - field_group
+  - image
+  - menu_ui
+  - node
+  - paragraphs
+  - path
+  - scheduler
+  - text
+  - user

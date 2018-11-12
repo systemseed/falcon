@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies: {  }
+id: create_a_new_country
+title: 'Create a new Country'
+route_name: node.add
+route_parameters:
+  node_type: country
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_content_category'
+weight: -47
+description: ''

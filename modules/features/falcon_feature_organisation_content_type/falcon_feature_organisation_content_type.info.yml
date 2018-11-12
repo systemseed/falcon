@@ -1,0 +1,24 @@
+name: 'Falcon Organisation content type'
+description: 'Showcasing Organisation content type.'
+type: module
+core: 8.x
+dependencies:
+  - entity_reference_revisions
+  - falcon_feature_content_blocks
+  - falcon_feature_country_content_type
+  - falcon_feature_key_programme_areas
+  - falcon_feature_page_content_type
+  - field
+  - field_group
+  - image
+  - link
+  - menu_ui
+  - node
+  - paragraphs
+  - path
+  - scheduler
+  - taxonomy
+  - text
+  - user
+version: 8.x-1.0
+package: Falcon

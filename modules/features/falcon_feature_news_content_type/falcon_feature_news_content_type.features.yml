@@ -1,0 +1,14 @@
+bundle: falcon_feature
+required:
+  - core.base_field_override.node.news.promote
+  - node.type.news
+  - core.entity_form_display.node.news.default
+  - core.entity_view_display.node.news.default
+  - core.entity_view_display.node.news.teaser
+  - field.field.node.news.field_appeals
+  - field.field.node.news.field_blocks
+  - field.field.node.news.field_content_category
+  - field.field.node.news.field_countries
+  - field.field.node.news.field_description
+  - field.field.node.news.field_image
+  - field.field.node.news.field_person

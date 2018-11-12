@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.node.appeal.field_blocks
     - field.field.node.appeal.field_donation_min_amount
-    - field.field.node.appeal.field_donation_suggested_amounts
     - field.field.node.appeal.field_donation_type
     - field.field.node.appeal.field_thankyou_email_body
     - field.field.node.appeal.field_thankyou_email_subject
@@ -37,9 +36,8 @@ third_party_settings:
       children:
         - field_donation_type
         - field_donation_min_amount
-        - field_donation_suggested_amounts
       parent_name: group_tabs
-      weight: 2
+      weight: 3
       format_type: tab
       format_settings:
         label: 'Donation Form'
@@ -55,7 +53,7 @@ third_party_settings:
         - field_thankyou_page_title
         - field_thankyou_page_blocks
       parent_name: group_tabs
-      weight: 4
+      weight: 5
       format_type: tab
       format_settings:
         id: ''
@@ -70,7 +68,7 @@ third_party_settings:
         - field_thankyou_email_subject
         - field_thankyou_email_body
       parent_name: group_tabs
-      weight: 5
+      weight: 6
       format_type: tab
       format_settings:
         id: ''
@@ -127,13 +125,6 @@ content:
     region: content
   field_donation_min_amount:
     weight: 5
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_donation_suggested_amounts:
-    weight: 6
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -206,6 +197,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  scheduler_settings:
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
@@ -230,7 +226,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60

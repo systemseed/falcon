@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.node.appeal.field_blocks
     - field.field.node.appeal.field_donation_min_amount
-    - field.field.node.appeal.field_donation_suggested_amounts
     - field.field.node.appeal.field_donation_type
     - field.field.node.appeal.field_source_codes
     - field.field.node.appeal.field_thankyou_email_body
@@ -33,15 +32,6 @@ content:
     region: content
   field_donation_min_amount:
     weight: 3
-    label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
-    region: content
-  field_donation_suggested_amounts:
-    weight: 4
     label: above
     settings:
       thousand_separator: ''

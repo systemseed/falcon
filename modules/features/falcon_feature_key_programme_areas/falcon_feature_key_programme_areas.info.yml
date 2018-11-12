@@ -1,0 +1,10 @@
+name: 'Falcon Key programme areas'
+description: 'Showcasing Key programme areas.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - node
+  - taxonomy
+version: 8.x-1.0
+package: Falcon
