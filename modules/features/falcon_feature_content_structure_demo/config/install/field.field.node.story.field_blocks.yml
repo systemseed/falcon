@@ -4,9 +4,6 @@ dependencies:
   config:
     - field.storage.node.field_blocks
     - node.type.story
-    - paragraphs.paragraphs_type.donate_with_money_handles
-    - paragraphs.paragraphs_type.from_library
-    - paragraphs.paragraphs_type.hero_image_heading_subheading
   module:
     - entity_reference_revisions
 id: node.story.field_blocks

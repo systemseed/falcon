@@ -5,7 +5,7 @@ id: create_a_new_story
 title: 'Create a new Story'
 route_name: node.add
 route_parameters:
-  node_type: 40f77265-775b-41de-8285-e840ad2fa2e9
+  node_type: story
 options: {  }
 expanded: false
 menu_name: falcon-dashboard

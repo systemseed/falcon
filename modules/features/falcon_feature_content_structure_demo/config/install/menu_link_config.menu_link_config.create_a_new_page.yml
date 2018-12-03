@@ -5,7 +5,7 @@ id: create_a_new_page
 title: 'Create a new Page'
 route_name: node.add
 route_parameters:
-  node_type: 9dd016af-968e-4700-bb76-83e81548ed35
+  node_type: page
 options: {  }
 expanded: false
 menu_name: falcon-dashboard
