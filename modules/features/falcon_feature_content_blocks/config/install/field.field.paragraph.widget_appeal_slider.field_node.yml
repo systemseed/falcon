@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_node
+    - node.type.appeal
+    - paragraphs.paragraphs_type.widget_appeal_slider
+id: paragraph.widget_appeal_slider.field_node
+field_name: field_node
+entity_type: paragraph
+bundle: widget_appeal_slider
+label: Appeal
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      appeal: appeal
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section_primary.field_blocks
+    - paragraphs.paragraphs_type.section_primary
+  module:
+    - entity_reference_revisions
+id: paragraph.section_primary.default
+targetEntityType: paragraph
+bundle: section_primary
+mode: default
+content:
+  field_blocks:
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden: {  }

@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: section_items
+label: 'Section items'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

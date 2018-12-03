@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.country
+  module:
+    - text
+id: node.country.field_description
+field_name: field_description
+entity_type: node
+bundle: country
+label: 'Short description'
+description: 'Short (130 chars) content description for teasers and SEO.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

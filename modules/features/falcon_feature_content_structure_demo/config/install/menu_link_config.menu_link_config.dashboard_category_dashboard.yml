@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard_category_dashboard
+title: 'Back to dashboard'
+route_name: falcon.dashboard
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: falcon.dashboard
+weight: -50
+description: ''

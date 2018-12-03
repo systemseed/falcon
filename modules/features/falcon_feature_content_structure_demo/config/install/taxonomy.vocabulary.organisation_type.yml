@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Organisation type'
+vid: organisation_type
+description: 'Collection of available organisation types.'
+hierarchy: 0
+weight: 0

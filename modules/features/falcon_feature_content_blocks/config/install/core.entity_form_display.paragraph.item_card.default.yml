@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.item_card.field_node
+    - paragraphs.paragraphs_type.item_card
+id: paragraph.item_card.default
+targetEntityType: paragraph
+bundle: item_card
+mode: default
+content:
+  field_node:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

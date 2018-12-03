@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Falcon_common.module file.
+ */
+
+use Drupal\Core\Entity\EntityFormInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function falcon_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /* @var Drupal\Core\Entity\FieldableEntityInterface $entity */
+  $formObject = $form_state->getFormObject();
+  if (
+    $formObject instanceof EntityFormInterface
+    && $formObject->getEntity()->getEntityTypeId() === 'node'
+  ) {
+    $form['#attached']['library'][] = 'falcon_common/node-layout';
+  }
+}

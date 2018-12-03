@@ -1,0 +1,48 @@
+/* Reset two columns layout on desktop. */
+@media
+screen and (min-width: 780px),
+(orientation: landscape) and (min-device-height: 780px) {
+  .layout-region-node-main,
+  .layout-region-node-footer,
+  .layout-region-node-secondary {
+    float: none;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .layout-region-node-secondary {
+    padding: 2em 0;
+  }
+}
+
+/*
+ * Enable two columns layout on extra large desktop.
+ * Taken from /core/themes/stable/css/node/node.module.css file.
+ */
+@media
+screen and (min-width: 1600px) {
+  .layout-region-node-main,
+  .layout-region-node-footer {
+    float: left; /* LTR */
+    width: 65%;
+    padding-right: 2em; /* LTR */
+    box-sizing: border-box;
+  }
+
+  [dir="rtl"] .layout-region-node-main,
+  [dir="rtl"] .layout-region-node-footer {
+    float: right;
+    padding-left: 2em;
+    padding-right: 0;
+  }
+
+  .layout-region-node-secondary {
+    float: right; /* LTR */
+    width: 35%;
+  }
+
+  [dir="rtl"] .layout-region-node-secondary {
+    float: left;
+  }
+}

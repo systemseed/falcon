@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.item_chart.field_float_value
+    - field.field.paragraph.item_chart.field_heading
+    - paragraphs.paragraphs_type.item_chart
+id: paragraph.item_chart.default
+targetEntityType: paragraph
+bundle: item_chart
+mode: default
+content:
+  field_float_value:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_heading:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

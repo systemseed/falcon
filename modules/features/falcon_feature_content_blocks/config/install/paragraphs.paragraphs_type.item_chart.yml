@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_browser
+third_party_settings:
+  paragraphs_browser:
+    image_path: 'public://paragraphs-browser/item_chart.png'
+id: item_chart
+label: 'Chart item'
+icon_uuid: null
+description: 'A pie chart.'
+behavior_plugins: {  }

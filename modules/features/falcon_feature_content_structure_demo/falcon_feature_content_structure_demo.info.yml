@@ -1,10 +1,8 @@
-name: 'Falcon Feature Content Blocks'
-description: 'Collection of general purpose paragraphs.'
+name: 'Falcon Content structure (demo)'
+description: 'Showcasing demo content structure by providing a collection of content types, vocabularies, fields, etc.'
 type: module
 core: 8.x
 dependencies:
-  - crop
-  - entity_browser
   - entity_reference_revisions
   - falcon_feature_appeal
   - falcon_feature_content_blocks
@@ -13,14 +11,16 @@ dependencies:
   - field_group
   - file
   - image
-  - image_widget_crop
   - link
+  - menu_link_config
+  - menu_ui
   - node
-  - options
   - paragraphs
   - paragraphs_browser
-  - paragraphs_library
+  - path
+  - scheduler
+  - taxonomy
+  - text
   - user
-  - views
 version: 8.x-1.0
 package: Falcon

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: manage_taxonomy
+title: 'Manage taxonomy'
+route_name: entity.taxonomy_vocabulary.collection
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_content_category'
+weight: -46
+description: ''

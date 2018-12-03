@@ -1,0 +1,57 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.appeals
+    - field.field.paragraph.widget_appeal_slider.field_appeal_widget_mode
+    - field.field.paragraph.widget_appeal_slider.field_heading
+    - field.field.paragraph.widget_appeal_slider.field_node
+    - field.field.paragraph.widget_appeal_slider.field_subheading
+    - paragraphs.paragraphs_type.widget_appeal_slider
+  module:
+    - entity_browser
+id: paragraph.widget_appeal_slider.default
+targetEntityType: paragraph
+bundle: widget_appeal_slider
+mode: default
+content:
+  field_appeal_widget_mode:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_heading:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_node:
+    weight: 0
+    settings:
+      entity_browser: appeals
+      field_widget_display: label
+      field_widget_remove: true
+      field_widget_replace: true
+      open: true
+      selection_mode: selection_append
+      field_widget_edit: false
+      field_widget_display_settings: {  }
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_subheading:
+    weight: 2
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

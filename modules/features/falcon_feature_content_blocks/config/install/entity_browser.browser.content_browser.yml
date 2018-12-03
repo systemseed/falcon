@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.falcon_appeals_browser
+  module:
+    - views
+name: content_browser
+label: 'Content browser'
+display: modal
+display_configuration:
+  width: '800'
+  height: '600'
+  link_text: 'Select content'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  90e95d36-1ed5-4b12-9b2a-ef1ffec9b879:
+    settings:
+      view: falcon_appeals_browser
+      view_display: entity_browser_1
+      submit_text: 'Select content'
+      auto_select: false
+    uuid: 90e95d36-1ed5-4b12-9b2a-ef1ffec9b879
+    weight: 1
+    label: view
+    id: view

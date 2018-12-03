@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_key_programme_areas
+    - node.type.organisation
+    - taxonomy.vocabulary.key_programme_areas
+id: node.organisation.field_key_programme_areas
+field_name: field_key_programme_areas
+entity_type: node
+bundle: organisation
+label: 'Related key programme areas'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      key_programme_areas: key_programme_areas
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

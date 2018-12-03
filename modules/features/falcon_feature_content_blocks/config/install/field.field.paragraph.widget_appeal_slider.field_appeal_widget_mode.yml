@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_appeal_widget_mode
+    - paragraphs.paragraphs_type.widget_appeal_slider
+  module:
+    - options
+id: paragraph.widget_appeal_slider.field_appeal_widget_mode
+field_name: field_appeal_widget_mode
+entity_type: paragraph
+bundle: widget_appeal_slider
+label: Mode
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: closed
+default_value_callback: ''
+settings: {  }
+field_type: list_string

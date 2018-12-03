@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.person.field_blocks
+    - field.field.node.person.field_countries
+    - field.field.node.person.field_description
+    - field.field.node.person.field_image
+    - field.field.node.person.field_job_title
+    - field.field.node.person.field_person_type
+    - node.type.person
+  module:
+    - user
+id: node.person.teaser
+targetEntityType: node
+bundle: person
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_blocks: true
+  field_countries: true
+  field_description: true
+  field_image: true
+  field_job_title: true
+  field_person_type: true

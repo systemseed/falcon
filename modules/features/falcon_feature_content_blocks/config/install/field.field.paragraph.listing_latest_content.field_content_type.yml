@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_type
+    - paragraphs.paragraphs_type.listing_latest_content
+id: paragraph.listing_latest_content.field_content_type
+field_name: field_content_type
+entity_type: paragraph
+bundle: listing_latest_content
+label: 'Content type'
+description: 'Which content types should be included in this listing? Leave the setting empty to include all content types.s'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node_type'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

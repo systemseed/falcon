@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_browser
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+  paragraphs_browser:
+    description: 'Use this simple section as a basic container for cards, charts, etc.'
+id: section_simple
+label: 'Simple section'
+icon_uuid: null
+description: 'Use this simple section as a basic container for cards, charts, etc.'
+behavior_plugins: {  }
