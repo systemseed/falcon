@@ -8,7 +8,7 @@ third_party_settings:
   paragraphs_library:
     allow_library_conversion: true
   paragraphs_browser:
-    image_path: 'public://paragraphs-browser/listing_latest_content.png'
+    image_path: 'public://paragraphs-browser/cta_primary_appeal.png'
 id: cta_primary_appeal
 label: 'Primary CTA block (appeal)'
 icon_uuid: null

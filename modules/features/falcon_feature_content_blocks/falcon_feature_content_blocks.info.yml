@@ -1,5 +1,5 @@
 name: 'Falcon Feature Content Blocks'
-description: 'Collection of general purpose paragraphs.'
+description: 'Collection of paragraphs showcasing Falcon editorial experience.'
 type: module
 core: 8.x
 dependencies:
@@ -15,6 +15,7 @@ dependencies:
   - image
   - image_widget_crop
   - link
+  - menu_link_config
   - node
   - options
   - paragraphs
