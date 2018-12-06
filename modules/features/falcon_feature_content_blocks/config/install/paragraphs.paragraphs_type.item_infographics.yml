@@ -5,7 +5,8 @@ dependencies:
     - paragraphs_browser
 third_party_settings:
   paragraphs_browser:
-    description: 'An icon with a number and a label.'
+    description: 'Best for icons with a number and a label.'
+    image_path: 'public://paragraphs-browser/item_infographics.png'
 id: item_infographics
 label: 'Infographics item'
 icon_uuid: null

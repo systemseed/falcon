@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.item_infographics
+id: paragraph.item_infographics.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: item_infographics
+label: Subheading
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

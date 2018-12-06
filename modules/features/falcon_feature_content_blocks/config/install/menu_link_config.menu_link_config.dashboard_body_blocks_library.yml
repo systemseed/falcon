@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: dashboard_body_blocks_library
-title: 'Body blocks library'
+title: 'Body blocks library '
 route_name: entity.paragraphs_library_item.collection
 route_parameters: {  }
 options: {  }
