@@ -21,7 +21,7 @@ screen and (min-width: 780px),
  * Taken from /core/themes/stable/css/node/node.module.css file.
  */
 @media
-screen and (min-width: 1600px) {
+screen and (min-width: 2400px) {
   .layout-region-node-main,
   .layout-region-node-footer {
     float: left; /* LTR */
