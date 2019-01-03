@@ -11,7 +11,7 @@
             "version": "2.3.0",
             "source": {
                 "type": "git",
-                "url": "https://git-wip-us.apache.org/repos/asf/logging-log4php.git",
+                "url": "https://gitbox.apache.org/repos/asf/logging-log4php.git",
                 "reference": "cac428b6f67d2035af39784da1d1a299ef42fcf2"
             },
             "require": {
