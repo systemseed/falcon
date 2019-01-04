@@ -24,6 +24,7 @@ services:
       DB_PASSWORD: $DB_PASSWORD
       DB_NAME: $DB_NAME
       DB_DRIVER: $DB_DRIVER
+      COLUMNS: 80 # Set 80 columns for docker exec -it.
 
   nginx:
     image: wodby/nginx:$NGINX_TAG
