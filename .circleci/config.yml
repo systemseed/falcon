@@ -21,6 +21,10 @@ jobs:
             sed -i '/-dev-macos-/s/^/# /g' \.env
 
       - run:
+          name: Pull Docker images
+          command: make pull
+
+      - run:
           name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
           command: make code:check
           when: always
