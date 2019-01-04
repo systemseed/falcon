@@ -29,6 +29,10 @@
     {
       "type": "vcs",
       "url": "git@github.com:systemseed/commerce_paypal_ec.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://gitbox.apache.org/repos/asf/logging-log4php.git"
     }
   ],
   "scripts": {
