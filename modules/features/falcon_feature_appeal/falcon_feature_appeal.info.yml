@@ -4,7 +4,6 @@ type: module
 core: 8.x
 dependencies:
   - entity_reference_revisions
-  - falcon_feature_content_blocks
   - field
   - field_group
   - menu_link_config

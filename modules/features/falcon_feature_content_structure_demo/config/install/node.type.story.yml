@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - scheduler
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  scheduler:
+    expand_fieldset: when_required
+    fields_display_mode: vertical_tab
+    publish_enable: true
+    publish_past_date: error
+    publish_required: false
+    publish_revision: true
+    publish_touch: true
+    unpublish_enable: true
+    unpublish_required: false
+    unpublish_revision: true
+name: Story
+type: story
+description: 'Story content type can be used for in-depth reports, interviews, case studies and impact stories. This content type should be used for rich, immersive storytelling and should contain lots of imagery, context and long-form copy. This content type is medium/long (400-800+ words) form and is generally evergreen.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

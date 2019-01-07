@@ -1,13 +1,27 @@
-name: 'Falcon Content Blocks feature'
-description: 'Collection of general purpose paragraphs.'
+name: 'Falcon Feature Content Blocks'
+description: 'Collection of paragraphs showcasing Falcon editorial experience.'
 type: module
 core: 8.x
 dependencies:
   - crop
+  - entity_browser
+  - entity_reference_revisions
+  - falcon_feature_appeal
+  - falcon_feature_content_blocks
+  - falcon_feature_content_structure_demo
   - field
+  - field_group
   - file
   - image
   - image_widget_crop
+  - link
+  - menu_link_config
+  - node
+  - options
   - paragraphs
+  - paragraphs_browser
+  - paragraphs_library
+  - user
+  - views
 version: 8.x-1.0
 package: Falcon

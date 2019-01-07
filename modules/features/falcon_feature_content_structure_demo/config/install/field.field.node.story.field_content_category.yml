@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_category
+    - node.type.story
+    - taxonomy.vocabulary.content_categories
+id: node.story.field_content_category
+field_name: field_content_category
+entity_type: node
+bundle: story
+label: Category
+description: 'You can put the story in one of the available content categories. Categories are managed <a href="/admin/structure/taxonomy/manage/content_categories/overview" target="_blank">here</a>. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      content_categories: content_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_browser
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+  paragraphs_browser:
+    image_path: 'public://paragraphs-browser/section_primary.png'
+id: section_primary
+label: 'Primary section'
+icon_uuid: null
+description: 'Primary section is great for building multi-CTA and infographics blocks.'
+behavior_plugins: {  }

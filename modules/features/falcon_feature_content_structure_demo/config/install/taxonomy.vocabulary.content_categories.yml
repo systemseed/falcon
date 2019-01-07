@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Content categories'
+vid: content_categories
+description: 'Content is organised in categories like Blog or Multi-media.'
+hierarchy: 0
+weight: 0

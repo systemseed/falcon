@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blocks
+    - node.type.story
+  module:
+    - entity_reference_revisions
+id: node.story.field_blocks
+field_name: field_blocks
+entity_type: node
+bundle: story
+label: 'Body blocks'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      donate_with_money_handles: donate_with_money_handles
+      hero_image_heading_subheading: hero_image_heading_subheading
+      from_library: from_library
+    target_bundles_drag_drop:
+      donate_money_handles_item:
+        weight: 4
+        enabled: false
+      donate_with_money_handles:
+        enabled: true
+        weight: 5
+      hero_image_heading_subheading:
+        enabled: true
+        weight: 6
+      from_library:
+        enabled: true
+        weight: 8
+field_type: entity_reference_revisions

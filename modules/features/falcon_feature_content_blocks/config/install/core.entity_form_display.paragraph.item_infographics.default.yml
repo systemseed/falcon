@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.item_infographics.field_file
+    - field.field.paragraph.item_infographics.field_heading
+    - field.field.paragraph.item_infographics.field_subheading
+    - paragraphs.paragraphs_type.item_infographics
+  module:
+    - file
+id: paragraph.item_infographics.default
+targetEntityType: paragraph
+bundle: item_infographics
+mode: default
+content:
+  field_file:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_heading:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_subheading:
+    weight: 2
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,82 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blocks
+    - node.type.page
+  module:
+    - entity_reference_revisions
+id: node.page.field_blocks
+field_name: field_blocks
+entity_type: node
+bundle: page
+label: 'Body blocks'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles: null
+    target_bundles_drag_drop:
+      donate_money_handles_item:
+        weight: 12
+        enabled: false
+      donate_with_money_handles:
+        weight: 13
+        enabled: false
+      from_library:
+        weight: 14
+        enabled: false
+      hero_image_heading_subheading:
+        weight: 15
+        enabled: false
+      item_chart:
+        weight: 16
+        enabled: false
+      item_icon_link:
+        weight: 17
+        enabled: false
+      item_infographics:
+        weight: 18
+        enabled: false
+      item_timeline:
+        weight: 20
+        enabled: false
+      section_simple:
+        weight: 20
+        enabled: false
+      section_items:
+        weight: 21
+        enabled: false
+      cta_button_primary:
+        weight: 21
+        enabled: false
+      section_primary:
+        weight: 22
+        enabled: false
+      cta_button_secondary:
+        weight: 22
+        enabled: false
+      cta_primary_appeal:
+        weight: 23
+        enabled: false
+      item_card:
+        weight: 28
+        enabled: false
+      item_card_custom:
+        weight: 29
+        enabled: false
+      listing_latest_content:
+        weight: 34
+        enabled: false
+      text_heading:
+        weight: 37
+        enabled: false
+      widget_appeal_slider:
+        weight: 38
+        enabled: false
+field_type: entity_reference_revisions

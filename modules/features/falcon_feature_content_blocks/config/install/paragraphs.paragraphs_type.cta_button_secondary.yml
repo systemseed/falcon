@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_browser
+third_party_settings:
+  paragraphs_browser:
+    image_path: 'public://paragraphs-browser/cta_button_secondary.png'
+id: cta_button_secondary
+label: 'CTA button (secondary)'
+icon_uuid: null
+description: 'Use to add a secondary CTA button.'
+behavior_plugins: {  }

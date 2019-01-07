@@ -23,3 +23,4 @@ Follow instructions in :doc:`install` section.
    roles
    donation_api
    environment
+   content

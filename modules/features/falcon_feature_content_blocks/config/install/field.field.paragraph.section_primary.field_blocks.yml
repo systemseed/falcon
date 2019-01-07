@@ -1,0 +1,90 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blocks
+    - paragraphs.paragraphs_type.cta_button_primary
+    - paragraphs.paragraphs_type.cta_button_secondary
+    - paragraphs.paragraphs_type.section_items
+    - paragraphs.paragraphs_type.section_primary
+    - paragraphs.paragraphs_type.text_heading
+  module:
+    - entity_reference_revisions
+id: paragraph.section_primary.field_blocks
+field_name: field_blocks
+entity_type: paragraph
+bundle: section_primary
+label: 'Section blocks'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      cta_button_primary: cta_button_primary
+      section_items: section_items
+      cta_button_secondary: cta_button_secondary
+      text_heading: text_heading
+    target_bundles_drag_drop:
+      section_primary:
+        weight: 6
+        enabled: false
+      donate_money_handles_item:
+        weight: 7
+        enabled: false
+      donate_with_money_handles:
+        weight: 8
+        enabled: false
+      from_library:
+        weight: 9
+        enabled: false
+      hero_image_heading_subheading:
+        weight: 10
+        enabled: false
+      item_chart:
+        weight: 16
+        enabled: false
+      cta_button_primary:
+        enabled: true
+        weight: 17
+      item_icon_link:
+        weight: 17
+        enabled: false
+      item_infographics:
+        weight: 18
+        enabled: false
+      item_timeline:
+        weight: 20
+        enabled: false
+      section_items:
+        enabled: true
+        weight: 21
+      cta_button_secondary:
+        enabled: true
+        weight: 22
+      cta_primary_appeal:
+        weight: 23
+        enabled: false
+      item_card:
+        weight: 28
+        enabled: false
+      item_card_custom:
+        weight: 29
+        enabled: false
+      section_simple:
+        weight: 30
+        enabled: false
+      text_heading:
+        enabled: true
+        weight: 31
+      widget_appeal_slider:
+        weight: 32
+        enabled: false
+      listing_latest_content:
+        weight: 34
+        enabled: false
+field_type: entity_reference_revisions

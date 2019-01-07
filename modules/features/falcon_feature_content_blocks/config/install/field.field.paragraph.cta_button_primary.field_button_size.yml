@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_button_size
+    - paragraphs.paragraphs_type.cta_button_primary
+  module:
+    - options
+id: paragraph.cta_button_primary.field_button_size
+field_name: field_button_size
+entity_type: paragraph
+bundle: cta_button_primary
+label: 'Button size'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: small
+default_value_callback: ''
+settings: {  }
+field_type: list_string

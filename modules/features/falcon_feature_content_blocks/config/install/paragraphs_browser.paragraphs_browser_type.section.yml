@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies: {  }
+id: section
+label: Section
+groups:
+  items:
+    label: Items
+    id: items
+    weight: 0
+  cta:
+    label: CTA
+    id: cta
+    weight: 1
+  text:
+    label: Text
+    id: text
+    weight: 3
+map:
+  item_chart: items
+  item_infographics: items
+  item_icon_link: items
+  item_teaser: items
+  cta_button_primary: cta
+  item_timeline: items
+  text_heading: text
+  item_card_custom: items
+  item_card: items
+  cta_button_secondary: cta

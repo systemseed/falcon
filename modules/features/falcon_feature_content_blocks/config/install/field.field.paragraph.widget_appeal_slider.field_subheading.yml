@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.widget_appeal_slider
+id: paragraph.widget_appeal_slider.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: widget_appeal_slider
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
