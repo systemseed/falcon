@@ -9,7 +9,6 @@ dependencies:
   - falcon_feature_appeal
   - falcon_feature_content_blocks
   - falcon_feature_content_structure_demo
-  - falcon_feature_site_settings
   - field
   - field_group
   - file

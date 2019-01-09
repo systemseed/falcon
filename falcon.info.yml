@@ -85,8 +85,5 @@ dependencies:
   - falcon_dashboard
   - falcon_deploy
 
-  # Feature modules
-  # - falcon_feature_site_settings
-
 themes:
   - seven
