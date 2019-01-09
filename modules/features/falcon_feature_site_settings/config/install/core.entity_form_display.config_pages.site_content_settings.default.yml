@@ -1,0 +1,65 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.site_content_settings
+    - field.field.config_pages.site_content_settings.field_header_button
+    - field.field.config_pages.site_content_settings.field_header_logo
+    - image.style.thumbnail
+  module:
+    - field_group
+    - image
+    - link
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_header
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: vertical
+      label: Tabs
+      region: content
+    group_header:
+      children:
+        - field_header_logo
+        - field_header_button
+      parent_name: group_tabs
+      weight: 4
+      format_type: tab
+      format_settings:
+        label: 'Header content'
+        formatter: open
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Header content'
+      region: content
+id: config_pages.site_content_settings.default
+targetEntityType: config_pages
+bundle: site_content_settings
+mode: default
+content:
+  field_header_button:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_header_logo:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+hidden:
+  label: true
