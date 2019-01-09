@@ -2,27 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.item_icon_link.field_image
     - field.field.paragraph.item_icon_link.field_link
+    - field.field.paragraph.item_icon_link.field_media_image
     - field.field.paragraph.item_icon_link.field_subheading
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.item_icon_link
   module:
-    - image
     - link
+    - media_library
 id: paragraph.item_icon_link.default
 targetEntityType: paragraph
 bundle: item_icon_link
 mode: default
 content:
-  field_image:
-    weight: 0
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
   field_link:
     weight: 1
     settings:
@@ -30,6 +21,12 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_media_image:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   field_subheading:
     weight: 2

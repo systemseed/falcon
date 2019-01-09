@@ -62,4 +62,9 @@ Reusable content blocks use Paragraphs Library module from Paragraphs package in
 
 Media
 --------------
-TODO
+
+Falcon Media tools are based on Drupal core and fully compatible with Media Browser. It is recommended to use Media fields instead of legacy Image/File fields when developing sites on Falcon.
+
+Basic media configuration should be stored in Falcon Media feature. It provides setup for images (all popular formats and SVG) and videos (local and external).
+
+**Note:** Falcon  uses `Video Embed Field <https://www.drupal.org/project/video_embed_field>`_ solution for external videos until `[#2996029] Add oEmbed support <https://www.drupal.org/project/drupal/issues/2996029>`_ to the media library is solved.

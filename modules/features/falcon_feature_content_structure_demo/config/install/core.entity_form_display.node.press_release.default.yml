@@ -5,13 +5,11 @@ dependencies:
     - field.field.node.press_release.field_blocks
     - field.field.node.press_release.field_countries
     - field.field.node.press_release.field_description
-    - field.field.node.press_release.field_image
     - field.field.node.press_release.field_key_programme_areas
-    - image.style.thumbnail
+    - field.field.node.press_release.field_media_image
     - node.type.press_release
   module:
     - field_group
-    - image
     - paragraphs
     - path
     - scheduler
@@ -122,19 +120,20 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_image:
-    weight: 11
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
   field_key_programme_areas:
     weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_media_image:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   path:
     type: path

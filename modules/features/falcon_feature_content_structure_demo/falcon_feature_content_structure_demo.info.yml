@@ -6,11 +6,14 @@ dependencies:
   - entity_reference_revisions
   - falcon_feature_appeal
   - falcon_feature_content_structure_demo
+  - falcon_feature_media
   - field
   - field_group
   - file
   - image
   - link
+  - media
+  - media_library
   - menu_link_config
   - menu_ui
   - node

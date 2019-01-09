@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_subheading
-    - paragraphs.paragraphs_type.hero_image_heading_subheading
-id: paragraph.hero_image_heading_subheading.field_subheading
+    - paragraphs.paragraphs_type.hero_video
+id: paragraph.hero_video.field_subheading
 field_name: field_subheading
 entity_type: paragraph
-bundle: hero_image_heading_subheading
+bundle: hero_video
 label: Subheading
-description: 'The optional text below the heading.'
-required: false
-translatable: false
+description: ''
+required: true
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.images.field_media_image
+    - image.style.medium
+    - media.type.images
+  module:
+    - svg_image
+id: media.images.default
+targetEntityType: media
+bundle: images
+mode: default
+content:
+  name:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  thumbnail:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+      svg_render_as_image: '1'
+      svg_attributes:
+        width: ''
+        height: ''
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_image: true
+  uid: true
