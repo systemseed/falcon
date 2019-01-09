@@ -1,0 +1,259 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - falcon_feature_site_settings
+id: config_sync.module.falcon_feature_site_settings
+snapshotSet: config_sync
+extensionType: module
+extensionName: falcon_feature_site_settings
+items:
+  -
+    collection: ''
+    name: config_pages.type.site_content_settings
+    data:
+      langcode: en
+      status: true
+      dependencies: {  }
+      id: site_content_settings
+      label: 'Site content settings'
+      context:
+        show_warning: true
+        group:
+          language: false
+      menu:
+        path: /admin/content/site-content-settings
+        weight: 0
+        description: ''
+  -
+    collection: ''
+    name: core.entity_form_display.config_pages.site_content_settings.default
+    data:
+      langcode: en
+      status: true
+      dependencies:
+        config:
+          - config_pages.type.site_content_settings
+          - field.field.config_pages.site_content_settings.field_header_button
+          - field.field.config_pages.site_content_settings.field_header_logo
+          - image.style.thumbnail
+        module:
+          - field_group
+          - image
+          - link
+      third_party_settings:
+        field_group:
+          group_tabs:
+            children:
+              - group_header
+            parent_name: ''
+            weight: 0
+            format_type: tabs
+            format_settings:
+              id: ''
+              classes: ''
+              direction: vertical
+            label: Tabs
+            region: content
+          group_header:
+            children:
+              - field_header_logo
+              - field_header_button
+            parent_name: group_tabs
+            weight: 4
+            format_type: tab
+            format_settings:
+              label: 'Header content'
+              formatter: open
+              description: ''
+              required_fields: true
+              id: ''
+              classes: ''
+            label: 'Header content'
+            region: content
+      id: config_pages.site_content_settings.default
+      targetEntityType: config_pages
+      bundle: site_content_settings
+      mode: default
+      content:
+        field_header_button:
+          weight: 7
+          settings:
+            placeholder_url: ''
+            placeholder_title: ''
+          third_party_settings: {  }
+          type: link_default
+          region: content
+        field_header_logo:
+          weight: 6
+          settings:
+            progress_indicator: throbber
+            preview_image_style: thumbnail
+          third_party_settings: {  }
+          type: image_image
+          region: content
+      hidden:
+        label: true
+  -
+    collection: ''
+    name: core.entity_view_display.config_pages.site_content_settings.default
+    data:
+      langcode: en
+      status: true
+      dependencies:
+        config:
+          - config_pages.type.site_content_settings
+          - field.field.config_pages.site_content_settings.field_header_button
+          - field.field.config_pages.site_content_settings.field_header_logo
+        module:
+          - image
+          - link
+      id: config_pages.site_content_settings.default
+      targetEntityType: config_pages
+      bundle: site_content_settings
+      mode: default
+      content:
+        field_header_button:
+          weight: 1
+          label: above
+          settings:
+            trim_length: 80
+            url_only: false
+            url_plain: false
+            rel: ''
+            target: ''
+          third_party_settings: {  }
+          type: link
+          region: content
+        field_header_logo:
+          weight: 2
+          label: above
+          settings:
+            image_style: ''
+            image_link: ''
+          third_party_settings: {  }
+          type: image
+          region: content
+      hidden: {  }
+  -
+    collection: ''
+    name: field.field.config_pages.site_content_settings.field_header_button
+    data:
+      langcode: en
+      status: true
+      dependencies:
+        config:
+          - config_pages.type.site_content_settings
+          - field.storage.config_pages.field_header_button
+        module:
+          - link
+      id: config_pages.site_content_settings.field_header_button
+      field_name: field_header_button
+      entity_type: config_pages
+      bundle: site_content_settings
+      label: 'Donate Button'
+      description: ''
+      required: true
+      translatable: false
+      default_value: {  }
+      default_value_callback: ''
+      settings:
+        link_type: 17
+        title: 2
+      field_type: link
+  -
+    collection: ''
+    name: field.field.config_pages.site_content_settings.field_header_logo
+    data:
+      langcode: en
+      status: true
+      dependencies:
+        config:
+          - config_pages.type.site_content_settings
+          - field.storage.config_pages.field_header_logo
+        module:
+          - image
+      id: config_pages.site_content_settings.field_header_logo
+      field_name: field_header_logo
+      entity_type: config_pages
+      bundle: site_content_settings
+      label: 'Site Logo'
+      description: ''
+      required: true
+      translatable: false
+      default_value: {  }
+      default_value_callback: ''
+      settings:
+        file_directory: 'site-content-settings/[date:custom:Y]-[date:custom:m]'
+        file_extensions: 'png svg'
+        max_filesize: ''
+        max_resolution: ''
+        min_resolution: ''
+        alt_field: true
+        alt_field_required: true
+        title_field: false
+        title_field_required: false
+        default_image:
+          uuid: ''
+          alt: ''
+          title: ''
+          width: null
+          height: null
+        handler: 'default:file'
+        handler_settings: {  }
+      field_type: image
+  -
+    collection: ''
+    name: field.storage.config_pages.field_header_button
+    data:
+      langcode: en
+      status: true
+      dependencies:
+        module:
+          - config_pages
+          - link
+      id: config_pages.field_header_button
+      field_name: field_header_button
+      entity_type: config_pages
+      type: link
+      settings: {  }
+      module: link
+      locked: false
+      cardinality: 1
+      translatable: true
+      indexes: {  }
+      persist_with_no_fields: false
+      custom_storage: false
+  -
+    collection: ''
+    name: field.storage.config_pages.field_header_logo
+    data:
+      langcode: en
+      status: true
+      dependencies:
+        module:
+          - config_pages
+          - file
+          - image
+      id: config_pages.field_header_logo
+      field_name: field_header_logo
+      entity_type: config_pages
+      type: image
+      settings:
+        uri_scheme: public
+        default_image:
+          uuid: ''
+          alt: ''
+          title: ''
+          width: null
+          height: null
+        target_type: file
+        display_field: false
+        display_default: false
+      module: image
+      locked: false
+      cardinality: 1
+      translatable: true
+      indexes: {  }
+      persist_with_no_fields: false
+      custom_storage: false
