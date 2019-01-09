@@ -6,6 +6,7 @@ dependencies:
   - config_pages
   - config_snapshot
   - entity_reference_revisions
+  - falcon_feature_content_blocks
   - falcon_feature_site_settings
   - field
   - field_group
