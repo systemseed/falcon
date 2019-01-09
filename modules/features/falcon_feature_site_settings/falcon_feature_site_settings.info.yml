@@ -5,6 +5,7 @@ core: 8.x
 dependencies:
   - config_pages
   - config_snapshot
+  - entity_reference_revisions
   - falcon_feature_site_settings
   - field
   - field_group
@@ -12,5 +13,7 @@ dependencies:
   - image
   - link
   - menu_link_config
-version: 8.x-1.0
+  - paragraphs
+  - text
+version: 8.x-1.1
 package: Falcon

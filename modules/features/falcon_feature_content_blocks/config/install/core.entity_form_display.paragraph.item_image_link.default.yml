@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.item_image_link.field_image
+    - field.field.paragraph.item_image_link.field_link
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.item_image_link
+  module:
+    - image
+    - link
+id: paragraph.item_image_link.default
+targetEntityType: paragraph
+bundle: item_image_link
+mode: default
+content:
+  field_image:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

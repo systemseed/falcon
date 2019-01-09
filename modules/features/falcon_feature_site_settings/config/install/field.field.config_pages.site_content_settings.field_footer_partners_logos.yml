@@ -1,0 +1,87 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.site_content_settings
+    - field.storage.config_pages.field_footer_partners_logos
+    - paragraphs.paragraphs_type.item_image_link
+  module:
+    - entity_reference_revisions
+id: config_pages.site_content_settings.field_footer_partners_logos
+field_name: field_footer_partners_logos
+entity_type: config_pages
+bundle: site_content_settings
+label: 'Partners logos'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      item_image_link: item_image_link
+    target_bundles_drag_drop:
+      cta_button_primary:
+        weight: 21
+        enabled: false
+      cta_button_secondary:
+        weight: 22
+        enabled: false
+      cta_primary_appeal:
+        weight: 23
+        enabled: false
+      donate_money_handles_item:
+        weight: 24
+        enabled: false
+      donate_with_money_handles:
+        weight: 25
+        enabled: false
+      from_library:
+        weight: 26
+        enabled: false
+      hero_image_heading_subheading:
+        weight: 27
+        enabled: false
+      item_card:
+        weight: 28
+        enabled: false
+      item_card_custom:
+        weight: 29
+        enabled: false
+      item_chart:
+        weight: 30
+        enabled: false
+      item_icon_link:
+        weight: 31
+        enabled: false
+      item_image_link:
+        enabled: true
+        weight: 32
+      item_infographics:
+        weight: 33
+        enabled: false
+      item_timeline:
+        weight: 34
+        enabled: false
+      listing_latest_content:
+        weight: 35
+        enabled: false
+      section_items:
+        weight: 36
+        enabled: false
+      section_primary:
+        weight: 37
+        enabled: false
+      section_simple:
+        weight: 38
+        enabled: false
+      text_heading:
+        weight: 39
+        enabled: false
+      widget_appeal_slider:
+        weight: 40
+        enabled: false
+field_type: entity_reference_revisions

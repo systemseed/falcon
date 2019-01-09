@@ -3,6 +3,13 @@ status: true
 dependencies:
   config:
     - config_pages.type.site_content_settings
+    - field.field.config_pages.site_content_settings.field_footer_copy
+    - field.field.config_pages.site_content_settings.field_footer_partners_logos
+    - field.field.config_pages.site_content_settings.field_footer_social_facebook
+    - field.field.config_pages.site_content_settings.field_footer_social_instagram
+    - field.field.config_pages.site_content_settings.field_footer_social_linkedin
+    - field.field.config_pages.site_content_settings.field_footer_social_twitter
+    - field.field.config_pages.site_content_settings.field_footer_social_youtube
     - field.field.config_pages.site_content_settings.field_header_button
     - field.field.config_pages.site_content_settings.field_header_logo
     - image.style.thumbnail
@@ -10,11 +17,14 @@ dependencies:
     - field_group
     - image
     - link
+    - paragraphs
+    - text
 third_party_settings:
   field_group:
     group_tabs:
       children:
         - group_header
+        - group_footer_content
       parent_name: ''
       weight: 0
       format_type: tabs
@@ -40,11 +50,105 @@ third_party_settings:
         classes: ''
       label: 'Header content'
       region: content
+    group_footer_content:
+      children:
+        - group_social_media
+        - field_footer_partners_logos
+        - field_footer_copy
+      parent_name: group_tabs
+      weight: 5
+      format_type: tab
+      format_settings:
+        id: ''
+        classes: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Footer content'
+      region: content
+    group_social_media:
+      children:
+        - field_footer_social_facebook
+        - field_footer_social_instagram
+        - field_footer_social_twitter
+        - field_footer_social_youtube
+        - field_footer_social_linkedin
+      parent_name: group_footer_content
+      weight: 20
+      format_type: fieldset
+      format_settings:
+        label: 'Social media links'
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Social media links'
+      region: content
 id: config_pages.site_content_settings.default
 targetEntityType: config_pages
 bundle: site_content_settings
 mode: default
 content:
+  field_footer_copy:
+    weight: 22
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_footer_partners_logos:
+    type: entity_reference_paragraphs
+    weight: 21
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_footer_social_facebook:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_footer_social_instagram:
+    weight: 10
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_footer_social_linkedin:
+    weight: 13
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_footer_social_twitter:
+    weight: 11
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_footer_social_youtube:
+    weight: 12
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_header_button:
     weight: 7
     settings:
