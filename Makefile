@@ -74,8 +74,8 @@ exec\:root:
 drush:
     # Remove the first argument from the list of make commands.
 	$(eval COMMAND_ARGS := $(filter-out $@,$(MAKECMDGOALS)))
-	$(call message,Executing \"drush -r /var/www/html/web $(COMMAND_ARGS) --yes\")
-	$(call docker-www-data, php drush -r /var/www/html/web $(COMMAND_ARGS) --yes)
+	$(call message,Executing \"drush -r web $(COMMAND_ARGS) --yes\")
+	$(call docker-www-data, php drush -r web $(COMMAND_ARGS) --yes)
 
 prepare: | up
     # Prepare composer dependencies.
@@ -95,11 +95,13 @@ prepare: | up
 install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)
 	sleep 5
-	$(call docker-www-data, php drush -r /var/www/html/web site-install falcon \
+	$(call docker-www-data, php drush -r web site-install falcon \
 		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
 		install_configure_form.enable_update_status_module=NULL --yes)
 	@if [ $(ENV) = "development" ]; then \
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
+		$(call docker-wodby, php cp web/sites/example.settings.local.php web/sites/default/settings.local.php); \
+		$(call docker-wodby, php sed -i \"/settings.local.php';/s/# //g\" web/sites/default/settings.php); \
 	fi
 	$(MAKE) -s drush en $(shell ls -m modules/features)
 	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
