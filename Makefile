@@ -96,8 +96,10 @@ install: | prepare
 	$(call message,$(PROJECT_NAME): Installing Drupal)
 	sleep 5
 	$(call docker-www-data, php drush -r web site-install falcon \
-		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
+		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) \
+		--account-name=$(shell date | md5sum | head -c12) --account-pass=$(shell date +%s | md5sum | head -c12) \
 		install_configure_form.enable_update_status_module=NULL --yes)
+	$(MAKE) -s drush user-block 1
 	@if [ $(ENV) = "development" ]; then \
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
 		$(call docker-wodby, php cp web/sites/example.settings.local.php web/sites/default/settings.local.php); \
