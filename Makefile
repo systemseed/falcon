@@ -7,6 +7,10 @@ tests\:prepare tests\:run tests\:cli tests\:autocomplete
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
 $(shell cp -n \.env\.default \.env)
+
+# Define OS system.
+OS_NAME := $(shell uname -s)
+
 include .env
 
 # Define function to highlight messages.
@@ -72,7 +76,17 @@ drush:
 	$(call message,Executing \"drush -r /var/www/html/web $(COMMAND_ARGS) --yes\")
 	$(call docker-www-data, php drush -r /var/www/html/web $(COMMAND_ARGS) --yes)
 
-prepare: | up
+configuring_env:
+    # If OS Linux - change PHP_TAG in environment.
+	@if [ $(OS_NAME) = "Linux" ]; then \
+		echo "${cyan}${bold}$(PROJECT_NAME): Defined OS LINUX. Change PHP_TAG for docker image in environment${reset}" \
+		# Uncomment all the strings containing 'PHP_TAG'. \
+		sed -i '/PHP_TAG/s/^# //g' \.env; \
+        # Comment all the strings containing 'PHP_TAG' and '-dev-macos-. \
+        sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env; \
+	fi
+
+prepare: | configuring_env | up
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)

@@ -12,13 +12,7 @@ jobs:
 
       - run:
           name: Prepare local environment file
-          command: |
-            cp -n \.env\.default \.env
-            # The project setup is Mac by default, so we need to change to Linux image.
-            # Uncomment all the strings containing `PHP_TAG`.
-            sed -i '/PHP_TAG/s/^# //g' \.env
-            # Comment all the strings containing `-dev-macos-`.
-            sed -i '/-dev-macos-/s/^/# /g' \.env
+          command: make configuring_env
 
       - run:
           name: Pull Docker images
