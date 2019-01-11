@@ -73,12 +73,14 @@ dependencies:
   - metatag
   - paragraphs
   - pathauto
+  - queue_ui
   - redirect
   - restui
   - rest_absolute_urls
   - scheduler
   - smtp
   - token
+  - ultimate_cron
 
   # Custom modules
   - falcon_common
