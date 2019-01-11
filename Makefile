@@ -76,17 +76,14 @@ drush:
 	$(call message,Executing \"drush -r /var/www/html/web $(COMMAND_ARGS) --yes\")
 	$(call docker-www-data, php drush -r /var/www/html/web $(COMMAND_ARGS) --yes)
 
-configuring_env:
+prepare\:images:
     # If OS Linux - change PHP_TAG in environment.
-	@if [ $(OS_NAME) = "Linux" ]; then \
-		echo "${cyan}${bold}$(PROJECT_NAME): Defined OS LINUX. Change PHP_TAG for docker image in environment${reset}" \
-		# Uncomment all the strings containing 'PHP_TAG'. \
-		sed -i '/PHP_TAG/s/^# //g' \.env; \
-        # Comment all the strings containing 'PHP_TAG' and '-dev-macos-. \
-        sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env; \
-	fi
+    ifeq ($(OS_NAME), Linux)
+        $(shell sed -i '/PHP_TAG/s/^# //g' \.env)
+        $(shell sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env)
+    endif
 
-prepare: | configuring_env | up
+prepare: | prepare\:images up
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)
