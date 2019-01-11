@@ -1,12 +1,16 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-prepare install \
+prepare prepare\:images install \
 code\:check code\:fix \
 tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
 $(shell cp -n \.env\.default \.env)
+
+# Save current OS value into a variable.
+OS_NAME := $(shell uname -s)
+
 include .env
 
 # Define function to highlight messages.
@@ -72,7 +76,16 @@ drush:
 	$(call message,Executing \"drush -r /var/www/html/web $(COMMAND_ARGS) --yes\")
 	$(call docker-www-data, php drush -r /var/www/html/web $(COMMAND_ARGS) --yes)
 
-prepare: | up
+prepare\:images:
+    # If OS Linux - change PHP_TAG in environment.
+    ifeq ($(OS_NAME), Linux)
+        # Uncomment all the strings containing 'PHP_TAG'.
+        $(shell sed -i '/PHP_TAG/s/^# //g' \.env)
+        # Comment all the strings containing 'PHP_TAG' and '-dev-macos-.
+        $(shell sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env)
+    endif
+
+prepare: | prepare\:images up
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)
