@@ -1,6 +1,6 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-prepare install \
+prepare prepare\:images install \
 code\:check code\:fix \
 tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
