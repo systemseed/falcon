@@ -8,7 +8,7 @@ tests\:prepare tests\:run tests\:cli tests\:autocomplete
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
 $(shell cp -n \.env\.default \.env)
 
-# Save current OS system value into a varaible.
+# Save current OS value into a variable.
 OS_NAME := $(shell uname -s)
 
 include .env
