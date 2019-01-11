@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.site_content_settings
+    - field.storage.config_pages.field_header_button
+  module:
+    - link
+id: config_pages.site_content_settings.field_header_button
+field_name: field_header_button
+entity_type: config_pages
+bundle: site_content_settings
+label: 'Donate Button'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

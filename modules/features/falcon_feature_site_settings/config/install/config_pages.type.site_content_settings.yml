@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: site_content_settings
+label: 'Site content settings'
+context:
+  show_warning: true
+  group:
+    language: false
+menu:
+  path: /admin/content/site-content-settings
+  weight: 0
+  description: ''
