@@ -8,7 +8,7 @@ tests\:prepare tests\:run tests\:cli tests\:autocomplete
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
 $(shell cp -n \.env\.default \.env)
 
-# Define OS system.
+# Save current OS system value into a varaible.
 OS_NAME := $(shell uname -s)
 
 include .env
@@ -79,7 +79,9 @@ drush:
 prepare\:images:
     # If OS Linux - change PHP_TAG in environment.
     ifeq ($(OS_NAME), Linux)
+        # Uncomment all the strings containing 'PHP_TAG'.
         $(shell sed -i '/PHP_TAG/s/^# //g' \.env)
+        # Comment all the strings containing 'PHP_TAG' and '-dev-macos-.
         $(shell sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env)
     endif
 
