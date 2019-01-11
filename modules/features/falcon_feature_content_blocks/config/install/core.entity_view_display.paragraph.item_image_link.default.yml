@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.item_image_link.field_image
+    - field.field.paragraph.item_image_link.field_link
+    - paragraphs.paragraphs_type.item_image_link
+  module:
+    - image
+    - link
+id: paragraph.item_image_link.default
+targetEntityType: paragraph
+bundle: item_image_link
+mode: default
+content:
+  field_image:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_link:
+    weight: 0
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden: {  }

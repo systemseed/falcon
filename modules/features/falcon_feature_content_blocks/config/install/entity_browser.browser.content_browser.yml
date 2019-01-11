@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - views.view.falcon_appeals_browser
     - views.view.content_browser
   module:
     - views

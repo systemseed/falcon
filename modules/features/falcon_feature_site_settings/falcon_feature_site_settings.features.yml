@@ -1,0 +1,4 @@
+bundle: falcon_feature
+excluded:
+  - paragraphs.paragraphs_type.item_image_link
+required: true
