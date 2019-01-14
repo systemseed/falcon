@@ -11,10 +11,9 @@ dependencies:
     - field.field.config_pages.site_content_settings.field_footer_social_twitter
     - field.field.config_pages.site_content_settings.field_footer_social_youtube
     - field.field.config_pages.site_content_settings.field_header_button
-    - field.field.config_pages.site_content_settings.field_header_logo
+    - field.field.config_pages.site_content_settings.field_media_logo
   module:
     - entity_reference_revisions
-    - image
     - link
     - text
 id: config_pages.site_content_settings.default
@@ -30,13 +29,13 @@ content:
     type: text_default
     region: content
   field_footer_partners_logos:
-    type: entity_reference_revisions_entity_view
     weight: 9
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: content
   field_footer_social_facebook:
     weight: 4
@@ -110,13 +109,13 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_header_logo:
-    weight: 2
+  field_media_logo:
+    type: entity_reference_entity_view
+    weight: 10
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
     region: content
 hidden: {  }

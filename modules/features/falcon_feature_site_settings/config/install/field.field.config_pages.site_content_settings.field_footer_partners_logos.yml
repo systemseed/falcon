@@ -11,10 +11,10 @@ id: config_pages.site_content_settings.field_footer_partners_logos
 field_name: field_footer_partners_logos
 entity_type: config_pages
 bundle: site_content_settings
-label: 'Partners logos'
+label: 'Funder Logos'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -42,7 +42,7 @@ settings:
       from_library:
         weight: 26
         enabled: false
-      hero_image_heading_subheading:
+      hero_video:
         weight: 27
         enabled: false
       item_card:

@@ -12,6 +12,7 @@ dependencies:
   - file
   - image
   - link
+  - media_library
   - menu_link_config
   - paragraphs
   - text

@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.content_browser
     - field.field.paragraph.item_card.field_node
     - paragraphs.paragraphs_type.item_card
-    - entity_browser.browser.content_browser
   module:
     - entity_browser
 id: paragraph.item_card.default
