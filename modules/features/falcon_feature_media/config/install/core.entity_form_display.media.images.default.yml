@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.images.field_media_image
+    - image.style.large
+    - media.type.images
+  module:
+    - focal_point
+id: media.images.default
+targetEntityType: media
+bundle: images
+mode: default
+content:
+  field_media_image:
+    weight: 0
+    settings:
+      preview_image_style: large
+      progress_indicator: throbber
+      preview_link: true
+      offsets: '50,50'
+    third_party_settings: {  }
+    type: image_focal_point
+    region: content
+  name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  status: true
+  uid: true

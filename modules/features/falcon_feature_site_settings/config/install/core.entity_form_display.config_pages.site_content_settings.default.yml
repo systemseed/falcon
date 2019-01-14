@@ -11,12 +11,11 @@ dependencies:
     - field.field.config_pages.site_content_settings.field_footer_social_twitter
     - field.field.config_pages.site_content_settings.field_footer_social_youtube
     - field.field.config_pages.site_content_settings.field_header_button
-    - field.field.config_pages.site_content_settings.field_header_logo
-    - image.style.thumbnail
+    - field.field.config_pages.site_content_settings.field_media_logo
   module:
     - field_group
-    - image
     - link
+    - media_library
     - paragraphs
     - text
 third_party_settings:
@@ -36,7 +35,7 @@ third_party_settings:
       region: content
     group_header:
       children:
-        - field_header_logo
+        - field_media_logo
         - field_header_button
       parent_name: group_tabs
       weight: 4
@@ -98,16 +97,16 @@ content:
     type: text_textarea
     region: content
   field_footer_partners_logos:
-    type: entity_reference_paragraphs
     weight: 21
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
+      title: Logo
+      title_plural: Logos
       edit_mode: open
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: item_image_link
     third_party_settings: {  }
+    type: entity_reference_paragraphs
     region: content
   field_footer_social_facebook:
     weight: 9
@@ -150,20 +149,18 @@ content:
     type: link_default
     region: content
   field_header_button:
-    weight: 7
+    weight: 24
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  field_header_logo:
-    weight: 6
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+  field_media_logo:
+    type: media_library_widget
+    weight: 23
+    settings: {  }
     third_party_settings: {  }
-    type: image_image
     region: content
 hidden:
   label: true

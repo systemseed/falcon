@@ -2,23 +2,23 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_image
-    - paragraphs.paragraphs_type.item_icon_link
+    - field.storage.media.field_media_image
+    - media.type.images
   module:
     - image
-id: paragraph.item_icon_link.field_image
-field_name: field_image
-entity_type: paragraph
-bundle: item_icon_link
-label: Icon
+id: media.images.field_media_image
+field_name: field_media_image
+entity_type: media
+bundle: images
+label: Image
 description: ''
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: 'paragraphs/item_icon_link/[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png svg'
+  file_directory: 'media/images/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg svg'
   max_filesize: ''
   max_resolution: ''
   min_resolution: ''

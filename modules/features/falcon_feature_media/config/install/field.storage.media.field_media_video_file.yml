@@ -3,24 +3,17 @@ status: true
 dependencies:
   module:
     - file
-    - image
-    - paragraphs
-id: paragraph.field_image
-field_name: field_image
-entity_type: paragraph
-type: image
+    - media
+id: media.field_media_video_file
+field_name: field_media_video_file
+entity_type: media
+type: file
 settings:
-  uri_scheme: public
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
   target_type: file
   display_field: false
   display_default: false
-module: image
+  uri_scheme: public
+module: file
 locked: false
 cardinality: 1
 translatable: true

@@ -5,18 +5,20 @@ dependencies:
     - entity_browser.browser.appeals
     - field.field.paragraph.cta_primary_appeal.field_button_label
     - field.field.paragraph.cta_primary_appeal.field_heading
+    - field.field.paragraph.cta_primary_appeal.field_media_image
     - field.field.paragraph.cta_primary_appeal.field_node
     - field.field.paragraph.cta_primary_appeal.field_text_list
     - paragraphs.paragraphs_type.cta_primary_appeal
   module:
     - entity_browser
+    - media_library
 id: paragraph.cta_primary_appeal.default
 targetEntityType: paragraph
 bundle: cta_primary_appeal
 mode: default
 content:
   field_button_label:
-    weight: 3
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -24,12 +26,18 @@ content:
     type: string_textfield
     region: content
   field_heading:
-    weight: 1
+    weight: 2
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_media_image:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   field_node:
     weight: 0
@@ -46,7 +54,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_text_list:
-    weight: 2
+    weight: 3
     settings:
       size: 100
       placeholder: ''

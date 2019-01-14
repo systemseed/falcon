@@ -1,0 +1,72 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_video.field_heading
+    - field.field.paragraph.hero_video.field_media_image
+    - field.field.paragraph.hero_video.field_media_preview_video
+    - field.field.paragraph.hero_video.field_subheading
+    - field.field.paragraph.hero_video.field_video_embed
+    - paragraphs.paragraphs_type.hero_video
+  module:
+    - field_group
+    - media_library
+    - video_embed_field
+third_party_settings:
+  field_group:
+    group_full_video:
+      children:
+        - field_video_embed
+      parent_name: ''
+      weight: 4
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: 'The full video is displayed on “Watch the video” link click. '
+        required_fields: true
+      label: 'Full video'
+      region: content
+id: paragraph.hero_video.default
+targetEntityType: paragraph
+bundle: hero_video
+mode: default
+content:
+  field_heading:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_media_image:
+    type: media_library_widget
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_media_preview_video:
+    type: media_library_widget
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_subheading:
+    weight: 1
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_video_embed:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: video_embed_field_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

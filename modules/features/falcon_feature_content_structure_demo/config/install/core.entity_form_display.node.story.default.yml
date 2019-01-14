@@ -7,14 +7,13 @@ dependencies:
     - field.field.node.story.field_content_category
     - field.field.node.story.field_countries
     - field.field.node.story.field_description
-    - field.field.node.story.field_image
     - field.field.node.story.field_key_programme_areas
+    - field.field.node.story.field_media_image
     - field.field.node.story.field_person
-    - image.style.thumbnail
     - node.type.story
   module:
     - field_group
-    - image
+    - media_library
     - paragraphs_browser
     - path
     - scheduler
@@ -37,7 +36,7 @@ third_party_settings:
       region: content
     group_teaser:
       children:
-        - field_image
+        - field_media_image
         - field_description
       parent_name: group_tabs
       weight: 9
@@ -89,7 +88,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -140,26 +139,24 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_description:
-    weight: 2
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_image:
-    weight: 1
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
   field_key_programme_areas:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_media_image:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   field_person:
     weight: 6

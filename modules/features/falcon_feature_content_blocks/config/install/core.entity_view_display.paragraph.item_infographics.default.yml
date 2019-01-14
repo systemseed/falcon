@@ -2,25 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.item_infographics.field_file
     - field.field.paragraph.item_infographics.field_heading
+    - field.field.paragraph.item_infographics.field_media_image
     - field.field.paragraph.item_infographics.field_subheading
     - paragraphs.paragraphs_type.item_infographics
-  module:
-    - file
 id: paragraph.item_infographics.default
 targetEntityType: paragraph
 bundle: item_infographics
 mode: default
 content:
-  field_file:
-    weight: 0
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    type: file_default
-    region: content
   field_heading:
     weight: 1
     label: above
@@ -28,6 +18,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_media_image:
+    weight: 3
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
     region: content
   field_subheading:
     weight: 2

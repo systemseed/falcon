@@ -5,13 +5,12 @@ dependencies:
     - field.field.node.country.field_blocks
     - field.field.node.country.field_country_continent
     - field.field.node.country.field_description
-    - field.field.node.country.field_image
     - field.field.node.country.field_key_programme_areas
-    - image.style.thumbnail
+    - field.field.node.country.field_media_image
     - node.type.country
   module:
     - field_group
-    - image
+    - media_library
     - paragraphs
     - path
     - scheduler
@@ -49,9 +48,10 @@ third_party_settings:
     group_teaser:
       children:
         - field_image
+        - field_media_image
         - field_description
       parent_name: group_tabs
-      weight: 22
+      weight: 21
       format_type: tab
       format_settings:
         id: ''
@@ -102,6 +102,7 @@ content:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
         add_above: '0'
+      closed_mode_threshold: 0
     third_party_settings: {  }
     type: paragraphs
     region: content
@@ -112,26 +113,24 @@ content:
     type: options_buttons
     region: content
   field_description:
-    weight: 23
+    weight: 24
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_image:
-    weight: 22
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
   field_key_programme_areas:
     weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_media_image:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   path:
     type: path

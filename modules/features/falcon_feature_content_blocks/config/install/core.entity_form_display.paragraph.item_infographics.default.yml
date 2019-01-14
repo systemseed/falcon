@@ -2,24 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.item_infographics.field_file
     - field.field.paragraph.item_infographics.field_heading
+    - field.field.paragraph.item_infographics.field_media_image
     - field.field.paragraph.item_infographics.field_subheading
     - paragraphs.paragraphs_type.item_infographics
   module:
-    - file
+    - media_library
 id: paragraph.item_infographics.default
 targetEntityType: paragraph
 bundle: item_infographics
 mode: default
 content:
-  field_file:
-    weight: 0
-    settings:
-      progress_indicator: throbber
-    third_party_settings: {  }
-    type: file_generic
-    region: content
   field_heading:
     weight: 1
     settings:
@@ -27,6 +20,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_media_image:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   field_subheading:
     weight: 2
