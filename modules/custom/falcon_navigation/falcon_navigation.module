@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Falcon Navigation module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function falcon_navigation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Shows Featured section only on first level of main menu.
+  if ($form_id == 'menu_link_content_main_form'
+      && $form['menu_parent']['#default_value'] !== 'main:'
+      && !empty($form['field_featured_button'])) {
+
+    $form['field_featured_button']['#access'] = FALSE;
+    $form['field_featured_description']['#access'] = FALSE;
+    $form['field_featured_label']['#access'] = FALSE;
+  }
+
+  // Cleaned up Menu link edit form for managers, hid unused fields.
+  if (!\Drupal::currentUser()->hasPermission('administer menu')) {
+    $form['description']['#access'] = FALSE;
+    $form['expanded']['#access'] = FALSE;
+    $form['weight']['#access'] = FALSE;
+  }
+}
