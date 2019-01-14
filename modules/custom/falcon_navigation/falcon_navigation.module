@@ -19,6 +19,7 @@ function falcon_navigation_form_alter(&$form, FormStateInterface $form_state, $f
     $form['field_featured_button']['#access'] = FALSE;
     $form['field_featured_description']['#access'] = FALSE;
     $form['field_featured_label']['#access'] = FALSE;
+    $form['field_featured_image']['#access'] = FALSE;
   }
 
   // Cleaned up Menu link edit form for managers, hid unused fields.
