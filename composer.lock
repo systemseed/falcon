@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb245fc38852baa236a6f41c745107f1",
+    "content-hash": "85a2a5017dd21f6cc48519ea8667632b",
     "packages": [
         {
             "name": "apache/log4php",
@@ -23,7 +23,6 @@
                     "src/main/php/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -34,6 +33,11 @@
                 "logging",
                 "php"
             ],
+            "support": {
+                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
+                "source": "https://svn.apache.org/repos/asf/logging/log4php",
+                "email": "log4php-user@logging.apache.org"
+            },
             "time": "2012-10-26T09:13:25+00:00"
         },
         {
@@ -1240,7 +1244,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.25",
-                    "datestamp": "1542915180",
+                    "datestamp": "1542915384",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3538,6 +3542,125 @@
             "homepage": "https://www.drupal.org/project/mailsystem",
             "support": {
                 "source": "http://cgit.drupalcode.org/mailsystem"
+            }
+        },
+        {
+            "name": "drupal/menu_admin_per_menu",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/menu_admin_per_menu",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_admin_per_menu-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "27dbef0025146a382feab67db5e93eaf280b8de4"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1507184944",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "anrikun",
+                    "homepage": "https://www.drupal.org/user/410199"
+                },
+                {
+                    "name": "mkdok",
+                    "homepage": "https://www.drupal.org/user/3308753"
+                }
+            ],
+            "description": "Allows to give roles per menu admin permissions without giving them full administer menu permission.",
+            "homepage": "https://www.drupal.org/project/menu_admin_per_menu",
+            "support": {
+                "source": "http://cgit.drupalcode.org/menu_admin_per_menu"
+            }
+        },
+        {
+            "name": "drupal/menu_item_extras",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/menu_item_extras",
+                "reference": "8.x-2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_item_extras-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "50a7d5873ca0c30c573c9255fc35fd1dce167e21"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.4",
+                    "datestamp": "1547131380",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Andriy Khomych",
+                    "homepage": "https://www.drupal.org/u/andriy-khomych",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Bogdan Hepting",
+                    "homepage": "https://www.drupal.org/u/bogdan-hepting",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Oleh Vehera",
+                    "homepage": "https://www.drupal.org/u/voleger",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Mykhailo Gurei",
+                    "homepage": "https://www.drupal.org/u/ozin",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provide an additional custom fields which can be used on Menu link",
+            "homepage": "https://www.drupal.org/project/menu_item_extras",
+            "keywords": [
+                "Drupal",
+                "Mega Menu"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/menu_item_extras",
+                "issues": "https://www.drupal.org/project/issues/menu_item_extras"
             }
         },
         {
