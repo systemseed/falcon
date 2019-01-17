@@ -5,6 +5,8 @@
  * Falcon Donation module.
  */
 
+use Drupal\commerce_price\Price;
+
 /**
  * Implements hook_entity_type_build().
  */
@@ -16,4 +18,39 @@ function falcon_donation_entity_type_build(array &$entity_types) {
 
   // Register entity level constraints for Commerce Order Item entity type.
   $entity_types['commerce_order_item']->addConstraint('falcon_donation__zero_donation_amount');
+}
+
+/**
+ * Implements hook_modules_installed().
+ *
+ * Create donation product and product variation once Falcon Donation feature is
+ * installed.
+ */
+function falcon_donation_modules_installed($modules) {
+  if (!in_array('falcon_feature_donation', $modules)) {
+    return;
+  }
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $stores = $entity_type_manager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
+
+  // Create product variation.
+  $variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
+    'type' => 'donation',
+    'title' => 'Donation',
+    'sku' => 'donation',
+    'status' => 1,
+    'price' => new Price('0', 'USD'),
+  ]);
+  $variation->save();
+
+  // Create product.
+  $product = $entity_type_manager->getStorage('commerce_product')->create([
+    'uid' => 1,
+    'type' => 'donation',
+    'title' => 'Donation',
+    'stores' => $stores,
+    'variations' => [$variation],
+  ]);
+  $product->save();
 }

@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Falcon_commerce.module file.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Performs actions to set up the store.
+ */
+function falcon_commerce_install() {
+  // Create default Commerce Store.
+  // TODO: consider moving it to install task (hook_install_tasks()) with
+  // configurable store values?
+  $address = [
+    'country_code' => 'US',
+    'address_line1' => '8 The Green',
+    'address_line2' => 'Ste A',
+    'locality' => 'Dover',
+    'administrative_area' => 'DE',
+    'postal_code' => '19901',
+  ];
+
+  /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store_storage */
+  $commerce_store_storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
+
+  if (empty($commerce_store_storage->loadByProperties(['type' => 'online']))) {
+    $store = $commerce_store_storage->create([
+      'type' => 'online',
+      'uid' => 1,
+      'name' => 'General Store',
+      'mail' => 'info@systemseed.com',
+      'address' => $address,
+      'default_currency' => 'USD',
+      'billing_countries' => [],
+    ]);
+    $store->save();
+
+    $commerce_store_storage->markAsDefault($store);
+  }
+
+}

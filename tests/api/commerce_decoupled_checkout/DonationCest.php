@@ -3,7 +3,6 @@
 namespace falcon_commerce;
 
 use Codeception\Util\HttpCode;
-use Drupal\commerce_price\Price;
 
 /**
  * Class DonationCest.
@@ -14,9 +13,6 @@ use Drupal\commerce_price\Price;
  */
 class DonationCest {
 
-  private $store;
-  private $variation;
-  private $product;
   private $appeal;
 
   /**
@@ -81,52 +77,6 @@ class DonationCest {
   public function _before() {
     $entity_type_manager = \Drupal::entityTypeManager();
 
-    // Create default Commerce Store.
-    $address = [
-      'country_code' => 'US',
-      'address_line1' => '8 The Green',
-      'address_line2' => 'Ste A',
-      'locality' => 'Dover',
-      'administrative_area' => 'DE',
-      'postal_code' => '19901',
-    ];
-
-    /** @var \Drupal\commerce_store\Entity\StoreInterface $this->store */
-    $this->store = $entity_type_manager->getStorage('commerce_store')->create([
-      'type' => 'online',
-      'uid' => 1,
-      'name' => 'General Store',
-      'mail' => 'info@systemseed.com',
-      'address' => $address,
-      'default_currency' => 'EUR',
-      'billing_countries' => [],
-    ]);
-    $this->store->save();
-
-    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store  */
-    $commerce_store = $entity_type_manager->getStorage('commerce_store');
-    $commerce_store->markAsDefault($this->store);
-
-    // Create product variation.
-    $this->variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
-      'type' => 'donation',
-      'title' => 'Donation',
-      'sku' => 'donation',
-      'status' => 1,
-      'price' => new Price('0', 'EUR'),
-    ]);
-    $this->variation->save();
-
-    // Create product.
-    $this->product = $entity_type_manager->getStorage('commerce_product')->create([
-      'uid' => 1,
-      'type' => 'donation',
-      'title' => 'Donation',
-      'stores' => [$this->store],
-      'variations' => [$this->variation],
-    ]);
-    $this->product->save();
-
     // Create appeal.
     $this->appeal = $entity_type_manager->getStorage('node')->create([
       'uid' => 1,
@@ -151,9 +101,6 @@ class DonationCest {
   public function _after() {
     $entity_type_manager = \Drupal::entityTypeManager();
 
-    $entity_type_manager->getStorage('commerce_store')->delete([$this->store]);
-    $entity_type_manager->getStorage('commerce_product_variation')->delete([$this->variation]);
-    $entity_type_manager->getStorage('commerce_product')->delete([$this->product]);
     $entity_type_manager->getStorage('node')->delete([$this->appeal]);
   }
 
