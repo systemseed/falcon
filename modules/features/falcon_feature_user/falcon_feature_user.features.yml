@@ -1,7 +1,5 @@
 bundle: falcon_feature
 excluded:
-  - config_snapshot.snapshot.config_sync.module.falcon_feature_user
-  - config_snapshot.snapshot.config_sync.module.user
   - core.entity_view_mode.user.token
   - field.field.user.user.commerce_remote_id
   - field.storage.user.commerce_remote_id
