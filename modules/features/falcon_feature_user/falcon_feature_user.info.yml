@@ -7,4 +7,4 @@ dependencies:
   - menu_link_config
   - user
 version: 8.x-1.1
-package: Falcon
+package: Falcon Configurations

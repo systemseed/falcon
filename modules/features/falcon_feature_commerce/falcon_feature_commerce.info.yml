@@ -29,5 +29,5 @@ dependencies:
   - user
   - views
 version: 8.x-1.1
-package: Falcon
+package: Falcon Configurations
 description: 'Falcon Commerce feature.'

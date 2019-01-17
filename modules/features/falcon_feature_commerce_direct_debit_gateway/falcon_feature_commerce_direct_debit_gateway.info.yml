@@ -6,4 +6,4 @@ dependencies:
   - commerce_directdebit
   - commerce_payment
 version: 8.x-1.0
-package: Falcon
+package: Falcon Configurations

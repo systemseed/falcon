@@ -2,7 +2,7 @@ name: 'Falcon Donation feature'
 type: module
 core: 8.x
 version: 8.x-1.0
-package: Falcon
+package: Falcon Configurations
 description: 'Falcon Donation feature.'
 dependencies:
   - commerce_cart
