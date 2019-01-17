@@ -103,7 +103,6 @@ install: | prepare
 		$(call docker-wodby, php cp web/sites/example.settings.local.php web/sites/default/settings.local.php); \
 		$(call docker-wodby, php sed -i \"/settings.local.php';/s/# //g\" web/sites/default/settings.php); \
 	fi
-	$(MAKE) -s drush en $(shell ls -m modules/features)
 	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
 
 code\:check:

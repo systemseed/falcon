@@ -1,9 +1,6 @@
-uuid: 17ba39ba-68d5-4c6b-8f8d-5316fd8fd699
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: Eu8CvZYqHh4Zx02qu1Xf9a7QC3JnDQTOZmSWkD8h4ic
 name: Falcon
 machine_name: falcon_feature
 description: ''

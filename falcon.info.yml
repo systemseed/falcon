@@ -18,17 +18,14 @@ dependencies:
   - breakpoint
   - ckeditor
   - config
-  - contact
   - datetime
   - dblog
-  - dynamic_page_cache
   - editor
   - entity_reference
   - field
   - field_ui
   - file
   - filter
-  - help
   - image
   - link
   - media
@@ -39,7 +36,6 @@ dependencies:
   - options
   - path
   - page_cache
-  - responsive_image
   - rest
   - serialization
   - system
@@ -61,11 +57,10 @@ dependencies:
   - config_split
   - consumers
   - consumer_image_styles
-  - contact_message_rest
   - decoupled_router
-  - eck
   - entity
   - entity_reference_revisions
+  - features
   - field_group
   - jsonapi
   - jsonapi_extras
@@ -77,7 +72,6 @@ dependencies:
   - redirect
   - restui
   - rest_absolute_urls
-  - scheduler
   - smtp
   - token
   - ultimate_cron

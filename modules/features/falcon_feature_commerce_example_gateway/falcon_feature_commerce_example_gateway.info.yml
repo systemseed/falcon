@@ -6,4 +6,4 @@ dependencies:
   - commerce_payment
   - commerce_payment_example
 version: 8.x-1.0
-package: Falcon
+package: Falcon Configurations

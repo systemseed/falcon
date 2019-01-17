@@ -6,4 +6,4 @@ dependencies:
   - image
   - menu_link_config
 version: 8.x-1.1
-package: Falcon
+package: Falcon Configurations
