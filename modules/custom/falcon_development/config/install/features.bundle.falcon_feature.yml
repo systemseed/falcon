@@ -42,6 +42,7 @@ assignments:
   exclude:
     types:
       config:
+        config_snapshot: config_snapshot
         features_bundle: features_bundle
     curated: true
     module:
