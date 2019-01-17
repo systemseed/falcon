@@ -4,7 +4,7 @@ services:
 
   mariadb:
     volumes:
-    - ${MYSQL_DATA_DIR}/${MYSQL_DATA_DIR_DRUPAL}:/var/lib/mysql:cached
+      - ${MYSQL_DATA_DIR}/${MYSQL_DATA_DIR_DRUPAL}:/var/lib/mysql:cached
 
   php:
     environment:
@@ -20,17 +20,17 @@ services:
 #      PHP_XDEBUG_REMOTE_HOST: 10.254.254.254 # macOS, Docker < 18.03
 #      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
     volumes:
-    - ../:/var/www/html:cached
+      - ../:/var/www/html:cached
 
   nginx:
     volumes:
-    - ../:/var/www/html:cached
+      - ../:/var/www/html:cached
 
   codecept:
     volumes:
-    - ../tests:/project/tests:cached
-    - ../tests/codeception.yml:/project/codeception.yml
-    - ../:/app:cached
+      - ../tests:/project/tests:cached
+      - ../tests/codeception.yml:/project/codeception.yml
+      - ../:/app:cached
 
 ## Uncomment if you want to auto-build the docs locally in docs/_build/html
 #  sphinxdocs:
@@ -38,4 +38,4 @@ services:
 #    container_name: "${PROJECT_NAME}_sphinxdocs"
 #    command: 'sphinx-autobuild . _build/html'
 #    volumes:
-#    - ../docs:/doc:cached
+#      - ../docs:/doc:cached

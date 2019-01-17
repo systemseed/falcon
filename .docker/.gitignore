@@ -1,3 +1,7 @@
+# SSL certificates.
+/certs/*
+!/certs/.gitkeep
+
 # Docker mysql storage.
 /mysql/*
 !/mysql/.gitkeep
