@@ -98,7 +98,7 @@ install: | prepare
 	$(call docker-www-data, php drush -r web site-install falcon \
 		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
 		install_configure_form.enable_update_status_module=NULL --yes)
-	@if [ $(ENV) = "development" ]; then \
+	@if [ $(ENVIRONMENT) = "development" ]; then \
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
 		$(call docker-wodby, php cp web/sites/example.settings.local.php web/sites/default/settings.local.php); \
 		$(call docker-wodby, php sed -i \"/settings.local.php';/s/# //g\" web/sites/default/settings.php); \

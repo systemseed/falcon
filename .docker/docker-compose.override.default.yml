@@ -9,6 +9,7 @@ services:
   php:
     environment:
       TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
+      ENVIRONMENT: ${ENVIRONMENT}
 ## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
 #      PHP_XDEBUG: 1
 #      PHP_XDEBUG_DEFAULT_ENABLE: 1
