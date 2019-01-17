@@ -11,10 +11,6 @@ jobs:
       - checkout
 
       - run:
-          name: Prepare local environment file
-          command: make prepare:images
-
-      - run:
           name: Pull Docker images
           command: make pull
 
