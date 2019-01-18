@@ -1,6 +1,6 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-prepare install \
+prepare install add\:additional-modules \
 code\:check code\:fix \
 tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
@@ -104,6 +104,10 @@ install: | prepare
 		$(call docker-wodby, php sed -i \"/settings.local.php';/s/# //g\" web/sites/default/settings.php); \
 	fi
 	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
+
+add\:additional-modules:
+	$(call message,$(PROJECT_NAME): Installing additional modules)
+	$(MAKE) -s drush en $(ADDITIONAL_MODULES)
 
 code\:check:
     # PHP coding standards check.

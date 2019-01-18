@@ -13,6 +13,7 @@ class DevelopmentTest extends \Codeception\Test\Unit
 
     /**
      * Checks that specified dev modules are enabled.
+     * @group basic
      */
     public function testDevelopmentModulesEnabled()
     {
@@ -26,6 +27,7 @@ class DevelopmentTest extends \Codeception\Test\Unit
 
     /**
      * Checks that test users exist and enabled.
+     * @group basic
      */
     public function testTestUsersEnabled()
     {

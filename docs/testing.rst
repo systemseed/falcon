@@ -62,6 +62,17 @@ Writing tests
 
 Each new feature, or API endpoint, or pure PHP function should be covered by tests.
 
+When adding a new test to the Falcon distribution developer should decide if
+it will cover basic installation distribution or not.
+If it cover basic installation distribution it should added to ``basic`` tests group. If is not it that it should added to ``additional`` group.
+**For example:** ::
+
+    /**
+     * @group basic
+     */
+    public function testBasic()
+
+If you wrote test in ``additional`` group that you should add module, which test covered, to ``ADDITIONAL_MODULES`` into ``env.default`` file.
 It's recommended to store tests in subfolders with the same name
 as Falcon module or feature which is being tested. For example, if you want to
 test function ``falcon_development_install`` you need to put your test in

@@ -18,6 +18,7 @@ class DemoCest
      * Test /jsonapi endpoint for demo purposes.
      *
      * @param \ApiTester $I
+     * @group basic
      */
     public function accessJsonapiIndex(\ApiTester $I)
     {
@@ -45,6 +46,7 @@ class DemoCest
      * Test core login endpoint for demo purposes.
      *
      * @param \ApiTester $I
+     * @group basic
      */
     private function loginAsAdministrator(\ApiTester $I) {
         $user_name = 'administrator.test';
