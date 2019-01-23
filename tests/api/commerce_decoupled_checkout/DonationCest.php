@@ -108,29 +108,31 @@ class DonationCest {
    * Successful single donation via Example Test payment gateway.
    *
    * @param \ApiTester $I
+   * @group additional
    */
-//  public function donationSingleExampleSuccess(\ApiTester $I) {
-//    $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
-//    $I->haveHttpHeader('Content-Type', 'application/json');
-//
-//    $post = $this->post;
-//    $post['order']['field_appeal'] = $this->appeal->id();
-//    $I->sendPOST('/commerce/order/create', $post);
-//
-//    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store */
-//    //$commerce_store = \Drupal::entityTypeManager()
-//    //  ->getStorage('commerce_store');
-//
-//    //Debug::debug($commerce_store->loadDefault());
-//
-//    $I->expectTo('See successful response.');
-//    $I->seeResponseCodeIs(HttpCode::CREATED);
-//  }
+  public function donationSingleExampleSuccess(\ApiTester $I) {
+    $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
+    $I->haveHttpHeader('Content-Type', 'application/json');
+
+    $post = $this->post;
+    $post['order']['field_appeal'] = $this->appeal->id();
+    $I->sendPOST('/commerce/order/create', $post);
+
+    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store */
+    //$commerce_store = \Drupal::entityTypeManager()
+    //  ->getStorage('commerce_store');
+
+    //Debug::debug($commerce_store->loadDefault());
+
+    $I->expectTo('See successful response.');
+    $I->seeResponseCodeIs(HttpCode::CREATED);
+  }
 
   /**
    * Successful recurring donation via Direct Debit Test payment gateway - SEPA.
    *
    * @param \ApiTester $I
+   * @group basic
    */
   public function donationRecurringDirectDebitSEPASuccess(\ApiTester $I) {
     $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
@@ -159,6 +161,7 @@ class DonationCest {
    * Successful recurring donation via Direct Debit Test payment gateway - UK.
    *
    * @param \ApiTester $I
+   * @group basic
    */
   public function donationRecurringDirectDebitUKSuccess(\ApiTester $I) {
     $I->amGoingTo('Post correct order to Commerce Create REST endpoint.');
@@ -187,24 +190,26 @@ class DonationCest {
    * Failed donation due to minimal donation amount restriction.
    *
    * @param \ApiTester $I
+   * @group additional
    */
-//  public function donationAmountFailure(\ApiTester $I) {
-//    $I->amGoingTo('Post incorrect order to Donation API endpoint.');
-//    $I->haveHttpHeader('Content-Type', 'application/json');
-//
-//    $post = $this->post;
-//    $post['order']['field_appeal'] = $this->appeal->id();
-//    $post['order']['order_items'][0]['unit_price']['number'] = 5;
-//    $I->sendPOST('/commerce/order/create', $post);
-//
-//    $I->expectTo('See failure response.');
-//    $I->seeResponseCodeIs(HttpCode::BAD_REQUEST);
-//  }
+  public function donationAmountFailure(\ApiTester $I) {
+    $I->amGoingTo('Post incorrect order to Donation API endpoint.');
+    $I->haveHttpHeader('Content-Type', 'application/json');
+
+    $post = $this->post;
+    $post['order']['field_appeal'] = $this->appeal->id();
+    $post['order']['order_items'][0]['unit_price']['number'] = 5;
+    $I->sendPOST('/commerce/order/create', $post);
+
+    $I->expectTo('See failure response.');
+    $I->seeResponseCodeIs(HttpCode::BAD_REQUEST);
+  }
 
   /**
    * Failed donation due to missing payment gateway.
    *
    * @param \ApiTester $I
+   * @group basic
    */
   public function donationGatewayFailure(\ApiTester $I) {
     $I->amGoingTo('Post incorrect order to Donation API endpoint.');

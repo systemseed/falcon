@@ -17,4 +17,4 @@ dependencies:
   - paragraphs
   - text
 version: 8.x-1.1
-package: Falcon
+package: Falcon Configurations

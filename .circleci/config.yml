@@ -39,12 +39,16 @@ jobs:
           command: make tests:prepare
 
       - run:
-          name: Run unit (integration) tests
-          command: make tests:run unit
+          name: Run basic group tests
+          command: make tests:run -- -g basic
 
       - run:
-          name: Run API tests
-          command: make tests:run api
+          name: Install additional modules
+          command: make drush en \$\(ADDITIONAL_MODULES\)
+
+      - run:
+          name: Run basic and additional groups tests
+          command: make tests:run -- -g basic -g additional
 
       - store_artifacts:
           path: tests/_output

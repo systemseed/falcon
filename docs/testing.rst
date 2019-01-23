@@ -15,7 +15,7 @@ the following tasks:
 - Install Falcon and all its features.
 - Run tests.
 
-If you are interested in details of Falcon CI setup,  you can find latest Circle CI configuration file here: https://github.com/systemseed/falcon/blob/master/.circleci/config.yml
+If you are interested in details of Falcon CI setup, you can find latest Circle CI configuration file here: https://github.com/systemseed/falcon/blob/master/.circleci/config.yml
 
 Running tests on local
 ----------------------
@@ -62,9 +62,20 @@ Writing tests
 
 Each new feature, or API endpoint, or pure PHP function should be covered by tests.
 
+When adding a new test to the Falcon distribution developer should decide if
+it will cover basic distribution installation  or not.
+If it covers basic installation distribution it should be added to ``basic`` tests group. If not than it should be added to ``additional`` group.
+**For example:** ::
+
+    /**
+     * @group basic
+     */
+    public function testBasic()
+
+If you wrote a test for ``additional`` group than you should add module this test covers into ``ADDITIONAL_MODULES`` variable in ``env.default`` file.
 It's recommended to store tests in subfolders with the same name
-as Falcon module or feature which is being tested. For example, if you want to
-test function ``falcon_development_install`` you need to put your test in
+as Falcon module or feature to test. For example, if you want to
+test function ``falcon_development_install`` you need to put your test into
 ``tests/unit/falcon_development/`` folder.
 
 Before you start writing tests we recommend to run the following command: ::
