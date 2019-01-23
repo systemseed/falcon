@@ -44,7 +44,7 @@ jobs:
 
       - run:
           name: Install additional modules
-          command: make add:additional-modules
+          command: make drush en \$\(ADDITIONAL_MODULES\)
 
       - run:
           name: Run basic and additional groups tests
