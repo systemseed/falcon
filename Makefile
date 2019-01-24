@@ -1,6 +1,6 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-prepare install \
+prepare install features\:owner \
 code\:check code\:fix \
 tests\:prepare tests\:run tests\:cli tests\:autocomplete
 
@@ -146,6 +146,15 @@ tests\:autocomplete:
 	rm -rf .codecept
 	docker cp $(PROJECT_NAME)_codecept:/repo/ .codecept
 	rm -rf .codecept/.git
+
+# Change ownership of features directory.
+# Usage:
+# - make features:owner www-data
+# - write features from Features UI
+# - make features:owner wodby
+features\:owner:
+	$(eval OWNER := $(filter-out $@,$(MAKECMDGOALS)))
+	$(call docker-root, php chown -R $(OWNER): web/profiles/contrib/falcon/modules/features)
 
 # https://stackoverflow.com/a/6273809/1826109
 %:

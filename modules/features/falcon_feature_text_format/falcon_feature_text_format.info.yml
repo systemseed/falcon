@@ -1,0 +1,9 @@
+name: 'Falcon Feature text format'
+type: module
+core: 8.x
+dependencies:
+  - ckeditor
+  - editor
+  - filter
+version: 8.x-1.0
+package: Falcon Configurations

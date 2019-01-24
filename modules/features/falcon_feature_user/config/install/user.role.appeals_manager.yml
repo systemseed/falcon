@@ -24,6 +24,7 @@ permissions:
   - 'revert appeal revisions'
   - 'schedule publishing of nodes'
   - 'update any media'
+  - 'use text format basic_html'
   - 'view any source_code entities'
   - 'view appeal revisions'
   - 'view scheduled content'

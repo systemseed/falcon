@@ -29,6 +29,7 @@ permissions:
   - 'schedule publishing of nodes'
   - 'update any media'
   - 'update donation commerce_order'
+  - 'use text format basic_html'
   - 'view any customer profile'
   - 'view any source_code entities'
   - 'view commerce_order'
