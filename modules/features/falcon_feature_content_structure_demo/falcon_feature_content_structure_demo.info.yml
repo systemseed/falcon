@@ -1,4 +1,4 @@
-name: 'Falcon Content structure (demo)'
+name: 'Falcon Content Structure feature (demo)'
 description: 'Showcasing demo content structure by providing a collection of content types, vocabularies, fields, etc.'
 type: module
 core: 8.x

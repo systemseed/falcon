@@ -15,5 +15,6 @@ permissions:
   - 'create url aliases'
   - 'schedule publishing of nodes'
   - 'update any media'
+  - 'use text format basic_html'
   - 'view scheduled content'
   - 'view the administration theme'

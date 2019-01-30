@@ -1,0 +1,10 @@
+name: 'Falcon Text Format feature'
+description: 'Provides text editors for different role experience.'
+type: module
+core: 8.x
+dependencies:
+  - ckeditor
+  - editor
+  - filter
+version: 8.x-1.0
+package: Falcon Configurations

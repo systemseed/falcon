@@ -21,6 +21,7 @@ function falcon_install() {
     'falcon_feature_commerce_direct_debit_gateway',
     'falcon_feature_content_blocks',
     'falcon_feature_donation',
+    'falcon_feature_text_format',
     'falcon_feature_user'
   ];
 
