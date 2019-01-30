@@ -1,8 +1,9 @@
 # Define here list of available make commands.
 .PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-prepare install features\:owner \
+prepare install \
 code\:check code\:fix \
-tests\:prepare tests\:run tests\:cli tests\:autocomplete
+tests\:prepare tests\:run tests\:cli tests\:autocomplete \
+features\:owner
 
 # Create local environment files.
 $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\/docker-compose\.override\.yml)
