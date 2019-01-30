@@ -16,7 +16,6 @@ settings:
           items:
             - Bold
             - Italic
-            - Format
         -
           name: Links
           items:
