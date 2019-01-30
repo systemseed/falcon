@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: gift
+label: Gift
+description: ''
+variationType: gift
+multipleVariations: true
+injectVariationFields: false
+traits: {  }
+locked: false

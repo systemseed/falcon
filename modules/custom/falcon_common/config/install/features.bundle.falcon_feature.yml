@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-name: Falcon
+name: Falcon Configurations
 machine_name: falcon_feature
 description: ''
 assignments:
