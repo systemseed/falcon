@@ -1,4 +1,5 @@
-name: 'Falcon Feature text format'
+name: 'Falcon Text Format feature'
+description: 'Provides text editors for different role experience'
 type: module
 core: 8.x
 dependencies:
