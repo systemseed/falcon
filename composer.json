@@ -33,6 +33,10 @@
     "3": {
       "type": "vcs",
       "url": "https://gitbox.apache.org/repos/asf/logging-log4php.git"
+    },
+    "rxp-remote-php": {
+      "type": "vcs",
+      "url": "https://github.com/systemseed/rxp-remote-php"
     }
   },
   "scripts": {
