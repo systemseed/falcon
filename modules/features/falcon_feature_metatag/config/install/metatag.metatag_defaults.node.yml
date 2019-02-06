@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: node
+label: Content
+tags:
+  canonical_url: '[node:url]'
+  title: '[node:title] | [consumers:current_name]'
+  description: '[node:summary]'

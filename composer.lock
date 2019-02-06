@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d1aa2ad547ca75471ae50a39d9057cd",
+    "content-hash": "36e99284a32a0a2920bc0291159b7ee1",
     "packages": [
         {
             "name": "apache/log4php",
@@ -2212,6 +2212,54 @@
             }
         },
         {
+            "name": "drupal/consumers_token",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/consumers_token",
+                "reference": "10afec9433b91a52b8573944da3da5d9c6f6b2d7"
+            },
+            "require": {
+                "drupal/consumers": "^1.0@beta",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1548943680",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "SystemSeed",
+                    "homepage": "https://www.drupal.org/user/810676",
+                    "email": "pavel@systemseed.com"
+                },
+                {
+                    "name": "pavel.bulat",
+                    "homepage": "https://www.drupal.org/user/3568596"
+                }
+            ],
+            "description": "Provides a token [consumers:current-name] for consumers name replacement depending on what consumer has requested the token.",
+            "homepage": "https://www.drupal.org/project/consumers_token",
+            "support": {
+                "source": "http://cgit.drupalcode.org/consumers_token"
+            },
+            "time": "2019-01-31T13:30:05+00:00"
+        },
+        {
             "name": "drupal/contact_message_rest",
             "version": "1.0.0-alpha1",
             "source": {
@@ -3710,6 +3758,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Jsonapi support": "https://www.drupal.org/files/issues/2019-01-18/computed_field_2945817_61.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8112,6 +8163,7 @@
         "drupal/commerce_paypal_ec": 20,
         "drupal/consumer_image_styles": 5,
         "drupal/consumers": 10,
+        "drupal/consumers_token": 20,
         "drupal/contact_message_rest": 15,
         "drupal/eck": 15,
         "drupal/entity": 10,

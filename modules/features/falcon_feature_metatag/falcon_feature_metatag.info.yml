@@ -1,0 +1,9 @@
+name: 'Falcon Metatag feature'
+description: 'Provides default metatags for multisites.'
+type: module
+core: 8.x
+dependencies:
+  - metatag
+  - consumers_token
+version: 8.x-1.0
+package: Falcon Configurations
