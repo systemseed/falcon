@@ -2217,7 +2217,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/consumers_token",
-                "reference": "10afec9433b91a52b8573944da3da5d9c6f6b2d7"
+                "reference": "c69e372824bda64aad316eda5f9f1a31d9e1df8e"
             },
             "require": {
                 "drupal/consumers": "^1.0@beta",
@@ -2257,7 +2257,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/consumers_token"
             },
-            "time": "2019-01-31T13:30:05+00:00"
+            "time": "2019-02-06T11:17:25+00:00"
         },
         {
             "name": "drupal/contact_message_rest",

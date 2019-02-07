@@ -54,10 +54,9 @@ class MetatagCest {
       'test_metatag_field' => serialize([
         'description' => 'TEST DESCRIPTION',
         'keywords' => 'TEST KEYWORDS'
-      ]),
+      ])
     ]);
     $this->article->save();
-
   }
 
   /**
