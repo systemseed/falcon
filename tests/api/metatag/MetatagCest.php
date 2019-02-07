@@ -45,6 +45,11 @@ class MetatagCest {
       ]);
     $this->field_config->save();
 
+    // Clear cache.
+    foreach (\Drupal\Core\Cache\Cache::getBins() as $service_id => $cache_backend) {
+      $cache_backend->deleteAll();
+    }
+
     // Create article.
     $this->article = $entity_type_manager->getStorage('node')->create([
       'uid' => 1,
