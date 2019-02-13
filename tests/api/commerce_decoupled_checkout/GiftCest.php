@@ -27,10 +27,6 @@ class GiftCest {
       'order_items' => [
         [
           'type' => 'gift',
-          'unit_price' => [
-            'number' => 15,
-            'currency_code' => 'USD',
-          ],
           'purchased_entity' => [
             'sku' => 'test gift',
           ],
@@ -86,7 +82,7 @@ class GiftCest {
       'title' => 'Test gift',
       'sku' => 'test gift',
       'status' => 1,
-      'price' => new Price('0', 'USD'),
+      'price' => new Price('10', 'USD'),
     ]);
     $this->variation->save();
 
@@ -125,39 +121,6 @@ class GiftCest {
     $I->haveHttpHeader('Content-Type', 'application/json');
 
     $post = $this->post;
-    $I->sendPOST('/commerce/order/create', $post);
-
-    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store */
-    //$commerce_store = \Drupal::entityTypeManager()
-    //  ->getStorage('commerce_store');
-
-    //Debug::debug($commerce_store->loadDefault());
-
-    $I->expectTo('See successful response.');
-    $I->seeResponseCodeIs(HttpCode::CREATED);
-  }
-
-  /**
-   * Successful single gift via Direct Debit Test payment gateway - SEPA.
-   *
-   * @param \ApiTester $I
-   * @group additional
-   */
-  public function giftRecurringDirectDebitSEPASuccess(\ApiTester $I) {
-    $I->amGoingTo('Post correct order Gift to Commerce Create REST endpoint.');
-    $I->haveHttpHeader('Content-Type', 'application/json');
-
-    $post = $this->post;
-    $post['payment']['gateway'] = 'direct_debit_test';
-    $post['payment']['type'] = 'direct_debit_sepa';
-    $post['payment']['details'] = [
-      'account_name' => 'Generous Donor',
-      'swift' => 'BOFIIE2D',
-      'iban' => 'DE89 3704 0044 0532 0130 00',
-      'debit_date' => 2,
-      'accept_direct_debits' => 1,
-      'one_signatory' => 1,
-    ];
     $I->sendPOST('/commerce/order/create', $post);
 
     $I->expectTo('See successful response.');

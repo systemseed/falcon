@@ -1,5 +1,5 @@
 name: 'Falcon Feature Gifts'
-description: 'Provides the Gifts'
+description: 'Charity gifts shop.'
 type: module
 core: 8.x
 dependencies:

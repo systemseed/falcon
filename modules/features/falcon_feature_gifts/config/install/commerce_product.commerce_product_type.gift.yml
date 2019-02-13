@@ -3,7 +3,7 @@ status: true
 dependencies: {  }
 id: gift
 label: Gift
-description: ''
+description: 'Charity gift product.'
 variationType: gift
 multipleVariations: true
 injectVariationFields: false
