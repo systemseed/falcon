@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d1aa2ad547ca75471ae50a39d9057cd",
+    "content-hash": "32ffd75b3e3872011ef6d662c4ea1cfd",
     "packages": [
         {
             "name": "apache/log4php",
@@ -23,6 +23,7 @@
                     "src/main/php/"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -33,11 +34,6 @@
                 "logging",
                 "php"
             ],
-            "support": {
-                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
-                "source": "https://svn.apache.org/repos/asf/logging/log4php",
-                "email": "log4php-user@logging.apache.org"
-            },
             "time": "2012-10-26T09:13:25+00:00"
         },
         {
@@ -2212,6 +2208,59 @@
             }
         },
         {
+            "name": "drupal/consumers_token",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/consumers_token",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/consumers_token-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "427b6ace242085a7b692937b2d0ee5c8e223574a"
+            },
+            "require": {
+                "drupal/consumers": "^1.0@beta",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1550052780",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "SystemSeed",
+                    "homepage": "https://www.drupal.org/user/810676",
+                    "email": "pavel@systemseed.com"
+                },
+                {
+                    "name": "pavel.bulat",
+                    "homepage": "https://www.drupal.org/user/3568596"
+                }
+            ],
+            "description": "Provides a token [consumers:current-name] for consumers name replacement depending on what consumer has requested the token.",
+            "homepage": "https://www.drupal.org/project/consumers_token",
+            "support": {
+                "source": "http://cgit.drupalcode.org/consumers_token"
+            }
+        },
+        {
             "name": "drupal/contact_message_rest",
             "version": "1.0.0-alpha1",
             "source": {
@@ -3710,6 +3759,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Jsonapi support": "https://www.drupal.org/files/issues/2019-01-18/computed_field_2945817_61.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8112,6 +8164,7 @@
         "drupal/commerce_paypal_ec": 20,
         "drupal/consumer_image_styles": 5,
         "drupal/consumers": 10,
+        "drupal/consumers_token": 10,
         "drupal/contact_message_rest": 15,
         "drupal/eck": 15,
         "drupal/entity": 10,
