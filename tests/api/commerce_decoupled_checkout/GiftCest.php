@@ -128,33 +128,6 @@ class GiftCest {
   }
 
   /**
-   * Successful single gift via Direct Debit Test payment gateway - UK.
-   *
-   * @param \ApiTester $I
-   * @group additional
-   */
-  public function giftRecurringDirectDebitUKSuccess(\ApiTester $I) {
-    $I->amGoingTo('Post correct order Gift to Commerce Create REST endpoint.');
-    $I->haveHttpHeader('Content-Type', 'application/json');
-
-    $post = $this->post;
-    $post['payment']['gateway'] = 'direct_debit_test';
-    $post['payment']['type'] = 'direct_debit_uk';
-    $post['payment']['details'] = [
-      'account_name' => 'Generous Donor',
-      'sort_code' => '123456',
-      'account_number' => '12345678',
-      'debit_date' => 2,
-      'accept_direct_debits' => 1,
-      'one_signatory' => 1,
-    ];
-    $I->sendPOST('/commerce/order/create', $post);
-
-    $I->expectTo('See successful response.');
-    $I->seeResponseCodeIs(HttpCode::CREATED);
-  }
-
-  /**
    * Failed gift due to missing payment gateway.
    *
    * @param \ApiTester $I
