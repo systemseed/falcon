@@ -4,4 +4,4 @@ dependencies: {  }
 id: global
 label: Global
 tags:
-  title: '[consumers:current_name]'
+  title: '[consumers:current-name]'

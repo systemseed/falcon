@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36e99284a32a0a2920bc0291159b7ee1",
+    "content-hash": "32ffd75b3e3872011ef6d662c4ea1cfd",
     "packages": [
         {
             "name": "apache/log4php",
@@ -23,6 +23,7 @@
                     "src/main/php/"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -33,11 +34,6 @@
                 "logging",
                 "php"
             ],
-            "support": {
-                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
-                "source": "https://svn.apache.org/repos/asf/logging/log4php",
-                "email": "log4php-user@logging.apache.org"
-            },
             "time": "2012-10-26T09:13:25+00:00"
         },
         {
@@ -2213,11 +2209,17 @@
         },
         {
             "name": "drupal/consumers_token",
-            "version": "dev-1.x",
+            "version": "1.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/consumers_token",
-                "reference": "c69e372824bda64aad316eda5f9f1a31d9e1df8e"
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/consumers_token-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "427b6ace242085a7b692937b2d0ee5c8e223574a"
             },
             "require": {
                 "drupal/consumers": "^1.0@beta",
@@ -2229,8 +2231,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1548943680",
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1550052780",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2256,8 +2258,7 @@
             "homepage": "https://www.drupal.org/project/consumers_token",
             "support": {
                 "source": "http://cgit.drupalcode.org/consumers_token"
-            },
-            "time": "2019-02-06T11:17:25+00:00"
+            }
         },
         {
             "name": "drupal/contact_message_rest",
@@ -8163,7 +8164,7 @@
         "drupal/commerce_paypal_ec": 20,
         "drupal/consumer_image_styles": 5,
         "drupal/consumers": 10,
-        "drupal/consumers_token": 20,
+        "drupal/consumers_token": 10,
         "drupal/contact_message_rest": 15,
         "drupal/eck": 15,
         "drupal/entity": 10,
