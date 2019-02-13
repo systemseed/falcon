@@ -127,22 +127,4 @@ class GiftCest {
     $I->seeResponseCodeIs(HttpCode::CREATED);
   }
 
-  /**
-   * Failed gift due to missing payment gateway.
-   *
-   * @param \ApiTester $I
-   * @group additional
-   */
-  public function giftGatewayFailure(\ApiTester $I) {
-    $I->amGoingTo('Post incorrect order to Gift API endpoint.');
-    $I->haveHttpHeader('Content-Type', 'application/json');
-
-    $post = $this->post;
-    $post['payment']['gateway'] = 'missing';
-    $I->sendPOST('/commerce/order/create', $post);
-
-    $I->expectTo('See failure response.');
-    $I->seeResponseCodeIs(HttpCode::NOT_ACCEPTABLE);
-  }
-
 }
