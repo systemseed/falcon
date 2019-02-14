@@ -1,6 +1,6 @@
 <?php
 
-namespace falcon_commerce;
+namespace commerce_decoupled_checkout;
 
 use Codeception\Util\HttpCode;
 
@@ -9,7 +9,7 @@ use Codeception\Util\HttpCode;
  *
  * Donation API tests.
  *
- * @package Falcon Commerce
+ * @package Commerce Decoupled Checkout
  */
 class DonationCest {
 
