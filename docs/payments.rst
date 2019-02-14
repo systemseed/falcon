@@ -19,7 +19,7 @@ Out of the box Falcon comes with support of the following payment methods:
 - Credit Cards through Stripe (disabled by default)
 - Credit Cards through Realex / Global Payments (disabled by default)
 - Direct Debits (enabled by default)
-- Example payment (enabled by default). Just for demo purpose. Consider disabling or removing it when going live.
+- Example payment (disabled by default)
 
 In fact, thanks to `Commerce Decoupled Checkout <https://www.drupal.org/project/commerce_decoupled_checkout>`_ any other
 Drupal module which provides payment gateway for Drupal Commerce is supported as well.
