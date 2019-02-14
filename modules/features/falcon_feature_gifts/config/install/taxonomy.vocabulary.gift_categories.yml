@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Gift categories'
+vid: gift_categories
+description: 'Categories for gifts.'
+hierarchy: 0
+weight: 0

@@ -1,4 +1,4 @@
-name: 'Falcon Feature Gifts'
+name: 'Falcon Gifts feature'
 description: 'Charity gifts shop.'
 type: module
 core: 8.x
@@ -9,6 +9,7 @@ dependencies:
   - commerce_order
   - commerce_product
   - falcon_feature_commerce
+  - falcon_feature_gifts
   - falcon_feature_media
   - field
   - inline_entity_form
@@ -17,7 +18,8 @@ dependencies:
   - metatag
   - path
   - state_machine
+  - taxonomy
   - text
   - user
 version: 8.x-1.0
-package: Falcon Configurations
+package: 'Falcon Configurations'

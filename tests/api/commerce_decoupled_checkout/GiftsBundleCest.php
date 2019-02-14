@@ -12,7 +12,7 @@ use Drupal\commerce_price\Price;
  *
  * @package Falcon Commerce
  */
-class GiftBundleCest {
+class GiftsBundleCest {
 
   private $variation;
 
