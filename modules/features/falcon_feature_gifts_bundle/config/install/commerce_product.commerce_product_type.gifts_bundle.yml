@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: gifts_bundle
+label: 'Gifts bundle'
+description: 'Gifts bundle for charity gift shop.'
+variationType: gifts_bundle
+multipleVariations: true
+injectVariationFields: false
+traits: {  }
+locked: false

@@ -6,13 +6,13 @@ use Codeception\Util\HttpCode;
 use Drupal\commerce_price\Price;
 
 /**
- * Class GiftCest.
+ * Class GiftBundleCest.
  *
  * Gift API tests.
  *
  * @package Falcon Commerce
  */
-class GiftCest {
+class GiftBundleCest {
 
   private $variation;
 
@@ -26,9 +26,9 @@ class GiftCest {
       'type' => 'gift',
       'order_items' => [
         [
-          'type' => 'gift',
+          'type' => 'gifts_bundle',
           'purchased_entity' => [
-            'sku' => 'test gift',
+            'sku' => 'test bundle',
           ],
         ],
       ],
@@ -64,21 +64,21 @@ class GiftCest {
 
     $stores = $entity_type_manager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
 
-    // Create product variation gift.
+    // Create product variation gifts bundle.
     $this->variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
-      'type' => 'gift',
+      'type' => 'gifts_bundle',
       'title' => 'Test gift',
-      'sku' => 'test gift',
+      'sku' => 'test bundle',
       'status' => 1,
       'price' => new Price('10', 'USD'),
     ]);
     $this->variation->save();
 
-    // Create product gift.
+    // Create product gifts bundle.
     $this->product = $entity_type_manager->getStorage('commerce_product')->create([
       'uid' => 1,
-      'type' => 'gift',
-      'title' => 'Test gift',
+      'type' => 'gifts_bundle',
+      'title' => 'Test gifts bundle',
       'stores' => $stores,
       'variations' => [$this->variation],
     ]);
@@ -99,13 +99,13 @@ class GiftCest {
   }
 
   /**
-   * Successful created order with single gift.
+   * Successful created order with single gifts bundle.
    *
    * @param \ApiTester $I
    * @group additional
    */
-  public function giftSingleExampleSuccess(\ApiTester $I) {
-    $I->amGoingTo('Post correct order with gift to Commerce Create REST endpoint.');
+  public function giftsBundleSingleExampleSuccess(\ApiTester $I) {
+    $I->amGoingTo('Post correct order with gifts bundle to Commerce Create REST endpoint.');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
     $post = $this->post;

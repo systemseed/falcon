@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: gifts_bundle
+label: 'Gifts bundle'
+orderItemType: gifts_bundle
+generateTitle: true
+traits: {  }
+locked: false
