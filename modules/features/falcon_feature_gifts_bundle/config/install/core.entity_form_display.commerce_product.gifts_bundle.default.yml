@@ -31,7 +31,7 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
   field_gift_description:
     weight: 3
