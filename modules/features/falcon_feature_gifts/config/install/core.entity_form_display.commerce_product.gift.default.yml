@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - commerce_product.commerce_product_type.gift
-    - field.field.commerce_product.gift.field_gift_categories
+    - field.field.commerce_product.gift.field_gift_category
     - field.field.commerce_product.gift.field_gift_description
     - field.field.commerce_product.gift.field_gift_media_image
     - field.field.commerce_product.gift.field_metatags
@@ -27,14 +27,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_gift_categories:
+  field_gift_category:
     weight: 2
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
     region: content
   field_gift_description:
     weight: 3

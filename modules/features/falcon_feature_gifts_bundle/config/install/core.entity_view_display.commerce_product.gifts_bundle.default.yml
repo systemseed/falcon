@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - commerce_product.commerce_product_type.gifts_bundle
-    - field.field.commerce_product.gifts_bundle.field_gift_categories
+    - field.field.commerce_product.gifts_bundle.field_gift_category
     - field.field.commerce_product.gifts_bundle.field_gift_description
     - field.field.commerce_product.gifts_bundle.field_gift_media_image
     - field.field.commerce_product.gifts_bundle.field_gifts
@@ -19,7 +19,7 @@ targetEntityType: commerce_product
 bundle: gifts_bundle
 mode: default
 content:
-  field_gift_categories:
+  field_gift_category:
     weight: 15
     label: above
     settings:
