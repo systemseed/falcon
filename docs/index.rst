@@ -21,6 +21,6 @@ Follow instructions in :doc:`install` section.
    development_client_site
    information_architecture
    roles
-   donation_api
+   payments
    environment
    content

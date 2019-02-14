@@ -108,6 +108,7 @@
     "drupal/commerce_directdebit": "dev-8.x-1.x",
     "drupal/commerce_globalpayments": "^1.0@beta",
     "drupal/commerce_paypal_ec": "dev-8.x-1.x",
+    "drupal/commerce_stripe": "^1.0@RC",
     "drupal/config_filter": "^1.2",
     "drupal/config_ignore": "^2.1",
     "drupal/config_pages": "^2.2",
