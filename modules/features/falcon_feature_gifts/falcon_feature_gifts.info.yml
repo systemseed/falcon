@@ -1,0 +1,23 @@
+name: 'Falcon Feature Gifts'
+description: 'Charity gifts shop.'
+type: module
+core: 8.x
+dependencies:
+  - commerce
+  - commerce_cart
+  - commerce_checkout
+  - commerce_order
+  - commerce_product
+  - falcon_feature_commerce
+  - falcon_feature_media
+  - field
+  - inline_entity_form
+  - media
+  - media_library
+  - metatag
+  - path
+  - state_machine
+  - text
+  - user
+version: 8.x-1.0
+package: Falcon Configurations

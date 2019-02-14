@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+label: Gift
+id: gift
+purchasableEntityType: commerce_product_variation
+orderType: gift
+traits: {  }
+locked: false
