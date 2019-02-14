@@ -85,7 +85,7 @@
     "enable-patching": true,
     "patches": {
       "drupal/core": {
-        "Media Library and Paragraphs": "https://www.drupal.org/files/issues/2018-12-02/drupal-media-library-paragraphs-3003150-14-8.x.patch"
+        "Media Library and Paragraphs": "https://www.drupal.org/files/issues/2018-12-05/drupal-media-library-paragraphs-3003150-19-8.x.patch"
       },
       "drupal/paragraphs_browser": {
         "Bring back actions menu": "https://www.drupal.org/files/issues/2018-03-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-10.patch"
