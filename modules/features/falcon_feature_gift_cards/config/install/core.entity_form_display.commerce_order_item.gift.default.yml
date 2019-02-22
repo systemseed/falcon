@@ -1,0 +1,55 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.gift
+    - field.field.commerce_order_item.gift.field_card
+    - field.field.commerce_order_item.gift.field_card_delivery
+  module:
+    - commerce_order
+id: commerce_order_item.gift.default
+targetEntityType: commerce_order_item
+bundle: gift
+mode: default
+content:
+  field_card:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_card_delivery:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  purchased_entity:
+    type: entity_reference_autocomplete
+    weight: -1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+  quantity:
+    type: commerce_quantity
+    weight: 1
+    region: content
+    settings:
+      step: '1'
+      placeholder: ''
+    third_party_settings: {  }
+  unit_price:
+    type: commerce_unit_price
+    weight: 2
+    settings:
+      require_confirmation: true
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true

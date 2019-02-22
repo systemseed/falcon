@@ -1,0 +1,193 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.gift
+    - field.field.commerce_product.gift.field_ecard_description
+    - field.field.commerce_product.gift.field_ecard_media_image
+    - field.field.commerce_product.gift.field_ecard_status
+    - field.field.commerce_product.gift.field_gift_category
+    - field.field.commerce_product.gift.field_gift_description
+    - field.field.commerce_product.gift.field_gift_media_image
+    - field.field.commerce_product.gift.field_metatags
+    - field.field.commerce_product.gift.field_postal_card_description
+    - field.field.commerce_product.gift.field_postal_card_media_image
+    - field.field.commerce_product.gift.field_postal_card_status
+    - field.field.commerce_product.gift.stores
+    - field.field.commerce_product.gift.variations
+  module:
+    - commerce
+    - field_group
+    - inline_entity_form
+    - media_library
+    - metatag
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_ecard:
+      children:
+        - field_ecard_status
+        - field_ecard_media_image
+        - field_ecard_description
+      parent_name: ''
+      weight: 15
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: ECard
+      region: content
+    group_postal_card:
+      children:
+        - field_postal_card_status
+        - field_postal_card_media_image
+        - field_postal_card_description
+      parent_name: ''
+      weight: 14
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Postal Card'
+      region: content
+id: commerce_product.gift.default
+targetEntityType: commerce_product
+bundle: gift
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ecard_description:
+    weight: 15
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_ecard_media_image:
+    type: media_library_widget
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_ecard_status:
+    weight: 13
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_gift_category:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_gift_description:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_gift_media_image:
+    type: media_library_widget
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_metatags:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
+  field_postal_card_description:
+    weight: 14
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_postal_card_media_image:
+    type: media_library_widget
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_postal_card_status:
+    weight: 12
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  path:
+    type: path
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 10
+    region: content
+    third_party_settings: {  }
+  stores:
+    type: commerce_entity_select
+    weight: 0
+    settings:
+      hide_single_entity: true
+      autocomplete_threshold: 7
+      autocomplete_size: 60
+      autocomplete_placeholder: ''
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 6
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  variations:
+    type: inline_entity_form_complex
+    weight: 5
+    region: content
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: variation
+      label_plural: variations
+      allow_new: true
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+    third_party_settings: {  }
+hidden: {  }

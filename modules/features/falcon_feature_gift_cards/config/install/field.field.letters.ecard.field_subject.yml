@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.letters.ecard
+    - field.storage.letters.field_subject
+id: letters.ecard.field_subject
+field_name: field_subject
+entity_type: letters
+bundle: ecard
+label: Subject
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,79 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.letters.ecard
+    - field.field.letters.ecard.field_message
+    - field.field.letters.ecard.field_order_item
+    - field.field.letters.ecard.field_recipient_email
+    - field.field.letters.ecard.field_sent_timestamp
+    - field.field.letters.ecard.field_status
+    - field.field.letters.ecard.field_subject
+  module:
+    - inline_entity_form
+    - text
+id: letters.ecard.default
+targetEntityType: letters
+bundle: ecard
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_message:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_order_item:
+    weight: 3
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_new: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  field_recipient_email:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_sent_timestamp:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_timestamp
+    region: content
+  field_status:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_subject:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden: {  }

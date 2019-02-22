@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.letters
+name: Ecard
+type: ecard
+description: 'An e-mail with а selected gift card that sends after success order payment.'

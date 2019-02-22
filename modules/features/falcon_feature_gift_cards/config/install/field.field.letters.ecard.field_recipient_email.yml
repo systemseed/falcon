@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.letters.ecard
+    - field.storage.letters.field_recipient_email
+id: letters.ecard.field_recipient_email
+field_name: field_recipient_email
+entity_type: letters
+bundle: ecard
+label: 'Recipient''s Email'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

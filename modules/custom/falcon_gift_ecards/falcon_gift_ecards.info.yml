@@ -1,0 +1,9 @@
+name: Falcon Gift E-Cards
+type: module
+description: E-cards for Gifts.
+core: 8.x
+package: Falcon
+dependencies:
+  - commerce_decoupled_checkout
+  - cer
+  - falcon_feature_gift_cards
