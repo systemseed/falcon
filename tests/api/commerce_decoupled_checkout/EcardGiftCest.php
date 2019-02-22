@@ -126,7 +126,7 @@ class EcardGiftCest {
    * Successful created ecard after created order.
    *
    * @param \ApiTester $I
-   * @group additional
+   *
    */
   public function EcardGiftSingleExampleSuccess(\ApiTester $I) {
     $I->amGoingTo('Post order with gift with ecard.');

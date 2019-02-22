@@ -126,7 +126,7 @@ class EcardGiftsBundleCest {
    * Successful created ecard after created order with ecard.
    *
    * @param \ApiTester $I
-   * @group additional
+   *
    */
   public function EcardGiftsBundleSingleExampleSuccess(\ApiTester $I) {
     $I->amGoingTo('Post order with gifts bundle with ecard.');
