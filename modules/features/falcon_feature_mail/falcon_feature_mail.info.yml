@@ -1,0 +1,9 @@
+name: 'Falcon Mail feature'
+description: 'Enabling html for mail.'
+type: module
+core: 8.x
+dependencies:
+  - mailsystem
+  - smtp
+version: 8.x-1.0
+package: 'Falcon Configurations'
