@@ -1,25 +1,23 @@
-name: 'Falcon Gift Cards feature'
-description: 'Provides email and postal cards for gift.'
+name: 'Falcon Gifts Bundle Cards feature'
+description: 'Provides email and postal cards for gifts bundle.'
 type: module
 core: 8.x
-version: 8.x-1.0
-package: 'Falcon Configurations'
 dependencies:
   - cer
   - commerce
   - commerce_order
   - commerce_product
-  - eck
-  - falcon_gift_ecards
-  - falcon_feature_commerce
+  - falcon_feature_gift_cards
   - falcon_feature_gifts
+  - falcon_feature_gifts_bundle
   - falcon_feature_media
   - field
   - field_group
   - inline_entity_form
-  - media
   - media_library
   - metatag
   - options
   - path
   - text
+version: 8.x-1.0
+package: 'Falcon Configurations'

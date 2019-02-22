@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.gifts_bundle
+    - eck.eck_type.letters.ecard
+    - field.storage.commerce_order_item.field_card
+id: commerce_order_item.gifts_bundle.field_card
+field_name: field_card
+entity_type: commerce_order_item
+bundle: gifts_bundle
+label: Card
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:letters'
+  handler_settings:
+    target_bundles:
+      ecard: ecard
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
