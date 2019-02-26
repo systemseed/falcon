@@ -27,6 +27,12 @@ services:
       - ../:/var/www/html:cached
 
   codecept:
+## Codeception container with xDebug.
+#    image: pavelbulat/xdebug_codeception
+#    environment:
+#      ENVIRONMENT: ${ENVIRONMENT}
+#      PHP_IDE_CONFIG: serverName=tests-xdebug
+#      XDEBUG_CONFIG: "remote_host=172.17.0.1"
     volumes:
       - ../tests:/project/tests:cached
       - ../tests/codeception.yml:/project/codeception.yml
@@ -39,3 +45,18 @@ services:
 #    command: 'sphinx-autobuild . _build/html'
 #    volumes:
 #      - ../docs:/doc:cached
+
+## Uncomment if you need pma container.
+#  pma:
+#    image: phpmyadmin/phpmyadmin
+#    container_name: "${PROJECT_NAME}_pma"
+#    environment:
+#      PMA_HOST: $DB_HOST
+#      PMA_USER: $DB_USER
+#      PMA_PASSWORD: $DB_PASSWORD
+#      PHP_UPLOAD_MAX_FILESIZE: 1G
+#      PHP_MAX_INPUT_VARS: 1G
+#    labels:
+#      - 'traefik.backend=${PROJECT_NAME}_pma'
+#      - 'traefik.port=80'
+#      - 'traefik.frontend.rule=Host:pma.${PROJECT_BASE_URL}'
