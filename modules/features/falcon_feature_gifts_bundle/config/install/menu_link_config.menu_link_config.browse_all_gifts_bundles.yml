@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: browse_all_gifts_bundles
+title: 'Browse all Gifts bundles'
+route_name: entity.commerce_product.collection
+route_parameters: {  }
+options:
+  query:
+    type: gifts_bundle
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:gifts'
+weight: -47
+description: 'Overview and search products of Gifts bundle.'

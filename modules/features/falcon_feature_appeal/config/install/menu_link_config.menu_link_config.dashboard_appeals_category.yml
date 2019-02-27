@@ -12,5 +12,5 @@ expanded: false
 menu_name: falcon-dashboard
 enabled: true
 parent: falcon.dashboard
-weight: 0
+weight: -48
 description: 'Create and manage appeals.'

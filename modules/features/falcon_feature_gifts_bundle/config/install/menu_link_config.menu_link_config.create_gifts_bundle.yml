@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies: {  }
+id: create_gifts_bundle
+title: 'Create Gifts bundle'
+route_name: entity.commerce_product.add_form
+route_parameters:
+  commerce_product_type: gifts_bundle
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:gifts'
+weight: -49
+description: 'Create new gifts bundle.'
