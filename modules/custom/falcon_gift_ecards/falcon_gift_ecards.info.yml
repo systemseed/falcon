@@ -7,3 +7,4 @@ dependencies:
   - commerce_decoupled_checkout
   - cer
   - falcon_feature_gift_cards
+  - mailsystem
