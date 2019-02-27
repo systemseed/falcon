@@ -18,6 +18,8 @@ class EcardGiftsBundleCest {
 
   private $product;
 
+  private $entityTypeManager;
+
   /**
    * @var array
    */
@@ -32,17 +34,11 @@ class EcardGiftsBundleCest {
           ],
           'field_card_delivery' => 'email',
           'field_card' => [
-            'field_subject' => 'My test subject',
-            'field_recipient_email' => 'bulat.pasha@gmail.com',
+            'field_subject' => 'Test ecards bundle subject',
+            'field_recipient_email' => 'test+suite@systemseed.com',
             'field_message' => '<html><body><div style="color:red">Ecard gifts bundle test mail</div></body></html>'
           ],
         ],
-        [
-          'type' => 'gifts_bundle',
-          'purchased_entity' => [
-            'sku' => 'test bundle',
-          ],
-        ]
       ],
     ],
     'profile' => [
@@ -84,12 +80,12 @@ class EcardGiftsBundleCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _before() {
-    $entity_type_manager = \Drupal::entityTypeManager();
+    $this->entityTypeManager = \Drupal::entityTypeManager();
 
-    $stores = $entity_type_manager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
+    $stores = $this->entityTypeManager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
 
     // Create product variation gifts bundle.
-    $this->variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
+    $this->variation = $this->entityTypeManager->getStorage('commerce_product_variation')->create([
       'type' => 'gifts_bundle',
       'title' => 'Test gifts bundle with ecard',
       'sku' => 'test bundle',
@@ -99,7 +95,7 @@ class EcardGiftsBundleCest {
     $this->variation->save();
 
     // Create product gifts bundle.
-    $this->product = $entity_type_manager->getStorage('commerce_product')->create([
+    $this->product = $this->entityTypeManager->getStorage('commerce_product')->create([
       'uid' => 1,
       'type' => 'gifts_bundle',
       'title' => 'Test gifts bundle with ecard',
@@ -116,17 +112,15 @@ class EcardGiftsBundleCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _after() {
-    $entity_type_manager = \Drupal::entityTypeManager();
-
-    $entity_type_manager->getStorage('commerce_product_variation')->delete([$this->variation]);
-    $entity_type_manager->getStorage('commerce_product')->delete([$this->product]);
+    $this->entityTypeManager->getStorage('commerce_product_variation')->delete([$this->variation]);
+    $this->entityTypeManager->getStorage('commerce_product')->delete([$this->product]);
   }
 
   /**
    * Successful created ecard after created order with ecard.
    *
    * @param \ApiTester $I
-   *
+   * @group additional
    */
   public function EcardGiftsBundleSingleExampleSuccess(\ApiTester $I) {
     $I->amGoingTo('Post order with gifts bundle with ecard.');
@@ -137,6 +131,35 @@ class EcardGiftsBundleCest {
 
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
+
+    // Get order_id from response.
+    $orderItemID = $I->grabDataFromResponseByJsonPath("$..order_items[0].target_id")[0];
+
+    $orderItem = $this->entityTypeManager->getStorage('commerce_order_item')->load($orderItemID);
+
+    // Order item exist.
+    $I->assertNotEmpty($orderItem, 'Order item');
+
+    $deliveryType = $orderItem->get('field_card_delivery')->getValue()[0]['value'];
+
+    // Order item has email delivery type.
+    $I->assertEquals('email', $deliveryType);
+
+    $fieldCard = $orderItem->get('field_card')->getValue();
+
+    // Order item has reference on ecard.
+    $I->assertNotEmpty($fieldCard, 'field card');
+
+    $ecardID = $fieldCard[0]['target_id'];
+
+    $ecard = $this->entityTypeManager->getStorage('letters')->load($ecardID);
+
+    // Ecard is exist.
+    $I->assertNotEmpty($ecard, 'Ecard');
+
+    // Ecard status is sent.
+    $I->assertTrue(!!$ecard->get('field_status')->getValue()[0]['value'], 'Ecard status');
+
   }
 
 }

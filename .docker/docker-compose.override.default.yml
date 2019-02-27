@@ -31,7 +31,7 @@ services:
 #    image: pavelbulat/xdebug_codeception
 #    environment:
 #      ENVIRONMENT: ${ENVIRONMENT}
-#      PHP_IDE_CONFIG: serverName=tests-xdebug
+#      PHP_IDE_CONFIG: serverName=my-ide
 #      XDEBUG_CONFIG: "remote_host=172.17.0.1"
     volumes:
       - ../tests:/project/tests:cached
