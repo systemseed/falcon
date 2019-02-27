@@ -433,14 +433,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        view_letters:
-          id: view_letters
-          table: letters
-          field: view_letters
+        view_gift_cards:
+          id: view_gift_cards
+          table: gift_cards
+          field: view_gift_cards
           relationship: field_card
           group_type: group
           admin_label: ''
-          label: 'Link to Letters'
+          label: 'Link to Gift Cards'
           exclude: false
           alter:
             alter_text: false
@@ -481,10 +481,10 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'View letter'
+          text: 'View card'
           output_url_as_text: false
           absolute: false
-          entity_type: letters
+          entity_type: gift_cards
           plugin_id: entity_link
       filters: {  }
       sorts: {  }
@@ -509,7 +509,7 @@ display:
           field: field_card
           relationship: none
           group_type: group
-          admin_label: 'field_card: Letters'
+          admin_label: 'field_card: Gift Cards'
           required: false
           plugin_id: standard
       arguments:

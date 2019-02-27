@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.letters.ecard
-    - field.field.letters.ecard.field_message
-    - field.field.letters.ecard.field_order_item
-    - field.field.letters.ecard.field_recipient_email
-    - field.field.letters.ecard.field_sent_timestamp
-    - field.field.letters.ecard.field_status
-    - field.field.letters.ecard.field_subject
+    - eck.eck_type.gift_cards.ecard
+    - field.field.gift_cards.ecard.field_message
+    - field.field.gift_cards.ecard.field_order_item
+    - field.field.gift_cards.ecard.field_recipient_email
+    - field.field.gift_cards.ecard.field_sent_timestamp
+    - field.field.gift_cards.ecard.field_status
+    - field.field.gift_cards.ecard.field_subject
   module:
     - text
-id: letters.ecard.default
-targetEntityType: letters
+id: gift_cards.ecard.default
+targetEntityType: gift_cards
 bundle: ecard
 mode: default
 content:

@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: letters
-label: Letters
+id: gift_cards
+label: Gift Cards
 created: true
 changed: false
 uid: false

@@ -9,7 +9,7 @@ field_name: field_card
 entity_type: commerce_order_item
 type: entity_reference
 settings:
-  target_type: letters
+  target_type: gift_cards
 module: core
 locked: false
 cardinality: 1

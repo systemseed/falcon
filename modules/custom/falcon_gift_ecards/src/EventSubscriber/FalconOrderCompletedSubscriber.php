@@ -41,7 +41,7 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
   public function __construct(EntityTypeManagerInterface $entity_type_manager, MailSenderInterface $mail_sender) {
     $this->mailSender = $mail_sender;
     $this->entityTypeManager = $entity_type_manager;
-    $this->storage = $entity_type_manager->getStorage('letters');
+    $this->storage = $entity_type_manager->getStorage('gift_cards');
   }
 
   /**

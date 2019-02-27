@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.letters.ecard
-    - field.storage.letters.field_status
-id: letters.ecard.field_status
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_status
+id: gift_cards.ecard.field_status
 field_name: field_status
-entity_type: letters
+entity_type: gift_cards
 bundle: ecard
 label: 'Sent to'
 description: ''

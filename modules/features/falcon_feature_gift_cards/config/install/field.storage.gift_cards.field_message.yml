@@ -3,15 +3,13 @@ status: true
 dependencies:
   module:
     - eck
-id: letters.field_subject
-field_name: field_subject
-entity_type: letters
-type: string
-settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+    - text
+id: gift_cards.field_message
+field_name: field_message
+entity_type: gift_cards
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

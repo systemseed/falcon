@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.letters.ecard
-    - field.storage.letters.field_sent_timestamp
-id: letters.ecard.field_sent_timestamp
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_sent_timestamp
+id: gift_cards.ecard.field_sent_timestamp
 field_name: field_sent_timestamp
-entity_type: letters
+entity_type: gift_cards
 bundle: ecard
 label: 'Sent timestamp'
 description: ''

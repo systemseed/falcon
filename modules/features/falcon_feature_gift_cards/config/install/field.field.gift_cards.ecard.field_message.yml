@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.letters.ecard
-    - field.storage.letters.field_message
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_message
   module:
     - text
-id: letters.ecard.field_message
+id: gift_cards.ecard.field_message
 field_name: field_message
-entity_type: letters
+entity_type: gift_cards
 bundle: ecard
 label: Message
 description: ''

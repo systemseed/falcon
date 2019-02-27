@@ -22,7 +22,7 @@ function falcon_gift_ecards_order_checkout_prepare_alter(array &$data) {
       $item['field_card_delivery'] === 'email' &&
       !empty($item['field_card'])) {
 
-      $storage = Drupal::entityTypeManager()->getStorage('letters');
+      $storage = Drupal::entityTypeManager()->getStorage('gift_cards');
       $entityData = $item['field_card'];
       $entityData['type'] = 'ecard';
 

@@ -152,7 +152,7 @@ class EcardGiftsBundleCest {
 
     $ecardID = $fieldCard[0]['target_id'];
 
-    $ecard = $this->entityTypeManager->getStorage('letters')->load($ecardID);
+    $ecard = $this->entityTypeManager->getStorage('gift_cards')->load($ecardID);
 
     // Ecard is exist.
     $I->assertNotEmpty($ecard, 'Ecard');

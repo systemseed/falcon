@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.letters.ecard
-    - field.storage.letters.field_subject
-id: letters.ecard.field_subject
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_subject
+id: gift_cards.ecard.field_subject
 field_name: field_subject
-entity_type: letters
+entity_type: gift_cards
 bundle: ecard
 label: Subject
 description: ''

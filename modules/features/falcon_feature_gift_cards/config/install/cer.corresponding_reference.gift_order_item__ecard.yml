@@ -9,5 +9,5 @@ second_field: field_card
 bundles:
   commerce_order_item:
     - gift
-  letters:
+  gift_cards:
     - ecard

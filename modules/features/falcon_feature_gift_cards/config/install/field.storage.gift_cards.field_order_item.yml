@@ -2,12 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - commerce_order
     - eck
-id: letters.field_status
-field_name: field_status
-entity_type: letters
-type: boolean
-settings: {  }
+id: gift_cards.field_order_item
+field_name: field_order_item
+entity_type: gift_cards
+type: entity_reference
+settings:
+  target_type: commerce_order_item
 module: core
 locked: false
 cardinality: 1

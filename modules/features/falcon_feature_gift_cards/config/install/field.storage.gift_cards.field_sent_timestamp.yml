@@ -3,13 +3,12 @@ status: true
 dependencies:
   module:
     - eck
-    - text
-id: letters.field_message
-field_name: field_message
-entity_type: letters
-type: text_long
+id: gift_cards.field_sent_timestamp
+field_name: field_sent_timestamp
+entity_type: gift_cards
+type: timestamp
 settings: {  }
-module: text
+module: core
 locked: false
 cardinality: 1
 translatable: true

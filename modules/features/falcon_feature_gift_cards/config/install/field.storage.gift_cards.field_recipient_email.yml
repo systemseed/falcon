@@ -3,9 +3,9 @@ status: true
 dependencies:
   module:
     - eck
-id: letters.field_recipient_email
+id: gift_cards.field_recipient_email
 field_name: field_recipient_email
-entity_type: letters
+entity_type: gift_cards
 type: email
 settings: {  }
 module: core

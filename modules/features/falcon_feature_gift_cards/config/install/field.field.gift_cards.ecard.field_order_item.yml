@@ -3,12 +3,11 @@ status: true
 dependencies:
   config:
     - commerce_order.commerce_order_item_type.gift
-    - commerce_order.commerce_order_item_type.gifts_bundle
-    - eck.eck_type.letters.ecard
-    - field.storage.letters.field_order_item
-id: letters.ecard.field_order_item
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_order_item
+id: gift_cards.ecard.field_order_item
 field_name: field_order_item
-entity_type: letters
+entity_type: gift_cards
 bundle: ecard
 label: 'Order item'
 description: ''
@@ -21,9 +20,8 @@ settings:
   handler_settings:
     target_bundles:
       gift: gift
-      gifts_bundle: gifts_bundle
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: gift
+    auto_create_bundle: ''
 field_type: entity_reference
