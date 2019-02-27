@@ -8,6 +8,8 @@
 /**
  * Implements hook_order_checkout_prepare_alter().
  *
+ * Creating ecard entities and prepare post data to create an order.
+ *
  * @param array $data
  *   Array of sent data to commerce/order/create.
  *
@@ -25,9 +27,11 @@ function falcon_gift_ecards_order_checkout_prepare_alter(array &$data) {
       $entityData['type'] = 'ecard';
 
       try {
+        // Creating ecard entity.
         $entity = $storage->create($entityData);
         $entity->save();
 
+        // Preparing post data to create an order.
         $data['order']['order_items'][$key]['field_card'] = $entity->id();
       }
       catch (Exception $e) {
@@ -41,7 +45,7 @@ function falcon_gift_ecards_order_checkout_prepare_alter(array &$data) {
 /**
  * Implements hook_mail().
  *
- * Captures the outgoing mail and sets appropriate message body and headers.
+ * Captures the outgoing mail ecard and sets appropriate message body and headers.
  */
 function falcon_gift_ecards_mail($key, &$message, $params) {
   switch ($key) {
@@ -54,6 +58,5 @@ function falcon_gift_ecards_mail($key, &$message, $params) {
       $message['from'] = $params['from'];
       $message['subject'] = $params['subject'];
       $message['body'][] = $params['body'];
-
   }
 }

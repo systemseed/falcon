@@ -74,7 +74,7 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
         if (!empty($card_delivery) && $card_delivery[0]['value'] === 'email') {
           $field_cards = $item->get('field_card')->getValue();
 
-          // Send ecards for compleated order.
+          // Send ecards for completed order.
           foreach ($field_cards as $field_card) {
             $card = $this->storage->load($field_card['target_id']);
             if (!empty($card) &&
