@@ -24,3 +24,5 @@ Follow instructions in :doc:`install` section.
    payments
    environment
    content
+   metatags
+   version_releases
