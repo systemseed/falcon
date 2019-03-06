@@ -4,7 +4,7 @@ namespace Drupal\falcon_gift_ecards\EventSubscriber;
 
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\falcon_gift_ecards\MailSenderInterface;
+use Drupal\falcon_gift_ecards\MailSender;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
@@ -24,7 +24,7 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
   /**
    * Mail sender.
    *
-   * @var \Drupal\falcon_gift_ecards\MailSenderInterface
+   * @var \Drupal\falcon_gift_ecards\MailSender
    */
   protected $mailSender;
 
@@ -38,7 +38,7 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
   /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MailSenderInterface $mail_sender) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MailSender $mail_sender) {
     $this->mailSender = $mail_sender;
     $this->entityTypeManager = $entity_type_manager;
     $this->storage = $entity_type_manager->getStorage('gift_cards');
