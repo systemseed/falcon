@@ -25,4 +25,3 @@ Follow instructions in :doc:`install` section.
    environment
    content
    metatags
-   version_releases

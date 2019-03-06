@@ -43,3 +43,25 @@ There are two ways to place new categories and items on the dashboard:
    `Config menu link <https://www.drupal.org/project/menu_link_config>`_ module.
    Preferred option for Falcon features.
 #. Add normal menu items (content level) and flush cache.
+
+
+Version releases
+----------------
+
+Create new release
+~~~~~~~~~~~~~~~~~~
+
+You can read official Github `instruction <https://help.github.com/en/articles/creating-releases>`_ for more info how to create releases.
+
+Requirements
+~~~~~~~~~~~~
+- New release should be based on master branch.
+- New release tag should look like "1.0.0".
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+- MAJOR version when you make incompatible API changes.
+- MINOR version when you add functionality in a backwards-compatible manner.
+- PATCH version when you make backwards-compatible bug fixes.
+
+You can read `documentation <https://semver.org/>`_ for more info about version standardization.
