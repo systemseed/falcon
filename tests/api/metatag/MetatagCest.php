@@ -2,8 +2,6 @@
 
 namespace falcon_feature_metatag;
 
-use Codeception\Util\HttpCode;
-
 /**
  * Class MetatagCest.
  *
