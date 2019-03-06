@@ -84,10 +84,9 @@ class ImageItemNormalizer extends ContentEntityNormalizer {
     $request = empty($context['request']) ? NULL : $context['request'];
     $consumer = $this->consumerNegotiator->negotiateFromRequest($request);
 
-    // Bail-out if no consumer is found.
+    // If consumer not found return empty array.
     if (!$consumer) {
-      $access = $entity->access('view', $context['account'], TRUE);
-      return $access;
+      return [];
     }
 
     // Prepare some utils.
