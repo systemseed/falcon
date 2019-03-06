@@ -1,0 +1,25 @@
+services:
+  rest_entity_recursive.encoder.json_recursive:
+    class: Drupal\rest_entity_recursive\Encoder\JsonRecursiveEncoder
+    tags:
+      - { name: encoder, priority: 10, format: json_recursive }
+  rest_entity_recursive.normalizer.content:
+    class: Drupal\rest_entity_recursive\Normalizer\ContentEntityNormalizer
+    tags:
+      - { name: normalizer, priority: 9 }
+  rest_entity_recursive.normalizer.reference:
+    class: Drupal\rest_entity_recursive\Normalizer\ReferenceItemNormalizer
+    arguments: ['@entity.repository']
+    tags:
+      - { name: normalizer, priority: 10 }
+  rest_entity_recursive.normalizer.image:
+    class: Drupal\rest_entity_recursive\Normalizer\ImageItemNormalizer
+    arguments:
+      - '@consumer.negotiator'
+      - '@consumer_image_styles.image_styles_provider'
+    tags:
+      - { name: normalizer, priority: 10 }
+  rest_entity_recursive.normalizer.paragraph:
+    class: Drupal\rest_entity_recursive\Normalizer\ParagraphItemNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
