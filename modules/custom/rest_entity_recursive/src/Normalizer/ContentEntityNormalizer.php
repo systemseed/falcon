@@ -43,8 +43,18 @@ class ContentEntityNormalizer extends NormalizerBase {
       $context['current_depth'] = 0;
 
       // Get max_depth from request.
-      $requestMaxDepth = (int) $context['request']->query->get('max_depth');
-      $context['max_depth'] = $requestMaxDepth ? $requestMaxDepth : $this->defaultMaxDepth;
+      $requestMaxDepth = $context['request']->query->get('max_depth');
+
+      // Set max_depth in context.
+      if ($requestMaxDepth === "0") {
+        $context['max_depth'] = 0;
+      }
+      elseif ((int) $requestMaxDepth > 0) {
+        $context['max_depth'] = (int) $requestMaxDepth;
+      }
+      else {
+        $context['max_depth'] = $this->defaultMaxDepth;
+      }
 
       // Set root entity in context.
       $context['root_parent_entity'] = ['id' => $entity->id(), 'type' => $entity->getEntityTypeId()];
@@ -52,6 +62,10 @@ class ContentEntityNormalizer extends NormalizerBase {
 
     $field_items = TypedDataInternalPropertiesHelper::getNonInternalProperties($entity->getTypedData());
     foreach ($field_items as $field) {
+      // Continue if the current user does not have access to view this field.
+      if (!$field->access('view', NULL)) {
+        continue;
+      }
       $normalized[$field->getName()] = $this->serializer->normalize($field, $format, $context);
     }
 
