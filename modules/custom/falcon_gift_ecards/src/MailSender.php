@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  *
  * @package Drupal\falcon_gift_ecards
  */
-class MailSender implements MailSenderInterface {
+class MailSender {
 
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
@@ -91,52 +91,59 @@ class MailSender implements MailSenderInterface {
       return FALSE;
     }
 
-    $to = $ecardItem->get('field_recipient_email')->value;
+    try {
 
-    if (empty($to)) {
-      return FALSE;
+      $to = $ecardItem->get('field_recipient_email')->value;
+
+      if (empty($to)) {
+        return FALSE;
+      }
+      $orderItemId = $ecardItem->get('field_order_item')->getValue();
+
+      if (empty($orderItemId)) {
+        return FALSE;
+      }
+      $orderItemId = $orderItemId[0]['target_id'];
+
+      $orderItem = $this->entityTypeManager
+        ->getStorage('commerce_order_item')
+        ->load($orderItemId);
+
+      if (empty($orderItem)) {
+        return FALSE;
+      }
+
+      $order = $orderItem->getOrder();
+
+      if (empty($order) || $order->getState()->getOriginalId() !== 'completed') {
+        return FALSE;
+      }
+
+      $params = [
+        'headers' => [
+          'Content-Type' => 'text/html',
+        ],
+        'from' => $this->configFactory->get('system.site')->get('mail'),
+        'subject' => $ecardItem->get('field_subject')->getValue()[0]['value'],
+        'body' => $ecardItem->get('field_message')->getValue()[0]['value'],
+      ];
+
+      $langcode = $this->languageManager->getDefaultLanguage()->getId();
+
+      $message = $this->pluginManagerMail->mail('falcon_gift_ecards', 'ecard_mail', $to, $langcode, $params, NULL, TRUE);
+      if ($message['result']) {
+        $ecardItem->set('field_status', TRUE);
+        $ecardItem->set('field_sent_timestamp', \Drupal::time()->getRequestTime());
+        $ecardItem->save();
+
+        $this->logger->info('Gift E-Card @id has been sent to @mail.', ['@id' => $ecardItem->id(), '@mail' => $to]);
+
+        return TRUE;
+      }
+
     }
-    $orderItemId = $ecardItem->get('field_order_item')->getValue();
-
-    if (empty($orderItemId)) {
-      return FALSE;
-    }
-    $orderItemId = $orderItemId[0]['target_id'];
-
-    $orderItem = $this->entityTypeManager
-      ->getStorage('commerce_order_item')
-      ->load($orderItemId);
-
-    if (empty($orderItem)) {
-      return FALSE;
-    }
-
-    $order = $orderItem->getOrder();
-
-    if (empty($order) || $order->getState()->getOriginalId() !== 'completed') {
-      return FALSE;
-    }
-
-    $params = [
-      'headers' => [
-        'Content-Type' => 'text/html',
-      ],
-      'from' => $this->configFactory->get('system.site')->get('mail'),
-      'subject' => $ecardItem->get('field_subject')->getValue()[0]['value'],
-      'body' => $ecardItem->get('field_message')->getValue()[0]['value'],
-    ];
-
-    $langcode = $this->languageManager->getDefaultLanguage()->getId();
-
-    $message = $this->pluginManagerMail->mail('falcon_gift_ecards', 'ecard_mail', $to, $langcode, $params, NULL, TRUE);
-    if ($message['result']) {
-      $ecardItem->set('field_status', TRUE);
-      $ecardItem->set('field_sent_timestamp', \Drupal::time()->getRequestTime());
-      $ecardItem->save();
-
-      $this->logger->info('Gift E-Card @id has been sent to @mail.', ['@id' => $ecardItem->id(), '@mail' => $to]);
-
-      return TRUE;
+    catch (\Exception $e) {
+      $this->logger->alert('Error during send ecard message. Error message: ' . $e->getMessage());
     }
 
     return FALSE;
