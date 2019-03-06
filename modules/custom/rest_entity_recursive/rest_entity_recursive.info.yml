@@ -1,9 +1,7 @@
 name: REST Entity Recursive
-description: Adds format to REST endpoints. The request with the format includes entity with whole references entities.
-package: REST
+description: A new "json_recursive" REST format exposes all fields and referenced entities by default.
+package: Web services
 type: module
 core: 8.x
 dependencies:
-  - consumer_image_styles
-  - paragraphs:paragraphs
-  - rest
+  - drupal:rest
