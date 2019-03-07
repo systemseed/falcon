@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.gift
+    - field.storage.commerce_product.field_ecard_status
+id: commerce_product.gift.field_ecard_status
+field_name: field_ecard_status
+entity_type: commerce_product
+bundle: gift
+label: Active
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

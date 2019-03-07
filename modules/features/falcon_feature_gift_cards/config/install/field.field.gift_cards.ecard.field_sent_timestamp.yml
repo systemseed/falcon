@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_sent_timestamp
+id: gift_cards.ecard.field_sent_timestamp
+field_name: field_sent_timestamp
+entity_type: gift_cards
+bundle: ecard
+label: 'Sent timestamp'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1550222386
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

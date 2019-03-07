@@ -1,0 +1,79 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.gift_cards.ecard
+    - field.field.gift_cards.ecard.field_message
+    - field.field.gift_cards.ecard.field_order_item
+    - field.field.gift_cards.ecard.field_recipient_email
+    - field.field.gift_cards.ecard.field_sent_timestamp
+    - field.field.gift_cards.ecard.field_status
+    - field.field.gift_cards.ecard.field_subject
+  module:
+    - text
+id: gift_cards.ecard.default
+targetEntityType: gift_cards
+bundle: ecard
+mode: default
+content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 0
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  field_message:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_order_item:
+    weight: 8
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_recipient_email:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_sent_timestamp:
+    weight: 7
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    type: timestamp
+    region: content
+  field_status:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_subject:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

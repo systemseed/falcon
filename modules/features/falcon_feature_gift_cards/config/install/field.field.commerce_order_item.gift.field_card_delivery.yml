@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.gift
+    - field.storage.commerce_order_item.field_card_delivery
+  module:
+    - options
+id: commerce_order_item.gift.field_card_delivery
+field_name: field_card_delivery
+entity_type: commerce_order_item
+bundle: gift
+label: 'Card delivery'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: postal
+default_value_callback: ''
+settings: {  }
+field_type: list_string

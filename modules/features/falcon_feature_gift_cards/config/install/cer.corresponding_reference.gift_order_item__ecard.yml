@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: gift_order_item__ecard
+label: 'Gift order item - ecard'
+enabled: true
+first_field: field_order_item
+second_field: field_card
+bundles:
+  commerce_order_item:
+    - gift
+  gift_cards:
+    - ecard

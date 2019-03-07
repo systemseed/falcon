@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.gift_cards.ecard
+    - field.storage.gift_cards.field_subject
+id: gift_cards.ecard.field_subject
+field_name: field_subject
+entity_type: gift_cards
+bundle: ecard
+label: Subject
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

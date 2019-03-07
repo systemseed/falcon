@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: gift_cards
+label: 'Gift Cards'
+created: true
+changed: false
+uid: false
+title: false

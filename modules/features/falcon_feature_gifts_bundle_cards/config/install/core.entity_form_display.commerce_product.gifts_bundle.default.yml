@@ -3,19 +3,61 @@ status: true
 dependencies:
   config:
     - commerce_product.commerce_product_type.gifts_bundle
+    - field.field.commerce_product.gifts_bundle.field_ecard_description
+    - field.field.commerce_product.gifts_bundle.field_ecard_media_image
+    - field.field.commerce_product.gifts_bundle.field_ecard_status
     - field.field.commerce_product.gifts_bundle.field_gift_category
     - field.field.commerce_product.gifts_bundle.field_gift_description
     - field.field.commerce_product.gifts_bundle.field_gift_media_image
     - field.field.commerce_product.gifts_bundle.field_gifts
     - field.field.commerce_product.gifts_bundle.field_metatags
+    - field.field.commerce_product.gifts_bundle.field_postal_card_description
+    - field.field.commerce_product.gifts_bundle.field_postal_card_media_image
+    - field.field.commerce_product.gifts_bundle.field_postal_card_status
     - field.field.commerce_product.gifts_bundle.stores
     - field.field.commerce_product.gifts_bundle.variations
   module:
     - commerce
+    - field_group
+    - inline_entity_form
     - media_library
     - metatag
     - path
     - text
+third_party_settings:
+  field_group:
+    group_ecard:
+      children:
+        - field_ecard_status
+        - field_ecard_media_image
+        - field_ecard_description
+      parent_name: ''
+      weight: 8
+      format_type: fieldset
+      format_settings:
+        label: E-Card
+        description: 'Customise e-card preview for this gifts bundle.'
+        required_fields: true
+        id: ''
+        classes: ''
+      label: E-Card
+      region: content
+    group_postal_card:
+      children:
+        - field_postal_card_status
+        - field_postal_card_media_image
+        - field_postal_card_description
+      parent_name: ''
+      weight: 7
+      format_type: fieldset
+      format_settings:
+        label: 'Postal Card'
+        description: 'Customise postal card preview for this gifts bundle.'
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Postal Card'
+      region: content
 id: commerce_product.gifts_bundle.default
 targetEntityType: commerce_product
 bundle: gifts_bundle
@@ -23,10 +65,31 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 8
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_ecard_description:
+    weight: 16
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_ecard_media_image:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_ecard_status:
+    weight: 14
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_gift_category:
     weight: 2
     settings: {  }
@@ -57,14 +120,35 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_metatags:
-    weight: 9
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
+  field_postal_card_description:
+    weight: 17
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_postal_card_media_image:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_postal_card_status:
+    weight: 15
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   path:
     type: path
-    weight: 10
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -72,7 +156,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 13
     region: content
     third_party_settings: {  }
   stores:
@@ -95,7 +179,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 9
     region: content
     settings:
       match_operator: CONTAINS

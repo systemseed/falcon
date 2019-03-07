@@ -1,0 +1,12 @@
+services:
+  falcon_gift_ecards.mail_sender:
+    class: Drupal\falcon_gift_ecards\MailSender
+    arguments: ['@entity_type.manager', '@plugin.manager.mail', '@language_manager', '@config.factory', '@logger.channel.falcon_gift_ecards']
+  logger.channel.falcon_gift_ecards:
+    parent: logger.channel_base
+    arguments: ['falcon_gift_ecards']
+  falcon_order_completed_subscriber:
+    class: \Drupal\falcon_gift_ecards\EventSubscriber\FalconOrderCompletedSubscriber
+    arguments: ['@entity_type.manager', '@falcon_gift_ecards.mail_sender', '@logger.channel.falcon_gift_ecards']
+    tags:
+      - { name: 'event_subscriber' }
