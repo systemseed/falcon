@@ -15,6 +15,8 @@ class RestEntityRecursiveCest {
 
   private $entityTypeManager;
 
+  private $redirect;
+
   /**
    * Configuring DB before run test.
    *
@@ -43,7 +45,17 @@ class RestEntityRecursiveCest {
       'path' => [['alias' => '/test-node']]
     ]);
     $this->article->save();
-    drupal_flush_all_caches();
+
+    $this->redirect = $this->entityTypeManager->getStorage('redirect')->create([
+      'redirect_source' => 'test-redirect',
+      'redirect_redirect' => 'internal:/test-node',
+      'language' => 'und',
+      'status_code' => '301',
+    ]);
+    $this->redirect->save();
+
+    // Solves bug with many redirects.
+    // drupal_flush_all_caches();
 
   }
 
@@ -53,6 +65,28 @@ class RestEntityRecursiveCest {
   public function _after() {
     $this->entityTypeManager->getStorage('node')->delete([$this->article]);
     $this->entityTypeManager->getStorage('taxonomy_term')->delete([$this->category]);
+    $this->entityTypeManager->getStorage('redirect')->delete([$this->redirect]);
+  }
+
+  /**
+   * Checks location in redirect response.
+   *
+   * @param \ApiTester $I
+   * @group additional
+   */
+  public function testRedirectJsonRecursiveFormat(\ApiTester $I) {
+    $I->amGoingTo('Get request with redirect to REST endpoint with json_recursive format and check location in response.');
+    $I->haveHttpHeader('Content-Type', 'application/json');
+
+    $I->stopFollowingRedirects();
+
+    $I->sendGET('/test-redirect?_format=json_recursive');
+
+    $I->seeResponseCodeIs(301);
+
+    $location = $I->grabHttpHeader('Location');
+    $I->assertContains('/test-node', $location);
+
   }
 
   /**
@@ -61,7 +95,7 @@ class RestEntityRecursiveCest {
    * @param \ApiTester $I
    * @group additional
    */
-  public function ReferencesEntitiesNotInResponse(\ApiTester $I) {
+  public function testJsonFormat(\ApiTester $I) {
     $I->amGoingTo('Get request to REST endpoint with json format and check exists reference entity fields in response');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
@@ -80,7 +114,7 @@ class RestEntityRecursiveCest {
    * @param \ApiTester $I
    * @group additional
    */
-  public function ReferencesEntitiesInResponse(\ApiTester $I) {
+  public function testJsonRecursiveFormat(\ApiTester $I) {
     $I->amGoingTo('Get request to REST endpoint with json_recursive format and check exists reference entity fields in response');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
