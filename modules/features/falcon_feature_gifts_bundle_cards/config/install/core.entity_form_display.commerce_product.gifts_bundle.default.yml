@@ -19,6 +19,7 @@ dependencies:
   module:
     - commerce
     - field_group
+    - inline_entity_form
     - media_library
     - metatag
     - path
@@ -34,12 +35,12 @@ third_party_settings:
       weight: 8
       format_type: fieldset
       format_settings:
-        label: Ecard
-        description: ''
+        label: E-Card
+        description: 'Customise e-card preview for this gifts bundle.'
         required_fields: true
         id: ''
         classes: ''
-      label: Ecard
+      label: E-Card
       region: content
     group_postal_card:
       children:
@@ -50,11 +51,12 @@ third_party_settings:
       weight: 7
       format_type: fieldset
       format_settings:
+        label: 'Postal Card'
+        description: 'Customise postal card preview for this gifts bundle.'
+        required_fields: true
         id: ''
         classes: ''
-        description: ''
-        required_fields: true
-      label: 'Postal card'
+      label: 'Postal Card'
       region: content
 id: commerce_product.gifts_bundle.default
 targetEntityType: commerce_product

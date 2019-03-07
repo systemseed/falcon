@@ -34,11 +34,12 @@ third_party_settings:
       weight: 15
       format_type: fieldset
       format_settings:
+        label: E-card
+        description: 'Customise e-card preview for this gift.'
+        required_fields: true
         id: ''
         classes: ''
-        description: ''
-        required_fields: true
-      label: ECard
+      label: E-card
       region: content
     group_postal_card:
       children:
@@ -49,10 +50,11 @@ third_party_settings:
       weight: 14
       format_type: fieldset
       format_settings:
+        label: 'Postal Card'
+        description: 'Customise postal card preview for this gift.'
+        required_fields: true
         id: ''
         classes: ''
-        description: ''
-        required_fields: true
       label: 'Postal Card'
       region: content
 id: commerce_product.gift.default

@@ -10,7 +10,7 @@ id: commerce_product.gift.field_ecard_description
 field_name: field_ecard_description
 entity_type: commerce_product
 bundle: gift
-label: 'ECard description'
+label: Body
 description: ''
 required: false
 translatable: false

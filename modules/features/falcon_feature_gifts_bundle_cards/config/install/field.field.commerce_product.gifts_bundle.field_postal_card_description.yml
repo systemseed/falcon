@@ -10,7 +10,7 @@ id: commerce_product.gifts_bundle.field_postal_card_description
 field_name: field_postal_card_description
 entity_type: commerce_product
 bundle: gifts_bundle
-label: 'Postal Card description'
+label: Body
 description: ''
 required: false
 translatable: true

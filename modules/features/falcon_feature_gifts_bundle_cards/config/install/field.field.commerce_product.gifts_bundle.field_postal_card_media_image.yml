@@ -9,7 +9,7 @@ id: commerce_product.gifts_bundle.field_postal_card_media_image
 field_name: field_postal_card_media_image
 entity_type: commerce_product
 bundle: gifts_bundle
-label: 'Postal Card Image'
+label: Image
 description: ''
 required: false
 translatable: true
