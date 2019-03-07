@@ -44,6 +44,7 @@ services:
       - ../:/app:cached
 
 ## Uncomment if you want to auto-build the docs locally in docs/_build/html
+# Can be accessed as http://localhost:63342/falcon/docs/_build/html/index.html
 #  sphinxdocs:
 #    image: nickjer/docker-sphinx:latest
 #    container_name: "${PROJECT_NAME}_sphinxdocs"
