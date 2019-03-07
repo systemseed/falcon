@@ -61,6 +61,12 @@ class ContentEntityNormalizer extends NormalizerBase {
     }
 
     $field_items = TypedDataInternalPropertiesHelper::getNonInternalProperties($entity->getTypedData());
+
+    // Other normalizers can pass array of fields to exclude from processing.
+    if (isset($context['settings'][$entity->getEntityTypeId()]['exclude_fields'])) {
+      $excluded_fields = $context['settings'][$entity->getEntityTypeId()]['exclude_fields'];
+      $field_items = array_diff_key($field_items, array_flip($excluded_fields));
+    }
     foreach ($field_items as $field) {
       // Continue if the current user does not have access to view this field.
       if (!$field->access('view', NULL)) {
