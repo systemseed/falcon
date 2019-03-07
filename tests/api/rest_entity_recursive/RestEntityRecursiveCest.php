@@ -85,7 +85,7 @@ class RestEntityRecursiveCest {
     $I->seeResponseCodeIs(301);
 
     $location = $I->grabHttpHeader('Location');
-    $I->assertContains('/test-node', $location);
+    $I->assertContains('/node/' . $this->article->id(), $location);
 
   }
 
