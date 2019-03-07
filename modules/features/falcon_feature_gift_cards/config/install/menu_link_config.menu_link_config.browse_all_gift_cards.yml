@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: browse_all_gift_cards
+title: 'Browse all Gift Cards'
+route_name: eck.entity.gift_cards.list
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:gifts'
+weight: 0
+description: 'Overview all cards of gift.'
