@@ -1,16 +1,16 @@
 langcode: en
 status: true
 dependencies: {  }
-id: dashboard_donations_category
-title: Donations
-route_name: entity.commerce_order.collection
+id: gifts
+title: Gifts
+route_name: entity.commerce_product.collection
 route_parameters: {  }
 options:
   query:
-    type: donation
+    type: gift
 expanded: false
 menu_name: falcon-dashboard
 enabled: true
 parent: falcon.dashboard
-weight: -45
-description: 'Manage donations.'
+weight: -46
+description: 'Manage gifts.'
