@@ -33,7 +33,7 @@ class ReferenceItemNormalizer extends EntityReferenceFieldItemNormalizer {
     $entity = $field_item->get('entity')->getValue();
 
     // Other normalizers can disable recursive loading of certain entity types.
-    if (!empty($context['settings'][$entity->getEntityTypeId()]['disable'])) {
+    if (empty($entity) || !empty($context['settings'][$entity->getEntityTypeId()]['disable'])) {
       return parent::normalize($field_item, $format, $context);
     }
 
