@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - rest_entity_recursive
+    - serialization
+    - user
+id: entity.node
+plugin_id: 'entity:node'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json_recursive
+    - json
+  authentication:
+    - cookie
