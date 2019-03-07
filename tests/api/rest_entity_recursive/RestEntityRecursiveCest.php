@@ -43,6 +43,7 @@ class RestEntityRecursiveCest {
       'path' => [['alias' => '/test-node']]
     ]);
     $this->article->save();
+    drupal_flush_all_caches();
 
   }
 
