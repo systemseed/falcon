@@ -22,7 +22,6 @@ class ReferenceItemNormalizer extends EntityReferenceFieldItemNormalizer {
    * {@inheritdoc}
    */
   public function normalize($field_item, $format = NULL, array $context = []) {
-
     // Check current depth. Not include entity if it is max depth.
     if ($context['current_depth'] === $context['max_depth']) {
       return parent::normalize($field_item, $format, $context);
@@ -30,7 +29,13 @@ class ReferenceItemNormalizer extends EntityReferenceFieldItemNormalizer {
     // Increase current depth.
     $context['current_depth']++;
 
+    /* @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $field_item->get('entity')->getValue();
+
+    // Other normalizers can disable recursive loading of certain entity types.
+    if (!empty($context['settings'][$entity->getEntityTypeId()]['disable'])) {
+      return parent::normalize($field_item, $format, $context);
+    }
 
     return $this->serializer->normalize($entity, $format, $context);
   }

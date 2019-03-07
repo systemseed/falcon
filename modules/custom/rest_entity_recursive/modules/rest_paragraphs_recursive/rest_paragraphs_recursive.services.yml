@@ -1,0 +1,9 @@
+services:
+  rest_paragraphs_recursive.normalizer.paragraphs:
+    class: Drupal\rest_paragraphs_recursive\Normalizer\ParagraphsNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
+  rest_paragraphs_recursive.normalizer.paragraphs_from_library:
+    class: Drupal\rest_paragraphs_recursive\Normalizer\ParagraphsFromLibraryNormalizer
+    tags:
+      - { name: normalizer, priority: 11 }
