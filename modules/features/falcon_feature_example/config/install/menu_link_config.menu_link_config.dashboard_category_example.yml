@@ -10,5 +10,5 @@ expanded: false
 menu_name: falcon-dashboard
 enabled: true
 parent: falcon.dashboard
-weight: 0
+weight: -47
 description: 'Example menu category.'

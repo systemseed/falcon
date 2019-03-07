@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: browse_all_gifts
+title: 'Browse all Gifts'
+route_name: entity.commerce_product.collection
+route_parameters: {  }
+options:
+  query:
+    type: gift
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:gifts'
+weight: -48
+description: 'Overview and search products of Gift.'
