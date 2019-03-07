@@ -45,13 +45,8 @@ There are two ways to place new categories and items on the dashboard:
 #. Add normal menu items (content level) and flush cache.
 
 
-Version releases
+Creating releases
 ----------------
-
-Create new release
-~~~~~~~~~~~~~~~~~~
-
-You can read official Github `instruction <https://help.github.com/en/articles/creating-releases>`_ for more info how to create releases.
 
 Requirements
 ~~~~~~~~~~~~
@@ -65,3 +60,14 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 - PATCH version when you make backwards-compatible bug fixes.
 
 You can read `documentation <https://semver.org/>`_ for more info about version standardization.
+
+Create new release
+~~~~~~~~~~~~~~~~~~
+1. Make sure you switched to the master branch and have the latest version of it.
+2. Create a new tag ``git tag -a 1.1.0 -m "Version 1.1.0"``
+3. Push a new tag to github.com ``git push origin 1.1.0``
+4. Go to `Releases page <https://github.com/systemseed/falcon/releases>`_ on github and Draft a new release
+5. Choose tag version, add Release title (e.g. "1.1.0 (March 7, 2019)"), mention main changes since last release in Description (e.g. `1.1.0 <https://github.com/systemseed/falcon/releases/tag/1.1.0>`_) and publish the release.
+
+
+You can read official Github `instruction <https://help.github.com/en/articles/creating-releases>`_ for more info how to create releases.
