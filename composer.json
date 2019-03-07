@@ -144,6 +144,7 @@
     "drupal/queue_ui": "^2.0",
     "drupal/redirect": "^1.2",
     "drupal/rest_absolute_urls": "^1.0@beta",
+    "drupal/rest_entity_recursive": "1.x-dev",
     "drupal/restui": "^1.15",
     "drupal/scheduler": "^1.0",
     "drupal/smtp": "^1.0@beta",
