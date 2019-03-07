@@ -55,23 +55,6 @@ class RestEntityRecursiveCest {
   }
 
   /**
-   * Checks reference entity in response via default REST endpoint with json_responsive format.
-   *
-   * @param \ApiTester $I
-   * @group additional
-   */
-  public function ReferencesEntitiesInResponse(\ApiTester $I) {
-    $I->amGoingTo('Get request to REST endpoint with json_recursive format and check exists reference entity fields in response');
-    $I->haveHttpHeader('Content-Type', 'application/json');
-
-    $I->sendGET('/test-node?_format=json_recursive');
-
-    $I->expectTo('See category name in response.');
-    $I->seeResponseContainsJson(['name' => [['value' => 'Test category']]]);
-
-  }
-
-  /**
    * Checks reference entity not in response via default REST endpoint.
    *
    * @param \ApiTester $I
@@ -87,6 +70,23 @@ class RestEntityRecursiveCest {
 
     $I->expectTo('Don`t see category name in response.');
     $I->dontSeeResponseContainsJson(['name' => [['value' => 'Test category']]]);
+
+  }
+
+  /**
+   * Checks reference entity in response via default REST endpoint with json_responsive format.
+   *
+   * @param \ApiTester $I
+   * @group additional
+   */
+  public function ReferencesEntitiesInResponse(\ApiTester $I) {
+    $I->amGoingTo('Get request to REST endpoint with json_recursive format and check exists reference entity fields in response');
+    $I->haveHttpHeader('Content-Type', 'application/json');
+
+    $I->sendGET('/test-node?_format=json_recursive');
+
+    $I->expectTo('See category name in response.');
+    $I->seeResponseContainsJson(['name' => [['value' => 'Test category']]]);
 
   }
 
