@@ -4397,7 +4397,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/rest_entity_recursive",
-                "reference": "4dddc201c30ade74203a3f0a5da3fe264774ba3a"
+                "reference": "addba4ecf8cb4641c5ffea548013e99d30d3681c"
             },
             "require": {
                 "drupal/core": "*"
@@ -4413,7 +4413,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1552035485",
+                    "datestamp": "1552038784",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4447,7 +4447,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/rest_entity_recursive"
             },
-            "time": "2019-03-08T09:48:38+00:00"
+            "time": "2019-03-08T12:24:35+00:00"
         },
         {
             "name": "drupal/restui",
