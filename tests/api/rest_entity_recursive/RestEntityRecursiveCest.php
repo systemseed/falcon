@@ -74,6 +74,9 @@ class RestEntityRecursiveCest {
    * @group additional
    */
   public function testRedirectJsonRecursiveFormat(\ApiTester $I) {
+    // There is a ghost bug with infinite redirect immediately after
+    // an article is created in _before() method. Flush all caches to make sure
+    // Drupal is ready to handle requests.
     drupal_flush_all_caches();
 
     $I->amGoingTo('Get request with redirect to REST endpoint with json_recursive format and check location in response.');
