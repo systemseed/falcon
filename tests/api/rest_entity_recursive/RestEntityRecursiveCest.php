@@ -44,7 +44,8 @@ class RestEntityRecursiveCest {
       'title' => 'Test news',
       'status' => 1,
       'field_content_category' => $this->category,
-      'path' => [['alias' => '/test-node']]
+      'path' => [['alias' => '/test-node']],
+      'language' => 'und'
     ]);
     $this->article->save();
 
@@ -56,9 +57,6 @@ class RestEntityRecursiveCest {
     ]);
     $this->redirect->save();
 
-    // Solves bug with many redirects.
-    // drupal_flush_all_caches();
-
   }
 
   /**
@@ -68,6 +66,7 @@ class RestEntityRecursiveCest {
     $this->entityTypeManager->getStorage('node')->delete([$this->article]);
     $this->entityTypeManager->getStorage('taxonomy_term')->delete([$this->category]);
     $this->entityTypeManager->getStorage('redirect')->delete([$this->redirect]);
+
   }
 
   /**
@@ -76,6 +75,12 @@ class RestEntityRecursiveCest {
    * @param \ApiTester $I   * @group additional
    */
   public function testRedirectJsonRecursiveFormat(\ApiTester $I) {
+    \Drupal::cache('menu')->invalidateAll();
+    \Drupal::service('plugin.manager.menu.link')->rebuild();
+    \Drupal::service('plugin.manager.menu.contextual_link')->clearCachedDefinitions();
+    \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
+    \Drupal::service('plugin.manager.menu.local_action')->clearCachedDefinitions();
+
     $I->amGoingTo('Get request with redirect to REST endpoint with json_recursive format and check location in response.');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
@@ -86,7 +91,7 @@ class RestEntityRecursiveCest {
     $I->seeResponseCodeIs(301);
 
     $location = $I->grabHttpHeader('Location');
-    $I->assertContains('/node/' . $this->article->id(), $location);
+    $I->assertContains('/test-node', $location);
 
   }
 
