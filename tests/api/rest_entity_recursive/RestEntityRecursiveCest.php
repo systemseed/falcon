@@ -74,11 +74,6 @@ class RestEntityRecursiveCest {
    * @group additional
    */
   public function testRedirectJsonRecursiveFormat(\ApiTester $I) {
-//    \Drupal::cache('menu')->invalidateAll();
-//    \Drupal::service('plugin.manager.menu.link')->rebuild();
-//    \Drupal::service('plugin.manager.menu.contextual_link')->clearCachedDefinitions();
-//    \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
-//    \Drupal::service('plugin.manager.menu.local_action')->clearCachedDefinitions();
     drupal_flush_all_caches();
 
     $I->amGoingTo('Get request with redirect to REST endpoint with json_recursive format and check location in response.');
@@ -111,28 +106,6 @@ class RestEntityRecursiveCest {
 
     $I->expectTo('Don`t see category name in response.');
     $I->dontSeeResponseContainsJson(['name' => [['value' => 'Test category']]]);
-
-  }
-
-  /**
-   * Checks location in redirect response.
-   *
-   * @param \ApiTester $I
-   * @group additional
-   */
-  public function test2RedirectJsonRecursiveFormat(\ApiTester $I) {
-
-    $I->amGoingTo('Get request with redirect to REST endpoint with json_recursive format and check location in response.');
-    $I->haveHttpHeader('Content-Type', 'application/json');
-
-    $I->stopFollowingRedirects();
-
-    $I->sendGET('/test-redirect?_format=json_recursive');
-
-    $I->seeResponseCodeIs(301);
-
-    $location = $I->grabHttpHeader('Location');
-    $I->assertContains('/test-node', $location);
 
   }
 
