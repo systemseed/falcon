@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "564482021206c122026ddf53a9bc687e",
+    "content-hash": "6ba34c22eb84349d1a1248d16c8c8cee",
     "packages": [
         {
             "name": "apache/log4php",
@@ -4065,7 +4065,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Bring back actions menu": "https://www.drupal.org/files/issues/2018-03-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-10.patch"
+                    "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4390,6 +4390,64 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/rest_absolute_urls"
             }
+        },
+        {
+            "name": "drupal/rest_entity_recursive",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/rest_entity_recursive",
+                "reference": "addba4ecf8cb4641c5ffea548013e99d30d3681c"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "require-dev": {
+                "drupal/consumer_image_styles": "*",
+                "drupal/paragraphs": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1552038784",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Spleshka",
+                    "homepage": "https://www.drupal.org/user/810676"
+                },
+                {
+                    "name": "kalabro",
+                    "homepage": "https://www.drupal.org/user/1399638"
+                },
+                {
+                    "name": "pavel.bulat",
+                    "homepage": "https://www.drupal.org/user/3568596"
+                },
+                {
+                    "name": "skorzh",
+                    "homepage": "https://www.drupal.org/user/813560"
+                }
+            ],
+            "description": "A new \"json_recursive\" REST format exposes all fields and referenced entities by default.",
+            "homepage": "https://www.drupal.org/project/rest_entity_recursive",
+            "support": {
+                "source": "http://cgit.drupalcode.org/rest_entity_recursive"
+            },
+            "time": "2019-03-08T12:24:35+00:00"
         },
         {
             "name": "drupal/restui",
@@ -8404,6 +8462,7 @@
         "drupal/menu_link_config": 15,
         "drupal/paragraphs_browser": 20,
         "drupal/rest_absolute_urls": 10,
+        "drupal/rest_entity_recursive": 20,
         "drupal/smtp": 10,
         "drupal/ultimate_cron": 15,
         "drupal/config_distro": 15,
