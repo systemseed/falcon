@@ -8,12 +8,13 @@ dependencies:
   - cer
   - commerce
   - commerce_order
+  - commerce_price
   - commerce_product
   - eck
-  - falcon_gift_ecards
   - falcon_feature_commerce
   - falcon_feature_gifts
   - falcon_feature_media
+  - falcon_gift_ecards
   - field
   - field_group
   - inline_entity_form
@@ -23,3 +24,4 @@ dependencies:
   - options
   - path
   - text
+  - views

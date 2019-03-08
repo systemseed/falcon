@@ -103,12 +103,19 @@ content:
       placeholder: ''
     third_party_settings: {  }
   variations:
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
     weight: 6
     region: content
     settings:
+      form_mode: default
+      override_labels: true
+      label_singular: variation
+      label_plural: variations
+      allow_new: true
+      collapsible: false
+      collapsed: false
+      allow_existing: false
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      allow_duplicate: false
     third_party_settings: {  }
 hidden: {  }

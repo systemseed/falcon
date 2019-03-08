@@ -35,7 +35,7 @@ function falcon_gift_ecards_order_checkout_prepare_alter(array &$data) {
         $data['order']['order_items'][$key]['field_card'] = $entity->id();
       }
       catch (Exception $e) {
-        Drupal::logger('falcon_gift_ecards')->alert($e->getMessage());
+        Drupal::logger('falcon_gift_ecards')->alert('Can not create ecard entity. Error: ' . $e->getMessage());
       }
     }
   }
@@ -59,4 +59,5 @@ function falcon_gift_ecards_mail($key, &$message, $params) {
       $message['subject'] = $params['subject'];
       $message['body'][] = $params['body'];
   }
+
 }

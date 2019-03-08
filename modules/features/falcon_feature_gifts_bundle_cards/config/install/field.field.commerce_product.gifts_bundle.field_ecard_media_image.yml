@@ -9,7 +9,7 @@ id: commerce_product.gifts_bundle.field_ecard_media_image
 field_name: field_ecard_media_image
 entity_type: commerce_product
 bundle: gifts_bundle
-label: 'ECard Image'
+label: Image
 description: ''
 required: false
 translatable: true
