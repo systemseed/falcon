@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 namespace rest_entity_recursive;
@@ -72,7 +70,8 @@ class RestEntityRecursiveCest {
   /**
    * Checks location in redirect response.
    *
-   * @param \ApiTester $I   * @group additional
+   * @param \ApiTester $I
+   * @group additional
    */
   public function testRedirectJsonRecursiveFormat(\ApiTester $I) {
     // There is a ghost bug with infinite redirect immediately after
@@ -131,4 +130,3 @@ class RestEntityRecursiveCest {
   }
 
 }
->>>>>>> Added redirect test (first).
