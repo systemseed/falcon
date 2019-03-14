@@ -25,12 +25,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      from_library: from_library
-      cta_button_primary: cta_button_primary
-      section_items: section_items
-      cta_button_secondary: cta_button_secondary
-      text_heading: text_heading
+    target_bundles: null
     target_bundles_drag_drop:
       donate_money_handles_item:
         weight: 13

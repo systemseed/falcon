@@ -21,8 +21,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      item_image_link: item_image_link
+    target_bundles: null
     target_bundles_drag_drop:
       cta_button_primary:
         weight: 21

@@ -20,10 +20,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      donate_with_money_handles: donate_with_money_handles
-      hero_image_heading_subheading: hero_image_heading_subheading
-      from_library: from_library
+    target_bundles: null
     target_bundles_drag_drop:
       donate_money_handles_item:
         weight: 4
