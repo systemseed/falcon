@@ -2353,7 +2353,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.5",
-                    "datestamp": "1548546180",
+                    "datestamp": "1549103280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3562,7 +3562,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.24",
-                    "datestamp": "1545243863",
+                    "datestamp": "1550692499",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4000,7 +4000,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.5",
-                    "datestamp": "1541009695",
+                    "datestamp": "1550692525",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4397,7 +4397,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/rest_entity_recursive",
-                "reference": "837e201ede19d00c82f9bcbe0964e59b522b11af"
+                "reference": "5db8e67cfe78f0b5f933c90e0674c091dac50e69"
             },
             "require": {
                 "drupal/core": "*"
@@ -4413,7 +4413,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1552301885",
+                    "datestamp": "1552303384",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4447,7 +4447,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/rest_entity_recursive"
             },
-            "time": "2019-03-11T11:18:17+00:00"
+            "time": "2019-03-14T15:51:32+00:00"
         },
         {
             "name": "drupal/restui",
