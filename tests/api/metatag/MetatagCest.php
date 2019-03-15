@@ -90,7 +90,10 @@ class MetatagCest {
       $I->haveHttpHeader('X-Consumer-ID', $consumer->uuid());
     }
 
-    $I->sendGET('/jsonapi/node/news');
+    $path_prefix = \Drupal::config('jsonapi_extras.settings')
+      ->get('path_prefix');
+
+    $I->sendGET("/$path_prefix/node/news");
 
     $I->expectTo('See normalized metatags in response.');
     $I->seeResponseJsonMatchesJsonPath('$.data..attributes.metatag_normalized');

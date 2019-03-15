@@ -26,13 +26,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      item_chart: item_chart
-      item_icon_link: item_icon_link
-      item_infographics: item_infographics
-      item_timeline: item_timeline
-      item_card: item_card
-      item_card_custom: item_card_custom
+    target_bundles: null
     target_bundles_drag_drop:
       donate_money_handles_item:
         weight: 7

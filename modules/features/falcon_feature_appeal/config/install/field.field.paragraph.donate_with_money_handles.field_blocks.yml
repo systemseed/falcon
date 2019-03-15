@@ -21,8 +21,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      donate_money_handles_item: donate_money_handles_item
+    target_bundles: null
     target_bundles_drag_drop:
       donate_with_money_handles:
         weight: 2

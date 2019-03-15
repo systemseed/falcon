@@ -24,11 +24,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      cta_button_primary: cta_button_primary
-      section_items: section_items
-      cta_button_secondary: cta_button_secondary
-      text_heading: text_heading
+    target_bundles: null
     target_bundles_drag_drop:
       section_primary:
         weight: 6
