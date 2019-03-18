@@ -25,17 +25,27 @@ class StripeCest {
   /**
    * @var object
    */
-  protected $appeal;
+  private $appeal;
+
+  /**
+   * @var
+   */
+  private $entityTypeManager;
+
+  /**
+   * @var
+   */
+  private $orderId;
 
   /**
    * @var string
    */
-  protected $stripeSecretKey = '';
+  private $stripeSecretKey = '';
 
   /**
    * @var array
    */
-  protected $post = [
+  private $post = [
     'order' => [
       'type' => 'donation',
       'field_appeal' => '',
@@ -110,10 +120,10 @@ class StripeCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _before() {
-    $entity_type_manager = \Drupal::entityTypeManager();
+    $this->entityTypeManager = \Drupal::entityTypeManager();
 
     // Create appeal.
-    $this->appeal = $entity_type_manager->getStorage('node')->create([
+    $this->appeal = $this->entityTypeManager->getStorage('node')->create([
       'uid' => 1,
       'type' => 'appeal',
       'title' => 'Test appeal',
@@ -134,8 +144,13 @@ class StripeCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _after() {
-    $entity_type_manager = \Drupal::entityTypeManager();
-    $entity_type_manager->getStorage('node')->delete([$this->appeal]);
+    $this->orderId = NULL;
+    $this->entityTypeManager->getStorage('node')->delete([$this->appeal]);
+
+    if (!empty($this->orderId)) {
+      $this->entityTypeManager->getStorage('commerce_order')
+        ->delete([$this->entityTypeManager->getStorage('commerce_order')->load($this->orderId)]);
+    }
   }
 
   /**
@@ -157,5 +172,8 @@ class StripeCest {
 
     $I->expectTo('See successful order creation response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
+
+    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
   }
+
 }

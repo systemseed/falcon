@@ -14,9 +14,25 @@ use Drupal\commerce_price\Price;
  */
 class GiftCest {
 
+  /**
+   * @var
+   */
+  private $entityTypeManager;
+
+  /**
+   * @var
+   */
   private $variation;
 
+  /**
+   * @var
+   */
   private $product;
+
+  /**
+   * @var
+   */
+  private $orderId;
 
   /**
    * @var array
@@ -60,12 +76,13 @@ class GiftCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _before() {
-    $entity_type_manager = \Drupal::entityTypeManager();
+    $this->orderId = NULL;
+    $this->entityTypeManager = \Drupal::entityTypeManager();
 
-    $stores = $entity_type_manager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
+    $stores = $this->entityTypeManager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
 
     // Create product variation gift.
-    $this->variation = $entity_type_manager->getStorage('commerce_product_variation')->create([
+    $this->variation = $this->entityTypeManager->getStorage('commerce_product_variation')->create([
       'type' => 'gift',
       'title' => 'Test gift',
       'sku' => 'test gift',
@@ -75,7 +92,7 @@ class GiftCest {
     $this->variation->save();
 
     // Create product gift.
-    $this->product = $entity_type_manager->getStorage('commerce_product')->create([
+    $this->product = $this->entityTypeManager->getStorage('commerce_product')->create([
       'uid' => 1,
       'type' => 'gift',
       'title' => 'Test gift',
@@ -92,10 +109,13 @@ class GiftCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _after() {
-    $entity_type_manager = \Drupal::entityTypeManager();
+    $this->entityTypeManager->getStorage('commerce_product_variation')->delete([$this->variation]);
+    $this->entityTypeManager->getStorage('commerce_product')->delete([$this->product]);
 
-    $entity_type_manager->getStorage('commerce_product_variation')->delete([$this->variation]);
-    $entity_type_manager->getStorage('commerce_product')->delete([$this->product]);
+    if (!empty($this->orderId)) {
+      $this->entityTypeManager->getStorage('commerce_order')
+        ->delete([$this->entityTypeManager->getStorage('commerce_order')->load($this->orderId)]);
+    }
   }
 
   /**
@@ -113,6 +133,8 @@ class GiftCest {
 
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
+
+    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
   }
 
 }

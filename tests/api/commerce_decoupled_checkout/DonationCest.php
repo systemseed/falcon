@@ -13,7 +13,20 @@ use Codeception\Util\HttpCode;
  */
 class DonationCest {
 
+  /**
+   * @var
+   */
+  private $entityTypeManager;
+
+  /**
+   * @var
+   */
   private $appeal;
+
+  /**
+   * @var
+   */
+  private $orderId;
 
   /**
    * @var array
@@ -75,10 +88,11 @@ class DonationCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _before() {
-    $entity_type_manager = \Drupal::entityTypeManager();
+    $this->entityTypeManager = \Drupal::entityTypeManager();
+    $this->orderId = NULL;
 
     // Create appeal.
-    $this->appeal = $entity_type_manager->getStorage('node')->create([
+    $this->appeal = $this->entityTypeManager->getStorage('node')->create([
       'uid' => 1,
       'type' => 'appeal',
       'title' => 'Test appeal',
@@ -99,9 +113,12 @@ class DonationCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _after() {
-    $entity_type_manager = \Drupal::entityTypeManager();
+    $this->entityTypeManager->getStorage('node')->delete([$this->appeal]);
 
-    $entity_type_manager->getStorage('node')->delete([$this->appeal]);
+    if (!empty($this->orderId)) {
+      $this->entityTypeManager->getStorage('commerce_order')
+        ->delete([$this->entityTypeManager->getStorage('commerce_order')->load($this->orderId)]);
+    }
   }
 
   /**
@@ -118,14 +135,10 @@ class DonationCest {
     $post['order']['field_appeal'] = $this->appeal->id();
     $I->sendPOST('/commerce/order/create', $post);
 
-    /** @var \Drupal\commerce_store\StoreStorageInterface $commerce_store */
-    //$commerce_store = \Drupal::entityTypeManager()
-    //  ->getStorage('commerce_store');
-
-    //Debug::debug($commerce_store->loadDefault());
-
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
+
+    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
   }
 
   /**
@@ -155,6 +168,8 @@ class DonationCest {
 
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
+
+    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
   }
 
   /**
@@ -184,6 +199,8 @@ class DonationCest {
 
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
+
+    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
   }
 
   /**
