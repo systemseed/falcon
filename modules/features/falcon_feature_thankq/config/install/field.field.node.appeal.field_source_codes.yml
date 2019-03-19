@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.source_code.source_code
+    - field.storage.node.field_source_codes
+    - node.type.appeal
+id: node.appeal.field_source_codes
+field_name: field_source_codes
+entity_type: node
+bundle: appeal
+label: 'Source codes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:source_code'
+  handler_settings:
+    target_bundles:
+      source_code: source_code
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
