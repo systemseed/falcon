@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: item_image_link
-label: 'Image CTA item'
-icon_uuid: null
-description: 'An image wrapped to link.'
-behavior_plugins: {  }

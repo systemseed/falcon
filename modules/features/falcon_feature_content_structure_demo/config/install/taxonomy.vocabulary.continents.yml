@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: Continents
-vid: continents
-description: 'Helps to group countries by continents.'
-hierarchy: 0
-weight: 0

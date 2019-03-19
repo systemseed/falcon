@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: item_timeline
-label: 'Timeline item'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }
