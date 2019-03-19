@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Person types'
-vid: person_types
-description: 'Collection of available person types.'
-hierarchy: 0
-weight: 0

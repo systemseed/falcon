@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Key programme areas'
-vid: key_programme_areas
-description: ''
-hierarchy: 0
-weight: 0

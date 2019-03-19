@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  config:
-    - eck.eck_entity_type.source_code
-name: 'Source code'
-type: source_code
-description: 'Provides source code from ThankQ system to show on the donation form.'
