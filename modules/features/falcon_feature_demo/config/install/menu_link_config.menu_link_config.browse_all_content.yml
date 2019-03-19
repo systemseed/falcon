@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: browse_all_content
+title: 'Browse all content'
+route_name: system.admin_content
+route_parameters: {  }
+options: {  }
+expanded: false
+menu_name: falcon-dashboard
+enabled: true
+parent: 'menu_link_config:dashboard_content_category'
+weight: -47
+description: ''
