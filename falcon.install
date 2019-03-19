@@ -19,7 +19,6 @@ function falcon_install() {
     'falcon_feature_appeal',
     'falcon_feature_commerce',
     'falcon_feature_commerce_direct_debit_gateway',
-    'falcon_feature_content_blocks',
     'falcon_feature_donation',
     'falcon_feature_metatag',
     'falcon_feature_text_format',
