@@ -20,7 +20,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles: NULL
+    target_bundles: null
     target_bundles_drag_drop:
       donate_money_handles_item:
         weight: 4
@@ -28,7 +28,4 @@ settings:
       donate_with_money_handles:
         weight: 5
         enabled: false
-      hero_image_heading_subheading:
-        enabled: true
-        weight: 6
 field_type: entity_reference_revisions

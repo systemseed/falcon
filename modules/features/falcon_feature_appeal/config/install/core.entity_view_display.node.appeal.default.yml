@@ -90,4 +90,6 @@ content:
   links:
     weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }
