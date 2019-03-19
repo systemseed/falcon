@@ -13,7 +13,7 @@ dependencies:
     - node.type.appeal
   module:
     - field_group
-    - paragraphs
+    - paragraphs_browser
     - path
     - scheduler
     - text
@@ -108,22 +108,25 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_blocks:
-    type: paragraphs
+    type: paragraphs_browser
     weight: 1
     settings:
       title: Block
       title_plural: Blocks
-      edit_mode: closed
-      add_mode: select
-      form_display_mode: default
-      default_paragraph_type: _none
+      edit_mode: open
       closed_mode: summary
       autocollapse: none
+      closed_mode_threshold: '0'
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
       features:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
-        add_above: '0'
-      closed_mode_threshold: 0
+        add_above: 0
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
     third_party_settings: {  }
     region: content
   field_donation_min_amount:
@@ -163,22 +166,25 @@ content:
     type: string_textfield
     region: content
   field_thankyou_page_blocks:
-    type: paragraphs
+    type: paragraphs_browser
     weight: 3
     settings:
       title: Block
       title_plural: Blocks
-      edit_mode: closed
-      add_mode: select
-      form_display_mode: default
-      default_paragraph_type: _none
+      edit_mode: open
       closed_mode: summary
       autocollapse: none
+      closed_mode_threshold: '0'
+      add_mode: paragraphs_browser
+      form_display_mode: default
+      default_paragraph_type: _none
       features:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
-        add_above: '0'
-      closed_mode_threshold: 0
+        add_above: 0
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
     third_party_settings: {  }
     region: content
   field_thankyou_page_title:

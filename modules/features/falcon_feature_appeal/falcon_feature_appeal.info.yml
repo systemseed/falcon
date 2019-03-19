@@ -11,6 +11,7 @@ dependencies:
   - node
   - options
   - paragraphs
+  - paragraphs_browser
   - path
   - pathauto
   - scheduler
