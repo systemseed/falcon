@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_blocks
-    - paragraphs.paragraphs_type.donate_money_handles_item
     - paragraphs.paragraphs_type.donate_with_money_handles
   module:
     - entity_reference_revisions
