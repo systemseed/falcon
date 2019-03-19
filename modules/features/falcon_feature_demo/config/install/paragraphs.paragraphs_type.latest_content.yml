@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_browser
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+  paragraphs_browser:
+    description: 'A configurable listing of the latest content on the website.'
+id: latest_content
+label: 'Latest content'
+icon_uuid: null
+description: 'A configurable listing of the latest content on the website.'
+behavior_plugins: {  }

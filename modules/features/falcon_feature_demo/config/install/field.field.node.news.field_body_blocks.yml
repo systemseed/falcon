@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body_blocks
+    - node.type.news
+    - paragraphs.paragraphs_type.heading
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.latest_content
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.news.field_body_blocks
+field_name: field_body_blocks
+entity_type: node
+bundle: news
+label: 'Body blocks'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      heading: heading
+      text: text
+      image: image
+      latest_content: latest_content
+    target_bundles_drag_drop:
+      heading:
+        enabled: true
+        weight: -11
+      text:
+        enabled: true
+        weight: -10
+      image:
+        enabled: true
+        weight: -9
+      latest_content:
+        enabled: true
+        weight: -8
+      from_library:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

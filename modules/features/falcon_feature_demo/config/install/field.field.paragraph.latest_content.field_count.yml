@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_count
+    - paragraphs.paragraphs_type.latest_content
+  module:
+    - options
+id: paragraph.latest_content.field_count
+field_name: field_count
+entity_type: paragraph
+bundle: latest_content
+label: Count
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 3
+default_value_callback: ''
+settings: {  }
+field_type: list_integer
