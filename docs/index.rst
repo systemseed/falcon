@@ -18,10 +18,10 @@ Follow instructions in :doc:`install` section.
    testing
    contributing
    development_falcon
-   api
    development_client_site
    information_architecture
    roles
+   api
    payments
    environment
    content
