@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ec83290e77a58b78628d2dfebed2d03",
+    "content-hash": "e590530737c56367c931dcfac7336157",
     "packages": [
         {
             "name": "apache/log4php",
@@ -23,6 +23,7 @@
                     "src/main/php/"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -2353,7 +2354,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.5",
-                    "datestamp": "1548546180",
+                    "datestamp": "1549103280",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4012,7 +4013,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.5",
-                    "datestamp": "1541009695",
+                    "datestamp": "1550692525",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4405,11 +4406,17 @@
         },
         {
             "name": "drupal/rest_entity_recursive",
-            "version": "dev-1.x",
+            "version": "1.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/rest_entity_recursive",
-                "reference": "addba4ecf8cb4641c5ffea548013e99d30d3681c"
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/rest_entity_recursive-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "d848a73a84516d81f1d48b2d0354b0fc80976345"
             },
             "require": {
                 "drupal/core": "*"
@@ -4424,8 +4431,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1552038784",
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1553088789",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4458,8 +4465,7 @@
             "homepage": "https://www.drupal.org/project/rest_entity_recursive",
             "support": {
                 "source": "http://cgit.drupalcode.org/rest_entity_recursive"
-            },
-            "time": "2019-03-08T12:24:35+00:00"
+            }
         },
         {
             "name": "drupal/restui",
@@ -8473,7 +8479,6 @@
         "drupal/menu_link_config": 15,
         "drupal/paragraphs_browser": 20,
         "drupal/rest_absolute_urls": 10,
-        "drupal/rest_entity_recursive": 20,
         "drupal/smtp": 10,
         "drupal/ultimate_cron": 15,
         "drupal/config_distro": 15,
