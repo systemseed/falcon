@@ -21,6 +21,7 @@ Follow instructions in :doc:`install` section.
    development_client_site
    information_architecture
    roles
+   api
    payments
    environment
    content
