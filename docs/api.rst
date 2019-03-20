@@ -5,7 +5,7 @@ Falcon supports multiple ways to expose content via API:
 
 - `JSON:API <https://www.drupal.org/project/jsonapi>`_
 - `RESTful Web Services <https://www.drupal.org/docs/8/core/modules/rest>`_
-- `Views Rest <https://www.drupal.org/docs/8/core/modules/rest/get-on-views-generated-lists>`_
+- `Views REST <https://www.drupal.org/docs/8/core/modules/rest/get-on-views-generated-lists>`_
 - `Rest Entity Recursive <https://www.drupal.org/project/rest_entity_recursive>`_
 
 You are free to use any of the options above to meet your project goals.
@@ -29,7 +29,7 @@ Read more about JSON:API in the official `documentation <https://www.drupal.org/
 
 RESTful Web Services
 --------------------
-With RESTful Web Services module you can enable built-in endpoints for various content types
+With RESTful Web Services module you can enable built-in endpoints for various content types.
 Default REST endpoints have a couple of drawbacks:
 
 - No way to include related entities.
@@ -60,7 +60,7 @@ Known drawbacks of this approach:
 
 Falcon will be return the response with pagination data, but if you want to use ``page`` or ``item_per_page`` in your request you should configure **exposed options** in you **pager options**.
 
-In Falcon, we have enhanced pagination support for REST Views (via patch).
+In Falcon, we have enhanced pagination support for REST Views (`via patch <https://www.drupal.org/project/drupal/issues/2982729>`_).
 
 Example request::
 
@@ -78,7 +78,7 @@ Enable core REST resource or create REST View display with format ``json_recursi
 
     /request-url?_format=json_recursive
 
-You can use query parameter ``max_depth`` in you want to limit depth of loaded references: . Default is ``max_depth = 10``.
+You can use query parameter ``max_depth`` if you want to limit depth of loaded references. Default is ``max_depth = 10``.
 
 Find examples how to customize and fine-tune the output in submodules:
 
