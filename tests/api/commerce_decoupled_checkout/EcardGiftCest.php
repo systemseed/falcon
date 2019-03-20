@@ -168,7 +168,7 @@ class EcardGiftCest {
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
 
-    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
+    $this->orderId = $I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
 
     // Get order_id from response.
     $orderItemID = $I->grabDataFromResponseByJsonPath("$..order_items[0].target_id")[0];

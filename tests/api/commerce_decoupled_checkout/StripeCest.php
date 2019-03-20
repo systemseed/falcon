@@ -173,7 +173,7 @@ class StripeCest {
     $I->expectTo('See successful order creation response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
 
-    $this->orderId =$I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
+    $this->orderId = $I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
   }
 
 }
