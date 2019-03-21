@@ -124,6 +124,7 @@
     "drupal/contact_message_rest": "^1.0@alpha",
     "drupal/core": "^8.6",
     "drupal/decoupled_router": "^1.0",
+    "drupal/default_content": "^1.0@alpha",
     "drupal/eck": "^1.0@alpha",
     "drupal/entity": "^1.0@beta",
     "drupal/entity_browser": "^2.0",

@@ -1,0 +1,8 @@
+services:
+  falcon_demo_content.delete_content:
+    class: Drupal\falcon_demo_content\DeleteContent
+    arguments:
+      - '@entity.repository'
+      - '@serializer'
+      - '@entity_type.manager'
+      - '@default_content.scanner'
