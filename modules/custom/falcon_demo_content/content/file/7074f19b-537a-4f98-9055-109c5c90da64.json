@@ -1,0 +1,87 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/file\/file\/uid": [
+            {
+                "href": "http:\/\/default\/user\/1?_format=hal_json"
+            }
+        ]
+    },
+    "fid": [
+        {
+            "value": 3
+        }
+    ],
+    "uuid": [
+        {
+            "value": "7074f19b-537a-4f98-9055-109c5c90da64"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/file\/file\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/1?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                    }
+                ]
+            }
+        ]
+    },
+    "filename": [
+        {
+            "value": "Pied-winged_swallow_(Hirundo_leucosoma).jpg"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/media\/images\/2019-03\/Pied-winged_swallow_(Hirundo_leucosoma)_4.jpg",
+            "url": "\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/jpeg"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 1959744
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2019-03-21T18:02:08+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-03-21T18:02:26+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

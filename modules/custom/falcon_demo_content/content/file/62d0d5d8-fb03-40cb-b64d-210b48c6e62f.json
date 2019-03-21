@@ -1,0 +1,87 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/file\/file\/uid": [
+            {
+                "href": "http:\/\/default\/user\/1?_format=hal_json"
+            }
+        ]
+    },
+    "fid": [
+        {
+            "value": 6
+        }
+    ],
+    "uuid": [
+        {
+            "value": "62d0d5d8-fb03-40cb-b64d-210b48c6e62f"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/file\/file\/uid": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/1?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                    }
+                ]
+            }
+        ]
+    },
+    "filename": [
+        {
+            "value": "Rotating_earth_(large).gif"
+        }
+    ],
+    "uri": [
+        {
+            "value": "public:\/\/media\/images\/2019-03\/Rotating_earth_(large)_1.gif",
+            "url": "\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif"
+        }
+    ],
+    "filemime": [
+        {
+            "value": "image\/gif"
+        }
+    ],
+    "filesize": [
+        {
+            "value": 1001718
+        }
+    ],
+    "status": [
+        {
+            "value": true
+        }
+    ],
+    "created": [
+        {
+            "value": "2019-03-21T18:05:16+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-03-21T18:05:28+00:00",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ]
+}

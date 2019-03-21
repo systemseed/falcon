@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for Falcon Demo Content.
+ */
+
+/**
+ * Delete demo content when module is uninstalled.
+ *
+ * Implements hook_uninstall().
+ */
+function falcon_demo_content_uninstall() {
+  \Drupal::service('falcon_demo_content.delete_content')->deleteContent('falcon_demo_content');
+}
