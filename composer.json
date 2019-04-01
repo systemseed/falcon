@@ -24,7 +24,7 @@
     },
     "1": {
       "type": "vcs",
-      "url": "https://git.drupal.org/sandbox/duozersk/3005285.git"
+      "url": "git@git.drupal.org:sandbox/duozersk-3005285.git"
     },
     "2": {
       "type": "vcs",
