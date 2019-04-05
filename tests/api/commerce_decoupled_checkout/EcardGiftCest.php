@@ -14,11 +14,30 @@ use Drupal\commerce_price\Price;
  */
 class EcardGiftCest {
 
+  /**
+   * @var
+   */
   private $variation;
 
+  /**
+   * @var
+   */
   private $product;
 
+  /**
+   * @var
+   */
   private $entityTypeManager;
+
+  /**
+   * @var
+   */
+  private $orderId;
+
+  /**
+   * @var
+   */
+  private $ecardId;
 
   /**
    * @var array
@@ -86,6 +105,8 @@ class EcardGiftCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _before() {
+    $this->orderId = NULL;
+    $this->ecardId = NULL;
     $this->entityTypeManager = \Drupal::entityTypeManager();
 
     $stores = $this->entityTypeManager->getStorage('commerce_store')->loadByProperties(['type' => 'online']);
@@ -120,6 +141,16 @@ class EcardGiftCest {
   public function _after() {
     $this->entityTypeManager->getStorage('commerce_product_variation')->delete([$this->variation]);
     $this->entityTypeManager->getStorage('commerce_product')->delete([$this->product]);
+
+    if (!empty($this->orderId)) {
+      $this->entityTypeManager->getStorage('commerce_order')
+        ->delete([$this->entityTypeManager->getStorage('commerce_order')->load($this->orderId)]);
+    }
+
+    if (!empty($this->ecardId)) {
+      $this->entityTypeManager->getStorage('gift_cards')
+        ->delete([$this->entityTypeManager->getStorage('gift_cards')->load($this->ecardId)]);
+    }
   }
 
   /**
@@ -137,10 +168,10 @@ class EcardGiftCest {
     $I->expectTo('See successful response.');
     $I->seeResponseCodeIs(HttpCode::CREATED);
 
+    $this->orderId = $I->grabDataFromResponseByJsonPath("$.order_id[0].value")[0];
 
     // Get order_id from response.
     $orderItemID = $I->grabDataFromResponseByJsonPath("$..order_items[0].target_id")[0];
-
     $orderItem = $this->entityTypeManager->getStorage('commerce_order_item')->load($orderItemID);
 
     // Order item exist.
@@ -156,9 +187,9 @@ class EcardGiftCest {
     // Order item has reference on ecard.
     $I->assertNotEmpty($fieldCard, 'field card');
 
-    $ecardID = $fieldCard[0]['target_id'];
+    $this->ecardId = $fieldCard[0]['target_id'];
 
-    $ecard = $this->entityTypeManager->getStorage('gift_cards')->load($ecardID);
+    $ecard = $this->entityTypeManager->getStorage('gift_cards')->load($this->ecardId);
 
     // Ecard is exist.
     $I->assertNotEmpty($ecard, 'Ecard');
