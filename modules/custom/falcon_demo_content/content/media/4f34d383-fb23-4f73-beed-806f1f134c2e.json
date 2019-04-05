@@ -1,14 +1,14 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/media\/3?_format=hal_json"
+            "href": "http:\/\/default\/media\/1?_format=hal_json"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
         },
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif",
+                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg",
                 "lang": "en"
             }
         ],
@@ -20,24 +20,24 @@
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif",
+                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg",
                 "lang": "en"
             }
         ]
     },
     "mid": [
         {
-            "value": 3
+            "value": 1
         }
     ],
     "uuid": [
         {
-            "value": "6aceaee1-94d8-4b05-bf01-d7de98aba5a4"
+            "value": "4f34d383-fb23-4f73-beed-806f1f134c2e"
         }
     ],
     "vid": [
         {
-            "value": 3
+            "value": 1
         }
     ],
     "langcode": [
@@ -53,7 +53,7 @@
     ],
     "revision_created": [
         {
-            "value": "2019-03-21T18:05:28+00:00",
+            "value": "2019-04-05T14:47:58+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -65,7 +65,7 @@
     ],
     "name": [
         {
-            "value": "Rotating_earth_(large).gif",
+            "value": "1.jpeg",
             "lang": "en"
         }
     ],
@@ -74,7 +74,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif"
+                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -82,7 +82,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "62d0d5d8-fb03-40cb-b64d-210b48c6e62f"
+                        "value": "5247e390-fc2a-4602-9fd6-098e2da0d9ab"
                     }
                 ],
                 "lang": "en"
@@ -100,7 +100,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ],
                 "lang": "en"
@@ -110,7 +110,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif"
+                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -118,7 +118,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "62d0d5d8-fb03-40cb-b64d-210b48c6e62f"
+                        "value": "5247e390-fc2a-4602-9fd6-098e2da0d9ab"
                     }
                 ],
                 "lang": "en"
@@ -127,14 +127,14 @@
     },
     "created": [
         {
-            "value": "2019-03-21T18:05:16+00:00",
+            "value": "2019-04-05T14:47:51+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:05:16+00:00",
+            "value": "2019-04-05T14:47:51+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -153,7 +153,19 @@
     ],
     "metatag": [
         {
-            "value": []
+            "value": {
+                "title": "Default Consumer"
+            }
+        }
+    ],
+    "metatag_normalized": [
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "title",
+                "content": "Default Consumer"
+            },
+            "lang": "en"
         }
     ]
 }

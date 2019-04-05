@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg"
+            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -14,12 +14,12 @@
     },
     "fid": [
         {
-            "value": 3
+            "value": 1
         }
     ],
     "uuid": [
         {
-            "value": "7074f19b-537a-4f98-9055-109c5c90da64"
+            "value": "5247e390-fc2a-4602-9fd6-098e2da0d9ab"
         }
     ],
     "langcode": [
@@ -40,7 +40,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ]
             }
@@ -48,13 +48,13 @@
     },
     "filename": [
         {
-            "value": "Pied-winged_swallow_(Hirundo_leucosoma).jpg"
+            "value": "1.jpeg"
         }
     ],
     "uri": [
         {
-            "value": "public:\/\/media\/images\/2019-03\/Pied-winged_swallow_(Hirundo_leucosoma)_4.jpg",
-            "url": "\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg"
+            "value": "public:\/\/media\/images\/2019-04\/1.jpeg",
+            "url": "\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg"
         }
     ],
     "filemime": [
@@ -64,7 +64,7 @@
     ],
     "filesize": [
         {
-            "value": 1959744
+            "value": 8111
         }
     ],
     "status": [
@@ -74,13 +74,13 @@
     ],
     "created": [
         {
-            "value": "2019-03-21T18:02:08+00:00",
+            "value": "2019-04-05T14:47:51+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:02:26+00:00",
+            "value": "2019-04-05T14:47:58+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ]

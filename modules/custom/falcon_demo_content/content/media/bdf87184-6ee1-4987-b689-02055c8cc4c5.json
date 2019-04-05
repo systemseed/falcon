@@ -1,14 +1,14 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/media\/1?_format=hal_json"
+            "href": "http:\/\/default\/media\/3?_format=hal_json"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
         },
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/jpeg_3.jpeg",
+                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg",
                 "lang": "en"
             }
         ],
@@ -20,24 +20,24 @@
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/jpeg_3.jpeg",
+                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg",
                 "lang": "en"
             }
         ]
     },
     "mid": [
         {
-            "value": 1
+            "value": 3
         }
     ],
     "uuid": [
         {
-            "value": "f3acb65a-194c-4130-afa9-367a35b2ab4e"
+            "value": "bdf87184-6ee1-4987-b689-02055c8cc4c5"
         }
     ],
     "vid": [
         {
-            "value": 1
+            "value": 3
         }
     ],
     "langcode": [
@@ -53,7 +53,7 @@
     ],
     "revision_created": [
         {
-            "value": "2019-03-21T18:00:53+00:00",
+            "value": "2019-04-05T14:49:12+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -65,7 +65,7 @@
     ],
     "name": [
         {
-            "value": "demo_image_1.jpeg",
+            "value": "Photography-wallpaper2.jpg",
             "lang": "en"
         }
     ],
@@ -74,7 +74,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/jpeg_3.jpeg"
+                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -82,7 +82,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "075fad0b-628d-45dd-9ab1-1e59162e1c09"
+                        "value": "522b9569-1bb5-41bb-aef4-502b8f4f255f"
                     }
                 ],
                 "lang": "en"
@@ -100,7 +100,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ],
                 "lang": "en"
@@ -110,7 +110,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/jpeg_3.jpeg"
+                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -118,7 +118,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "075fad0b-628d-45dd-9ab1-1e59162e1c09"
+                        "value": "522b9569-1bb5-41bb-aef4-502b8f4f255f"
                     }
                 ],
                 "lang": "en"
@@ -127,14 +127,14 @@
     },
     "created": [
         {
-            "value": "2019-03-21T18:00:27+00:00",
+            "value": "2019-04-05T14:49:05+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:00:27+00:00",
+            "value": "2019-04-05T14:49:05+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -153,7 +153,19 @@
     ],
     "metatag": [
         {
-            "value": []
+            "value": {
+                "title": "Default Consumer"
+            }
+        }
+    ],
+    "metatag_normalized": [
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "title",
+                "content": "Default Consumer"
+            },
+            "lang": "en"
         }
     ]
 }

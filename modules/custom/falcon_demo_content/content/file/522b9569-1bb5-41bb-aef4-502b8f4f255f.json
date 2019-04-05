@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif"
+            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -14,12 +14,12 @@
     },
     "fid": [
         {
-            "value": 6
+            "value": 3
         }
     ],
     "uuid": [
         {
-            "value": "62d0d5d8-fb03-40cb-b64d-210b48c6e62f"
+            "value": "522b9569-1bb5-41bb-aef4-502b8f4f255f"
         }
     ],
     "langcode": [
@@ -40,7 +40,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ]
             }
@@ -48,23 +48,23 @@
     },
     "filename": [
         {
-            "value": "Rotating_earth_(large).gif"
+            "value": "Photography-wallpaper2.jpg"
         }
     ],
     "uri": [
         {
-            "value": "public:\/\/media\/images\/2019-03\/Rotating_earth_(large)_1.gif",
-            "url": "\/sites\/default\/files\/media\/images\/2019-03\/Rotating_earth_%28large%29_1.gif"
+            "value": "public:\/\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg",
+            "url": "\/sites\/default\/files\/media\/images\/2019-04\/Photography-wallpaper2_0.jpg"
         }
     ],
     "filemime": [
         {
-            "value": "image\/gif"
+            "value": "image\/jpeg"
         }
     ],
     "filesize": [
         {
-            "value": 1001718
+            "value": 294420
         }
     ],
     "status": [
@@ -74,13 +74,13 @@
     ],
     "created": [
         {
-            "value": "2019-03-21T18:05:16+00:00",
+            "value": "2019-04-05T14:49:05+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:05:28+00:00",
+            "value": "2019-04-05T14:49:12+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ]

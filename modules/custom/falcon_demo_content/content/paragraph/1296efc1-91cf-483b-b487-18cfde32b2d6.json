@@ -6,17 +6,6 @@
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/donate_with_money_handles"
         },
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/uid": [
-            {
-                "href": "http:\/\/default\/user\/1?_format=hal_json",
-                "lang": "en"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/revision_uid": [
-            {
-                "href": "http:\/\/default\/user\/1?_format=hal_json"
-            }
-        ],
         "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/field_blocks": [
             {
                 "href": ""
@@ -49,61 +38,6 @@
             "target_id": "donate_with_money_handles"
         }
     ],
-    "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/1?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
-                    }
-                ],
-                "lang": "en"
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/revision_uid": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http:\/\/default\/user\/1?_format=hal_json"
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
-                    }
-                ]
-            }
-        ],
-        "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/field_blocks": [
-            {
-                "_links": {
-                    "self": {
-                        "href": ""
-                    },
-                    "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/donate_money_handles_item"
-                    }
-                },
-                "uuid": [
-                    {
-                        "value": "72d25c18-d4b4-4c08-9439-a0e80f0f1654"
-                    }
-                ],
-                "target_revision_id": "10"
-            }
-        ]
-    },
     "status": [
         {
             "value": true,
@@ -132,11 +66,7 @@
             "value": "field_blocks"
         }
     ],
-    "behavior_settings": [
-        {
-            "value": "a:0:{}"
-        }
-    ],
+    "behavior_settings": [],
     "default_langcode": [
         {
             "value": true,
@@ -148,5 +78,25 @@
             "value": true,
             "lang": "en"
         }
-    ]
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/paragraph\/donate_with_money_handles\/field_blocks": [
+            {
+                "_links": {
+                    "self": {
+                        "href": ""
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/paragraph\/donate_money_handles_item"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "72d25c18-d4b4-4c08-9439-a0e80f0f1654"
+                    }
+                ],
+                "target_revision_id": "10"
+            }
+        ]
+    }
 }
