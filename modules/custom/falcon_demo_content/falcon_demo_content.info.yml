@@ -1,0 +1,7 @@
+name: Falcon Demo Content
+type: module
+description: Add default content in falcon installation.
+core: 8.x
+package: Falcon
+dependencies:
+  - default_content:default_content

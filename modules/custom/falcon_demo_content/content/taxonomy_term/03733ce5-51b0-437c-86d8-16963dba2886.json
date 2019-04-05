@@ -1,0 +1,112 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/taxonomy\/term\/2?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/taxonomy_term\/content_categories"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/taxonomy_term\/content_categories\/parent": [
+            null
+        ]
+    },
+    "tid": [
+        {
+            "value": 2
+        }
+    ],
+    "uuid": [
+        {
+            "value": "03733ce5-51b0-437c-86d8-16963dba2886"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "vid": [
+        {
+            "target_id": "content_categories"
+        }
+    ],
+    "status": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "name": [
+        {
+            "value": "Demo category 2",
+            "lang": "en"
+        }
+    ],
+    "description": [
+        {
+            "value": "<p>Description for demo category 2<\/p>&#13;\n",
+            "format": "full_html",
+            "processed": "<p>Description for demo category 2<\/p>\n",
+            "lang": "en"
+        }
+    ],
+    "weight": [
+        {
+            "value": 0
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/taxonomy_term\/content_categories\/parent": [
+            null
+        ]
+    },
+    "changed": [
+        {
+            "value": "2019-03-21T18:06:44+00:00",
+            "lang": "en",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Demo category 2 |",
+                "canonical_url": "http:\/\/default\/taxonomy\/term\/2",
+                "description": "Description for demo category 2"
+            }
+        }
+    ],
+    "metatag_normalized": [
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "title",
+                "content": "Demo category 2 |"
+            },
+            "lang": "en"
+        },
+        {
+            "tag": "link",
+            "attributes": {
+                "rel": "canonical",
+                "href": "http:\/\/default\/taxonomy\/term\/2"
+            },
+            "lang": "en"
+        },
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "description",
+                "content": "Description for demo category 2"
+            },
+            "lang": "en"
+        }
+    ]
+}
