@@ -25,6 +25,7 @@ dependencies:
   - field
   - field_ui
   - file
+  - file_entity
   - filter
   - image
   - link

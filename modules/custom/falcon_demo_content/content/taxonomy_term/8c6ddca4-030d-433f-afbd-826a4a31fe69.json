@@ -47,7 +47,7 @@
         {
             "value": "<p>Description for demo category 1<\/p>&#13;\n",
             "format": "full_html",
-            "processed": "<p>Description for demo category 1<\/p>\n",
+            "processed": "<p>Description for demo category 1<\/p>&#13;\n",
             "lang": "en"
         }
     ],
@@ -77,7 +77,7 @@
     "metatag": [
         {
             "value": {
-                "title": "Demo category 1 |",
+                "title": "Demo category 1 | Default Consumer",
                 "canonical_url": "http:\/\/default\/taxonomy\/term\/1",
                 "description": "Description for demo category 1"
             }
@@ -88,7 +88,7 @@
             "tag": "meta",
             "attributes": {
                 "name": "title",
-                "content": "Demo category 1 |"
+                "content": "Demo category 1 | Default Consumer"
             },
             "lang": "en"
         },

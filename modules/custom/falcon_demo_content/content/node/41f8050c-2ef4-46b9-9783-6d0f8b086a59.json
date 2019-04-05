@@ -25,7 +25,7 @@
         ],
         "http:\/\/drupal.org\/rest\/relation\/node\/news\/field_media_image": [
             {
-                "href": "http:\/\/default\/media\/1?_format=hal_json",
+                "href": "http:\/\/default\/media\/2?_format=hal_json",
                 "lang": "en"
             }
         ]
@@ -42,7 +42,7 @@
     ],
     "vid": [
         {
-            "value": 5
+            "value": 9
         }
     ],
     "langcode": [
@@ -58,7 +58,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2019-03-21T18:10:03+00:00",
+            "value": "2019-04-05T14:48:50+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -75,7 +75,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ]
             }
@@ -92,7 +92,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ],
                 "lang": "en"
@@ -120,7 +120,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/media\/1?_format=hal_json"
+                        "href": "http:\/\/default\/media\/2?_format=hal_json"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
@@ -128,7 +128,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "f3acb65a-194c-4130-afa9-367a35b2ab4e"
+                        "value": "46f087c4-7261-49a4-9dc7-033eadf75405"
                     }
                 ],
                 "lang": "en"
@@ -156,7 +156,7 @@
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:10:03+00:00",
+            "value": "2019-04-05T14:48:50+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -188,7 +188,7 @@
     "metatag": [
         {
             "value": {
-                "title": "Demo news 3 |",
+                "title": "Demo news 3 | Default Consumer",
                 "canonical_url": "http:\/\/default\/demo_news3"
             }
         }
@@ -198,7 +198,7 @@
             "tag": "meta",
             "attributes": {
                 "name": "title",
-                "content": "Demo news 3 |"
+                "content": "Demo news 3 | Default Consumer"
             },
             "lang": "en"
         },
@@ -214,7 +214,7 @@
     "path": [
         {
             "alias": "\/demo_news3",
-            "pid": 4,
+            "pid": 1,
             "langcode": "en",
             "lang": "en"
         }

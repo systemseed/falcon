@@ -131,6 +131,7 @@
     "drupal/entity_reference_revisions": "^1.5",
     "drupal/entity_usage": "^2.0@alpha",
     "drupal/field_group": "^3.0@beta",
+    "drupal/file_entity": "^2.0@beta",
     "drupal/focal_point": "^1.0@beta",
     "drupal/image_widget_crop": "^2.2",
     "drupal/jsonapi": "^2.3",

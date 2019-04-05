@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/jpeg_3.jpeg"
+            "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -14,12 +14,12 @@
     },
     "fid": [
         {
-            "value": 1
+            "value": 2
         }
     ],
     "uuid": [
         {
-            "value": "075fad0b-628d-45dd-9ab1-1e59162e1c09"
+            "value": "47805932-6929-45ad-ad2b-643e9bd6b943"
         }
     ],
     "langcode": [
@@ -40,7 +40,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ]
             }
@@ -48,13 +48,13 @@
     },
     "filename": [
         {
-            "value": "jpeg.jpeg"
+            "value": "ios-10-hero-photos-picture-pikachu.jpg"
         }
     ],
     "uri": [
         {
-            "value": "public:\/\/media\/images\/2019-03\/jpeg_3.jpeg",
-            "url": "\/sites\/default\/files\/media\/images\/2019-03\/jpeg_3.jpeg"
+            "value": "public:\/\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg",
+            "url": "\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg"
         }
     ],
     "filemime": [
@@ -64,7 +64,7 @@
     ],
     "filesize": [
         {
-            "value": 768608
+            "value": 365535
         }
     ],
     "status": [
@@ -74,13 +74,13 @@
     ],
     "created": [
         {
-            "value": "2019-03-21T18:00:27+00:00",
+            "value": "2019-04-05T14:48:26+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:00:53+00:00",
+            "value": "2019-04-05T14:48:34+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ]

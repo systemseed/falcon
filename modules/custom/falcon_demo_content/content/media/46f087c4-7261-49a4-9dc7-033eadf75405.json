@@ -8,7 +8,7 @@
         },
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg",
+                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg",
                 "lang": "en"
             }
         ],
@@ -20,7 +20,7 @@
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg",
+                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg",
                 "lang": "en"
             }
         ]
@@ -32,7 +32,7 @@
     ],
     "uuid": [
         {
-            "value": "76d67e57-7a77-4c89-8e3c-922c1f21f2ce"
+            "value": "46f087c4-7261-49a4-9dc7-033eadf75405"
         }
     ],
     "vid": [
@@ -53,7 +53,7 @@
     ],
     "revision_created": [
         {
-            "value": "2019-03-21T18:02:26+00:00",
+            "value": "2019-04-05T14:48:34+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -65,7 +65,7 @@
     ],
     "name": [
         {
-            "value": "demo_image_2.jpg",
+            "value": "ios-10-hero-photos-picture-pikachu.jpg",
             "lang": "en"
         }
     ],
@@ -74,7 +74,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg"
+                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -82,7 +82,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "7074f19b-537a-4f98-9055-109c5c90da64"
+                        "value": "47805932-6929-45ad-ad2b-643e9bd6b943"
                     }
                 ],
                 "lang": "en"
@@ -100,7 +100,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ],
                 "lang": "en"
@@ -110,7 +110,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-03\/Pied-winged_swallow_%28Hirundo_leucosoma%29_4.jpg"
+                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
@@ -118,7 +118,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "7074f19b-537a-4f98-9055-109c5c90da64"
+                        "value": "47805932-6929-45ad-ad2b-643e9bd6b943"
                     }
                 ],
                 "lang": "en"
@@ -127,14 +127,14 @@
     },
     "created": [
         {
-            "value": "2019-03-21T18:02:08+00:00",
+            "value": "2019-04-05T14:48:26+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:02:08+00:00",
+            "value": "2019-04-05T14:48:26+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -153,7 +153,19 @@
     ],
     "metatag": [
         {
-            "value": []
+            "value": {
+                "title": "Default Consumer"
+            }
+        }
+    ],
+    "metatag_normalized": [
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "title",
+                "content": "Default Consumer"
+            },
+            "lang": "en"
         }
     ]
 }

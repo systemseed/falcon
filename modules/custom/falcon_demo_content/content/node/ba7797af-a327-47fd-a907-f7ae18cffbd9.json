@@ -26,6 +26,11 @@
                 "href": "",
                 "lang": "en"
             }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/field_media_image": [
+            {
+                "href": "http:\/\/default\/media\/1?_format=hal_json"
+            }
         ]
     },
     "nid": [
@@ -40,7 +45,7 @@
     ],
     "vid": [
         {
-            "value": 6
+            "value": 8
         }
     ],
     "langcode": [
@@ -56,7 +61,7 @@
     ],
     "revision_timestamp": [
         {
-            "value": "2019-03-21T18:11:21+00:00",
+            "value": "2019-04-05T14:48:09+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -73,7 +78,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ]
             }
@@ -90,7 +95,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c7764c6b-1d31-485c-8326-f8964239eda0"
+                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
                     }
                 ],
                 "lang": "en"
@@ -112,7 +117,7 @@
                     }
                 ],
                 "lang": "en",
-                "target_revision_id": "7"
+                "target_revision_id": "12"
             },
             {
                 "_links": {
@@ -129,7 +134,24 @@
                     }
                 ],
                 "lang": "en",
-                "target_revision_id": "8"
+                "target_revision_id": "13"
+            }
+        ],
+        "http:\/\/drupal.org\/rest\/relation\/node\/page\/field_media_image": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/1?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "4f34d383-fb23-4f73-beed-806f1f134c2e"
+                    }
+                ]
             }
         ]
     },
@@ -154,7 +176,7 @@
     ],
     "changed": [
         {
-            "value": "2019-03-21T18:11:21+00:00",
+            "value": "2019-04-05T14:48:09+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -186,7 +208,7 @@
     "metatag": [
         {
             "value": {
-                "title": "Demo Page 2 |",
+                "title": "Demo Page 2 | Default Consumer",
                 "canonical_url": "http:\/\/default\/demo_page2"
             }
         }
@@ -196,7 +218,7 @@
             "tag": "meta",
             "attributes": {
                 "name": "title",
-                "content": "Demo Page 2 |"
+                "content": "Demo Page 2 | Default Consumer"
             },
             "lang": "en"
         },
@@ -212,7 +234,7 @@
     "path": [
         {
             "alias": "\/demo_page2",
-            "pid": 5,
+            "pid": 3,
             "langcode": "en",
             "lang": "en"
         }
