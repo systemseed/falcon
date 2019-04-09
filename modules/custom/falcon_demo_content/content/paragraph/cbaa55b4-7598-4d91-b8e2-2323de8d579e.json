@@ -8,7 +8,7 @@
         },
         "http:\/\/drupal.org\/rest\/relation\/paragraph\/image\/field_media_image": [
             {
-                "href": "http:\/\/default\/media\/1?_format=hal_json"
+                "href": "http:\/\/default\/media\/2?_format=hal_json"
             }
         ]
     },
@@ -24,7 +24,7 @@
     ],
     "revision_id": [
         {
-            "value": 18
+            "value": 22
         }
     ],
     "langcode": [
@@ -66,7 +66,6 @@
             "value": "field_body_blocks"
         }
     ],
-    "behavior_settings": [],
     "default_langcode": [
         {
             "value": true,
@@ -84,7 +83,7 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/media\/1?_format=hal_json"
+                        "href": "http:\/\/default\/media\/2?_format=hal_json"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
@@ -92,7 +91,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "4f34d383-fb23-4f73-beed-806f1f134c2e"
+                        "value": "509baaae-1e8e-43c3-b153-ec1e6aa92b4d"
                     }
                 ]
             }

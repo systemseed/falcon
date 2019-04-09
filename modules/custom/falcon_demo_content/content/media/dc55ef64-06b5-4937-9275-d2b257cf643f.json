@@ -1,14 +1,14 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/media\/2?_format=hal_json"
+            "href": "http:\/\/default\/media\/1?_format=hal_json"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
         },
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg",
+                "href": "http:\/\/default\/file\/1?_format=hal_json",
                 "lang": "en"
             }
         ],
@@ -20,24 +20,24 @@
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg",
+                "href": "http:\/\/default\/file\/1?_format=hal_json",
                 "lang": "en"
             }
         ]
     },
     "mid": [
         {
-            "value": 2
+            "value": 1
         }
     ],
     "uuid": [
         {
-            "value": "46f087c4-7261-49a4-9dc7-033eadf75405"
+            "value": "dc55ef64-06b5-4937-9275-d2b257cf643f"
         }
     ],
     "vid": [
         {
-            "value": 2
+            "value": 1
         }
     ],
     "langcode": [
@@ -53,7 +53,7 @@
     ],
     "revision_created": [
         {
-            "value": "2019-04-05T14:48:34+00:00",
+            "value": "2019-04-09T06:39:11+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -65,7 +65,7 @@
     ],
     "name": [
         {
-            "value": "ios-10-hero-photos-picture-pikachu.jpg",
+            "value": "1.jpeg",
             "lang": "en"
         }
     ],
@@ -74,18 +74,22 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg"
+                        "href": "http:\/\/default\/file\/1?_format=hal_json"
                     },
                     "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/image"
                     }
                 },
                 "uuid": [
                     {
-                        "value": "47805932-6929-45ad-ad2b-643e9bd6b943"
+                        "value": "822e8dfb-b08c-4fb3-b5a7-6beacfc3219f"
                     }
                 ],
-                "lang": "en"
+                "lang": "en",
+                "alt": "1 alt",
+                "title": null,
+                "width": "266",
+                "height": "189"
             }
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/uid": [
@@ -100,7 +104,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
+                        "value": "424f600a-ac48-40b4-b5d1-2130e3f4606d"
                     }
                 ],
                 "lang": "en"
@@ -110,31 +114,35 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/ios-10-hero-photos-picture-pikachu.jpg"
+                        "href": "http:\/\/default\/file\/1?_format=hal_json"
                     },
                     "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/image"
                     }
                 },
                 "uuid": [
                     {
-                        "value": "47805932-6929-45ad-ad2b-643e9bd6b943"
+                        "value": "822e8dfb-b08c-4fb3-b5a7-6beacfc3219f"
                     }
                 ],
-                "lang": "en"
+                "lang": "en",
+                "alt": "1 alt",
+                "title": "",
+                "width": "266",
+                "height": "189"
             }
         ]
     },
     "created": [
         {
-            "value": "2019-04-05T14:48:26+00:00",
+            "value": "2019-04-09T06:39:04+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-04-05T14:48:26+00:00",
+            "value": "2019-04-09T06:39:04+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }

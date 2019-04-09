@@ -1,14 +1,14 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/media\/1?_format=hal_json"
+            "href": "http:\/\/default\/media\/3?_format=hal_json"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
         },
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg",
+                "href": "http:\/\/default\/file\/3?_format=hal_json",
                 "lang": "en"
             }
         ],
@@ -20,24 +20,24 @@
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
             {
-                "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg",
+                "href": "http:\/\/default\/file\/3?_format=hal_json",
                 "lang": "en"
             }
         ]
     },
     "mid": [
         {
-            "value": 1
+            "value": 3
         }
     ],
     "uuid": [
         {
-            "value": "4f34d383-fb23-4f73-beed-806f1f134c2e"
+            "value": "15e5bd52-a0b9-43e3-98e6-375bb38b6b35"
         }
     ],
     "vid": [
         {
-            "value": 1
+            "value": 3
         }
     ],
     "langcode": [
@@ -53,7 +53,7 @@
     ],
     "revision_created": [
         {
-            "value": "2019-04-05T14:47:58+00:00",
+            "value": "2019-04-09T06:40:09+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -65,7 +65,7 @@
     ],
     "name": [
         {
-            "value": "1.jpeg",
+            "value": "Photography-wallpaper2.jpg",
             "lang": "en"
         }
     ],
@@ -74,18 +74,22 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg"
+                        "href": "http:\/\/default\/file\/3?_format=hal_json"
                     },
                     "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/image"
                     }
                 },
                 "uuid": [
                     {
-                        "value": "5247e390-fc2a-4602-9fd6-098e2da0d9ab"
+                        "value": "dce5fda6-365d-4373-b423-fea7ac9a9bfd"
                     }
                 ],
-                "lang": "en"
+                "lang": "en",
+                "alt": "3 alt",
+                "title": null,
+                "width": "1920",
+                "height": "1080"
             }
         ],
         "http:\/\/drupal.org\/rest\/relation\/media\/images\/uid": [
@@ -100,7 +104,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "c95edb98-62ff-465e-90ca-22135e3a0c82"
+                        "value": "424f600a-ac48-40b4-b5d1-2130e3f4606d"
                     }
                 ],
                 "lang": "en"
@@ -110,31 +114,35 @@
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/sites\/default\/files\/media\/images\/2019-04\/1.jpeg"
+                        "href": "http:\/\/default\/file\/3?_format=hal_json"
                     },
                     "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/file\/file"
+                        "href": "http:\/\/drupal.org\/rest\/type\/file\/image"
                     }
                 },
                 "uuid": [
                     {
-                        "value": "5247e390-fc2a-4602-9fd6-098e2da0d9ab"
+                        "value": "dce5fda6-365d-4373-b423-fea7ac9a9bfd"
                     }
                 ],
-                "lang": "en"
+                "lang": "en",
+                "alt": "3 alt",
+                "title": "",
+                "width": "1920",
+                "height": "1080"
             }
         ]
     },
     "created": [
         {
-            "value": "2019-04-05T14:47:51+00:00",
+            "value": "2019-04-09T06:40:01+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-04-05T14:47:51+00:00",
+            "value": "2019-04-09T06:40:01+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }

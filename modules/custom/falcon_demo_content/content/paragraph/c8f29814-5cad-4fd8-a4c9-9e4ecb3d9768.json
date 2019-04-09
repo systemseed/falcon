@@ -19,7 +19,7 @@
     ],
     "revision_id": [
         {
-            "value": 17
+            "value": 21
         }
     ],
     "langcode": [
@@ -61,7 +61,6 @@
             "value": "field_body_blocks"
         }
     ],
-    "behavior_settings": [],
     "default_langcode": [
         {
             "value": true,
