@@ -45,9 +45,10 @@ class FalconMailSystem extends PhpMail {
     if (isset($message['params']['replace_tokens']) && $message['params']['replace_tokens']) {
 
       $tokens = isset($message['params']['render_tokens']) ? $message['params']['render_tokens'] : [];
+      $token_options = isset($message['params']['token_options']) ? $message['params']['token_options'] : [];
 
       // Replace tokens and set new body.
-      $message['body'] = Drupal::token()->replace($message['body'], $tokens);
+      $message['body'] = Drupal::token()->replace($message['body'], $tokens, $token_options);
     }
 
     return $message;
