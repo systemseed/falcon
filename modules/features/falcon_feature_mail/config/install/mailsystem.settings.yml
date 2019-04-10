@@ -1,4 +1,4 @@
 theme: current
 defaults:
   sender: php_mail
-  formatter: SMTPMailSystem
+  formatter: falcon_mail_system

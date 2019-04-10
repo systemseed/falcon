@@ -1,0 +1,9 @@
+services:
+  logger.channel.falcon_donation:
+    parent: logger.channel_base
+    arguments: ['falcon_donation']
+  falcon_donation_order_completed_subscriber:
+    class: \Drupal\falcon_donation\EventSubscriber\FalconDonationOrderCompletedSubscriber
+    arguments: ['@plugin.manager.mail', '@logger.channel.falcon_donation']
+    tags:
+      - { name: 'event_subscriber' }
