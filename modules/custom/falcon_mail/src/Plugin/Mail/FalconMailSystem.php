@@ -6,12 +6,12 @@ use Drupal;
 use Drupal\Core\Mail\Plugin\Mail\PhpMail;
 
 /**
- * Modify the drupal mail system to use html when sending emails.
+ * Modify the drupal mail system to use theme template and replace tokens when sending emails.
  *
  * @Mail(
  *   id = "falcon_mail_system",
  *   label = @Translation("Falcon Mailer"),
- *   description = @Translation("Provides .")
+ *   description = @Translation("Provides formatter that can wrap emails into HTML templates and replace tokens.")
  * )
  */
 class FalconMailSystem extends PhpMail {
@@ -34,7 +34,7 @@ class FalconMailSystem extends PhpMail {
       (isset($message['params']['from']) ? $message['params']['from'] : Drupal::config('system.site')->get('mail'));
 
     // Merge headers.
-    if (isset($message['params']['headers'])) {
+    if (!empty($message['params']['headers'])) {
       $message['headers'] = array_merge($message['headers'], $message['params']['headers']);
     }
 
@@ -42,10 +42,14 @@ class FalconMailSystem extends PhpMail {
       $message['body'] = implode("\n\n", $message['body']);
     }
 
-    if (isset($message['params']['replace_tokens']) && $message['params']['replace_tokens']) {
+    if (!empty($message['params']['theme_template'])) {
+      $message['body'] = str_replace('#$#BODY#$#', $message['body'], $message['params']['theme_template']);
+    }
 
-      $tokens = isset($message['params']['render_tokens']) ? $message['params']['render_tokens'] : [];
-      $token_options = isset($message['params']['token_options']) ? $message['params']['token_options'] : [];
+    if (!empty($message['params']['replace_tokens'])) {
+
+      $tokens = !empty($message['params']['render_tokens']) ? $message['params']['render_tokens'] : [];
+      $token_options = !empty($message['params']['token_options']) ? $message['params']['token_options'] : [];
 
       // Replace tokens and set new body.
       $message['body'] = Drupal::token()->replace($message['body'], $tokens, $token_options);

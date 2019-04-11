@@ -61,29 +61,34 @@ class FalconDonationOrderCompletedSubscriber implements EventSubscriberInterface
     try {
       /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
       $order = $event->getEntity();
-      if ($order->bundle() === 'donation') {
+      if ($order->bundle() !== 'donation') {
+        return;
+      }
 
-        $appeal = $order->get('field_appeal')->referencedEntities();
-        if (!empty($appeal)) {
-          $appeal = reset($appeal);
-          $subject = $appeal->get('field_thankyou_email_subject')->getValue()[0]['value'];
-          $body = $appeal->get('field_thankyou_email_body')->getValue()[0]['value'];
+      if ($order->get('field_appeal')->isEmpty()) {
+        return;
+      }
 
-          // Check subject and body for thank you email.
-          if (!empty($subject) && !empty($body)) {
-            $to = $order->getEmail();
-            $langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
-            $params = [];
-            $params['subject'] = $subject;
-            $params['body'] = $body;
-            $params['headers'] = ['Content-Type' => 'text/html'];
-            $params['commerce_order'] = $order;
-            $params['replace_tokens'] = TRUE;
+      $appeal = $order->get('field_appeal')->entity;
 
-            $this->pluginManagerMail->mail('falcon_donation', 'donation_thank_you_email', $to, $langcode, $params, NULL, TRUE);
-          }
-        }
+      $subject = $appeal->get('field_thankyou_email_subject')->value;
+      $body = $appeal->get('field_thankyou_email_body')->value;
 
+      // Check subject and body for thank you email.
+      if (!empty($subject) && !empty($body)) {
+        $to = $order->getEmail();
+
+        // TODO: add multilingual support.
+        $langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
+
+        $params = [];
+        $params['subject'] = $subject;
+        $params['body'] = $body;
+        $params['headers'] = ['Content-Type' => 'text/html'];
+        $params['render_tokens']['commerce_order'] = $order;
+        $params['replace_tokens'] = TRUE;
+
+        $this->pluginManagerMail->mail('falcon_donation', 'donation_thank_you_email', $to, $langcode, $params, NULL, TRUE);
       }
     }
     catch (\Exception $e) {
