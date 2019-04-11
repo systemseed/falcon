@@ -42,10 +42,12 @@ class FalconMailSystem extends PhpMail {
       $message['body'] = implode("\n\n", $message['body']);
     }
 
+    // Wrap body in theme template.
     if (!empty($message['params']['theme_template'])) {
       $message['body'] = str_replace('#$#BODY#$#', $message['body'], $message['params']['theme_template']);
     }
 
+    // Replace tokens.
     if (!empty($message['params']['replace_tokens'])) {
 
       $tokens = !empty($message['params']['render_tokens']) ? $message['params']['render_tokens'] : [];
