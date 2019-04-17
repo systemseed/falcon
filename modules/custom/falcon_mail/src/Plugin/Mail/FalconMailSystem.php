@@ -3,7 +3,9 @@
 namespace Drupal\falcon_mail\Plugin\Mail;
 
 use Drupal;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Mail\Plugin\Mail\PhpMail;
+use Drupal\Core\Render\Markup;
 
 /**
  * Modify the drupal mail system to use theme template and replace tokens when sending emails.
@@ -56,6 +58,8 @@ class FalconMailSystem extends PhpMail {
       // Replace tokens and set new body.
       $message['body'] = Drupal::token()->replace($message['body'], $tokens, $token_options);
     }
+
+    $message['body'] = Markup::create(Html::transformRootRelativeUrlsToAbsolute((string) $message['body'], \Drupal::request()->getSchemeAndHttpHost()));
 
     return $message;
   }
