@@ -3,7 +3,7 @@
 namespace Drupal\falcon_mail\Plugin\Mail;
 
 use Drupal;
-use \Exception;
+use Exception;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Mail\Plugin\Mail\PhpMail;
 
@@ -93,7 +93,7 @@ class FalconMailSystem extends PhpMail {
     }
     catch (Exception $e) {
       Drupal::logger('falcon_mail')
-        ->warning("Falcon mail formatter didn't replace relative urls on absolute. Email key: " . $message['key'] );
+        ->warning("Falcon mail formatter didn't replace relative urls on absolute. Email key: " . $message['key']);
     }
 
     return $message;
