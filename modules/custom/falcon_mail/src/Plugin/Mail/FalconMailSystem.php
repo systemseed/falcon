@@ -3,9 +3,9 @@
 namespace Drupal\falcon_mail\Plugin\Mail;
 
 use Drupal;
+use \Exception;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Mail\Plugin\Mail\PhpMail;
-use Drupal\Core\Render\Markup;
 
 /**
  * Modify the drupal mail system to use theme template and replace tokens when sending emails.
@@ -59,7 +59,42 @@ class FalconMailSystem extends PhpMail {
       $message['body'] = Drupal::token()->replace($message['body'], $tokens, $token_options);
     }
 
-    $message['body'] = Markup::create(Html::transformRootRelativeUrlsToAbsolute((string) $message['body'], \Drupal::request()->getSchemeAndHttpHost()));
+    try {
+      // Create Global dom document.
+      $html = new \DOMDocument();
+      $html->loadHTML($message['body']);
+
+      // Get body structure as string.
+      $strBody = $html->saveHTML($html->getElementsByTagName('body')[0]);
+
+      // Replace all relative urls in body.
+      $strNewBody = Html::transformRootRelativeUrlsToAbsolute((string) $strBody, \Drupal::request()
+        ->getSchemeAndHttpHost());
+
+      // Create new HTML document with new body.
+      $newBodyHtml = Html::load($strNewBody);
+      // Get new body element.
+      $newBodyElement = $newBodyHtml->getElementsByTagName('body')[0];
+      // Provide new body element to Global dom document.
+      $newBodyElement = $html->importNode($newBodyElement, TRUE);
+
+      // Remove all childNodes from body.
+      $bodyElement = $html->getElementsByTagName('body')[0];
+      while ($bodyElement->childNodes[0]) {
+        $bodyElement->removeChild($bodyElement->childNodes[0]);
+      }
+      // Add childNodes from new body.
+      while ($newBodyElement->childNodes[0]) {
+        $bodyElement->appendChild($newBodyElement->childNodes[0]);
+      }
+
+      // Save Global dom document to message body.
+      $message['body'] = $html->saveHTML();
+    }
+    catch (Exception $e) {
+      Drupal::logger('falcon_mail')
+        ->warning("Falcon mail formatter didn't replace relative urls on absolute. Email key: " . $message['key'] );
+    }
 
     return $message;
   }
