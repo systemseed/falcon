@@ -59,10 +59,45 @@ class FalconMailSystem extends PhpMail {
       $message['body'] = Drupal::token()->replace($message['body'], $tokens, $token_options);
     }
 
+    // Replace relative urls in body.
+    $message['body'] = $this->replaseRelativeUrlsWithSaveStyles($message['body']);
+
+    return $message;
+  }
+
+  /**
+   * Send the e-mail message with using default PHP_Mail.
+   *
+   * @param array $message
+   *   A message array.
+   *
+   * @return bool
+   *   TRUE if the mail was successfully accepted, otherwise FALSE.
+   */
+  public function mail(array $message) {
+    return parent::mail($message);
+  }
+
+  /**
+   * Replace relative urls on absolute with saving <html>, <body>, <head> tags.
+   *
+   * @param string $body
+   *   Mail body.
+   *
+   * @return string
+   *   String with/without replaced relative urls.
+   */
+  public function replaseRelativeUrlsWithSaveStyles($body) {
     try {
       // Create Global dom document.
       $html = new \DOMDocument();
-      $html->loadHTML($message['body']);
+      $html->loadHTML($body);
+
+      // Get body element.
+      $bodyElement = $html->getElementsByTagName('body')[0];
+      if (empty($bodyElement)) {
+        return $body;
+      }
 
       // Get body structure as string.
       $strBody = $html->saveHTML($html->getElementsByTagName('body')[0]);
@@ -79,7 +114,6 @@ class FalconMailSystem extends PhpMail {
       $newBodyElement = $html->importNode($newBodyElement, TRUE);
 
       // Remove all childNodes from body.
-      $bodyElement = $html->getElementsByTagName('body')[0];
       while ($bodyElement->childNodes[0]) {
         $bodyElement->removeChild($bodyElement->childNodes[0]);
       }
@@ -89,27 +123,14 @@ class FalconMailSystem extends PhpMail {
       }
 
       // Save Global dom document to message body.
-      $message['body'] = $html->saveHTML();
+      $body = $html->saveHTML();
     }
     catch (Exception $e) {
       Drupal::logger('falcon_mail')
         ->warning("Falcon mail formatter didn't replace relative urls on absolute. Email key: " . $message['key']);
     }
 
-    return $message;
-  }
-
-  /**
-   * Send the e-mail message with using default PHP_Mail.
-   *
-   * @param array $message
-   *   A message array.
-   *
-   * @return bool
-   *   TRUE if the mail was successfully accepted, otherwise FALSE.
-   */
-  public function mail(array $message) {
-    return parent::mail($message);
+    return $body;
   }
 
 }
