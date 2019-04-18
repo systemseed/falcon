@@ -95,8 +95,10 @@ class FalconMailSystem extends PhpMail {
 
       // Get body element.
       $bodyElement = $html->getElementsByTagName('body')[0];
+
       if (empty($bodyElement)) {
-        return $body;
+        return Html::transformRootRelativeUrlsToAbsolute((string) $body, \Drupal::request()
+          ->getSchemeAndHttpHost());
       }
 
       // Get body structure as string.
