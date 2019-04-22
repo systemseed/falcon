@@ -96,7 +96,8 @@ class FalconMailSystem extends PhpMail {
     try {
       // Create Global dom document.
       $html = new \DOMDocument();
-      $html->loadHTML($body);
+      // Add html. Disable errors and warnings for it.
+      $html->loadHTML($body, LIBXML_NOWARNING | LIBXML_NOERROR);
 
       // If $html does't have body than return $body with replaced tokens.
       if (empty($html->getElementsByTagName('body')->count())) {
