@@ -19,6 +19,11 @@ use Drupal\Core\Mail\Plugin\Mail\PhpMail;
 class FalconMailSystem extends PhpMail {
 
   /**
+   * The body token.
+   */
+  const BODY_TOKEN = '#$#BODY#$#';
+
+  /**
    * Concatenate and wrap the e-mail body for either HTML emails.
    *
    * @param array $message
@@ -46,7 +51,7 @@ class FalconMailSystem extends PhpMail {
 
     // Wrap body in theme template.
     if (!empty($message['params']['theme_template'])) {
-      $message['body'] = str_replace('#$#BODY#$#', $message['body'], $message['params']['theme_template']);
+      $message['body'] = str_replace(self::BODY_TOKEN, $message['body'], $message['params']['theme_template']);
     }
 
     // Replace tokens.
@@ -60,7 +65,7 @@ class FalconMailSystem extends PhpMail {
     }
 
     // Replace relative urls in body.
-    $message['body'] = $this->replaseRelativeUrlsWithSaveStyles($message['body']);
+    $message['body'] = $this->replaceRelativeUrlsWithSaveStyles($message['body']);
 
     return $message;
   }
@@ -85,24 +90,25 @@ class FalconMailSystem extends PhpMail {
    *   Mail body.
    *
    * @return string
-   *   String with/without replaced relative urls.
+   *   String with replaced relative urls.
    */
-  public function replaseRelativeUrlsWithSaveStyles($body) {
+  public function replaceRelativeUrlsWithSaveStyles($body) {
     try {
       // Create Global dom document.
       $html = new \DOMDocument();
       $html->loadHTML($body);
 
-      // Get body element.
-      $bodyElement = $html->getElementsByTagName('body')[0];
-
-      if (empty($bodyElement)) {
+      // If $html does't have body than return $body with replaced tokens.
+      if (empty($html->getElementsByTagName('body')->count())) {
         return Html::transformRootRelativeUrlsToAbsolute((string) $body, \Drupal::request()
           ->getSchemeAndHttpHost());
       }
 
+      // Get body element.
+      $bodyElement = $html->getElementsByTagName('body')[0];
+
       // Get body structure as string.
-      $strBody = $html->saveHTML($html->getElementsByTagName('body')[0]);
+      $strBody = $html->saveHTML($bodyElement);
 
       // Replace all relative urls in body.
       $strNewBody = Html::transformRootRelativeUrlsToAbsolute((string) $strBody, \Drupal::request()
@@ -128,8 +134,7 @@ class FalconMailSystem extends PhpMail {
       $body = $html->saveHTML();
     }
     catch (Exception $e) {
-      Drupal::logger('falcon_mail')
-        ->warning("Falcon mail formatter didn't replace relative urls on absolute. Email key: " . $message['key']);
+      watchdog_exception('falcon_mail', $e, "Falcon mail formatter didn't replace relative urls on absolute. Email: " . $body);
     }
 
     return $body;
