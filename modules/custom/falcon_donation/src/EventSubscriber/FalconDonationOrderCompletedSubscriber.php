@@ -75,21 +75,24 @@ class FalconDonationOrderCompletedSubscriber implements EventSubscriberInterface
       $body = $appeal->get('field_thankyou_email_body')->value;
 
       // Check subject and body for thank you email.
-      if (!empty($subject) && !empty($body)) {
-        $to = $order->getEmail();
-
-        // TODO: add multilingual support.
-        $langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
-
-        $params = [];
-        $params['subject'] = $subject;
-        $params['body'] = $body;
-        $params['headers'] = ['Content-Type' => 'text/html'];
-        $params['render_tokens']['commerce_order'] = $order;
-        $params['replace_tokens'] = TRUE;
-
-        $this->pluginManagerMail->mail('falcon_donation', 'donation_thank_you_email', $to, $langcode, $params, NULL, TRUE);
+      if (empty($subject) || empty($body)) {
+        return;
       }
+
+      // Get email.
+      $to = $order->getEmail();
+
+      // TODO: add multilingual support.
+      $langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
+
+      $params = [];
+      $params['subject'] = $subject;
+      $params['body'] = $body;
+      $params['headers'] = ['Content-Type' => 'text/html'];
+      $params['render_tokens']['commerce_order'] = $order;
+      $params['replace_tokens'] = TRUE;
+
+      $this->pluginManagerMail->mail('falcon_donation', 'donation_thank_you_email', $to, $langcode, $params);
     }
     catch (\Exception $e) {
       $this->logger
