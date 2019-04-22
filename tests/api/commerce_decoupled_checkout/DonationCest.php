@@ -101,7 +101,7 @@ class DonationCest {
       'field_donation_type' => ['single_donation', 'recurring_donation'],
       'field_thankyou_page_title' => 'Thank you page title',
       'field_thankyou_email_subject' => 'Thank you email subject',
-      'field_thankyou_email_body' => 'Thank you email body',
+      'field_thankyou_email_body' => [ 'value' => '<div>Thank you email for [commerce_order:total_paid] donation</div>', 'format' => 'full_html'],
     ]);
     $this->appeal->save();
   }

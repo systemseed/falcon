@@ -3,6 +3,7 @@
 namespace Drupal\falcon_gift_ecards\EventSubscriber;
 
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\falcon_gift_ecards\MailSender;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -36,12 +37,20 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
   protected $storage;
 
   /**
+   * A logger instance.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MailSender $mail_sender) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MailSender $mail_sender, LoggerInterface $logger) {
     $this->mailSender = $mail_sender;
     $this->entityTypeManager = $entity_type_manager;
     $this->storage = $entity_type_manager->getStorage('gift_cards');
+    $this->logger = $logger;
   }
 
   /**
@@ -90,7 +99,7 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
       }
     }
     catch (\Exception $e) {
-      \Drupal::logger('falcon_gift_ecards')
+      $this->logger
         ->alert('Can`t send card when order payment completed. Error: ' . $e->getMessage());
     }
   }

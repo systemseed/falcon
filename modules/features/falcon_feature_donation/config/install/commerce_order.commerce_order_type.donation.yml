@@ -15,7 +15,7 @@ id: donation
 workflow: donation
 refresh_mode: customer
 refresh_frequency: 300
-sendReceipt: true
+sendReceipt: false
 receiptBcc: ''
 traits: {  }
 locked: false
