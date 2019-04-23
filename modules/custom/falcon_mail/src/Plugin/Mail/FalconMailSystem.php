@@ -54,7 +54,7 @@ class FalconMailSystem extends PhpMail {
       $message['body'] = str_replace(self::BODY_TOKEN, $message['body'], $message['params']['theme_template']);
     }
 
-    // Replace tokens.
+    // Replace tokens in the body and in the subject.
     if (!empty($message['params']['replace_tokens'])) {
 
       $tokens = !empty($message['params']['render_tokens']) ? $message['params']['render_tokens'] : [];
@@ -62,6 +62,8 @@ class FalconMailSystem extends PhpMail {
 
       // Replace tokens and set new body.
       $message['body'] = Drupal::token()->replace($message['body'], $tokens, $token_options);
+      // Replace tokens and set new subject.
+      $message['subject'] = Drupal::token()->replace($message['subject'], $tokens, $token_options);
     }
 
     // Replace relative urls in body.
