@@ -8,7 +8,7 @@ class DemoContentTest extends \Codeception\Test\Unit {
 
   /**
    * Checks for the presence demo content.
-   * @group debug
+   * @group basic
    */
   public function testDemoContentEnabled()
   {
@@ -31,7 +31,7 @@ class DemoContentTest extends \Codeception\Test\Unit {
 
   /**
    * Checks for the missing demo content.
-   * @group debug
+   * @group basic
    */
   public function testDemoContentDisabled()
   {
