@@ -43,12 +43,20 @@ jobs:
           command: make tests:run -- -g basic
 
       - run:
+        name: Enable Demo content after tests
+        command: make drush en falcon_demo_content
+
+      - run:
           name: Install additional modules
           command: make drush en \$\(ADDITIONAL_MODULES\)
 
       - run:
           name: Run basic and additional groups tests
           command: make tests:run -- -g basic -g additional
+
+      - run:
+        name: Enable Demo content after tests
+        command: make drush en falcon_demo_content
 
       - store_artifacts:
           path: tests/_output
