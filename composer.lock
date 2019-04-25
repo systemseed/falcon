@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7212a6c7d40e0f18a8a3472e2f70c646",
+    "content-hash": "c3b91c5baa14b448cb3ec5644fcc372a",
     "packages": [
         {
             "name": "apache/log4php",
@@ -2521,16 +2521,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.6.13",
+            "version": "8.6.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "8d5b80030ac3f13df2d66aeef0ea388fd9a90632"
+                "reference": "7f5f0369ffe08478aa0f26bd48dc95bcc9cde4b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/8d5b80030ac3f13df2d66aeef0ea388fd9a90632",
-                "reference": "8d5b80030ac3f13df2d66aeef0ea388fd9a90632",
+                "url": "https://api.github.com/repos/drupal/core/zipball/7f5f0369ffe08478aa0f26bd48dc95bcc9cde4b5",
+                "reference": "7f5f0369ffe08478aa0f26bd48dc95bcc9cde4b5",
                 "shasum": ""
             },
             "require": {
@@ -2760,7 +2760,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2019-03-20T06:01:19+00:00"
+            "time": "2019-04-08T01:37:34+00:00"
         },
         {
             "name": "drupal/crop",
@@ -4214,17 +4214,17 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "1.8.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs.git",
-                "reference": "8.x-1.8"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.8.zip",
-                "reference": "8.x-1.8",
-                "shasum": "a40849233de8403f5488c20c5b81ab4877373f65"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "85f7a2ef0850dd9113fb57934986a5c31ee2b555"
             },
             "require": {
                 "drupal/core": "~8",
@@ -4252,7 +4252,7 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.8",
+                    "version": "8.x-1.7",
                     "datestamp": "1553618281",
                     "security-coverage": {
                         "status": "covered",

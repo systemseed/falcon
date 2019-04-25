@@ -1,0 +1,5 @@
+name: Falcon Mail
+type: module
+description: Provides plugin for mail system with formatter that can wrap emails into HTML templates and replace tokens.
+core: 8.x
+package: Falcon

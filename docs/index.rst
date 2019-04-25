@@ -26,3 +26,4 @@ Follow instructions in :doc:`install` section.
    environment
    content
    metatags
+   email_configuration

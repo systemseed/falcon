@@ -4,6 +4,6 @@ type: module
 core: 8.x
 dependencies:
   - mailsystem
-  - smtp
+  - falcon_mail
 version: 8.x-1.0
 package: 'Falcon Configurations'
