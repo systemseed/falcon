@@ -1,0 +1,8 @@
+name: Falcon Webform
+type: module
+description: Provides decoupled webform.
+core: 8.x
+package: Falcon
+dependencies:
+  - rest_entity_recursive:rest_entity_recursive
+  - webform:webform

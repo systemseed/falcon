@@ -3,9 +3,14 @@ description: 'Provides decoupled webforms and webform submit endpoint.'
 type: module
 core: 8.x
 dependencies:
+  - field
+  - paragraphs
+  - paragraphs_library
   - rest
   - serialization
+  - ultimate_cron
   - user
+  - webform
   - webform_rest
 version: 8.x-1.0
 package: 'Falcon Configurations'
