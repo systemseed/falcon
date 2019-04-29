@@ -8,11 +8,10 @@ class DemoContentTest extends \Codeception\Test\Unit {
 
   /**
    * Checks for the presence demo content.
-   * @group basic
+   * @group demo-content
    */
   public function testDemoContentEnabled()
   {
-    // Get array of demo content entities uuid and type.
     $this->assertTrue(
       \Drupal::moduleHandler()->moduleExists(self::DEMO_CONTENT_MODULE),
       "Module " . self::DEMO_CONTENT_MODULE . " should be enabled."
@@ -31,7 +30,7 @@ class DemoContentTest extends \Codeception\Test\Unit {
 
   /**
    * Checks for the missing demo content.
-   * @group basic
+   * @group demo-content
    */
   public function testDemoContentDisabled()
   {
