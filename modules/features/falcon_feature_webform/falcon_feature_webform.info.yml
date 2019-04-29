@@ -1,0 +1,11 @@
+name: 'Falcon Webform feature'
+description: 'Provides decoupled webforms and webform submit endpoint.'
+type: module
+core: 8.x
+dependencies:
+  - rest
+  - serialization
+  - user
+  - webform_rest
+version: 8.x-1.0
+package: 'Falcon Configurations'
