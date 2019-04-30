@@ -27,7 +27,6 @@ class WebformNormalizer extends ContentEntityNormalizer {
       return [];
     }
 
-    // Normalize webform.
     $normalized = [
       'entity_type' => [['value' => $webform->getEntityTypeId()]],
       'entity_bundle' => [['value' => $webform->bundle()]],
@@ -45,14 +44,13 @@ class WebformNormalizer extends ContentEntityNormalizer {
       $normalizedFields[] = array_merge($this->getNormalizedField($field), ['field_id' => $key]);
     }
 
-    // Add fields.
     $normalized['fields'] = $normalizedFields;
 
     return $normalized;
   }
 
   /**
-   * Normalization webform fields.
+   * Normalization webform field.
    *
    * @param array $values
    *   Array of data.
