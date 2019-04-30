@@ -8,7 +8,6 @@ dependencies:
   - paragraphs_library
   - rest
   - serialization
-  - ultimate_cron
   - user
   - webform
   - webform_rest
