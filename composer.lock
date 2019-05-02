@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83c5663b7a973950d318899cdbca80c6",
+    "content-hash": "0fe05ec9a2911f931766a848d7bb104b",
     "packages": [
         {
             "name": "apache/log4php",
@@ -34,11 +34,6 @@
                 "logging",
                 "php"
             ],
-            "support": {
-                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
-                "source": "https://svn.apache.org/repos/asf/logging/log4php",
-                "email": "log4php-user@logging.apache.org"
-            },
             "time": "2012-10-26T09:13:25+00:00"
         },
         {
@@ -2366,7 +2361,7 @@
             "description": "Consumer Image Styles integrates with JSON API to provide image styles to your images in your decoupled project.",
             "homepage": "https://www.drupal.org/project/consumer_image_styles",
             "support": {
-                "source": "https://git.drupalcode.org/project/consumer_image_styles"
+                "source": "http://cgit.drupalcode.org/consumer_image_styles"
             }
         },
         {
@@ -4123,9 +4118,7 @@
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 },
-                "patches_applied": {
-                    "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
-                }
+                "patches_applied": []
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
@@ -4451,11 +4444,17 @@
         },
         {
             "name": "drupal/rest_entity_recursive",
-            "version": "dev-1.x",
+            "version": "1.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/rest_entity_recursive.git",
-                "reference": "b1878c3f63fc89008f396f1b80af209f3857c1cf"
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/rest_entity_recursive-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "436a52ef94e956144cef59bebb08f6672a307f38"
             },
             "require": {
                 "drupal/core": "*"
@@ -4470,8 +4469,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+1-dev",
-                    "datestamp": "1553597280",
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1556797385",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4504,8 +4503,7 @@
             "homepage": "https://www.drupal.org/project/rest_entity_recursive",
             "support": {
                 "source": "https://git.drupalcode.org/project/rest_entity_recursive"
-            },
-            "time": "2019-03-26T10:45:37+00:00"
+            }
         },
         {
             "name": "drupal/restui",
@@ -8686,7 +8684,7 @@
         "drupal/menu_link_config": 15,
         "drupal/paragraphs_browser": 20,
         "drupal/rest_absolute_urls": 10,
-        "drupal/rest_entity_recursive": 20,
+        "drupal/rest_entity_recursive": 10,
         "drupal/smtp": 10,
         "drupal/ultimate_cron": 15,
         "drupal/webform_rest": 10,
