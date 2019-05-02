@@ -20,9 +20,8 @@ class WebformNormalizer extends ContentEntityNormalizer {
    */
   public function normalize($webform, $format = NULL, array $context = []) {
 
-    // TODO: check view access. (Need to create permissions for it)
-
-    if (!$webform->isOpen()) {
+    /* @see: \Drupal\webform\WebformEntityAccessControlHandler::checkAccess() */
+    if (!$webform->access('submission_page')) {
       // Do we need logger here??
       return [];
     }
@@ -33,6 +32,7 @@ class WebformNormalizer extends ContentEntityNormalizer {
       'id' => $webform->getOriginalId(),
       'title' => $webform->label(),
       'description' => $webform->getDescription(),
+      'success_message' => $webform->getSetting('confirmation_message'),
     ];
 
     // Get elements for build form.
