@@ -19,9 +19,12 @@ class WebformNormalizer extends ContentEntityNormalizer {
    * {@inheritdoc}
    */
   public function normalize($webform, $format = NULL, array $context = []) {
+    // Add the current webform entity as a cacheable dependency to make Drupal
+    // flush the cache when the webform entity gets updated.
+    $this->addCacheableDependency($context, $webform);
 
     /* @see: \Drupal\webform\WebformEntityAccessControlHandler::checkAccess() */
-    if (!$webform->access('submission_page')) {
+    if (!$webform->access('submission_page') || !$webform->isOpen()) {
       // Do we need logger here??
       return [];
     }
