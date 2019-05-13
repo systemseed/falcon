@@ -25,7 +25,10 @@ class WebformNormalizer extends ContentEntityNormalizer {
 
     /* @see: \Drupal\webform\WebformEntityAccessControlHandler::checkAccess() */
     if (!$webform->access('submission_page') || !$webform->isOpen()) {
-      // Do we need logger here??
+      \Drupal::logger('falcon_webform')->info(
+        'Requested webform with id = @id is close or current user has not permissions for view the webform.',
+        ['@id' => $webform->getOriginalId()]
+      );
       return [];
     }
 
@@ -34,7 +37,6 @@ class WebformNormalizer extends ContentEntityNormalizer {
       'entity_bundle' => [['value' => $webform->bundle()]],
       'id' => $webform->getOriginalId(),
       'title' => $webform->label(),
-      'description' => $webform->getDescription(),
       'success_message' => $webform->getSetting('confirmation_message'),
     ];
 
@@ -44,7 +46,7 @@ class WebformNormalizer extends ContentEntityNormalizer {
     // Normalize elements.
     $normalizedFields = [];
     foreach ($fields as $key => $field) {
-      $normalizedFields[] = array_merge($this->getNormalizedField($field), ['field_id' => $key]);
+      $normalizedFields[] = ['field_id' => $key] + $this->getNormalizedField($field);
     }
 
     $normalized['fields'] = $normalizedFields;
@@ -74,7 +76,7 @@ class WebformNormalizer extends ContentEntityNormalizer {
         if (is_array($value)) {
           $value = $this->getNormalizedField($value);
         }
-        $children[] = array_merge($value, ['field_id' => $key]);
+        $children[] = ['field_id' => $key] + $value;
       }
     }
     if (!empty($children)) {
