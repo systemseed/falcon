@@ -1,0 +1,5 @@
+services:
+  falcon_webform.normalizer.webform:
+    class: Drupal\falcon_webform\Normalizer\WebformNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
