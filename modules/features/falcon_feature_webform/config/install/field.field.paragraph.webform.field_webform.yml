@@ -11,7 +11,7 @@ field_name: field_webform
 entity_type: paragraph
 bundle: webform
 label: Webform
-description: 'To reate new webform, go to <a target="_blank" href="/admin/structure/webform">Webforms</a> page.'
+description: 'To create new webform, go to <a target="_blank" href="/admin/structure/webform">Webforms</a> page.'
 required: true
 translatable: false
 default_value: {  }
