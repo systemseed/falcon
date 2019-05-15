@@ -37,7 +37,9 @@ class WebformNormalizer extends ContentEntityNormalizer {
       'entity_bundle' => [['value' => $webform->bundle()]],
       'id' => $webform->getOriginalId(),
       'title' => $webform->label(),
+      'confirmation_type' => $webform->getSetting('confirmation_type'),
       'success_message' => $webform->getSetting('confirmation_message'),
+      'confirmation_url' => $webform->getSetting('confirmation_url'),
     ];
 
     // Get elements for build form.
