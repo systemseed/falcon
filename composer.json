@@ -86,7 +86,7 @@
     "patches": {
       "drupal/core": {
         "Media Library and Paragraphs": "https://www.drupal.org/files/issues/2018-12-05/drupal-media-library-paragraphs-3003150-19-8.x.patch",
-        "Pagination in rest views": "https://www.drupal.org/files/issues/2018-06-30/2982729-viewsRestInfo.patch"
+        "Pagination in rest views": "https://www.drupal.org/files/issues/2019-05-21/2982729-viewsRestInfo-13_0.patch"
       },
       "drupal/paragraphs_browser": {
         "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
