@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fe05ec9a2911f931766a848d7bb104b",
+    "content-hash": "cea6063e4911f49c93f7025c2142baad",
     "packages": [
         {
             "name": "apache/log4php",
@@ -34,6 +34,11 @@
                 "logging",
                 "php"
             ],
+            "support": {
+                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
+                "source": "https://svn.apache.org/repos/asf/logging/log4php",
+                "email": "log4php-user@logging.apache.org"
+            },
             "time": "2012-10-26T09:13:25+00:00"
         },
         {
@@ -2361,7 +2366,7 @@
             "description": "Consumer Image Styles integrates with JSON API to provide image styles to your images in your decoupled project.",
             "homepage": "https://www.drupal.org/project/consumer_image_styles",
             "support": {
-                "source": "http://cgit.drupalcode.org/consumer_image_styles"
+                "source": "https://git.drupalcode.org/project/consumer_image_styles"
             }
         },
         {
@@ -2731,7 +2736,7 @@
                 },
                 "patches_applied": {
                     "Media Library and Paragraphs": "https://www.drupal.org/files/issues/2018-12-05/drupal-media-library-paragraphs-3003150-19-8.x.patch",
-                    "Pagination in rest views": "https://www.drupal.org/files/issues/2018-06-30/2982729-viewsRestInfo.patch"
+                    "Pagination in rest views": "https://www.drupal.org/files/issues/2019-05-21/2982729-viewsRestInfo-13_0.patch"
                 }
             },
             "autoload": {
@@ -4118,7 +4123,9 @@
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 },
-                "patches_applied": []
+                "patches_applied": {
+                    "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
