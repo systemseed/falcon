@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "485166c8d2cd4458f7ce608581df857b",
+    "content-hash": "cea6063e4911f49c93f7025c2142baad",
     "packages": [
         {
             "name": "apache/log4php",
@@ -34,11 +34,6 @@
                 "logging",
                 "php"
             ],
-            "support": {
-                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
-                "source": "https://svn.apache.org/repos/asf/logging/log4php",
-                "email": "log4php-user@logging.apache.org"
-            },
             "time": "2012-10-26T09:13:25+00:00"
         },
         {
@@ -1789,12 +1784,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/systemseed/commerce_paypal_ec.git",
-                "reference": "725f3f11a9dbf41619778b89fd4b15a73120746d"
+                "reference": "76a07ba037eb73ba01cbb77c2af8fe63adcea992"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/systemseed/commerce_paypal_ec/zipball/725f3f11a9dbf41619778b89fd4b15a73120746d",
-                "reference": "725f3f11a9dbf41619778b89fd4b15a73120746d",
+                "url": "https://api.github.com/repos/systemseed/commerce_paypal_ec/zipball/76a07ba037eb73ba01cbb77c2af8fe63adcea992",
+                "reference": "76a07ba037eb73ba01cbb77c2af8fe63adcea992",
                 "shasum": ""
             },
             "require": {
@@ -1808,10 +1803,10 @@
             "description": "Implementation of Express Checkout feature of PayPal for Drupal Commerce.",
             "homepage": "http://drupal.org/project/commerce_paypal_ec",
             "support": {
-                "source": "https://github.com/systemseed/commerce_paypal_ec/tree/master",
+                "source": "https://github.com/systemseed/commerce_paypal_ec/tree/8.x-1.x",
                 "issues": "https://github.com/systemseed/commerce_paypal_ec/issues"
             },
-            "time": "2018-10-22T10:03:00+00:00"
+            "time": "2019-05-29T15:28:21+00:00"
         },
         {
             "name": "drupal/commerce_price",
@@ -2366,7 +2361,7 @@
             "description": "Consumer Image Styles integrates with JSON API to provide image styles to your images in your decoupled project.",
             "homepage": "https://www.drupal.org/project/consumer_image_styles",
             "support": {
-                "source": "https://git.drupalcode.org/project/consumer_image_styles"
+                "source": "http://cgit.drupalcode.org/consumer_image_styles"
             }
         },
         {
@@ -4116,8 +4111,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha2+1-dev",
-                    "datestamp": "1549904280",
+                    "version": "8.x-1.0-alpha2+9-dev",
+                    "datestamp": "1558727581",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
