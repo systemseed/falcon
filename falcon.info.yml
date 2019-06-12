@@ -59,10 +59,12 @@ dependencies:
   - consumers_token
   - consumer_image_styles
   - decoupled_router
+  - default_content
   - entity
   - entity_reference_revisions
   - features
   - field_group
+  - file_entity
   - jsonapi
   - jsonapi_extras
   - mailsystem

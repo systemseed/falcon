@@ -100,7 +100,10 @@ class FalconOrderCompletedSubscriber implements EventSubscriberInterface {
     }
     catch (\Exception $e) {
       $this->logger
-        ->alert('Can`t send card when order payment completed. Error: ' . $e->getMessage());
+        ->alert(
+          'Can`t send card when order payment completed. Error: @error',
+          ['@error' => $e->getMessage()]
+        );
     }
   }
 

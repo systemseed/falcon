@@ -19,7 +19,7 @@ function falcon_install() {
     'falcon_feature_appeal',
     'falcon_feature_commerce',
     'falcon_feature_commerce_direct_debit_gateway',
-    'falcon_feature_content_blocks',
+    'falcon_feature_demo',
     'falcon_feature_donation',
     'falcon_feature_mail',
     'falcon_feature_metatag',
@@ -27,6 +27,11 @@ function falcon_install() {
     'falcon_feature_user'
   ];
 
+  $module_installer = \Drupal::service('module_installer');
+
   // Enable default custom features.
-  \Drupal::service('module_installer')->install($FEATURES_DEFAULT_ENABLED);
+  $module_installer->install($FEATURES_DEFAULT_ENABLED);
+
+  // Add demo content.
+  $module_installer->install(['falcon_demo_content']);
 }

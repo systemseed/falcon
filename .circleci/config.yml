@@ -50,6 +50,10 @@ jobs:
           name: Run basic and additional groups tests
           command: make tests:run -- -g basic -g additional
 
+      - run:
+          name: Run tests for demo content
+          command: make tests:run -- -g demo-content
+
       - store_artifacts:
           path: tests/_output
 

@@ -11,10 +11,11 @@ dependencies:
   - node
   - options
   - paragraphs
+  - paragraphs_browser
   - path
   - pathauto
   - scheduler
   - text
   - user
 version: 8.x-1.0
-package: Falcon Configurations
+package: 'Falcon Configurations'
