@@ -67,8 +67,8 @@ class FalconDonationOrderCompletedSubscriber implements EventSubscriberInterface
 
       if ($order->get('field_appeal')->isEmpty()) {
         $this->logger
-          ->info(
-            'Can`t send Thank you email because completed donation order has not appeal entity. Order id = @id',
+          ->error(
+            'Could not send Thank You email, because the donation order does not have reference to the appeal. Related order ID is @id.',
             ['@id' => $order->id()]
           );
         return;
@@ -82,8 +82,8 @@ class FalconDonationOrderCompletedSubscriber implements EventSubscriberInterface
       // Check subject and body for thank you email.
       if (empty($subject) || empty($body)) {
         $this->logger
-          ->info(
-            'Can`t send Thank you email because thankyou_email_subject or thankyou_email_body is empty. Appeal id = @appeal_id. Order id = @order_id',
+          ->error(
+            'Could not send Thank You email, because the Thank You email subject or body is empty. Related appeal ID is @appeal_id, related order ID is @order_id.',
             ['@appeal_id' => $appeal->id(), '@order_id' => $order->id()]
           );
         return;
@@ -106,7 +106,7 @@ class FalconDonationOrderCompletedSubscriber implements EventSubscriberInterface
     catch (\Exception $e) {
       $this->logger
         ->alert(
-          'Can`t send Thank you email when order payment completed. Error: @error',
+          'Could not send Thank You email when order payment completed. Error: @error',
           ['@error' => $e->getMessage()]
         );
     }
