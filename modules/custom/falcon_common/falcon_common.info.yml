@@ -6,3 +6,4 @@ package: Falcon
 dependencies:
   - consumers
   - features
+  - require_login
