@@ -75,6 +75,7 @@ dependencies:
   - redirect
   - restui
   - rest_absolute_urls
+  - require_login
   - smtp
   - token
   - ultimate_cron
