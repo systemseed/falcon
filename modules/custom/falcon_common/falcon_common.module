@@ -21,3 +21,13 @@ function falcon_common_form_alter(&$form, FormStateInterface $form_state, $form_
     $form['#attached']['library'][] = 'falcon_common/node-layout';
   }
 }
+
+/**
+ * Implements hook_require_login_authcheck_alter().
+ */
+function falcon_common_require_login_authcheck_alter(&$checks) {
+  // Disable force login for API requests.
+  $format = \Drupal::request()->getRequestFormat();
+
+  $checks[] = (strpos($format, 'json') !== FALSE);
+}
