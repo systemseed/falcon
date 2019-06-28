@@ -18,7 +18,7 @@ modules:
     REST:
       url: '%URL%'
     \Codeception\Module\Drupal8\Drupal8:
-      root: '/app/web'
+      root: '/app/falcon/web'
       env: 'prod'
       relative: no
       site_dir: 'default'

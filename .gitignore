@@ -8,10 +8,10 @@
 /.env
 
 # Composer dependencies.
-/vendor
+/falcon/vendor
 
 # Locally built site.
-/web
+/falcon/web
 
 # Codeception code base for IDE autocomplete purposes only.
 /.codecept

@@ -48,6 +48,10 @@ down:
 	$(call message,$(PROJECT_NAME): Removing network & containers)
 	docker-compose down -v --remove-orphans
 
+restart:
+	@$(MAKE) -s down
+	@$(MAKE) -s up
+
 clean: | up
 	$(call message,$(PROJECT_NAME): Removing vendor and web directories)
 	$(call docker-root, php rm -rf vendor)
@@ -111,23 +115,23 @@ code\:check:
     # PHP coding standards check.
 	$(call message,$(PROJECT_NAME): Checking PHP for compliance with Drupal coding standards...)
 	docker run --rm \
-		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcs \
+		-v $(shell pwd)/falcon/modules:/app/modules $(DOCKER_PHPCS) phpcs \
 		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
     # Javascript coding standards check.
 	$(call message,$(PROJECT_NAME): Checking Javascript for compliance with Drupal coding standards...)
 	docker run --rm \
-		-v $(shell pwd)/modules:/eslint/modules \
-		-v $(shell pwd)/.eslintrc.json:/eslint/.eslintrc.json \
+		-v $(shell pwd)/falcon/modules:/eslint/modules \
+		-v $(shell pwd)/falcon/.eslintrc.json:/eslint/.eslintrc.json \
 		$(DOCKER_ESLINT) .
 
 code\:fix:
 	$(call message,$(PROJECT_NAME): Auto-fixing coding style issues...)
 	docker run --rm \
-		-v $(shell pwd)/modules:/app/modules $(DOCKER_PHPCS) phpcbf \
+		-v $(shell pwd)/falcon/modules:/app/modules $(DOCKER_PHPCS) phpcbf \
 		-s --colors --warning-severity=0 --standard=Drupal,DrupalPractice .
 	docker run --rm \
-		-v $(shell pwd)/modules:/eslint/modules \
-		-v $(shell pwd)/.eslintrc.json:/eslint/.eslintrc.json \
+		-v $(shell pwd)/falcon/modules:/eslint/modules \
+		-v $(shell pwd)/falcon/.eslintrc.json:/eslint/.eslintrc.json \
 		$(DOCKER_ESLINT) --fix .
 
 tests\:prepare:

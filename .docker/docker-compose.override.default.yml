@@ -20,11 +20,11 @@ services:
 #      PHP_XDEBUG_REMOTE_HOST: 10.254.254.254 # macOS, Docker < 18.03
 #      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
     volumes:
-      - ../:/var/www/html:cached
+      - ../falcon/:/var/www/html:cached
 
   nginx:
     volumes:
-      - ../:/var/www/html:cached
+      - ../falcon/:/var/www/html:cached
 
   codecept:
 #    environment:
