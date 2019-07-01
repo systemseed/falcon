@@ -2,6 +2,10 @@ version: '2'
 
 services:
 
+  node:
+    volumes:
+      - ../app:/app:cached
+
   mariadb:
     volumes:
       - ${MYSQL_DATA_DIR}/${MYSQL_DATA_DIR_DRUPAL}:/var/lib/mysql:cached
