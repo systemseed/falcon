@@ -1,0 +1,20 @@
+{
+  "name": "@systemseed/falcon-app-default",
+  "private": true,
+  "version": "0.1.0",
+  "repository": "https://github.com/systemseed/falcon",
+  "author": "SystemSeed LLC",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@systemseed/falcon": "^0.1.0",
+    "next": "^8.1.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-transpile-modules": "^2.3.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

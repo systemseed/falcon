@@ -1,0 +1,17 @@
+{
+  "name": "@systemseed/falcon",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/systemseed/falcon",
+  "author": "SystemSeed LLC",
+  "license": "MIT",
+  "dependencies": {
+    "superagent": "^5.0.4",
+    "superagent-prefix": "^0.0.2"
+  },
+  "peerDependencies": {
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
