@@ -90,7 +90,7 @@ prepare: | up
 	-$(call docker-wodby, php composer install --no-suggest)
 
 	$(call message,$(PROJECT_NAME): Installing dependencies for React.js application)
-	docker-compose run --rm node yarn install
+	docker-compose run --rm node yarn --cwd=/falconjs install
 
     # Prepare public files folder.
 	$(call message,$(PROJECT_NAME): Preparing public files directory)

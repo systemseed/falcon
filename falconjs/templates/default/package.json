@@ -5,7 +5,7 @@
   "repository": "https://github.com/systemseed/falcon",
   "author": "SystemSeed LLC",
   "scripts": {
-    "dev": "next",
+    "start:dev": "next",
     "build": "next build",
     "start": "next start"
   },

@@ -5,7 +5,7 @@ services:
   node:
     image: $NODE_IMAGE:$NODE_TAG
     container_name: "${PROJECT_NAME}_node"
-    working_dir: /app
+    working_dir: /falconjs/templates/default
     environment:
       DEBUG: ${NODE_DEBUG}
       ENVIRONMENT: ${ENVIRONMENT}
