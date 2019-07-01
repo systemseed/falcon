@@ -15,8 +15,12 @@ modules:
       dsn: 'mysql:host=%DB_HOST%;dbname=%DB_NAME%'
       user: '%DB_USER%'
       password: '%DB_PASSWORD%'
+    WebDriver:
+      url: '%FRONTEND_URL%'
+      backend_url: '%BACKEND_URL%'
     REST:
-      url: '%URL%'
+      url: '%BACKEND_URL%'
+      frontend_url: '%FRONTEND_URL%'
     \Codeception\Module\Drupal8\Drupal8:
       root: '/app/falcon/web'
       env: 'prod'

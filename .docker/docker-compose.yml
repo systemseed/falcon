@@ -113,3 +113,10 @@ services:
       FRONTEND_URL: ${FRONTEND_URL}
       TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
       DEVELOPMENT_MODULES: ${DEVELOPMENT_MODULES}
+
+  chrome:
+    image: selenium/standalone-chrome:3.14.0-arsenic
+    container_name: "${PROJECT_NAME}_chrome"
+    expose:
+      - 4444
+    shm_size: 2gb
