@@ -4,4 +4,4 @@ const Home = () => (
   <div>Hello Falcon user!</div>
 );
 
-export default Home
+export default Home;

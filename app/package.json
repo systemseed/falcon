@@ -1,9 +1,12 @@
 {
-  "name": "create-next-example-app",
+  "name": "falcon-app",
+  "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "build": "next build",
     "start": "PORT=3000 NODE_ENV=production node server.js",
-    "start:dev": "PORT=3000 NODE_ENV=development node server.js"
+    "start:dev": "PORT=3000 NODE_ENV=development node server.js",
+    "eslint": "eslint ."
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

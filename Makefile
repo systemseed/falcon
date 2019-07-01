@@ -144,7 +144,7 @@ code\:fix:
 		$(DOCKER_ESLINT) --fix .
 
 	$(call message,$(PROJECT_NAME): Auto-fixing React.js code issues)
-		docker-compose run -T --rm node yarn --silent run eslint --fix
+	docker-compose run -T --rm node yarn --silent run eslint --fix
 
 yarn:
 	$(call message,$(PROJECT_NAME): Running Yarn)
