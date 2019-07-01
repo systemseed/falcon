@@ -21,6 +21,10 @@ jobs:
           command: make pull
 
       - run:
+          name: Install Javascript dependencies
+          command: make yarn
+
+      - run:
           name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
           command: make code:check
           when: always

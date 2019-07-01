@@ -157,6 +157,7 @@ logs:
 
 tests\:prepare:
 	$(call message,$(PROJECT_NAME): Preparing Codeception framework for testing...)
+	docker-compose up -d chrome codecept
 	docker-compose run --rm codecept build
 
 tests\:run:
