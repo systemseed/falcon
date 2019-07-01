@@ -2,6 +2,21 @@ version: '2'
 
 services:
 
+  node:
+    image: $NODE_IMAGE:$NODE_TAG
+    container_name: "${PROJECT_NAME}_node"
+    working_dir: /app
+    environment:
+      DEBUG: ${NODE_DEBUG}
+      ENVIRONMENT: ${ENVIRONMENT}
+    labels:
+      - 'traefik.backend=node'
+      - 'traefik.port=3000'
+      - 'traefik.frontend.rule=Host:${FRONTEND_HOST}'
+    expose:
+      - "3000"
+    command: yarn start:dev
+
   mariadb:
     image: wodby/mariadb:$MARIADB_TAG
     container_name: "${PROJECT_NAME}_mariadb"
@@ -40,7 +55,7 @@ services:
     labels:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
-      - 'traefik.frontend.rule=Host:falcon.${PROJECT_BASE_URL}'
+      - 'traefik.frontend.rule=Host:${BACKEND_HOST}'
 
   mailhog:
     image: mailhog/mailhog
@@ -75,7 +90,8 @@ services:
     networks:
       default:
         aliases:
-          - falcon.${PROJECT_BASE_URL}
+          - ${BACKEND_HOST}
+          - ${FRONTEND_HOST}
 
   omgwtfssl:
     image: paulczar/omgwtfssl
@@ -93,6 +109,7 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
-      URL: 'http://falcon.${PROJECT_BASE_URL}'
+      BACKEND_URL: ${BACKEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
       TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
       DEVELOPMENT_MODULES: ${DEVELOPMENT_MODULES}

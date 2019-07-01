@@ -11,7 +11,7 @@ $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\
 # Then if OS is Linux we change the PHP_TAG:
 #  - uncomment all the strings containing 'PHP_TAG'
 #  - comment all the strings containing 'PHP_TAG' and '-dev-macos-'
-$(shell ! test -e \.env && cp \.env\.default \.env && uname -s | grep -q 'Linux' && sed -i '/PHP_TAG/s/^# //g' \.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env)
+$(shell ! test -e \.env || ! test -e \.\/app\/\.env && cp \.env\.default \.env && cp \.env\.default \.\/app\/\.env && uname -s | grep -q 'Linux' && sed -i '/PHP_TAG/s/^# //g' \.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env && sed -i '/PHP_TAG/s/^# //g' \.\/app\/\.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.\/app\/\.env)
 
 include .env
 
@@ -56,6 +56,8 @@ clean: | up
 	$(call message,$(PROJECT_NAME): Removing vendor and web directories)
 	$(call docker-root, php rm -rf vendor)
 	$(call docker-root, php rm -rf web)
+	$(call message,$(PROJECT_NAME): Removing node modules)
+	docker-compose run --rm --user=0:0 node sh -c "rm -rf node_modules"
 	@$(MAKE) -s down
 
 exec:
@@ -86,6 +88,10 @@ prepare: | up
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	-$(call docker-wodby, php composer install --no-suggest)
+
+	$(call message,$(PROJECT_NAME): Installing dependencies for React.js application)
+	docker-compose run --rm node yarn install
+
     # Prepare public files folder.
 	$(call message,$(PROJECT_NAME): Preparing public files directory)
 	$(call docker-wodby, php mkdir -p web/sites/default/files)
@@ -124,6 +130,9 @@ code\:check:
 		-v $(shell pwd)/falcon/.eslintrc.json:/eslint/.eslintrc.json \
 		$(DOCKER_ESLINT) .
 
+	$(call message,$(PROJECT_NAME): Checking React.js code for compliance with coding standards)
+	docker-compose run -T --rm node yarn --silent run eslint
+
 code\:fix:
 	$(call message,$(PROJECT_NAME): Auto-fixing coding style issues...)
 	docker run --rm \
@@ -133,6 +142,18 @@ code\:fix:
 		-v $(shell pwd)/falcon/modules:/eslint/modules \
 		-v $(shell pwd)/falcon/.eslintrc.json:/eslint/.eslintrc.json \
 		$(DOCKER_ESLINT) --fix .
+
+	$(call message,$(PROJECT_NAME): Auto-fixing React.js code issues)
+		docker-compose run -T --rm node yarn --silent run eslint --fix
+
+yarn:
+	$(call message,$(PROJECT_NAME): Running Yarn)
+	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
+	docker-compose run --rm node yarn $(ARGS)
+
+logs:
+	$(call message,$(PROJECT_NAME): Streaming the Next.js application logs)
+	docker-compose logs -f node
 
 tests\:prepare:
 	$(call message,$(PROJECT_NAME): Preparing Codeception framework for testing...)
