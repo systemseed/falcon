@@ -6,7 +6,8 @@
     "templates/*"
   ],
   "scripts": {
-    "eslint": "yarn workspaces run eslint ."
+    "eslint": "yarn workspaces run eslint",
+    "start:dev": "yarn workspace @systemseed/falcon-app-default start:dev"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

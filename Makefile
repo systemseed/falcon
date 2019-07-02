@@ -90,7 +90,7 @@ prepare: | up
 	-$(call docker-wodby, php composer install --no-suggest)
 
 	$(call message,$(PROJECT_NAME): Installing dependencies for React.js application)
-	docker-compose run --rm node yarn --cwd=/falconjs install
+	docker-compose run --rm node yarn install
 
     # Prepare public files folder.
 	$(call message,$(PROJECT_NAME): Preparing public files directory)
@@ -129,9 +129,8 @@ code\:check:
 		-v $(shell pwd)/falcon/modules:/eslint/modules \
 		-v $(shell pwd)/falcon/.eslintrc.json:/eslint/.eslintrc.json \
 		$(DOCKER_ESLINT) .
-
 	$(call message,$(PROJECT_NAME): Checking React.js code for compliance with coding standards)
-	docker-compose run -T --rm node yarn --silent run eslint
+	docker-compose run -T --rm node yarn --silent eslint
 
 code\:fix:
 	$(call message,$(PROJECT_NAME): Auto-fixing coding style issues...)
@@ -142,9 +141,8 @@ code\:fix:
 		-v $(shell pwd)/falcon/modules:/eslint/modules \
 		-v $(shell pwd)/falcon/.eslintrc.json:/eslint/.eslintrc.json \
 		$(DOCKER_ESLINT) --fix .
-
 	$(call message,$(PROJECT_NAME): Auto-fixing React.js code issues)
-	docker-compose run -T --rm node yarn --silent run eslint --fix
+	docker-compose run -T --rm node yarn --silent eslint --fix
 
 yarn:
 	$(call message,$(PROJECT_NAME): Running Yarn)
