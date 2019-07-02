@@ -11,7 +11,7 @@ $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\
 # Then if OS is Linux we change the PHP_TAG:
 #  - uncomment all the strings containing 'PHP_TAG'
 #  - comment all the strings containing 'PHP_TAG' and '-dev-macos-'
-$(shell ! test -e \.env || ! test -e \.\/app\/\.env && cp \.env\.default \.env && cp \.env\.default \.\/app\/\.env && uname -s | grep -q 'Linux' && sed -i '/PHP_TAG/s/^# //g' \.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env && sed -i '/PHP_TAG/s/^# //g' \.\/app\/\.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.\/app\/\.env)
+$(shell ! test -e \.env || ! test -e \.\/falconjs\/templates\/default\/\.env && cp \.env\.default \.env && cp \.env\.default \.\/falconjs\/templates\/default\/\.env && uname -s | grep -q 'Linux' && sed -i '/PHP_TAG/s/^# //g' \.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env && sed -i '/PHP_TAG/s/^# //g' \.\/falconjs\/templates\/default\/\.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.\/falconjs\/templates\/default\/\.env)
 
 include .env
 

@@ -13,6 +13,15 @@ use Drupal\user\Entity\User;
  */
 function falcon_development_install() {
   falcon_development_activate_test_users();
+
+  // Create consumer for development with particular UUID.
+  // TODO: Remove this code after adding consumer to demo content.
+  $consumer = \Drupal::entityTypeManager()->getStorage('consumer')->create([
+    'uuid' => '114e3e1a-6f65-49a8-9a24-v0043fabd6e7',
+    'type' => 'consumer',
+    'label' => 'Development Falcon',
+  ]);
+  $consumer->save();
 }
 
 /**
@@ -20,6 +29,12 @@ function falcon_development_install() {
  */
 function falcon_development_uninstall() {
   falcon_development_deactivate_test_users();
+
+  // TODO: Remove this code after adding consumer to demo content.
+  $consumer = \Drupal::service('entity.repository')->loadEntityByUuid('consumer', '114e3e1a-6f65-49a8-9a24-v0043fabd6e7');
+  if (!empty($consumer)) {
+    $consumer->delete();
+  }
 }
 
 /**
