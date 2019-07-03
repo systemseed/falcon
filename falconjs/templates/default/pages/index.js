@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'Prop-types';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import routing from '@systemseed/falcon/routing';
 import request from '@systemseed/falcon/request';

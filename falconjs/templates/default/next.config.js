@@ -3,6 +3,7 @@ const withTranspileModules = require('next-transpile-modules');
 const nextRuntimeDotenv = require('next-runtime-dotenv');
 
 // Makes certain variables accessible only at runtime visible for the application.
+// Check if it supports withPlugins: https://github.com/tusbar/next-runtime-dotenv/issues/54
 const withConfig = nextRuntimeDotenv({
   public: [
     'BACKEND_URL',
