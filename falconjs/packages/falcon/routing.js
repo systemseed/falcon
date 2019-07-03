@@ -1,3 +1,3 @@
 export default function routing() {
-  console.log('hello from falcon/rounting!'); // eslint-disable-line
+  console.log('hello from falcon/routing!'); // eslint-disable-line
 }

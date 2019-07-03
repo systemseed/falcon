@@ -52,7 +52,10 @@
       "mkdir -p web/profiles/contrib/falcon",
       "@falcon:links"
     ],
-    "falcon:links": "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* ."
+    "falcon:links": [
+      "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* .;",
+      "cd web/sites;ln -sf ../../settings/development.services.yml ./development.services.yml;"
+    ]
   },
   "extra": {
     "installer-paths": {
@@ -80,7 +83,10 @@
       "initial": {
         "sites/default/default.services.yml": "sites/default/services.yml",
         "sites/default/default.settings.php": "sites/default/settings.php"
-      }
+      },
+      "excludes": [
+        "sites/development.services.yml"
+      ]
     },
     "enable-patching": true,
     "patches": {

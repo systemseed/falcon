@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import routing from '@systemseed/falcon/routing';
 import request from '@systemseed/falcon/request';
@@ -10,16 +9,14 @@ import Nav from '../components/nav';
 routing();
 
 class Home extends React.Component {
-  async componentDidMount() {
-    const response = await request.get('/node/1?_format=json_recursive');
-    console.log('Data from request on client side');
-    console.log(response.body);
+  static async fetchData() {
+    const response = await request.get('/jsonapi/node/appeal');
+    console.log(response.body); // eslint-disable-line
   }
 
   render() {
-    const { node } = this.props;
-    console.log('Data from request on server side');
-    console.log(node);
+    Home.fetchData();
+
     return (
       <div>
         <Head title="Home" />
@@ -107,19 +104,5 @@ class Home extends React.Component {
     );
   }
 }
-
-Home.defaultProps = {
-  node: [],
-};
-
-Home.propTypes = {
-  node: PropTypes.shape,
-};
-
-Home.getInitialProps = async () => {
-  // Test fetch data on node lvl.
-  const response = await request.get('/node/1?_format=json_recursive');
-  return { node: response.body };
-};
 
 export default Home;
