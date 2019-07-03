@@ -1,12 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import routing from '@systemseed/falcon/routing';
 import request from '@systemseed/falcon/request';
 import Head from '../components/head';
 import Nav from '../components/nav';
-
-// Test.
-routing();
 
 class Home extends React.Component {
   static async fetchData() {
