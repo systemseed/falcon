@@ -4,7 +4,7 @@ const nextConfig = require('next/config').default();
 
 /**
  * This is universal (frontend & backend) Superagent initializer.
- * In most cases you will want to import '../utils/request` instead of this file.
+ * In most cases you will want to import './request` instead of this file.
  */
 const initSuperagent = (config) => {
   if (config === undefined) {

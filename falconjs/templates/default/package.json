@@ -5,9 +5,9 @@
   "repository": "https://github.com/systemseed/falcon",
   "author": "SystemSeed LLC",
   "scripts": {
-    "start:dev": "next",
+    "start": "PORT=3000 NODE_ENV=production node server.js",
+    "start:dev": "PORT=3000 NODE_ENV=development node server.js",
     "build": "next build",
-    "start": "next start",
     "eslint": "eslint ."
   },
   "dependencies": {
@@ -17,6 +17,13 @@
     "next-runtime-dotenv": "^1.1.1",
     "next-transpile-modules": "^2.3.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "express-basic-auth": "^1.1.6",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "memory-cache": "^0.2.0",
+    "debug": "^3.2.6",
+    "compression": "^1.7.4",
+    "path-to-regexp": "^3.0.0"
   }
 }
