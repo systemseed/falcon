@@ -11,7 +11,7 @@
     "eslint": "eslint ."
   },
   "dependencies": {
-    "@systemseed/falcon": "^0.1.0",
+    "@systemseed/falcon": "0.0.0-semantic-release",
     "next": "^8.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-runtime-dotenv": "^1.1.1",
