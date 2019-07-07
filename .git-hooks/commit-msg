@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#######################################
+####### FALCON COMMIT-MSG HOOK ########
+#######################################
+
+# Define colors for error message.
+white='\033[38;5;7m'
+bg_red='\033[48;5;1m'
+bold='\033[1m'
+reset='\033[0m'
+
+# Always run this hook from repository root.
+cd "."
+
+# An enhanced version from regex from this article: https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4
+REGEX='^(revert: )?(feat|fix|docs|style|refactor|perf|test|build|ci|chore)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$REGEX" "$1"
+then
+
+  echo "${white}${bg_red}"
+  cat <<\EOF
+
+    Commit message format check failed. Commit has been aborted.
+    See https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
+EOF
+  echo ${reset}
+  echo "If you need to skip this check please use --no-verify option (not recommended)."
+  exit 1
+
+fi
