@@ -11,12 +11,6 @@ jobs:
       - checkout
 
       - run:
-          name: Fix CircleCI files permissons
-          command: |
-            sudo chown ubuntu:ubuntu -R *
-            sudo chown ubuntu:ubuntu -R .[!.]*
-
-      - run:
           name: Pull Docker images
           command: make pull
 
@@ -25,6 +19,12 @@ jobs:
           keys:
             - falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
             - falconjs-node-modules-
+
+      - run:
+          name: Fix CircleCI files permissons
+          command: |
+            sudo chown ubuntu:ubuntu -R *
+            sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
           name: Install Javascript dependencies
