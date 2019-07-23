@@ -1,6 +1,6 @@
 const Router = require('next/router').default;
 const { parse } = require('url');
-const debug = require('debug')('cw:routing');
+const debug = require('debug')('falcon:routing/getPageContent');
 const { request: defaultRequest } = require('../request/request.node');
 const getEntityURL = require('../utils/getEntityURL');
 

@@ -14,8 +14,7 @@ const getPageContent = require('./getPageContent');
 /**
  * Handles server routing for the application.
  *
- * General approach: if it's not internal Next.js page, then
- * search for this page on the Drupal backend and render the page
+ * General approach: search page on the Drupal backend and render the page
  * or throw 404 accordingly.
  */
 async function decoupledRouter(req, res, nextApp) {

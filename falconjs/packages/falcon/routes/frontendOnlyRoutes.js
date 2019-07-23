@@ -2,10 +2,10 @@ const pathToRegexp = require('path-to-regexp');
 const debug = require('debug')('falcon:routing/frontendOnlyRoutes');
 const { parse } = require('url');
 
-// This file defines frontend only routes.
-// Routing checks for these routes first, and if the route matches
-// frontend only routes, then there will be no backend request to check the
-// page content.
+/**
+ * @file
+ * This file defines middlewares and helpers for app only route.
+ */
 
 /**
  * Finds internal route in the pages available at the frontend app only.

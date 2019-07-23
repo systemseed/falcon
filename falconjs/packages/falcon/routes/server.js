@@ -6,7 +6,6 @@ const basicAuth = require('express-basic-auth');
 const xmlSitemapProxy = require('./xmlsitemap');
 const internalRoutes = require('./internalRoutes');
 
-
 const applyFalconRoutesConfiguration = (app, expressServer = express()) => {
   // Make sure we enable http auth only on dev environments.
   if (process.env.ENVIRONMENT && (process.env.ENVIRONMENT === 'development')) {
