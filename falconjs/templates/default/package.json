@@ -30,6 +30,7 @@
     "memory-cache": "^0.2.0",
     "debug": "^3.2.6",
     "compression": "^1.7.4",
-    "path-to-regexp": "^3.0.0"
+    "path-to-regexp": "^3.0.0",
+    "serve-favicon": "^2.5.0"
   }
 }

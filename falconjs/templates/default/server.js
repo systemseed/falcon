@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const nextjs = require('next');
 const dotenv = require('dotenv');
+const favicon = require('serve-favicon');
 const applyFalconRoutesConfiguration = require('@systemseed/falcon/routes/server.js');
 const { globalSettingsForApp, homePageInSettings } = require('@systemseed/falcon/routes/globalSettings');
 const decoupledRouter = require('@systemseed/falcon/routes/decoupledRouter');
@@ -19,7 +20,7 @@ app
   .prepare()
   .then(() => {
     const expressServer = applyFalconRoutesConfiguration(app);
-
+    expressServer.use(favicon(`${__dirname}/static/favicon.ico`));
     expressServer.use(clearCache);
     expressServer.use(globalSettingsForApp(app, process.env.SETTINGS_NAME));
     expressServer.use(homePageInSettings);
