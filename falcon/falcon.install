@@ -23,6 +23,7 @@ function falcon_install() {
     'falcon_feature_donation',
     'falcon_feature_mail',
     'falcon_feature_metatag',
+    'falcon_feature_rest_entity_recursive',
     'falcon_feature_text_format',
     'falcon_feature_user'
   ];
