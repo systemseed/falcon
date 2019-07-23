@@ -5,7 +5,7 @@ id: create_a_new_article
 title: 'Create a new Article'
 route_name: node.add
 route_parameters:
-  node_type: news
+  node_type: 4b868b94-2d37-40f5-965a-f8922c65ba4c
 options: {  }
 expanded: false
 menu_name: falcon-dashboard

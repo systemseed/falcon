@@ -4,6 +4,7 @@ type: module
 core: 8.x
 dependencies:
   - block
+  - config_pages
   - entity_browser
   - entity_reference_revisions
   - falcon_feature_media
@@ -20,6 +21,8 @@ dependencies:
   - paragraphs_browser
   - paragraphs_library
   - path
+  - rest
+  - rest_entity_recursive
   - scheduler
   - system
   - taxonomy

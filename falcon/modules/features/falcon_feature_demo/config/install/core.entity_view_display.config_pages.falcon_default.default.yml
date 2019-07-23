@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.falcon_default
+    - field.field.config_pages.falcon_default.field_frontpage
+    - field.field.config_pages.falcon_default.field_site_name
+id: config_pages.falcon_default.default
+targetEntityType: config_pages
+bundle: falcon_default
+mode: default
+content:
+  field_frontpage:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_site_name:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

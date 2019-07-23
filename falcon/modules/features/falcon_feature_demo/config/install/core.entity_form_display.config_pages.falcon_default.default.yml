@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.falcon_default
+    - field.field.config_pages.falcon_default.field_frontpage
+    - field.field.config_pages.falcon_default.field_site_name
+id: config_pages.falcon_default.default
+targetEntityType: config_pages
+bundle: falcon_default
+mode: default
+content:
+  field_frontpage:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_site_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  label: true
