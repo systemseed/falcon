@@ -1,0 +1,88 @@
+{
+    "_links": {
+        "self": {
+            "href": "\/admin\/content\/falcon_default?config_pages=1&_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/config_pages\/falcon_default"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_frontpage": [
+            {
+                "href": "http:\/\/default\/demo_home_page?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 1
+        }
+    ],
+    "uuid": [
+        {
+            "value": "ff3e6363-c2af-4487-9a54-d273670b21c8"
+        }
+    ],
+    "label": [
+        {
+            "value": "Falcon Default Settings"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "falcon_default"
+        }
+    ],
+    "context": [
+        {
+            "value": "a:0:{}"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-07-22T15:08:32+00:00",
+            "lang": "und",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Default Consumer"
+            }
+        }
+    ],
+    "metatag_normalized": [
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "title",
+                "content": "Default Consumer"
+            },
+            "lang": "und"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_frontpage": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/demo_home_page?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "deee9a8b-8767-454f-9164-cf62bb3ffcdc"
+                    }
+                ]
+            }
+        ]
+    },
+    "field_site_name": [
+        {
+            "value": "My first site"
+        }
+    ]
+}

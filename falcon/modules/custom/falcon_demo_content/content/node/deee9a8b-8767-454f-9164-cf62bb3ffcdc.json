@@ -1,7 +1,7 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/demo_page1?_format=hal_json"
+            "href": "http:\/\/default\/demo_home_page?_format=hal_json"
         },
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
@@ -205,7 +205,7 @@
     ],
     "title": [
         {
-            "value": "Demo Page 1",
+            "value": "Demo Home page",
             "lang": "en"
         }
     ],
@@ -250,8 +250,8 @@
     "metatag": [
         {
             "value": {
-                "title": "Demo Page 1 | Default Consumer",
-                "canonical_url": "http:\/\/default\/demo_page1"
+                "title": "Demo Home Page | Default Consumer",
+                "canonical_url": "http:\/\/default\/demo_home_page"
             }
         }
     ],
@@ -260,7 +260,7 @@
             "tag": "meta",
             "attributes": {
                 "name": "title",
-                "content": "Demo Page 1 | Default Consumer"
+                "content": "Demo Home Page | Default Consumer"
             },
             "lang": "en"
         },
@@ -268,24 +268,24 @@
             "tag": "link",
             "attributes": {
                 "rel": "canonical",
-                "href": "http:\/\/default\/demo_page1"
+                "href": "http:\/\/default\/demo_home_page"
             },
             "lang": "en"
         }
     ],
     "path": [
         {
-            "alias": "\/demo_page1",
-            "pid": 6,
+            "alias": "\/demo_home_page",
+            "pid": 2,
             "langcode": "en",
             "lang": "en"
         }
     ],
     "field_description": [
         {
-            "value": "<p>Description for demo page 1<\/p>&#13;\n",
+            "value": "<p>Description for demo page<\/p>&#13;\n",
             "format": "full_html",
-            "processed": "<p>Description for demo page 1<\/p>\n",
+            "processed": "<p>Description for demo page<\/p>\n",
             "lang": "en"
         }
     ]

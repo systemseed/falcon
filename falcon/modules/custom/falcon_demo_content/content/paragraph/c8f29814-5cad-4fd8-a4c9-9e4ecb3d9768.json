@@ -75,9 +75,9 @@
     ],
     "field_text": [
         {
-            "value": "<p>Text for demo page 1<\/p>&#13;\n",
+            "value": "<p>Text for demo home\u00a0page<\/p>&#13;\n",
             "format": "full_html",
-            "processed": "<p>Text for demo page 1<\/p>\n"
+            "processed": "<p>Text for demo home\u00a0page<\/p>\n"
         }
     ]
 }
