@@ -1,5 +1,5 @@
 const pathToRegexp = require('path-to-regexp');
-const debug = require('debug')('falcon:routing/customRoutes');
+const debug = require('debug')('falcon:routing/frontendOnlyRoutes');
 const { parse } = require('url');
 
 // This file defines frontend only routes.
@@ -7,11 +7,12 @@ const { parse } = require('url');
 // frontend only routes, then there will be no backend request to check the
 // page content.
 
-
 /**
  * Finds internal route in the pages available at the frontend app only.
  * @param URL
  *   Full URL string. I.e. /content/one/two?page=1.
+ * @param routes
+ *   List of routes.
  * @returns {*}
  *   Matched route & route query with dynamic values from the URL.
  */
@@ -72,8 +73,8 @@ const toQuerystring = obj => Object.keys(obj)
   }).join('&');
 
 
-function customRoutes(nextApp, routes) {
-  return async function checkRoutes(req, res, next) {
+function frontendOnlyRoutes(nextApp, routes) {
+  return async function frontendOnlyRoutesMiddleware(req, res, next) {
     // Check if the current URL matches any of frontend only routes. If yes,
     // then use a usual Next.js render handler to render the page.
     try {
@@ -94,5 +95,5 @@ function customRoutes(nextApp, routes) {
 module.exports = {
   matchAppOnlyRoute,
   toQuerystring,
-  customRoutes,
+  frontendOnlyRoutes,
 };

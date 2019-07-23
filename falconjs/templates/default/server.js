@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-const express = require('express');
 const nextjs = require('next');
 const dotenv = require('dotenv');
 const applyFalconRoutesConfiguration = require('@systemseed/falcon/routes/server.js');
-const { globalSettingsForApp } = require('@systemseed/falcon/routes/globalSettings');
+const { globalSettingsForApp, homePageInSettings } = require('@systemseed/falcon/routes/globalSettings');
 const decoupledRouter = require('@systemseed/falcon/routes/decoupledRouter');
-const { customRoutes } = require('@systemseed/falcon/routes/customRoutes');
+const clearCache = require('@systemseed/falcon/routes/clearCache');
+const { frontendOnlyRoutes } = require('@systemseed/falcon/routes/frontendOnlyRoutes');
+const routes = require('./routes/routes');
 
 // Import variables from local .env file.
 dotenv.config();
@@ -17,22 +18,12 @@ const app = nextjs({ dev });
 app
   .prepare()
   .then(() => {
-    // Initialize express.js server.
-    const expressServer = express();
+    const expressServer = applyFalconRoutesConfiguration(app);
 
-    applyFalconRoutesConfiguration(app, expressServer);
-
+    expressServer.use(clearCache);
     expressServer.use(globalSettingsForApp(app, process.env.SETTINGS_NAME));
-    //expressServer.use(globalSettings(app, 'settings2'));
-
-    // List of routes which exist only in the frontend application.
-    const routes = [
-      {
-        route: '/custom-route',
-        path: '/cookie-table',
-      },
-    ];
-    expressServer.use(customRoutes(app, routes));
+    expressServer.use(homePageInSettings);
+    expressServer.use(frontendOnlyRoutes(app, routes));
 
     // Handle all other requests using our custom router which is a mix
     // or original Next.js logic and Drupal routing logic.

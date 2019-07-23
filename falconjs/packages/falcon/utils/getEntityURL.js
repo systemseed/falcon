@@ -1,4 +1,4 @@
-const { matchAppOnlyRoute, toQuerystring } = require('../routes/customRoutes');
+const { matchAppOnlyRoute, toQuerystring } = require('../routes/frontendOnlyRoutes');
 
 /**
  * Return parameters to apply to the <Link> component of
@@ -78,23 +78,5 @@ const getEntityURL = (entity) => {
 
   return entityURL;
 };
-
-/**
- * Transforms requested path to the corresponding API path.
- */
-function normalizeRequestedPath(requestedPath) {
-  // In most cases requested path is used for API request as is, without any
-  // modifications .One exception is donation form checkout flow.
-  // All checkout pages use parent appeal page for rendering because their
-  // configuration is stored on appeal node level.
-  // TODO: add request listener on backend to redirect to appeal page endpoint
-  // only if /checkout suffix was added to a valid appeal page alias.
-  const checkoutPatternMatches = /(.+?)\/checkout($|\/)/i.exec(requestedPath);
-  if (checkoutPatternMatches !== null) {
-    return checkoutPatternMatches[1];
-  }
-
-  return requestedPath;
-}
 
 module.exports = getEntityURL;

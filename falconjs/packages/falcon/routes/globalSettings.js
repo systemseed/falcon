@@ -1,6 +1,5 @@
 const cache = require('memory-cache');
 const Router = require('next/router').default;
-const { isInternalUrl } = require('next-server/dist/server/utils');
 const { parse } = require('url');
 const debug = require('debug')('falconjs:routing/globalSettings');
 const { request: defaultRequest, getRequest } = require('../request/request.node.js');
@@ -51,15 +50,6 @@ const getHomepageLink = (settings, isRaw = false) => {
   // Link to the front page of the website.
   if (globalSettings.field_frontpage && typeof globalSettings.field_frontpage === 'object'
     && typeof globalSettings.field_frontpage[0] === 'object') {
-    // TODO: Delete after solve issue with normalizer for settings.
-    // Frontpage should has property url with entity_type and entity_bundle.
-    globalSettings.field_frontpage[0].url = {
-      url: '/home',
-      is_external: false,
-      entity_type: 'node',
-      entity_bundle: 'page',
-    };
-
     const nextLink = getEntityURL(globalSettings.field_frontpage[0]);
     if (nextLink.url) {
       // Normally the homepage link should have "/" as the URL. However,
@@ -78,28 +68,17 @@ const getHomepageLink = (settings, isRaw = false) => {
   return null;
 };
 
+/**
+ * Adds settings from the backend to res.settings.
+ *
+ * @param nextApp
+ * @param settingsName - Config page entity id.
+ * @param nodeCacheTTL
+ */
 function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
   return async function globalSettingsMiddleware(req, res, next) {
     // Get object with different parts of the URL.
     const parsedUrl = parse(req.url, true);
-
-    // Grab default next.js request handler.
-    const nextRequestHandler = nextApp.getRequestHandler();
-
-    // If the current request is internal next.js url then just handle pages
-    // using default handlers.
-    if (isInternalUrl(parsedUrl.pathname)) {
-      return nextRequestHandler(req, res);
-    }
-
-    // A little helper path to clear cached data. Currently we cache only
-    // global settings object.
-    if (parsedUrl.pathname === '/_cacheclear') {
-      cache.clear();
-      return res.status(200).send('Cleared');
-    }
-    // TODO: DELETE
-    cache.clear();
 
     // Initialize server version of superagent with the given config.
     const request = getRequest(nextApp.nextConfig);
@@ -111,7 +90,7 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
       try {
         // Use very simple in-memory cache storage for caching of global settings
         // from Drupal. You can force flush it by restarting a server or
-        // just requesting /_cacheclear page.
+        // just requesting /_cacheclear page if clearCache middleware is using.
         const settingsFromCache = cache.get(settingsName);
         if (settingsFromCache) {
           res.settings = settingsFromCache;
@@ -124,6 +103,7 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
           }
 
           // Handle any other error.
+
           if (statusCode >= 400) {
             return await nextApp.renderError(null, req, res, parsedUrl.pathname, parsedUrl.query);
           }
@@ -141,113 +121,48 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
         res.status(500);
         return res.end('Internal Server Error');
       }
-
-      if (res.settings) {
-        // Get raw link of the homepage (i.e. it will include "/home" instead of "/").
-        const homepageLink = getHomepageLink(res.settings, true);
-        // If the user requested page which is configured on the backend to be
-        // the homepage of the application, then we need to force redirect him
-        // to the homepage instead.
-        if (homepageLink && parsedUrl.pathname === homepageLink.url) {
-          debug('The requested page %s is an alias of the front page. Redirecting to the front page.', homepageLink.url);
-
-          if (res) {
-            // Server level redirect.
-            res.redirect(301, '/');
-          } else {
-            // Client level redirect.
-            Router.push(homepageLink.route, '/');
-          }
-        }
-
-        // The homepage on the Drupal backend is not "/" but some other alias,
-        // so in case of the front page we need to request the node with the right alias.
-        if (homepageLink && parsedUrl.pathname === '/') {
-          debug('Home page requested. Using %s page in Drupal for the homepage as defined in global settings.', homepageLink.url);
-          res.normalizedRequestPath = homepageLink.url;
-        }
-      }
     }
 
     return next();
   };
 }
 
-/**
- * Returns homepage breadcrumb from the global site settings.
- */
-const getHomepageBreadcrumb = (settings) => {
-  const homepageLink = getHomepageLink(settings);
-  if (homepageLink) {
-    return { label: 'Home', nextLink: homepageLink };
-  }
+function homePageInSettings(req, res, next) {
+  if (res.settings) {
+    // Get object with different parts of the URL.
+    const parsedUrl = parse(req.url, true);
 
-  return null;
-};
+    // Get raw link of the homepage (i.e. it will include "/home" instead of "/").
+    const homepageLink = getHomepageLink(res.settings, true);
+    // If the user requested page which is configured on the backend to be
+    // the homepage of the application, then we need to force redirect him
+    // to the homepage instead.
+    if (homepageLink && parsedUrl.pathname === homepageLink.url) {
+      debug('The requested page %s is an alias of the front page. Redirecting to the front page.', homepageLink.url);
 
-/**
- * Returns array with breadcrumb navigation for the given entity.
- */
-const getEntityBreadcrumb = (entity, navigation, settings) => {
-  const entityURL = getEntityURL(entity);
-
-  // Build breadcrumb navigation.
-  const breadcrumbs = [];
-  let isFirstBreadcrumb = false;
-
-  // Recursively loop through the primary navigation and build breadcrumbs based
-  // on the given page URL, stopping at the first occurrence of the current page in the menu.
-  const buildBreadcrumbs = (url, items, breadcrumbList = []) => {
-    let hasMatch = false;
-
-    if (isFirstBreadcrumb) {
-      return null;
+      if (res) {
+        // Server level redirect.
+        res.redirect(301, '/');
+      } else {
+        // Client level redirect.
+        Router.push(homepageLink.route, '/');
+      }
     }
 
-    items.forEach((item) => {
-      let hasMatchedChild = false;
-
-      if (item.children) {
-        hasMatchedChild = buildBreadcrumbs(url, item.children, breadcrumbList);
-      }
-
-      const matches = item.url.href === url.href && item.url.as === url.as;
-
-      if (matches || hasMatchedChild) {
-        hasMatch = true;
-        breadcrumbList.unshift({ label: item.title, nextLink: item.url });
-      }
-
-      if (matches) {
-        isFirstBreadcrumb = true;
-      }
-    });
-
-    return hasMatch;
-  };
-
-  buildBreadcrumbs(entityURL, navigation, breadcrumbs);
-
-  // Remove top level navigation (drop-down menus).
-  // See https://www.pivotaltracker.com/story/show/164461757/comments/201750687.
-  breadcrumbs.shift();
-
-  // Remove current page breadcrumb
-  breadcrumbs.pop();
-
-  // Get homepage link and add it as the first breadcrumb.
-  const homepageBreadcrumb = getHomepageBreadcrumb(settings);
-  if (homepageBreadcrumb) {
-    breadcrumbs.unshift(homepageBreadcrumb);
+    // The homepage on the Drupal backend is not "/" but some other alias,
+    // so in case of the front page we need to request the node with the right alias.
+    if (homepageLink && parsedUrl.pathname === '/') {
+      debug('Home page requested. Using %s page in Drupal for the homepage as defined in global settings.', homepageLink.url);
+      res.normalizedRequestPath = homepageLink.url;
+    }
   }
 
-  return breadcrumbs;
-};
+  return next();
+}
 
 module.exports = {
   globalSettingsForApp,
   getSettings,
   getHomepageLink,
-  getHomepageBreadcrumb,
-  getEntityBreadcrumb,
+  homePageInSettings,
 };

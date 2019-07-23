@@ -18,10 +18,9 @@ async function getPageContent(requestedURL, res = null, request = null) {
 
   // Get object with different parts of the URL.
   const parsedUrl = parse(requestedURL, true);
-  // TODO: add as middleware
-  //const normalizedPath = normalizeRequestedPath(parsedUrl.pathname);
 
-  const entityURL = res.normalizedRequestPath || parsedUrl.pathname;
+  const entityURL = res && res.normalizedRequestPath
+    ? res.normalizedRequestPath : parsedUrl.pathname;
 
   debug('Requesting entity with URL %s from the Drupal backend...', entityURL);
 
@@ -45,23 +44,6 @@ async function getPageContent(requestedURL, res = null, request = null) {
     // Get entity & setting objects from the request and pass it to the
     // pages as a part of server response object.
     props.entity = entityResponse.body;
-    // TODO: Delete after solve issue with normalizer for settings.
-    // Frontpage should has property url with entity_type and entity_bundle.
-    if (parsedUrl.pathname === '/') {
-      props.entity.url = {
-        url: '/home',
-        is_external: false,
-        entity_type: 'node',
-        entity_bundle: 'page',
-      };
-    } else {
-      props.entity.url = {
-        url: '/page2',
-        is_external: false,
-        entity_type: 'node',
-        entity_bundle: 'page',
-      };
-    }
 
     props.entityURL = getEntityURL(props.entity);
 

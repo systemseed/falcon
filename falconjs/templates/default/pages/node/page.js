@@ -1,37 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
-import routing from '@systemseed/falcon/routing';
-import request from '@systemseed/falcon/request';
 
-// Test.
-routing();
+const LandingPage = ({ entity }) => (
+  <div>
+    {entity && entity.title[0].value}
+    <br />
+    <Link as="/cookie-table" href="/custom-route" prefetch>
+      <a href="/cookie-table">Cookie-table</a>
+    </Link>
+    <br />
+    <Link as="/" href="/node/page" prefetch>
+      <a>home</a>
+    </Link>
+    <br />
+    <Link as="/demo_page2" href="/node/page" prefetch>
+      <a>Page2</a>
+    </Link>
+  </div>
+);
 
-class LandingPage extends React.Component {
-  static async fetchData() {
-    const response = await request.get('/jsonapi/node/appeal');
-    //console.log(response.body); // eslint-disable-line
-  }
+LandingPage.defaultProps = {
+  entity: '',
+};
 
-  render() {
-    //LandingPage.fetchData();
-    return (
-      <div>
-        AAAA
-        <br />
-        <Link url="/cookie-table" prefetch>
-          <a href="/cookie-table">Cookie-table</a>
-        </Link>
-        <br />
-        <Link url="/page2" prefetch>
-          <a href="/page2">Page2</a>
-        </Link>
-      </div>
-    );
-  }
-}
-
-LandingPage.getInitialProps = async () => {
-  return {};
+LandingPage.propTypes = {
+  entity: PropTypes.shape({
+    title: PropTypes.array,
+  }),
 };
 
 export default LandingPage;

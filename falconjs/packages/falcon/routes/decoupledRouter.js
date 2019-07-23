@@ -1,4 +1,3 @@
-const { isInternalUrl } = require('next-server/dist/server/utils');
 const { parse } = require('url');
 const debug = require('debug')('falcon:routing/decoupledRouter');
 const { getRequest } = require('../request/request.node');
@@ -22,15 +21,6 @@ const getPageContent = require('./getPageContent');
 async function decoupledRouter(req, res, nextApp) {
   // Get object with different parts of the URL.
   const parsedUrl = parse(req.url, true);
-
-  // Grab default next.js request handler.
-  const nextRequestHandler = nextApp.getRequestHandler();
-
-  // If the current request is internal next.js url then just handle pages
-  // using default handlers.
-  if (isInternalUrl(parsedUrl.pathname)) {
-    return nextRequestHandler(req, res);
-  }
 
   // Initialize server version of superagent with the given config.
   const request = getRequest(nextApp.nextConfig);
@@ -67,7 +57,7 @@ async function decoupledRouter(req, res, nextApp) {
   // Not sure how may come to this case, but putting it here to catch
   // outstanding issues if there are any.
   debug('Using default Next.js routes handler.');
-  return nextRequestHandler(req, res);
+  return nextApp.getRequestHandler()(req, res);
 }
 
 module.exports = decoupledRouter;
