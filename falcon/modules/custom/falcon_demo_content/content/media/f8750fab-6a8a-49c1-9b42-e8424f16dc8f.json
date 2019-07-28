@@ -1,43 +1,43 @@
 {
     "_links": {
         "self": {
-            "href": "http:\/\/default\/media\/2?_format=hal_json"
+            "href": "http:\/\/default\/media\/7?_format=hal_json"
         },
         "type": {
-            "href": "http:\/\/drupal.org\/rest\/type\/media\/images"
+            "href": "http:\/\/drupal.org\/rest\/type\/media\/icons"
         },
-        "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
+        "http:\/\/drupal.org\/rest\/relation\/media\/icons\/thumbnail": [
             {
-                "href": "http:\/\/default\/file\/2?_format=hal_json",
+                "href": "http:\/\/default\/file\/7?_format=hal_json",
                 "lang": "en"
             }
         ],
-        "http:\/\/drupal.org\/rest\/relation\/media\/images\/uid": [
+        "http:\/\/drupal.org\/rest\/relation\/media\/icons\/uid": [
             {
                 "href": "http:\/\/default\/user\/1?_format=hal_json",
                 "lang": "en"
             }
         ],
-        "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
+        "http:\/\/drupal.org\/rest\/relation\/media\/icons\/field_media_image": [
             {
-                "href": "http:\/\/default\/file\/2?_format=hal_json",
+                "href": "http:\/\/default\/file\/7?_format=hal_json",
                 "lang": "en"
             }
         ]
     },
     "mid": [
         {
-            "value": 2
+            "value": 7
         }
     ],
     "uuid": [
         {
-            "value": "509baaae-1e8e-43c3-b153-ec1e6aa92b4d"
+            "value": "f8750fab-6a8a-49c1-9b42-e8424f16dc8f"
         }
     ],
     "vid": [
         {
-            "value": 2
+            "value": 7
         }
     ],
     "langcode": [
@@ -48,12 +48,12 @@
     ],
     "bundle": [
         {
-            "target_id": "images"
+            "target_id": "icons"
         }
     ],
     "revision_created": [
         {
-            "value": "2019-07-28T11:59:02+00:00",
+            "value": "2019-07-28T14:35:41+00:00",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
@@ -65,16 +65,16 @@
     ],
     "name": [
         {
-            "value": "ios-10-hero-photos-picture-pikachu.jpg",
+            "value": "falcon logo.png",
             "lang": "en"
         }
     ],
     "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/media\/images\/thumbnail": [
+        "http:\/\/drupal.org\/rest\/relation\/media\/icons\/thumbnail": [
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/file\/2?_format=hal_json"
+                        "href": "http:\/\/default\/file\/7?_format=hal_json"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/image"
@@ -82,17 +82,17 @@
                 },
                 "uuid": [
                     {
-                        "value": "7be8f394-e0a4-47d0-b111-917be4fbf12f"
+                        "value": "2fdce20c-f9a4-4b32-ab37-7e96013deebd"
                     }
                 ],
                 "lang": "en",
-                "alt": "alt 2",
+                "alt": "Falcon",
                 "title": null,
-                "width": "1600",
-                "height": "1200"
+                "width": "260",
+                "height": "318"
             }
         ],
-        "http:\/\/drupal.org\/rest\/relation\/media\/images\/uid": [
+        "http:\/\/drupal.org\/rest\/relation\/media\/icons\/uid": [
             {
                 "_links": {
                     "self": {
@@ -110,11 +110,11 @@
                 "lang": "en"
             }
         ],
-        "http:\/\/drupal.org\/rest\/relation\/media\/images\/field_media_image": [
+        "http:\/\/drupal.org\/rest\/relation\/media\/icons\/field_media_image": [
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/file\/2?_format=hal_json"
+                        "href": "http:\/\/default\/file\/7?_format=hal_json"
                     },
                     "type": {
                         "href": "http:\/\/drupal.org\/rest\/type\/file\/image"
@@ -122,27 +122,27 @@
                 },
                 "uuid": [
                     {
-                        "value": "7be8f394-e0a4-47d0-b111-917be4fbf12f"
+                        "value": "2fdce20c-f9a4-4b32-ab37-7e96013deebd"
                     }
                 ],
                 "lang": "en",
-                "alt": "alt 2",
+                "alt": "Falcon",
                 "title": "",
-                "width": "1600",
-                "height": "1200"
+                "width": "260",
+                "height": "318"
             }
         ]
     },
     "created": [
         {
-            "value": "2019-04-09T06:39:25+00:00",
+            "value": "2019-07-28T14:35:26+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }
     ],
     "changed": [
         {
-            "value": "2019-04-09T06:39:25+00:00",
+            "value": "2019-07-28T14:35:26+00:00",
             "lang": "en",
             "format": "Y-m-d\\TH:i:sP"
         }

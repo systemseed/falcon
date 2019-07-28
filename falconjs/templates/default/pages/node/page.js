@@ -14,7 +14,7 @@ const LandingPage = ({ entity }) => (
       <a>home</a>
     </Link>
     <br />
-    <Link as="/demo_page2" href="/node/page" prefetch>
+    <Link as="/about" href="/node/page" prefetch>
       <a>Page2</a>
     </Link>
   </div>

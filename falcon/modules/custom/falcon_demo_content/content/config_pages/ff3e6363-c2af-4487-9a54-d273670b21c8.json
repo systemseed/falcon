@@ -6,9 +6,9 @@
         "type": {
             "href": "http:\/\/drupal.org\/rest\/type\/config_pages\/falcon_default"
         },
-        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_frontpage": [
+        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_media_logo": [
             {
-                "href": "http:\/\/default\/demo_home_page?_format=hal_json"
+                "href": "http:\/\/default\/media\/7?_format=hal_json"
             }
         ]
     },
@@ -39,7 +39,7 @@
     ],
     "changed": [
         {
-            "value": "2019-07-22T15:08:32+00:00",
+            "value": "2019-07-28T14:35:49+00:00",
             "lang": "und",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -61,28 +61,45 @@
             "lang": "und"
         }
     ],
+    "field_footer_text": [
+        {
+            "value": "Falcon.  A Drupal distribution built by SystemSeed specifically for Charities and Non-Profits. We exist to serve you."
+        }
+    ],
+    "field_frontpage": [
+        {
+            "uri": "entity:node\/1",
+            "title": "",
+            "options": []
+        }
+    ],
     "_embedded": {
-        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_frontpage": [
+        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_media_logo": [
             {
                 "_links": {
                     "self": {
-                        "href": "http:\/\/default\/demo_home_page?_format=hal_json"
+                        "href": "http:\/\/default\/media\/7?_format=hal_json"
                     },
                     "type": {
-                        "href": "http:\/\/drupal.org\/rest\/type\/node\/page"
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/icons"
                     }
                 },
                 "uuid": [
                     {
-                        "value": "deee9a8b-8767-454f-9164-cf62bb3ffcdc"
+                        "value": "f8750fab-6a8a-49c1-9b42-e8424f16dc8f"
                     }
                 ]
             }
         ]
     },
+    "field_menu": [
+        {
+            "target_id": "falcon-default"
+        }
+    ],
     "field_site_name": [
         {
-            "value": "My first site"
+            "value": "Falcon Default"
         }
     ]
 }

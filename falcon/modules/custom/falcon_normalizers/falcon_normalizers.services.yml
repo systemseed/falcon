@@ -10,3 +10,8 @@ services:
     class: Drupal\falcon_normalizers\Normalizer\NodeNormalizer
     tags:
       - { name: normalizer, priority: 9 }
+
+  falcon_normalizers.normalizer.link:
+    class: Drupal\falcon_normalizers\Normalizer\FieldLinkItemNormalizer
+    tags:
+      - { name: normalizer, priority: 9 }

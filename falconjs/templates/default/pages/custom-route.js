@@ -4,7 +4,7 @@ import Link from 'next/link';
 const CustomRoute = () => (
   <div>
     <br />
-    <Link as="/demo_page2" href="/node/page" prefetch>
+    <Link as="/about" href="/node/page" prefetch>
       <a>Page2</a>
     </Link>
     <br />

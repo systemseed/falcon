@@ -3,13 +3,15 @@ status: true
 dependencies:
   module:
     - config_pages
-    - link
-id: config_pages.field_frontpage
-field_name: field_frontpage
+id: config_pages.field_footer_text
+field_name: field_footer_text
 entity_type: config_pages
-type: link
-settings: {  }
-module: link
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

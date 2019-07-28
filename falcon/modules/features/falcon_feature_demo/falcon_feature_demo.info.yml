@@ -7,9 +7,12 @@ dependencies:
   - config_pages
   - entity_browser
   - entity_reference_revisions
+  - falcon_feature_demo
   - falcon_feature_media
   - field
   - field_group
+  - image
+  - link
   - media
   - media_library
   - menu_link_config
@@ -24,6 +27,7 @@ dependencies:
   - rest
   - rest_entity_recursive
   - scheduler
+  - serialization
   - system
   - taxonomy
   - text

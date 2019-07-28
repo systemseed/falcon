@@ -77,7 +77,7 @@
         {
             "value": "<p>text for demo news 2<\/p>&#13;\n",
             "format": "full_html",
-            "processed": "<p>text for demo news 2<\/p>\n"
+            "processed": "<p>text for demo news 2<\/p>&#13;\n"
         }
     ]
 }
