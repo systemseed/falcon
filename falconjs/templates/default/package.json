@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@systemseed/falcon": "0.0.0-semantic-release",
+    "express-basic-auth": "^1.1.6",
     "next": "^8.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-redux-wrapper": "^3.0.0-alpha.3",
@@ -24,7 +25,6 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-promise-listener": "^1.1.0",
     "redux-saga": "^1.0.2",
-    "express-basic-auth": "^1.1.6",
     "serve-favicon": "^2.5.0"
   }
 }
