@@ -2,11 +2,11 @@
 const nextjs = require('next');
 const dotenv = require('dotenv');
 const favicon = require('serve-favicon');
-const applyFalconRoutesConfiguration = require('@systemseed/falcon/routes/server.js');
-const { globalSettingsForApp, homePageInSettings } = require('@systemseed/falcon/routes/globalSettings');
-const decoupledRouter = require('@systemseed/falcon/routes/decoupledRouter');
-const clearCache = require('@systemseed/falcon/routes/clearCache');
-const { frontendOnlyRoutes } = require('@systemseed/falcon/routes/frontendOnlyRoutes');
+const applyFalconRoutingConfiguration = require('@systemseed/falcon/routing/server.js');
+const { globalSettingsForApp, handleHomepageRequest } = require('@systemseed/falcon/routing/globalSettings');
+const decoupledRouter = require('@systemseed/falcon/routing/decoupledRouter');
+const clearCache = require('@systemseed/falcon/routing/clearCache');
+const frontendOnlyRoutes = require('@systemseed/falcon/routing/frontendOnlyRoutes');
 const routes = require('./routes/routes');
 
 // Import variables from local .env file.
@@ -19,11 +19,11 @@ const app = nextjs({ dev });
 app
   .prepare()
   .then(() => {
-    const expressServer = applyFalconRoutesConfiguration(app);
+    const expressServer = applyFalconRoutingConfiguration(app);
     expressServer.use(favicon(`${__dirname}/static/favicon.ico`));
-    expressServer.use(clearCache);
-    expressServer.use(globalSettingsForApp(app, process.env.SETTINGS_NAME));
-    expressServer.use(homePageInSettings);
+    expressServer.use('/_clear', clearCache);
+    expressServer.use(globalSettingsForApp(app, process.env.APPLICATION_NAME));
+    expressServer.use(handleHomepageRequest);
     expressServer.use(frontendOnlyRoutes(app, routes));
 
     // Handle all other requests using our custom router which is a mix

@@ -1,7 +1,7 @@
 const { parse } = require('url');
 const debug = require('debug')('falcon:routing/decoupledRouter');
 const { getRequest } = require('../request/request.node');
-const getPageContent = require('./getPageContent');
+const getEntityContent = require('./getEntityContent');
 
 /**
  * @file
@@ -29,7 +29,7 @@ async function decoupledRouter(req, res, nextApp) {
   try {
     // Make necessary requests to the backend to fetch the page content.
     // eslint-disable-next-line max-len
-    const { statusCode, entity, entityURL } = await getPageContent(req.url, res, request);
+    const { statusCode, entity, entityURL } = await getEntityContent(req.url, res, request);
 
     // Handle Page Not Found response.
     if (statusCode === 404) {
@@ -44,7 +44,10 @@ async function decoupledRouter(req, res, nextApp) {
     // If everything is good then tell Next.js what internal route to use
     // as an entry point for the content rendering.
     if (statusCode === 200) {
-      res.entity = entity;
+      if (!('falcon' in res)) {
+        res.falcon = {};
+      }
+      res.falcon.entity = entity;
       return await nextApp.render(req, res, entityURL.route, parsedUrl.query);
     }
   } catch (error) {

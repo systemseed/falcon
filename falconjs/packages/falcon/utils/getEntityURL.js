@@ -1,4 +1,4 @@
-const { matchAppOnlyRoute, toQuerystring } = require('../routes/frontendOnlyRoutes');
+const { matchAppOnlyRoute, toQuerystring } = require('../routing/frontendOnlyRoutes');
 
 /**
  * Return parameters to apply to the <Link> component of

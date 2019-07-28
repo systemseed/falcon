@@ -3,7 +3,7 @@ const Router = require('next/router').default;
 const { parse } = require('url');
 const debug = require('debug')('falconjs:routing/globalSettings');
 const { request: defaultRequest, getRequest } = require('../request/request.node.js');
-const getEntityURL = require('../utils/getEntityURL');
+const getHomepageLink = require('../utils/getHomepageLink');
 
 /**
  * Loads global site settings (menu, header, footer) from Drupal backend.
@@ -42,33 +42,6 @@ async function getSettings(settingsName, request = null, res = null) {
 }
 
 /**
- * Returns the link object to the homepage.
- */
-const getHomepageLink = (settings, isRaw = false) => {
-  const globalSettings = settings || {};
-
-  // Link to the front page of the website.
-  if (globalSettings.field_frontpage && typeof globalSettings.field_frontpage === 'object'
-    && typeof globalSettings.field_frontpage[0] === 'object') {
-    const nextLink = getEntityURL(globalSettings.field_frontpage[0]);
-    if (nextLink.url) {
-      // Normally the homepage link should have "/" as the URL. However,
-      // there are several cases in the routing when we need to get the
-      // "unmasked" url of the node on the Drupal for the home page. "isRaw"
-      // flag enables the behavior of keeping the original node URL instead of
-      // masking it.
-      if (!isRaw) {
-        nextLink.url = '/';
-        nextLink.as = '/';
-      }
-      return nextLink;
-    }
-  }
-
-  return null;
-};
-
-/**
  * Adds settings from the backend to res.settings.
  *
  * @param nextApp
@@ -84,6 +57,10 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
     const request = getRequest(nextApp.nextConfig);
 
     if (settingsName) {
+      if (!('falcon' in res)) {
+        res.falcon = {};
+      }
+
       // At this point we already know that the page needs to be rendered either
       // using internal routing of the app or using Drupal routing. So we can fetch
       // global page settings (menu, header, footer) from backend or cache.
@@ -93,7 +70,7 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
         // just requesting /_cacheclear page if clearCache middleware is using.
         const settingsFromCache = cache.get(settingsName);
         if (settingsFromCache) {
-          res.settings = settingsFromCache;
+          res.falcon.settings = settingsFromCache;
         } else {
           const { statusCode, settings } = await getSettings(settingsName, request, res);
 
@@ -103,7 +80,6 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
           }
 
           // Handle any other error.
-
           if (statusCode >= 400) {
             return await nextApp.renderError(null, req, res, parsedUrl.pathname, parsedUrl.query);
           }
@@ -114,7 +90,7 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
 
           // Pass settings data in the response object.
           // It will be available in getInitialProps() of any page or _app.js file.
-          res.settings = settings;
+          res.falcon.settings = settings;
         }
       } catch (error) {
         debug('Error during global settings fetch. Error message: %o', error);
@@ -127,13 +103,13 @@ function globalSettingsForApp(nextApp, settingsName, nodeCacheTTL = 1000) {
   };
 }
 
-function homePageInSettings(req, res, next) {
-  if (res.settings) {
+function handleHomepageRequest(req, res, next) {
+  if (res.falcon && res.falcon.settings) {
     // Get object with different parts of the URL.
     const parsedUrl = parse(req.url, true);
 
     // Get raw link of the homepage (i.e. it will include "/home" instead of "/").
-    const homepageLink = getHomepageLink(res.settings, true);
+    const homepageLink = getHomepageLink(res.falcon.settings, true);
     // If the user requested page which is configured on the backend to be
     // the homepage of the application, then we need to force redirect him
     // to the homepage instead.
@@ -153,7 +129,7 @@ function homePageInSettings(req, res, next) {
     // so in case of the front page we need to request the node with the right alias.
     if (homepageLink && parsedUrl.pathname === '/') {
       debug('Home page requested. Using %s page in Drupal for the homepage as defined in global settings.', homepageLink.url);
-      res.normalizedRequestPath = homepageLink.url;
+      res.falcon.normalizedRequestPath = homepageLink.url;
     }
   }
 
@@ -163,6 +139,5 @@ function homePageInSettings(req, res, next) {
 module.exports = {
   globalSettingsForApp,
   getSettings,
-  getHomepageLink,
-  homePageInSettings,
+  handleHomepageRequest,
 };

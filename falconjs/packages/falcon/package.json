@@ -7,20 +7,20 @@
   "license": "MIT",
   "dependencies": {
     "superagent": "^5.0.4",
-    "superagent-prefix": "^0.0.2"
-  },
-  "peerDependencies": {
-    "next": "^8.0.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "redux": "^4.0.4",
-    "express-basic-auth": "^1.1.6",
+    "superagent-prefix": "^0.0.2",
     "debug": "^3.2.6",
     "compression": "^1.7.4",
     "express": "^4.16.4",
     "cookie-parser": "^1.4.4",
     "memory-cache": "^0.2.0",
     "path-to-regexp": "^3.0.0"
+  },
+  "peerDependencies": {
+    "next": "^8.0.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "redux": "^4.0.4",
+    "express-basic-auth": "^1.1.6"
   },
   "devDependencies": {
     "semantic-release": "^15.13.18",

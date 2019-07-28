@@ -1,13 +1,13 @@
 const Router = require('next/router').default;
 const { parse } = require('url');
-const debug = require('debug')('falcon:routing/getPageContent');
+const debug = require('debug')('falcon:routing/getEntityContent');
 const { request: defaultRequest } = require('../request/request.node');
 const getEntityURL = require('../utils/getEntityURL');
 
 /**
  * Returns Drupal entity data for both server side and client side.
  */
-async function getPageContent(requestedURL, res = null, request = null) {
+async function getEntityContent(requestedURL, res = null, request = null) {
   const props = {
     statusCode: null,
     entity: null,
@@ -19,8 +19,8 @@ async function getPageContent(requestedURL, res = null, request = null) {
   // Get object with different parts of the URL.
   const parsedUrl = parse(requestedURL, true);
 
-  const entityURL = res && res.normalizedRequestPath
-    ? res.normalizedRequestPath : parsedUrl.pathname;
+  const entityURL = res && res.falcon && res.falcon.normalizedRequestPath
+    ? res.falcon.normalizedRequestPath : parsedUrl.pathname;
 
   debug('Requesting entity with URL %s from the Drupal backend...', entityURL);
 
@@ -86,4 +86,4 @@ async function getPageContent(requestedURL, res = null, request = null) {
   return props;
 }
 
-module.exports = getPageContent;
+module.exports = getEntityContent;

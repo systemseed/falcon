@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import * as settingsActions from '@systemseed/falcon/redux/actions/globalSettings';
 import App, { Container } from 'next/app';
-import { getHomepageLink } from '@systemseed/falcon/routes/globalSettings';
-import { matchAppOnlyRoute } from '@systemseed/falcon/routes/frontendOnlyRoutes';
-import getPageContent from '@systemseed/falcon/routes/getPageContent';
+import getHomepageLink from '@systemseed/falcon/utils/getHomepageLink';
+import matchAppOnlyRoute from '@systemseed/falcon/utils/matchAppOnlyRoute';
+import getEntityContent from '@systemseed/falcon/routing/getEntityContent';
 import configureStore from '../store/store';
 import normalizeURL from '../utils/normalizeURL';
 import routes from '../routes/routes';
@@ -33,9 +33,9 @@ class Application extends App {
     // If it's a backend request then settings should come from the backend.
     // We put the data into the redux store so that later we can take it
     // from store instead of making additional backend requests.
-    if (res && res.settings) {
-      initialProps.settings = res.settings;
-      store.dispatch(settingsActions.save(res.settings));
+    if (res && res.falcon && res.falcon.settings) {
+      initialProps.settings = res.falcon.settings;
+      store.dispatch(settingsActions.save(res.falcon.settings));
     } else {
       // Restore global settings object from the temporary redux store.
       const { globalSettings } = store.getState();
@@ -66,8 +66,8 @@ class Application extends App {
       try {
         // If it is a backend response, then entity object must be a part of
         // response. See decoupledRouter() for details.
-        if (res && res.entity) {
-          initialProps.entity = res.entity;
+        if (res && res.falcon && res.falcon.entity) {
+          initialProps.entity = res.falcon.entity;
         } else {
           let normalizedURL = url;
           // Get raw link of the homepage (i.e. it will include "/home" instead of "/").
@@ -78,7 +78,7 @@ class Application extends App {
             normalizedURL = normalizeURL(url);
           }
 
-          const { statusCode, entity } = await getPageContent(normalizedURL);
+          const { statusCode, entity } = await getEntityContent(normalizedURL);
           initialProps.statusCode = statusCode;
           initialProps.entity = entity;
         }
