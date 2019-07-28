@@ -75,6 +75,7 @@ feat(backend): change all API endpoints to use new format.
 
 BREAKING CHANGE: All API endpoints now use new output format.
 ```
+Note that there is a comment that starts with **BREAKING CHANGE:** ! The rest of commit message does not matter.
 
 
 **Commit message that triggers a MINOR release, i.e. 1.4.3 → 1.5.0**
