@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24ab660dc7974fa0afef9c0483b824a5",
+    "content-hash": "a435e836c6d872356b625a44ba316e59",
     "packages": [
         {
             "name": "apache/log4php",
@@ -1638,9 +1638,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/commerce_globalpayments.git",
-                "reference": "2609e2cd"
+                "reference": "ffac02ad"
             },
             "require": {
+                "commerceguys/addressing": "^1.0.0",
                 "drupal/commerce_payment": "*",
                 "drupal/core": "~8.0",
                 "globalpayments/php-sdk": "^1.2",
@@ -1652,8 +1653,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta10+1-dev",
-                    "datestamp": "1559728089",
+                    "version": "8.x-1.0-beta11+1-dev",
+                    "datestamp": "1564401185",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -1687,7 +1688,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce_globalpayments"
             },
-            "time": "2019-07-29T11:45:45+00:00"
+            "time": "2019-07-29T14:57:45+00:00"
         },
         {
             "name": "drupal/commerce_order",
