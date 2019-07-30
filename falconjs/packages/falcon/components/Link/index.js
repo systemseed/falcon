@@ -6,7 +6,7 @@ import Link from 'next/link';
  * A little proxy around Next.js <Link> component
  * to make sure that only the correct props passed to <Link> component.
  */
-const CustomLink = (props) => {
+const FalconLink = (props) => {
   const linkProps = {};
   const allowedProps = ['href', 'as', 'prefetch', 'replace', 'shallow', 'passHref', 'scroll', 'children'];
 
@@ -22,7 +22,7 @@ const CustomLink = (props) => {
   return <Link {...linkProps} />;
 };
 
-CustomLink.propTypes = {
+FalconLink.propTypes = {
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   prefetch: PropTypes.bool,
@@ -33,7 +33,7 @@ CustomLink.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element]).isRequired,
 };
 
-CustomLink.defaultProps = {
+FalconLink.defaultProps = {
   as: null,
   prefetch: false,
   replace: false,
@@ -42,4 +42,4 @@ CustomLink.defaultProps = {
   scroll: true,
 };
 
-export default CustomLink;
+export default FalconLink;
