@@ -9,6 +9,10 @@ import getEntityContent from '@systemseed/falcon/routing/getEntityContent';
 import configureStore from '../store/store';
 import normalizeURL from '../utils/normalizeURL';
 import routes from '../routes/routes';
+import * as transformsSettings from '../utils/transforms.settings';
+import ErrorPage from './_error';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // Internal debugging.
 const debug = require('debug')('falcon:_app.js');
@@ -40,6 +44,20 @@ class Application extends App {
       // Restore global settings object from the temporary redux store.
       const { globalSettings } = store.getState();
       initialProps.settings = globalSettings;
+    }
+
+    if (initialProps.settings) {
+      try {
+        initialProps.headerSettings = transformsSettings.header(initialProps.settings);
+      } catch (e) {
+        debug('Could not transform header. Error: %s', e);
+      }
+
+      try {
+        initialProps.footerSettings = transformsSettings.footer(initialProps.settings);
+      } catch (e) {
+        debug('Could not transform footer. Error: %s', e);
+      }
     }
 
     const url = ctx.asPath || ctx.pathname;
@@ -120,12 +138,26 @@ class Application extends App {
   }
 
   render() {
-    const { Component, store, ...props } = this.props;
-
+    const { Component, store, headerSettings, footerSettings, statusCode, ...props } = this.props;
     return (
       <Container>
         <Provider store={store}>
-          <Component {...props} />
+          <>
+            {headerSettings && <Header {...headerSettings} />}
+
+            {statusCode === 200 && <Component {...props} />}
+
+            {statusCode !== 200
+            && (
+              <ErrorPage
+                statusCode={statusCode}
+                homeNextLink={headerSettings ? headerSettings.homeNextLink : null}
+              />
+            )
+            }
+
+            {footerSettings && <Footer {...footerSettings} />}
+          </>
         </Provider>
       </Container>
     );
