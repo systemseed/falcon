@@ -1,10 +1,11 @@
-const { matchAppOnlyRoute, toQuerystring } = require('../routing/frontendOnlyRoutes');
+const matchAppOnlyRoute = require('./matchAppOnlyRoute');
+const toQuerystring = require('./toQuerystring');
 
 /**
  * Return parameters to apply to the <Link> component of
  * Next.js to make the routing working properly.
  */
-const getEntityURL = (entity) => {
+const getEntityURL = (entity, appOnlyRoutes = '') => {
   const entityURL = {
 
     // Value which ALWAYS represents client facing URL that you see in the browser.
@@ -65,10 +66,10 @@ const getEntityURL = (entity) => {
     entityURL.route = route;
     entityURL.href = route;
     entityURL.as = entityURL.url;
-  } else {
+  } else if (appOnlyRoutes) {
     // If the path does not have a corresponding entity on the backend it still
     // can be an internal route which exists in the frontpage app only.
-    const route = matchAppOnlyRoute(entityURL.url);
+    const route = matchAppOnlyRoute(entityURL.url, appOnlyRoutes);
     if (route) {
       entityURL.route = route.href;
       entityURL.href = `${route.href}${route.query ? `?${toQuerystring(route.query)}` : ''}`;
