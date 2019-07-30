@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec6847a0b953772660e92f03e8fed718",
+    "content-hash": "d95da1da931dfaf53e59703ee7f69cd4",
     "packages": [
         {
             "name": "apache/log4php",
@@ -4695,17 +4695,17 @@
         },
         {
             "name": "drupal/rest_entity_recursive",
-            "version": "1.0.0-beta2",
+            "version": "1.0.0-beta3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/rest_entity_recursive.git",
-                "reference": "8.x-1.0-beta2"
+                "reference": "8.x-1.0-beta3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/rest_entity_recursive-8.x-1.0-beta2.zip",
-                "reference": "8.x-1.0-beta2",
-                "shasum": "436a52ef94e956144cef59bebb08f6672a307f38"
+                "url": "https://ftp.drupal.org/files/projects/rest_entity_recursive-8.x-1.0-beta3.zip",
+                "reference": "8.x-1.0-beta3",
+                "shasum": "cd711c812b5f6fcc572e8e9cc11af12f44cf584d"
             },
             "require": {
                 "drupal/core": "*"
@@ -4720,8 +4720,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta2",
-                    "datestamp": "1556797385",
+                    "version": "8.x-1.0-beta3",
+                    "datestamp": "1564424289",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
