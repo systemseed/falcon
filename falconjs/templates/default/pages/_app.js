@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import * as settingsActions from '@systemseed/falcon/redux/actions/globalSettings';
@@ -9,10 +10,14 @@ import getEntityContent from '@systemseed/falcon/routing/getEntityContent';
 import configureStore from '../store/store';
 import normalizeURL from '../utils/normalizeURL';
 import routes from '../routes/routes';
+// import * as field from '../utils/transforms.fields';
 import * as transformsSettings from '../utils/transforms.settings';
 import ErrorPage from './_error';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import HtmlHead from '../components/HtmlHead';
+
+import '../static/_styles.scss';
 
 // Internal debugging.
 const debug = require('debug')('falcon:_app.js');
@@ -90,7 +95,10 @@ class Application extends App {
           let normalizedURL = url;
           // Get raw link of the homepage (i.e. it will include "/home" instead of "/").
           const homepageLink = getHomepageLink(initialProps.settings, true);
-          if (homepageLink && url === '/') {
+
+          if (homepageLink.url === url) {
+            Router.push(homepageLink.route, '/');
+          } else if (homepageLink && url === '/') {
             normalizedURL = homepageLink.url;
           } else {
             normalizedURL = normalizeURL(url);
@@ -103,6 +111,22 @@ class Application extends App {
       } catch (error) {
         initialProps.statusCode = 500;
         debug(error);
+      }
+    }
+
+    // Pass entity, paragraph and metatags as props.
+    if (initialProps.entity) {
+      try {
+        // Transform paragraphs on the backend into body blocks on the frontend.
+        // const blocks = field.getArrayValue(initialProps.entity, 'field_blocks');
+        // initialProps.blocks = new TransformBlocks().transform(initialProps.entity, blocks);
+
+        // Get tags data from the entity and pass as props.
+        if (initialProps.entity.hasOwnProperty('metatag_normalized')) {
+          initialProps.metatags = initialProps.entity.metatag_normalized;
+        }
+      } catch (e) {
+        debug('Could not transform entity. Error: %s', e);
       }
     }
 
@@ -138,14 +162,23 @@ class Application extends App {
   }
 
   render() {
-    const { Component, store, headerSettings, footerSettings, statusCode, ...props } = this.props;
+    const {
+      Component,
+      store,
+      headerSettings,
+      footerSettings,
+      statusCode,
+      metatags,
+      ...props
+    } = this.props;
     return (
       <Container>
         <Provider store={store}>
           <>
+            <HtmlHead metatags={metatags} />
             {headerSettings && <Header {...headerSettings} />}
 
-            {statusCode === 200 && <Component {...props} />}
+            {statusCode === 200 && <div className="page-content"><Component {...props} /></div>}
 
             {statusCode !== 200
             && (

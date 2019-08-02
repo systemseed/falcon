@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HeaderMenu from './HeaderMenu';
+import DesktopNavigation from './DesktopNavigation';
 
-const Header = ({ menu, logo, siteName }) => (
+const Header = ({ menu, logo, siteName, homeNextLink }) => (
   <header>
-    {logo.url && <img src={logo.url} alt={logo.alt} title={siteName} />}
-    <HeaderMenu menu={menu} />
+    <DesktopNavigation menu={menu} logo={logo} siteName={siteName} homeNextLink={homeNextLink} />
   </header>
 );
 
@@ -23,12 +22,19 @@ Header.propTypes = {
     url: PropTypes.string,
   }),
   siteName: PropTypes.string,
+  homeNextLink: PropTypes.shape({
+    url: PropTypes.string,
+    as: PropTypes.string,
+    href: PropTypes.string,
+    route: PropTypes.string,
+  }),
 };
 
 Header.defaultProps = {
   menu: [],
   logo: {},
   siteName: '',
+  homeNextLink: null,
 };
 
 export default Header;

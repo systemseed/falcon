@@ -21,11 +21,23 @@ export const header = (settings) => {
 
   const menu = field.getArrayValue(fieldMenu, 'links');
 
-  props.menu = menu.map(menuItem => ({
-    slug: menuItem.title,
-    nextLink: field.getEntityURL(menuItem),
-    label: menuItem.hasOwnProperty('title') ? menuItem.title : '',
-  }));
+  const homepageLinkRaw = getHomepageLink(settings, true);
+  props.menu = menu.map((menuItem) => {
+    let nextLink = field.getEntityURL(menuItem);
+
+    // Replace menu link to homepage link if menu link has url like '/home'.
+    // The active menu item should be highlighted, without this replacement
+    // the link will lead to "/home". But app.js replaces "/home" url to "/", therefore
+    // we need to have same value in the link and in the router.asPath.
+    if (homepageLink && homepageLinkRaw && nextLink.url === homepageLinkRaw.url) {
+      nextLink = homepageLink;
+    }
+    return {
+      nextLink,
+      slug: menuItem.title,
+      label: menuItem.hasOwnProperty('title') ? menuItem.title : '',
+    };
+  });
 
   return props;
 };

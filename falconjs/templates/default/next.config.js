@@ -1,6 +1,7 @@
 const withPlugins = require('next-compose-plugins');
 const withTranspileModules = require('next-transpile-modules');
 const nextRuntimeDotenv = require('next-runtime-dotenv');
+const withSass = require('@zeit/next-sass');
 
 // Makes certain variables accessible only at runtime visible for the application.
 // Check if it supports withPlugins: https://github.com/tusbar/next-runtime-dotenv/issues/54
@@ -32,4 +33,4 @@ module.exports = withConfig(withPlugins([
   [withTranspileModules, {
     transpileModules: ['@systemseed/falcon'],
   }],
-], nextConfig));
+], withSass(nextConfig)));

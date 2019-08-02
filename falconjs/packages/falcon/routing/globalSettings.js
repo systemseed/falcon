@@ -1,45 +1,9 @@
 const cache = require('memory-cache');
-const Router = require('next/router').default;
 const { parse } = require('url');
 const debug = require('debug')('falconjs:routing/globalSettings');
-const { request: defaultRequest, getRequest } = require('../request/request.node.js');
+const { getRequest } = require('../request/request.node.js');
 const getHomepageLink = require('../utils/getHomepageLink');
-
-/**
- * Loads global site settings (menu, header, footer) from Drupal backend.
- */
-async function getSettings(settingsName, request = null, res = null) {
-  const props = {
-    statusCode: null,
-    settings: null,
-  };
-
-  const superagent = request || defaultRequest;
-
-  debug(`Requesting Global settings from the Drupal backend with name ${settingsName}...`);
-  const settingsResponse = await superagent
-    .get(`/config_pages/${settingsName}`)
-    // Tell superagent to consider any valid Drupal response as successful.
-    // Later we can capture error codes if needed.
-    .ok(response => response.statusCode)
-    .query({ _format: 'json_recursive' });
-
-  // Catch all 40x and 50x errors during request to fetch global settings.
-  if (settingsResponse.statusCode >= 400) {
-    if (res) res.status(settingsResponse.statusCode);
-    props.statusCode = settingsResponse.statusCode;
-    debug('Global settings request to the backend caught %s error. Response: %o', settingsResponse.statusCode, settingsResponse);
-  }
-
-  // Get global settings object from the request and pass it to the
-  // pages as a part of server response object.
-  if (settingsResponse.statusCode === 200) {
-    props.settings = settingsResponse.body;
-    props.statusCode = 200;
-  }
-
-  return props;
-}
+const getSettings = require('../utils/getSettings');
 
 /**
  * Adds settings from the backend to res.settings.
@@ -115,14 +79,7 @@ function handleHomepageRequest(req, res, next) {
     // to the homepage instead.
     if (homepageLink && parsedUrl.pathname === homepageLink.url) {
       debug('The requested page %s is an alias of the front page. Redirecting to the front page.', homepageLink.url);
-
-      if (res) {
-        // Server level redirect.
-        res.redirect(301, '/');
-      } else {
-        // Client level redirect.
-        Router.push(homepageLink.route, '/');
-      }
+      res.redirect(301, '/');
     }
 
     // The homepage on the Drupal backend is not "/" but some other alias,
