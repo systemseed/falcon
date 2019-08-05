@@ -1,6 +1,6 @@
 import falconGetEntityUrl from '@systemseed/falcon/utils/getEntityURL';
 import * as field from '@systemseed/falcon/utils/transforms.fields';
-import routes from '../routes/routes';
+import routes from '../routes';
 
 const getEntityURL = entity => (
   falconGetEntityUrl(entity, routes)

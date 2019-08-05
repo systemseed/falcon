@@ -3,27 +3,21 @@ import Router from 'next/router';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import * as settingsActions from '@systemseed/falcon/redux/actions/globalSettings';
-import App, { Container } from 'next/app';
 import getHomepageLink from '@systemseed/falcon/utils/getHomepageLink';
 import matchAppOnlyRoute from '@systemseed/falcon/utils/matchAppOnlyRoute';
 import getEntityContent from '@systemseed/falcon/routing/getEntityContent';
-import configureStore from '../store/store';
 import normalizeURL from '../utils/normalizeURL';
-import routes from '../routes';
+import routes from '../routes/routes';
 import * as field from '../utils/transforms.fields';
 import * as transformsSettings from '../utils/transforms.settings';
 import TransformBlocks from '../utils/transforms.blocks';
-import ErrorPage from './_error';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import HtmlHead from '../components/HtmlHead';
 
 import '../static/_styles.scss';
 
 // Internal debugging.
 const debug = require('debug')('falcon:_app.js');
 
-class Application extends App {
+export default class WithFalcon extends React.Component {
   /**
    * See https://nextjs.org/docs#fetching-data-and-component-lifecycle
    * for more details.
@@ -163,40 +157,7 @@ class Application extends App {
   }
 
   render() {
-    const {
-      Component,
-      store,
-      headerSettings,
-      footerSettings,
-      statusCode,
-      metatags,
-      ...props
-    } = this.props;
-
-    return (
-      <Container>
-        <Provider store={store}>
-          <>
-            <HtmlHead metatags={metatags} />
-            {headerSettings && <Header {...headerSettings} />}
-
-            {statusCode === 200 && <div className="page-content"><Component {...props} /></div>}
-
-            {statusCode !== 200
-            && (
-              <ErrorPage
-                statusCode={statusCode}
-                homeNextLink={headerSettings ? headerSettings.homeNextLink : null}
-              />
-            )
-            }
-
-            {footerSettings && <Footer {...footerSettings} />}
-          </>
-        </Provider>
-      </Container>
-    );
+    const { children } = this.props;
+    return children;
   }
 }
-
-export default withRedux(configureStore)(Application);

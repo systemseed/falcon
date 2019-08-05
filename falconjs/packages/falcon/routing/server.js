@@ -1,3 +1,4 @@
+const nextjs = require('next');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const debug = require('debug')('cw:server');
@@ -6,7 +7,19 @@ const basicAuth = require('express-basic-auth');
 const xmlSitemapProxy = require('./xmlsitemap');
 const internalRoutes = require('./internalRoutes');
 
+
+const defaultConfig = {};
+
+const falconApp = (nextConfig = {}) => {
+  // TODO: MERGE WITH DEFAULT CONFIG.
+  const app = nextjs(nextConfig);
+
+  return app.prepare();
+};
+
 const applyFalconRoutingConfiguration = (app, expressServer = express()) => {
+
+
   // Make sure we enable http auth only on dev environments.
   if (process.env.ENVIRONMENT && (process.env.ENVIRONMENT === 'development')) {
     // Make sure that we do have http user & password set in variables.
@@ -57,7 +70,19 @@ const applyFalconRoutingConfiguration = (app, expressServer = express()) => {
     next();
   });
 
+  expressServer.use(globalSettingsForApp(app, process.env.APPLICATION_NAME));
+  expressServer.use(handleHomepageRequest);
+  expressServer.use(frontendOnlyRoutes(app, routes));
+
+  expressServer.use('/_clear', clearCache);
+  // Handle all other requests using our custom router which is a mix
+  // or original Next.js logic and Drupal routing logic.
+  expressServer.get('*', (req, res) => decoupledRouter(req, res, app));
+
   return expressServer;
 };
 
-module.exports = applyFalconRoutingConfiguration;
+module.exports = {
+  applyFalconRoutingConfiguration,
+  falconApp,
+};
