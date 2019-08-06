@@ -7,6 +7,30 @@ const basicAuth = require('express-basic-auth');
 const xmlSitemapProxy = require('./xmlsitemap');
 const internalRoutes = require('./internalRoutes');
 
+const startFalconServer = (nextConfig = {}, expressServer = express()) => new Promise((resolve, reject) => {
+
+  const application = nextjs(nextConfig);
+  application
+    .prepare()
+    .then(() => {
+
+      const expressServer = applyFalconRoutingConfiguration(application);
+      expressServer.use(favicon(`${__dirname}/static/favicon.ico`));
+      expressServer.use('/_clear', clearCache);
+      expressServer.use(globalSettingsForApp(application, process.env.APPLICATION_NAME));
+      expressServer.use(handleHomepageRequest);
+      expressServer.use(frontendOnlyRoutes(application, routes));
+
+      // Handle all other requests using our custom router which is a mix
+      // or original Next.js logic and Drupal routing logic.
+      expressServer.get('*', (req, res) => decoupledRouter(req, res, application));
+
+      resolve(expressServer);
+
+    })
+    .catch(error => reject(error));
+});
+
 
 const defaultConfig = {};
 
