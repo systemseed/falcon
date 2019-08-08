@@ -21,13 +21,11 @@
     "next-transpile-modules": "^2.3.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
-    "react-redux": "^6.0.1",
     "react-dom": "^16.8.6",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-promise-listener": "^1.1.0",
     "redux-saga": "^1.0.2",
-    "semantic-ui-react": "0.87.3",
-    "serve-favicon": "^2.5.0"
+    "semantic-ui-react": "0.87.3"
   }
 }

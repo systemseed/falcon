@@ -1,23 +1,18 @@
 import React from 'react';
 import Router from 'next/router';
+import { Container } from 'next/app';
 import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
 import * as settingsActions from '@systemseed/falcon/redux/actions/globalSettings';
 import getHomepageLink from '@systemseed/falcon/utils/getHomepageLink';
 import matchAppOnlyRoute from '@systemseed/falcon/utils/matchAppOnlyRoute';
 import getEntityContent from '@systemseed/falcon/routing/getEntityContent';
-import normalizeURL from '../utils/normalizeURL';
-import routes from '../routes/routes';
-import * as field from '../utils/transforms.fields';
-import * as transformsSettings from '../utils/transforms.settings';
-import TransformBlocks from '../utils/transforms.blocks';
-
-import '../static/_styles.scss';
+import normalizeURL from '../../utils/normalizeURL';
+import { APP_ONLY_ROUTES } from '../../utils/constants';
 
 // Internal debugging.
-const debug = require('debug')('falcon:_app.js');
+const debug = require('debug')('falcon:components/withFalcon');
 
-export default class WithFalcon extends React.Component {
+export default App => class extends React.Component {
   /**
    * See https://nextjs.org/docs#fetching-data-and-component-lifecycle
    * for more details.
@@ -46,20 +41,6 @@ export default class WithFalcon extends React.Component {
       initialProps.settings = globalSettings;
     }
 
-    if (initialProps.settings) {
-      try {
-        initialProps.headerSettings = transformsSettings.header(initialProps.settings);
-      } catch (e) {
-        debug('Could not transform header. Error: %s', e);
-      }
-
-      try {
-        initialProps.footerSettings = transformsSettings.footer(initialProps.settings);
-      } catch (e) {
-        debug('Could not transform footer. Error: %s', e);
-      }
-    }
-
     const url = ctx.asPath || ctx.pathname;
 
     // The flag isAppOnlyRoute appears automatically in the query if the
@@ -71,7 +52,7 @@ export default class WithFalcon extends React.Component {
 
     // Make sure that current route is not only app route.
     // Covers case when query param not passed.
-    if (!isAppRoute && matchAppOnlyRoute(url, routes)) {
+    if (!isAppRoute && matchAppOnlyRoute(url, APP_ONLY_ROUTES)) {
       isAppRoute = true;
     }
 
@@ -109,19 +90,33 @@ export default class WithFalcon extends React.Component {
       }
     }
 
-    // Pass entity, paragraph and metatags as props.
+    // Pass entity  metatags as props.
     if (initialProps.entity) {
       try {
-        // Transform paragraphs on the backend into body blocks on the frontend.
-        const blocks = field.getArrayValue(initialProps.entity, 'field_body_blocks');
-        initialProps.blocks = new TransformBlocks().transform(initialProps.entity, blocks);
-
         // Get tags data from the entity and pass as props.
         if (initialProps.entity.hasOwnProperty('metatag_normalized')) {
           initialProps.metatags = initialProps.entity.metatag_normalized;
         }
       } catch (e) {
         debug('Could not transform entity. Error: %s', e);
+      }
+    }
+
+    if (App.getInitialProps) {
+      try {
+        // Merge original props with props returned from user's _app.js.
+        const childInitialProps = await App.getInitialProps({
+          res,
+          query,
+          router,
+          ...initialProps,
+          ...props,
+          ...ctx,
+        });
+        initialProps = { ...initialProps, ...childInitialProps };
+      } catch (e) {
+        initialProps.statusCode = 500;
+        debug(e);
       }
     }
 
@@ -157,7 +152,13 @@ export default class WithFalcon extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
-    return children;
+    const { store } = this.props; // eslint-disable-line react/prop-types
+    return (
+      <Container>
+        <Provider store={store}>
+          <App {...this.props} />
+        </Provider>
+      </Container>
+    );
   }
-}
+};

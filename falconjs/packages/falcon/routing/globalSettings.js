@@ -95,6 +95,5 @@ function handleHomepageRequest(req, res, next) {
 
 module.exports = {
   globalSettingsForApp,
-  getSettings,
   handleHomepageRequest,
 };

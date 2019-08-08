@@ -1,5 +1,5 @@
 import getHomepageLink from '@systemseed/falcon/utils/getHomepageLink';
-import * as field from './transforms.fields';
+import * as field from '@systemseed/falcon/utils/transforms.fields';
 
 /**
  * Transforms site wide header settings (menus, logo, etc)

@@ -1,17 +1,6 @@
 import he from 'he';
-
-const config = require('next/config').default();
-
-let BACKEND_URL = '';
-
-// Normally we can take the values from next.js config. However,
-// if the constants are used on the very early stage of the application,
-// then we must take the values from the global environment variables of the container.
-if (config && config.publicRuntimeConfig) {
-  ({ BACKEND_URL } = config.publicRuntimeConfig);
-} else {
-  ({ BACKEND_URL } = process.env);
-}
+import getEntityURL from './getEntityURL';
+import { BACKEND_URL } from './constants';
 
 /**
  * Returns single object item.
@@ -184,9 +173,26 @@ const getFileSize = (entity, fieldName) => {
   return getNumberValue(file, 'filesize');
 };
 
+const getLinkValue = (entity, fieldName) => {
+  const link = getObjectValue(entity, fieldName);
+
+  if (link) {
+    return {
+      label: link.label,
+      nextLink: getEntityURL(link),
+    };
+  }
+
+  return {
+    label: '',
+    nextLink: null,
+  };
+};
 // The export is done this way so that node.js can also
 // require these functions.
 module.exports = {
+  getEntityURL,
+  getLinkValue,
   getObjectValue,
   getArrayValue,
   getTextValue,

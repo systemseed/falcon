@@ -1,6 +1,11 @@
-import { combineReducers } from 'redux';
-import falconReducers from '@systemseed/falcon/redux/reducers';
+/**
+ * @file Provides object with all reducers that we need in Redux.
+ * Note: we don't need to use 'combineReducers' because
+ * it will be done in the 'createStore' function from falconjs.
+ */
 
-export default combineReducers({
-  ...falconReducers,
-});
+import exampleReducer from './example';
+
+export default {
+  exampleReducer,
+};

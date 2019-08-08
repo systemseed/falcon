@@ -1,5 +1,6 @@
-// Default redux createStore function.
-import { createStore, applyMiddleware } from 'redux';
+// Falcon redux createStore function.
+import createStore from '@systemseed/falcon/redux/createStore';
+import { applyMiddleware } from 'redux';
 
 // Logger/debugger for Redux store: https://github.com/zalmoxisus/redux-devtools-extension#14-using-in-production
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';

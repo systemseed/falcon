@@ -1,49 +1,19 @@
 const nextjs = require('next');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
-const debug = require('debug')('cw:server');
+const debug = require('debug')('falconjs:routing/server');
 const express = require('express');
 const basicAuth = require('express-basic-auth');
+const favicon = require('serve-favicon');
 const xmlSitemapProxy = require('./xmlsitemap');
 const internalRoutes = require('./internalRoutes');
-
-const startFalconServer = (nextConfig = {}, expressServer = express()) => new Promise((resolve, reject) => {
-
-  const application = nextjs(nextConfig);
-  application
-    .prepare()
-    .then(() => {
-
-      const expressServer = applyFalconRoutingConfiguration(application);
-      expressServer.use(favicon(`${__dirname}/static/favicon.ico`));
-      expressServer.use('/_clear', clearCache);
-      expressServer.use(globalSettingsForApp(application, process.env.APPLICATION_NAME));
-      expressServer.use(handleHomepageRequest);
-      expressServer.use(frontendOnlyRoutes(application, routes));
-
-      // Handle all other requests using our custom router which is a mix
-      // or original Next.js logic and Drupal routing logic.
-      expressServer.get('*', (req, res) => decoupledRouter(req, res, application));
-
-      resolve(expressServer);
-
-    })
-    .catch(error => reject(error));
-});
-
-
-const defaultConfig = {};
-
-const falconApp = (nextConfig = {}) => {
-  // TODO: MERGE WITH DEFAULT CONFIG.
-  const app = nextjs(nextConfig);
-
-  return app.prepare();
-};
+const decoupledRouter = require('./decoupledRouter');
+const frontendOnlyRoutes = require('./frontendOnlyRoutes');
+const { globalSettingsForApp, handleHomepageRequest } = require('./globalSettings');
+const clearCache = require('./clearCache');
+const { defaultFalconConfig } = require('../utils/constants');
 
 const applyFalconRoutingConfiguration = (app, expressServer = express()) => {
-
-
   // Make sure we enable http auth only on dev environments.
   if (process.env.ENVIRONMENT && (process.env.ENVIRONMENT === 'development')) {
     // Make sure that we do have http user & password set in variables.
@@ -94,19 +64,86 @@ const applyFalconRoutingConfiguration = (app, expressServer = express()) => {
     next();
   });
 
-  expressServer.use(globalSettingsForApp(app, process.env.APPLICATION_NAME));
-  expressServer.use(handleHomepageRequest);
-  expressServer.use(frontendOnlyRoutes(app, routes));
-
-  expressServer.use('/_clear', clearCache);
-  // Handle all other requests using our custom router which is a mix
-  // or original Next.js logic and Drupal routing logic.
-  expressServer.get('*', (req, res) => decoupledRouter(req, res, app));
-
   return expressServer;
 };
 
+const startFalconServer = (
+  userFalconConfig = {},
+  userNextConfig = {},
+  expressServer = express(),
+) => new Promise((resolve, reject) => {
+  // Merge default falcon config with config from user.
+  const falconConfig = Object.assign(defaultFalconConfig, userFalconConfig);
+  const {
+    HTTP_AUTH_USER,
+    HTTP_AUTH_PASS,
+    APPLICATION_NAME,
+    BACKEND_URL,
+    FRONTEND_URL,
+    CONSUMER_ID,
+    ENVIRONMENT,
+    PAYMENT_SECRET_HEADER_NAME,
+    APP_ONLY_ROUTES,
+    FAVICON,
+    CLEAR_CACHE_URL,
+  } = falconConfig;
+
+  const application = nextjs(userNextConfig);
+
+  // Disable routes like /node/page.
+  application.nextConfiguseFileSystemPublicRoutes = false;
+
+  // Define variables for server side.
+  application.nextConfig.serverRuntimeConfig = Object.assign(
+    application.nextConfig.serverRuntimeConfig || {},
+    { HTTP_AUTH_USER, HTTP_AUTH_PASS },
+  );
+
+  // Define variables for client side.
+  application.nextConfig.publicRuntimeConfig = Object.assign(
+    application.nextConfig.publicRuntimeConfig || {},
+    {
+      APPLICATION_NAME,
+      BACKEND_URL,
+      FRONTEND_URL,
+      CONSUMER_ID,
+      ENVIRONMENT,
+      PAYMENT_SECRET_HEADER_NAME,
+      APP_ONLY_ROUTES,
+    },
+  );
+
+  application
+    .prepare()
+    .then(() => {
+      const server = applyFalconRoutingConfiguration(application, expressServer);
+
+      if (FAVICON) {
+        server.use(favicon(`${application.dir}${FAVICON}`));
+      }
+
+      if (CLEAR_CACHE_URL) {
+        server.use(CLEAR_CACHE_URL, clearCache);
+      }
+
+      server.use(globalSettingsForApp(application, APPLICATION_NAME));
+      server.use(handleHomepageRequest);
+
+      if (APP_ONLY_ROUTES) {
+        server.use(frontendOnlyRoutes(application, APP_ONLY_ROUTES));
+      }
+
+      // Handle all other requests using our custom router which is a mix
+      // or original Next.js logic and Drupal routing logic.
+      server.get('*', (req, res) => decoupledRouter(req, res, application));
+
+      resolve(server);
+    })
+    .catch(error => reject(error));
+});
+
+
 module.exports = {
+  startFalconServer,
   applyFalconRoutingConfiguration,
-  falconApp,
 };
