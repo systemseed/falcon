@@ -154,15 +154,44 @@ logs:
 	$(call message,$(PROJECT_NAME): Streaming the Next.js application logs)
 	docker-compose logs -f node
 
+######################
+# Testing operations #
+######################
+
+# MAKE can't properly forward options starting with two dashes so we
+# introduce a new variable TESTMETA which corresponds to --test-meta option.
+ifdef TESTMETA
+  TESTMETA_OPTION=--test-meta $(TESTMETA)
+else
+  TESTMETA_OPTION=
+endif
+
 tests\:prepare:
 	$(call message,$(PROJECT_NAME): Preparing Codeception framework for testing...)
-	docker-compose up -d chrome codecept
 	docker-compose run --rm codecept build
 
-tests\:run:
+	$(call message,$(PROJECT_NAME): Installing test dependencies for end-to-end tests)
+	docker-compose run --rm -T node sh -c "cd /tests && yarn install"
+
+tests\:codeception:
 	$(call message,$(PROJECT_NAME): Run Codeception tests)
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	docker-compose run --rm codecept run $(ARGS) --debug
+
+tests\:testcafe:
+	$(call message,$(PROJECT_NAME): Running end-to-end tests...)
+	rm -rf ./tests/end-to-end/results/*
+	docker-compose run --rm -T testcafe '$(TESTCAFE_BROWSERS)' \
+      --screenshots-on-fails --screenshots results -p '$${USERAGENT}/$${FIXTURE}-$${TEST}-$${RUN_ID}.png' \
+      --assertion-timeout 5000 \
+      -r spec,xunit:/results/xunit.xml --color $(TESTMETA_OPTION) tests
+	$(call message,$(PROJECT_NAME): All tests passed!)
+
+tests\:testcafe\:debug:
+	$(call message,$(PROJECT_NAME):@eRunning end-to-end tests in debug mode...)
+	docker-compose run --service-ports --rm testcafe remote \
+      --assertion-timeout 5000 \
+      --hostname=localhost  --debug-on-fail $(TESTMETA_OPTION) tests
 
 tests\:cli:
 	$(call message,$(PROJECT_NAME): Open Codeception container CLI)

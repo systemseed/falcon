@@ -5,6 +5,7 @@ services:
   node:
     volumes:
       - ../falconjs:/falconjs:cached
+      - ../tests/end-to-end:/tests:cached
 
   mariadb:
     volumes:
@@ -70,3 +71,9 @@ services:
 #      - 'traefik.backend=${PROJECT_NAME}_pma'
 #      - 'traefik.port=80'
 #      - 'traefik.frontend.rule=Host:pma.${PROJECT_BASE_URL}'
+
+  testcafe:
+    volumes:
+      - ../tests/end-to-end/tests:/tests:ro
+      - ../tests/end-to-end/node_modules:/node_modules:ro
+      - ../tests/end-to-end/results:/results:cached

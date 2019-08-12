@@ -114,9 +114,16 @@ services:
       TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
       DEVELOPMENT_MODULES: ${DEVELOPMENT_MODULES}
 
-  chrome:
-    image: selenium/standalone-chrome:3.14.0-arsenic
-    container_name: "${PROJECT_NAME}_chrome"
-    expose:
-      - 4444
-    shm_size: 2gb
+  testcafe:
+    image: testcafe/testcafe:alpha
+    shm_size: 1g
+    ports:
+      - "1337:1337"
+      - "1338:1338"
+    environment:
+      # Remove screen height workaround when https://github.com/DevExpress/testcafe/issues/3461 is resolved.
+      SCREEN_HEIGHT: 6000
+      BACKEND_URL: ${BACKEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+      HTTP_AUTH_USER: ${HTTP_AUTH_USER}
+      HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}
