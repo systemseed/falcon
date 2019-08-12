@@ -20,11 +20,6 @@ jobs:
             - falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
             - falconjs-node-modules-
 
-      - restore_cache:
-          name: Restore template default node_modules cache
-          keys:
-            - falconjs-templates-default-node-modules-{{ checksum "falconjs/templates/default/yarn.lock" }}
-
       - run:
           name: Fix CircleCI files permissons
           command: |
@@ -40,12 +35,6 @@ jobs:
           key: falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
           paths:
             - falconjs/node_modules/
-
-      - save_cache:
-          name: Save frontend template default node_modules cache
-          key: falconjs-templates-default-node-modules-{{ checksum "falconjs/templates/default/yarn.lock" }}
-          paths:
-            - falconjs/templates/default/node_modules/
 
       - run:
           name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
@@ -90,7 +79,7 @@ jobs:
 
       - run:
           name: Run TestCafe tests
-          command: make tests:testCafe
+          command: make tests:testcafe
 
       # Run demo content tests need after end of Acceptance tests,
       # because demo-content will be deleted.
