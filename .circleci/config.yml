@@ -14,17 +14,17 @@ jobs:
           name: Pull Docker images
           command: make pull
 
-      - run:
-          name: Fix CircleCI files permissons
-          command: |
-            sudo chown ubuntu:ubuntu -R *
-            sudo chown ubuntu:ubuntu -R .[!.]*
-
       - restore_cache:
           name: Restore frontend dependencies cache
           keys:
             - falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
             - falconjs-node-modules-
+
+      - run:
+          name: Fix CircleCI files permissons
+          command: |
+            sudo chown ubuntu:ubuntu -R *
+            sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
           name: Install Javascript dependencies
@@ -55,6 +55,12 @@ jobs:
           keys:
             - tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
             - tests-node-modules-
+
+      - run:
+          name: Fix CircleCI files permissons
+          command: |
+            sudo chown ubuntu:ubuntu -R *
+            sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
           name: Install test dependencies
