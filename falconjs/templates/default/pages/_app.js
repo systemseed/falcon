@@ -70,16 +70,17 @@ class Application extends App {
       <>
         <HtmlHead metatags={metatags} />
         {headerSettings && <Header {...headerSettings} />}
+        <div className="page-content">
+          {statusCode === 200 && <Component {...props} />}
 
-        {statusCode === 200 && <div className="page-content"><Component {...props} /></div>}
-
-        {statusCode !== 200
-        && (
-          <ErrorPage
-            statusCode={statusCode}
-            homeNextLink={headerSettings ? headerSettings.homeNextLink : null}
-          />
-        )}
+          {statusCode !== 200
+          && (
+            <ErrorPage
+              statusCode={statusCode}
+              homeNextLink={headerSettings ? headerSettings.homeNextLink : null}
+            />
+          )}
+        </div>
 
         {footerSettings && <Footer {...footerSettings} />}
       </>

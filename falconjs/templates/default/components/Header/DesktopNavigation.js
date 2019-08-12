@@ -8,6 +8,8 @@ import {
 } from 'semantic-ui-react';
 import Link from '@systemseed/falcon/components/Link';
 
+import './_style.scss';
+
 const DesktopNavigation = ({ menu, logo, siteName, homeNextLink, router }) => (
   <Menu
     fixed="top"
@@ -18,7 +20,7 @@ const DesktopNavigation = ({ menu, logo, siteName, homeNextLink, router }) => (
     <Menu.Item>
       {logo.url && (
         <Link {...homeNextLink}>
-          <Image size="mini" src={logo.url} alt={logo.alt} title={siteName} href="/" />
+          <Image size="mini" src={logo.url} alt={logo.alt} title={siteName} href="/" className="falcon-logo" />
         </Link>
       )}
     </Menu.Item>
