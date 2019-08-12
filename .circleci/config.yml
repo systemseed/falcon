@@ -50,27 +50,27 @@ jobs:
           name: Add Falcon domain host into /etc/hosts
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 
-      - restore_cache:
-          name: Restore tests dependencies
-          keys:
-            - tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
-            - tests-node-modules-
-
-      - run:
-          name: Fix CircleCI files permissons
-          command: |
-            sudo chown ubuntu:ubuntu -R *
-            sudo chown ubuntu:ubuntu -R .[!.]*
+#      - run:
+#          name: Fix CircleCI files permissons
+#          command: |
+#            sudo chown ubuntu:ubuntu -R *
+#            sudo chown ubuntu:ubuntu -R .[!.]*
+#
+#      - restore_cache:
+#          name: Restore tests dependencies
+#          keys:
+#            - tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
+#            - tests-node-modules-
 
       - run:
           name: Install test dependencies
           command: make test:prepare
 
-      - save_cache:
-          name: Save tests dependencies
-          key: tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
-          paths:
-            - tests/end-to-end/node_modules/
+#      - save_cache:
+#          name: Save tests dependencies
+#          key: tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
+#          paths:
+#            - tests/end-to-end/node_modules/
 
       - run:
           name: Run codeception basic group tests
