@@ -8,6 +8,7 @@ import matchAppOnlyRoute from '@systemseed/falcon/utils/matchAppOnlyRoute';
 import getEntityContent from '@systemseed/falcon/routing/getEntityContent';
 import normalizeURL from '../../utils/normalizeURL';
 import { APP_ONLY_ROUTES } from '../../utils/constants';
+import '../PageProgressBar'; // Beautiful page transition indicator.
 
 // Internal debugging.
 const debug = require('debug')('falcon:components/withFalcon');

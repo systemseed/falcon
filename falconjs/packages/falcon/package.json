@@ -11,6 +11,7 @@
     "debug": "^3.2.6",
     "express": "^4.16.4",
     "he": "^1.2.0",
+    "nprogress": "^0.2.0",
     "memory-cache": "^0.2.0",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
