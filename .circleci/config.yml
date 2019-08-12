@@ -5,7 +5,7 @@ jobs:
 
     machine:
       enabled: true
-      image: circleci/classic:201808-01
+      image: circleci/classic:latest
 
     steps:
       - checkout
@@ -19,6 +19,11 @@ jobs:
           keys:
             - falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
             - falconjs-node-modules-
+
+      - restore_cache:
+          name: Restore template default node_modules cache
+          keys:
+            - falconjs-templates-default-node-modules-{{ checksum "falconjs/templates/default/yarn.lock" }}
 
       - run:
           name: Fix CircleCI files permissons
@@ -36,6 +41,12 @@ jobs:
           paths:
             - falconjs/node_modules/
 
+      - save_cache:
+          name: Save frontend template default node_modules cache
+          key: falconjs-templates-default-node-modules-{{ checksum "falconjs/templates/default/yarn.lock" }}
+          paths:
+            - falconjs/templates/default/node_modules/
+
       - run:
           name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
           command: make code:check
@@ -50,28 +61,48 @@ jobs:
           name: Add Falcon domain host into /etc/hosts
           command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
 
-      - run:
-          name: Prepare tests
-          command: make tests:prepare
+      - restore_cache:
+          name: Restore tests dependencies
+          keys:
+            - tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
 
       - run:
-          name: Run basic group tests
-          command: make tests:run -- -g basic
+          name: Install test dependencies
+          command: make test:prepare
+
+      - save_cache:
+          name: Save tests dependencies
+          key: tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
+          paths:
+            - tests/end-to-end/node_modules/
+
+      - run:
+          name: Run codeception basic group tests
+          command: make tests:codeception -- -g basic
 
       - run:
           name: Install additional modules
           command: make drush en \$\(ADDITIONAL_MODULES\)
 
       - run:
-          name: Run basic and additional groups tests
-          command: make tests:run -- -g basic -g additional
+          name: Run codeception basic and additional groups tests
+          command: make tests:codeception -- -g basic -g additional
 
       - run:
-          name: Run tests for demo content
-          command: make tests:run -- -g demo-content
+          name: Run TestCafe tests
+          command: make tests:testCafe
+
+      # Run demo content tests need after end of Acceptance tests,
+      # because demo-content will be deleted.
+      - run:
+          name: Run codeception tests for demo content
+          command: make tests:codeception -- -g demo-content
 
       - store_artifacts:
-          path: tests/_output
+          path: tests/_output/
+
+      - store_test_results:
+          path: tests/_output/
 
   split_and_push:
     docker:
