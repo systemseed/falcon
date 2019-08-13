@@ -16,7 +16,7 @@ function remote()
 {
     git remote add $1 $2 || true
 }
-
+# TODO: change branch name.
 git pull origin releases
 
 remote falcon git@github.com:systemseed/falcon-backend.git
