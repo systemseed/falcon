@@ -34,7 +34,6 @@ if (config && config.publicRuntimeConfig) {
   } = config.publicRuntimeConfig);
 }
 
-
 module.exports = {
   defaultFalconConfig,
   APPLICATION_NAME,
