@@ -98,7 +98,7 @@ jobs:
           path: tests/_output/
 
       - store_test_results:
-          path: tests/_output/
+          path: tests/end-to-end/results
 
   split_and_push:
     docker:
