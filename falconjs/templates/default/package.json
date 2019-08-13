@@ -5,18 +5,27 @@
   "repository": "https://github.com/systemseed/falcon",
   "author": "SystemSeed LLC",
   "scripts": {
-    "start:dev": "next",
+    "start": "PORT=3000 NODE_ENV=production node server.js",
+    "start:dev": "PORT=3000 NODE_ENV=development node server.js",
     "build": "next build",
-    "start": "next start",
     "eslint": "eslint ."
   },
   "dependencies": {
     "@systemseed/falcon": "0.0.0-semantic-release",
+    "@zeit/next-sass": "^1.0.1",
+    "express-basic-auth": "^1.1.6",
     "next": "^8.1.0",
     "next-compose-plugins": "^2.2.0",
+    "next-redux-wrapper": "^3.0.0-alpha.3",
     "next-runtime-dotenv": "^1.1.1",
     "next-transpile-modules": "^2.3.1",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-promise-listener": "^1.1.0",
+    "redux-saga": "^1.0.2",
+    "semantic-ui-react": "0.87.3"
   }
 }

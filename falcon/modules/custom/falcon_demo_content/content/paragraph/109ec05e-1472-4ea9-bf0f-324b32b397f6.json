@@ -19,7 +19,7 @@
     ],
     "revision_id": [
         {
-            "value": 27
+            "value": 31
         }
     ],
     "langcode": [
@@ -67,14 +67,20 @@
             "lang": "en"
         }
     ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
     "field_heading": [
         {
-            "value": "Heading for page 2"
+            "value": "Advantages"
         }
     ],
     "field_heading_size": [
         {
-            "value": "h3"
+            "value": "h2"
         }
     ]
 }

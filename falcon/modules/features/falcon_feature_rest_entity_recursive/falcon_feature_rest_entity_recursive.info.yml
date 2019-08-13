@@ -1,8 +1,0 @@
-name: 'Falcon Rest Entity Recursive feature'
-description: 'Adds entity.node rest resource. Also enables rest_entity_recursive module.'
-type: module
-core: 8.x
-version: 8.x-1.0
-package: 'Falcon Configurations'
-dependencies:
-  - rest_entity_recursive

@@ -1,0 +1,6 @@
+auth_path: /user/login
+destination_path: ''
+deny_message: 'You must login to view this page.'
+excluded_403: true
+excluded_404: true
+excluded_paths: "/user/login\n/sites/default/files/styles/*"

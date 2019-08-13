@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - config_pages
+    - rest_entity_recursive
+    - user
+id: entity.config_pages
+plugin_id: 'entity:config_pages'
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json_recursive
+    supported_auth:
+      - cookie

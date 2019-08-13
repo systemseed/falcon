@@ -81,7 +81,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "424f600a-ac48-40b4-b5d1-2130e3f4606d"
+                        "value": "d3d52eb5-e880-4159-90c0-02585d8ec07b"
                     }
                 ]
             }
@@ -98,7 +98,7 @@
                 },
                 "uuid": [
                     {
-                        "value": "424f600a-ac48-40b4-b5d1-2130e3f4606d"
+                        "value": "d3d52eb5-e880-4159-90c0-02585d8ec07b"
                     }
                 ],
                 "lang": "en"
@@ -239,7 +239,7 @@
     "path": [
         {
             "alias": "\/demo_news2",
-            "pid": 2,
+            "pid": 3,
             "langcode": "en",
             "lang": "en"
         }
@@ -248,7 +248,7 @@
         {
             "value": "<p>description for demo news 2<\/p>&#13;\n",
             "format": "full_html",
-            "processed": "<p>description for demo news 2<\/p>\n",
+            "processed": "<p>description for demo news 2<\/p>&#13;\n",
             "lang": "en"
         }
     ]

@@ -19,7 +19,7 @@
     ],
     "revision_id": [
         {
-            "value": 20
+            "value": 28
         }
     ],
     "langcode": [
@@ -67,9 +67,15 @@
             "lang": "en"
         }
     ],
+    "revision_translation_affected": [
+        {
+            "value": true,
+            "lang": "en"
+        }
+    ],
     "field_heading": [
         {
-            "value": "Heading for demo page 1"
+            "value": "The world\u2019s best Charity CMS."
         }
     ],
     "field_heading_size": [

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.falcon_default
+    - field.storage.config_pages.field_media_logo
+    - media.type.icons
+id: config_pages.falcon_default.field_media_logo
+field_name: field_media_logo
+entity_type: config_pages
+bundle: falcon_default
+label: Logo
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      icons: icons
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

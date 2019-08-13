@@ -1,22 +1,6 @@
 const withPlugins = require('next-compose-plugins');
 const withTranspileModules = require('next-transpile-modules');
-const nextRuntimeDotenv = require('next-runtime-dotenv');
-
-// Makes certain variables accessible only at runtime visible for the application.
-// Check if it supports withPlugins: https://github.com/tusbar/next-runtime-dotenv/issues/54
-const withConfig = nextRuntimeDotenv({
-  public: [
-    'BACKEND_URL',
-    'FRONTEND_URL',
-    'CONSUMER_ID',
-    'ENVIRONMENT',
-    'PAYMENT_SECRET_HEADER_NAME',
-  ],
-  server: [
-    'HTTP_AUTH_USER',
-    'HTTP_AUTH_PASS',
-  ],
-});
+const withSass = require('@zeit/next-sass');
 
 const nextConfig = {
   webpack: (config) => {
@@ -26,10 +10,13 @@ const nextConfig = {
     };
     return config;
   },
+  // DON'T REMOVE RUNTIME CONFIGS.
+  publicRuntimeConfig: {},
+  serverRuntimeConfig: {},
 };
 
-module.exports = withConfig(withPlugins([
+module.exports = withPlugins([
   [withTranspileModules, {
     transpileModules: ['@systemseed/falcon'],
   }],
-], nextConfig));
+], withSass(nextConfig));

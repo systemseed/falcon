@@ -84,6 +84,7 @@ dependencies:
   - falcon_common
   - falcon_dashboard
   - falcon_deploy
+  - falcon_normalizers
 
 themes:
   - seven

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.falcon_default
+    - field.storage.config_pages.field_site_name
+id: config_pages.falcon_default.field_site_name
+field_name: field_site_name
+entity_type: config_pages
+bundle: falcon_default
+label: 'Site name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

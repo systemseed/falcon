@@ -1,0 +1,56 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.falcon_default
+    - field.field.config_pages.falcon_default.field_footer_text
+    - field.field.config_pages.falcon_default.field_frontpage
+    - field.field.config_pages.falcon_default.field_media_logo
+    - field.field.config_pages.falcon_default.field_menu
+    - field.field.config_pages.falcon_default.field_site_name
+  module:
+    - link
+    - media_library
+id: config_pages.falcon_default.default
+targetEntityType: config_pages
+bundle: falcon_default
+mode: default
+content:
+  field_footer_text:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_frontpage:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_media_logo:
+    type: media_library_widget
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_menu:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_site_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  label: true
