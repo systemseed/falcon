@@ -66,6 +66,12 @@ jobs:
           name: Install test dependencies
           command: make test:prepare
 
+      - run:
+          name: Fix CircleCI files permissons
+          command: |
+            sudo chown ubuntu:ubuntu -R *
+            sudo chown ubuntu:ubuntu -R .[!.]*
+
 #      - save_cache:
 #          name: Save tests dependencies
 #          key: tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
