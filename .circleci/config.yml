@@ -92,7 +92,6 @@ jobs:
           name: Fix CircleCI files permissons
           command: |
             sudo chown ubuntu:ubuntu -R *
-            sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
           name: Run TestCafe tests
