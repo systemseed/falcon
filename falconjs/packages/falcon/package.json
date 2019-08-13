@@ -1,5 +1,5 @@
 {
-  "name": "systemseed/falcon",
+  "name": "@systemseed/falcon",
   "version": "0.0.0-semantic-release",
   "main": "index.js",
   "repository": "https://github.com/systemseed/falcon.js",
