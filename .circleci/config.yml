@@ -137,6 +137,8 @@ workflows:
             branches:
               only:
                 - master
+                - releases
+
       - split_and_push:
           requires:
             - build_and_test

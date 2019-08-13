@@ -17,7 +17,7 @@ function remote()
     git remote add $1 $2 || true
 }
 
-git pull origin master
+git pull origin releases
 
 remote falcon git@github.com:systemseed/falcon-backend.git
 remote falconjs git@github.com:systemseed/falcon.js.git
