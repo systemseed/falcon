@@ -71,12 +71,6 @@ jobs:
           name: Install test dependencies
           command: make tests:prepare
 
-      - run:
-          name: Fix CircleCI files permissons
-          command: |
-            sudo chown ubuntu:ubuntu -R *
-            sudo chown ubuntu:ubuntu -R .[!.]*
-
 #      - save_cache:
 #          name: Save tests dependencies
 #          key: tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
@@ -94,6 +88,12 @@ jobs:
       - run:
           name: Run codeception basic and additional groups tests
           command: make tests:codeception -- -g basic -g additional
+
+      - run:
+          name: Fix CircleCI files permissons
+          command: |
+            sudo chown ubuntu:ubuntu -R *
+            sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
           name: Run TestCafe tests
