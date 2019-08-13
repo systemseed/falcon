@@ -31,7 +31,6 @@ function falcon_install() {
 
   // Enable default custom features.
   $module_installer->install($FEATURES_DEFAULT_ENABLED);
-
   // Add demo content.
   $module_installer->install(['falcon_demo_content']);
 }
