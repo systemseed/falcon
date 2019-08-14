@@ -12,6 +12,7 @@ const defaultFalconConfig = {
   APP_ONLY_ROUTES: '',
   FAVICON: '',
   CLEAR_CACHE_URL: '/_clear-cache',
+  STATIC_CACHE_MAX_AGE: '7d',
 };
 
 let APPLICATION_NAME;

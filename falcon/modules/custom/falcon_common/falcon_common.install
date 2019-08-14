@@ -14,7 +14,6 @@ function falcon_common_install() {
     'uuid' => '114e3e1a-6f65-49a8-9a24-v0043fabd6e7',
     'type' => 'consumer',
     'label' => 'Falcon Frontend Application',
-    'image_styles' => [['target_id' => 'full_size']],
   ]);
   $consumer->save();
 }

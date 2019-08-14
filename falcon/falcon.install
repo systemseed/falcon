@@ -31,6 +31,14 @@ function falcon_install() {
 
   // Enable default custom features.
   $module_installer->install($FEATURES_DEFAULT_ENABLED);
+
+  // We need to add image styles that were added in falcon_feature_demo to consumer.
+  $consumers = \Drupal::entityTypeManager()
+    ->getStorage('consumer')
+    ->loadByProperties(['label' => 'Falcon Frontend Application']);
+  $consumer = array_pop($consumers);
+  $consumer->set('image_styles', [['target_id' => 'full_size']])->save();
+
   // Add demo content.
   $module_installer->install(['falcon_demo_content']);
 }
