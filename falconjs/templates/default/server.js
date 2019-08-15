@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { startFalconServer } = require('@systemseed/falcon/routing/server.js');
+const startFalconServer = require('@systemseed/falcon/routing/server.js');
 const falconConfig = require('./config');
 
 // Define if we want to run server in dev or production mode.

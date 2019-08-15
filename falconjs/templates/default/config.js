@@ -1,8 +1,4 @@
-const dotenv = require('dotenv');
 const routes = require('./routes');
-
-// Import variables from local .env file.
-dotenv.config();
 
 module.exports = {
   APPLICATION_NAME: 'falcon_default', // Config page entity id.

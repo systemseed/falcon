@@ -1,8 +1,9 @@
 # Define here list of available make commands.
-.PHONY: default pull up stop down clean exec exec\:wodby exec\:root drush \
-prepare install \
+.PHONY: default pull up stop down clean drush \
+exec exec\:wodby exec\:root prepare install \
 code\:check code\:fix \
-tests\:prepare tests\:codeception tests\:testcafe tests\:testcafe\:debug tests\:cli tests\:autocomplete \
+tests\:prepare tests\:codeception tests\:codeception\:cli \
+tests\:testcafe tests\:testcafe\:debug tests\:autocomplete \
 features\:owner
 
 # Create local environment files.
@@ -11,7 +12,7 @@ $(shell cp -n \.\/\.docker\/docker-compose\.override\.default\.yml \.\/\.docker\
 # Then if OS is Linux we change the PHP_TAG:
 #  - uncomment all the strings containing 'PHP_TAG'
 #  - comment all the strings containing 'PHP_TAG' and '-dev-macos-'
-$(shell ! test -e \.env || ! test -e \.\/falconjs\/templates\/default\/\.env && cp \.env\.default \.env && cp \.env\.default \.\/falconjs\/templates\/default\/\.env && uname -s | grep -q 'Linux' && sed -i '/PHP_TAG/s/^# //g' \.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env && sed -i '/PHP_TAG/s/^# //g' \.\/falconjs\/templates\/default\/\.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.\/falconjs\/templates\/default\/\.env)
+$(shell ! test -e \.env && cp \.env\.default \.env && uname -s | grep -q 'Linux' && sed -i '/PHP_TAG/s/^# //g' \.env && sed -i -E '/PHP_TAG.+-dev-macos-/s/^/# /g' \.env)
 
 include .env
 
@@ -179,12 +180,16 @@ tests\:codeception:
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	docker-compose run --rm codecept run $(ARGS) --debug
 
+tests\:codeception\:cli:
+	$(call message,$(PROJECT_NAME): Open Codeception container CLI)
+	docker-compose run --rm --entrypoint bash codecept
+
 tests\:testcafe:
 	$(call message,$(PROJECT_NAME): Running end-to-end tests...)
 	rm -rf ./tests/end-to-end/results/*
 	docker-compose run --rm -T testcafe '$(TESTCAFE_BROWSERS)' \
       --screenshots-on-fails --screenshots results -p '$${USERAGENT}/$${FIXTURE}-$${TEST}-$${RUN_ID}.png' \
-      --assertion-timeout 5000 \
+      --assertion-timeout 5000 --quarantine-mode \
       -r spec,xunit:/results/xunit.xml --color $(TESTMETA_OPTION) tests
 	$(call message,$(PROJECT_NAME): All tests passed!)
 
@@ -193,10 +198,6 @@ tests\:testcafe\:debug:
 	docker-compose run --service-ports --rm testcafe remote \
       --assertion-timeout 5000 \
       --hostname=localhost  --debug-on-fail $(TESTMETA_OPTION) tests
-
-tests\:cli:
-	$(call message,$(PROJECT_NAME): Open Codeception container CLI)
-	docker-compose run --rm --entrypoint bash codecept
 
 tests\:autocomplete:
 	$(call message,$(PROJECT_NAME): Copy Codeception code in .codecept folder to enable IDE autocomplete)

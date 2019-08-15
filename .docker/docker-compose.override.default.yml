@@ -9,12 +9,10 @@ services:
 
   mariadb:
     volumes:
-      - ${MYSQL_DATA_DIR}/${MYSQL_DATA_DIR_DRUPAL}:/var/lib/mysql:cached
+      - ${MYSQL_DATA_DIR}:/var/lib/mysql:cached
 
   php:
-    environment:
-      TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
-      ENVIRONMENT: ${ENVIRONMENT}
+#    environment:
 ## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
 #      PHP_XDEBUG: 1
 #      PHP_XDEBUG_DEFAULT_ENABLE: 1

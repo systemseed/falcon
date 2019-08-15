@@ -129,8 +129,6 @@ workflows:
             branches:
               ignore:
                 - master
-                # TODO: remove branch 'releases'.
-                - releases
 
   release:
     jobs:
@@ -139,8 +137,6 @@ workflows:
             branches:
               only:
                 - master
-                # TODO: remove branch 'releases'.
-                - releases
 
       - split_and_push:
           requires:
