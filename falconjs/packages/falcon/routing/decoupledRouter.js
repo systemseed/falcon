@@ -4,14 +4,6 @@ const { getRequest } = require('../request/request.node');
 const getEntityContent = require('./getEntityContent');
 
 /**
- * @file
- * This file includes code that is supposed to be executed on
- * server-side only, thus we don't provide cross-browser compatibility neither
- * for the code nor for the imports above.
- */
-
-
-/**
  * Handles server routing for the application.
  *
  * General approach: search page on the Drupal backend and render the page

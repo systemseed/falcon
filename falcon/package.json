@@ -4,7 +4,7 @@
   "description": "Drupal based distribution for Charities.",
   "author": "SystemSeed LLC",
   "license": "MIT",
-  "repository": "https://github.com/systemseed/falcon",
+  "repository": "https://github.com/systemseed/falcon-backend",
   "devDependencies": {
     "semantic-release": "^15.13.18",
     "semantic-release-slack-bot": "^1.1.2"

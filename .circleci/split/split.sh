@@ -8,7 +8,7 @@ set -x
 
 function split()
 {
-    SHA1=`./bin/splitsh-lite --prefix=$1`
+    SHA1=`.circleci/split/splitsh-lite --prefix=$1`
     git push $2 "$SHA1:master" -f
 }
 

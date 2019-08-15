@@ -1,11 +1,7 @@
-const dotenv = require('dotenv');
 const routes = require('./routes');
 
-// Import variables from local .env file.
-dotenv.config();
-
 module.exports = {
-  APPLICATION_NAME: process.env.APPLICATION_NAME,
+  APPLICATION_NAME: 'falcon_default', // Config page entity id.
   BACKEND_URL: process.env.BACKEND_URL,
   FRONTEND_URL: process.env.FRONTEND_URL,
   CONSUMER_ID: process.env.CONSUMER_ID,
@@ -16,4 +12,5 @@ module.exports = {
   APP_ONLY_ROUTES: routes,
   FAVICON: '/static/favicon.ico',
   CLEAR_CACHE_URL: '/clear-cache',
+  STATIC_CACHE_MAX_AGE: '7d',
 };

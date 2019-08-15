@@ -17,7 +17,7 @@ LandingPage.propTypes = {
   entity: PropTypes.shape({
     title: PropTypes.array,
   }),
-  blocks: PropTypes.arrayOf([PropTypes.shape]),
+  blocks: PropTypes.arrayOf(PropTypes.shape),
 };
 
 export default LandingPage;

@@ -3,12 +3,18 @@ version: '2'
 services:
 
   node:
-    image: $NODE_IMAGE:$NODE_TAG
+    image: wodby/node:$NODE_TAG
     container_name: "${PROJECT_NAME}_node"
     working_dir: /falconjs
     environment:
       DEBUG: ${NODE_DEBUG}
       ENVIRONMENT: ${ENVIRONMENT}
+      BACKEND_URL: ${BACKEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+      CONSUMER_ID: ${CONSUMER_ID}
+      PAYMENT_SECRET_HEADER_NAME: ${PAYMENT_SECRET_HEADER_NAME}
+      HTTP_AUTH_USER: ${HTTP_AUTH_USER}
+      HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}
     labels:
       - 'traefik.backend=node'
       - 'traefik.port=3000'
@@ -40,6 +46,12 @@ services:
       DB_NAME: $DB_NAME
       DB_DRIVER: $DB_DRIVER
       COLUMNS: 80 # Set 80 columns for docker exec -it.
+      ENVIRONMENT: ${ENVIRONMENT}
+      TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
+      PAYMENT_SECRET_HEADER_NAME: ${PAYMENT_SECRET_HEADER_NAME}
+      PAYMENT_SECRET_HEADER_VALUE: ${PAYMENT_SECRET_HEADER_VALUE}
+      HTTP_AUTH_USER: ${HTTP_AUTH_USER}
+      HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}
 
   nginx:
     image: wodby/nginx:$NGINX_TAG
@@ -51,7 +63,7 @@ services:
       NGINX_ERROR_LOG_LEVEL: debug
       NGINX_BACKEND_HOST: php
       NGINX_SERVER_ROOT: /var/www/html/web
-      NGINX_VHOST_PRESET: $NGINX_VHOST_PRESET
+      NGINX_VHOST_PRESET: drupal8
     labels:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
