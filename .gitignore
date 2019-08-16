@@ -5,7 +5,7 @@
 .DS_Store
 
 # Environment overrides.
-/.env
+.env
 
 # Composer dependencies.
 /falcon/vendor
@@ -14,4 +14,4 @@
 /falcon/web
 
 # Codeception code base for IDE autocomplete purposes only.
-/.codecept
+.codecept
