@@ -88,25 +88,25 @@ drush:
 prepare:
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
-	docker-compose run php composer install --no-suggest
+	docker-compose run --rm php composer install --no-suggest
 
 	$(call message,$(PROJECT_NAME): Installing dependencies for React.js application)
 	docker-compose run --rm node yarn install
 
     # Prepare public files folder.
 	$(call message,$(PROJECT_NAME): Preparing public files directory)
-	$(call docker-wodby, php mkdir -p web/sites/default/files)
-	$(call docker-root, php chown -R www-data: web/sites/default/files)
+	docker-compose run --rm php mkdir -p web/sites/default/files
+	docker-compose run --rm -u root php chown -R www-data: web/sites/default/files
 
     # Prepare settings.php file.
 	$(call message,$(PROJECT_NAME): Making settings.php writable)
-	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
+	docker-compose run --rm php chmod 666 web/sites/default/settings.php
 
 	# Prepare settings.local.php file.
 	@if [ $(ENVIRONMENT) = "development" ]; then \
-		$(call docker-wodby, php chmod +w web/sites/default); \
-		$(call docker-wodby, php cp web/sites/example.settings.local.php web/sites/default/settings.local.php); \
-		$(call docker-wodby, php sed -i \"/settings.local.php';/s/# //g\" web/sites/default/settings.php); \
+		docker-compose run --rm php chmod +w web/sites/default; \
+		docker-compose run --rm php cp web/sites/example.settings.local.php web/sites/default/settings.local.php; \
+		docker-compose run --rm php sed -i "/settings.local.php';/s/# //g" web/sites/default/settings.php; \
     fi
 
     # Prepare git hooks.
