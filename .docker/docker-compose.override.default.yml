@@ -24,6 +24,7 @@ services:
 #      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
     volumes:
       - ../falcon/:/var/www/html:cached
+      - ./composer:/home/wodby/.composer/cache:cached
 
   nginx:
     volumes:
