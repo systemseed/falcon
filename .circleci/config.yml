@@ -25,7 +25,7 @@ jobs:
           command: make yarn
 
       - run:
-          name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
+          name: Check PHP & Javascript code for compliance with Coding Standards.
           command: make code:check
           when: always
 
