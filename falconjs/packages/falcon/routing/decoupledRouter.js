@@ -16,8 +16,8 @@ async function decoupledRouter(req, res, nextApp) {
   // Initialize server version of superagent with the given config.
   const request = getRequest(nextApp.nextConfig);
 
-  // At this point the last place where we can find the requested URL is
-  // drupal backend.
+  // The last place where the requested URL can be found is Drupal backend.
+  // Making the request there.
   try {
     // Make necessary requests to the backend to fetch the page content.
     // eslint-disable-next-line max-len
