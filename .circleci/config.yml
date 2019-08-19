@@ -14,12 +14,6 @@ jobs:
           name: Pull Docker images
           command: make pull
 
-      - restore_cache:
-          name: Restore frontend dependencies cache
-          keys:
-            - falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
-            - falconjs-node-modules-
-
       - run:
           name: Fix CircleCI files permissons
           command: |
@@ -30,51 +24,22 @@ jobs:
           name: Install Javascript dependencies
           command: make yarn
 
-      - save_cache:
-          name: Save frontend dependencies cache
-          key: falconjs-node-modules-{{ checksum "falconjs/yarn.lock" }}
-          paths:
-            - falconjs/node_modules/
-
       - run:
-          name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
+          name: Check PHP & Javascript code for compliance with Coding Standards.
           command: make code:check
           when: always
 
       - run:
-          name: Make local environment
+          name: Install Falcon on local development environment
           command: make install
-          no_output_timeout: 20m
 
       - run:
           name: Add Falcon domain host into /etc/hosts
           command: echo 127.0.0.1 falcon.docker.localhost app.docker.localhost | sudo tee -a /etc/hosts
 
-#      - run:
-#          name: Fix CircleCI files permissons
-#          command: |
-#            sudo chown ubuntu:ubuntu -R *
-#            sudo chown ubuntu:ubuntu -R .[!.]*
-#
-#      - restore_cache:
-#          name: Restore tests dependencies
-#          keys:
-#            - tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
-#            - tests-node-modules-
-
-      - run:
-          name: Fix CircleCI files permissons
-          command: sudo chown ubuntu:ubuntu -R *
-
       - run:
           name: Install test dependencies
           command: make tests:prepare
-
-#      - save_cache:
-#          name: Save tests dependencies
-#          key: tests-node-modules-{{ checksum "tests/end-to-end/yarn.lock" }}
-#          paths:
-#            - tests/end-to-end/node_modules/
 
       - run:
           name: Run codeception basic group tests
@@ -87,11 +52,6 @@ jobs:
       - run:
           name: Run codeception basic and additional groups tests
           command: make tests:codeception -- -g basic -g additional
-
-      - run:
-          name: Fix CircleCI files permissons
-          command: |
-            sudo chown ubuntu:ubuntu -R *
 
       - run:
           name: Run TestCafe tests

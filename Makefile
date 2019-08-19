@@ -18,10 +18,10 @@ include .env
 
 # Define function to highlight messages.
 # @see https://gist.github.com/leesei/136b522eb9bb96ba45bd
-cyan = \033[38;5;6m
+yellow = \033[38;5;3m
 bold = \033[1m
 reset = \033[0m
-message = @echo "${cyan}${bold}${1}${reset}"
+message = @echo "${yellow}${bold}${1}${reset}"
 
 # Define 3 users with different permissions within the container.
 # docker-www-data is applicable only for php container.
@@ -39,7 +39,7 @@ pull:
 
 up:
 	$(call message,$(PROJECT_NAME): Build and run containers)
-	docker-compose up -d --remove-orphans
+	docker-compose up -d --remove-orphans --scale codecept=0 --scale testcafe=0
 
 stop:
 	$(call message,$(PROJECT_NAME): Stopping containers)
@@ -185,6 +185,7 @@ tests\:prepare:
 
 	$(call message,$(PROJECT_NAME): Installing test dependencies for end-to-end tests)
 	docker-compose run --rm -T node sh -c "cd /tests && yarn install"
+	docker-compose run --rm node yarn install
 
 tests\:codeception:
 	$(call message,$(PROJECT_NAME): Run Codeception tests)

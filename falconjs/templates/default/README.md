@@ -10,3 +10,4 @@ This is a default template for Falcon-based frontend applications. It provides N
 - [x] Menu
 - [x] Content body blocks
 - [ ] Donations form
+- [ ] Web forms
