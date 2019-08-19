@@ -86,6 +86,9 @@ drush:
 	$(call docker-www-data, php drush -r web $(COMMAND_ARGS) --yes)
 
 prepare:
+	# Spin up mysql container early to give it sufficient time to launch before usage.
+	docker-compose up -d mariadb
+
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
 	docker-compose run --rm php composer install --no-suggest
@@ -114,8 +117,6 @@ prepare:
 	ln -sf $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
 
 install: | prepare up
-	# Give containers enough time to launch.
-	sleep 10
 	# Install Drupal using Falcon profile.
 	$(call message,$(PROJECT_NAME): Installing Drupal)
 	$(call docker-www-data, php drush -r web site-install falcon \
