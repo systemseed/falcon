@@ -1,7 +1,12 @@
 [![CircleCI](https://circleci.com/gh/systemseed/falcon/tree/master.svg?style=svg)](https://circleci.com/gh/systemseed/falcon/tree/master)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+This is a development repository for Falcon backend (powered by Drupal) and frontend (powered by Next.js).
+For quick demo or quick start of using Falcon you can use our one-command-install project [Falcon Starter Kit](https://github.com/systemseed/falcon-starter-kit).
 
 # Documentation
-Latest documentation is available at https://falcon-platform.readthedocs.io/
+
+The usage documentation is available at https://falcon-platform.readthedocs.io/
 
 # Installation
 
@@ -28,4 +33,74 @@ the sources:
 * `.docker/docker-compose.override.yml` comes from `.docker/docker-compose.override.default.yml`.
 
 ### Access the site
-Go to `http://falcon.docker.localhost` (credentials: admin / admin)
+Backend: `http://falcon.docker.localhost` (credentials: admin / admin)
+Demo frontend (work in progress): `http://app.docker.localhost`
+
+
+### Production-ready installations
+
+ 🛠 **Work in progress!**
+
+We are working on a scaffolding tool for production-ready project installations.
+
+# Repository
+
+This is a monorepo repository that contains:
+
+- **Falcon backend** in `falcon` folder. Drupal-based distribution.
+- **Falcon.js** in `falconjs/packages/falcon` folder. A complementary React
+library for integrating Next.js frontend apps with Falcon backend.
+- **Demo frontend** in `falconjs/templates/default` folder. Frontend boilerplate with
+demo of Falcon features.
+
+# Releases
+
+New code is **automatically** released after merge in master.  
+
+Latest releases are available here:
+
+Falcon backend: https://packagist.org/packages/systemseed/falcon
+Falcon.js: https://www.npmjs.com/package/@systemseed/falcon
+
+
+## Commit messages
+
+In order to make automated releases work, commit
+messages should follow default `semantic-release` message format: https://semantic-release.gitbook.io/semantic-release/#commit-message-format
+
+We recommend to use a tool like [commitizen](https://github.com/commitizen/cz-cli) or a plugin like [Git Commit Template](https://plugins.jetbrains.com/plugin/9861-git-commit-template) for preparing informative commit messages.
+
+### Examples
+
+**Commit message that triggers a major release, i.e. 1.4.3 → 2.0.0**
+
+```
+feat(backend): change all API endpoints to use new format.
+
+BREAKING CHANGE: All API endpoints now use new output format.
+```
+Note that there is a comment that starts with **BREAKING CHANGE:** ! The rest of commit message does not matter.
+
+
+**Commit message that triggers a MINOR release, i.e. 1.4.3 → 1.5.0**
+
+```
+feat(frontend): add routing support.
+```
+
+**Commit message that triggers a PATCH release, i.e. 1.4.3 → 1.4.4**
+
+```
+fix(frontend): timeout issue in routing package on 404 pages.
+```
+
+**Commit message that does not trigger a release**
+
+```
+docs(frontend): add routing package documentation.
+```
+
+# Security
+
+If you found a security issue, please immediately contact us at <a href="mailto:info@systemseed.com">info@systemseed.com</a>.
+

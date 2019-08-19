@@ -1,0 +1,7 @@
+name: Falcon Normalizers
+type: module
+description: Collection of normalizers for Falcon specific cases.
+core: 8.x
+package: Falcon
+dependencies:
+  - rest_entity_recursive:rest_paragraphs_recursive

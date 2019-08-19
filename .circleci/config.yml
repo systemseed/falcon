@@ -1,14 +1,18 @@
-version: 2
+version: 2.1
 
 jobs:
   build_and_test:
 
     machine:
       enabled: true
-      image: circleci/classic:201808-01
+      image: circleci/classic:latest
 
     steps:
       - checkout
+
+      - run:
+          name: Pull Docker images
+          command: make pull
 
       - run:
           name: Fix CircleCI files permissons
@@ -17,49 +21,83 @@ jobs:
             sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
-          name: Pull Docker images
-          command: make pull
+          name: Install Javascript dependencies
+          command: make yarn
 
       - run:
-          name: Check PHP & Javascript code for compliance with Drupal Coding Standards.
+          name: Check PHP & Javascript code for compliance with Coding Standards.
           command: make code:check
           when: always
 
       - run:
-          name: Make local environment
+          name: Install Falcon on local development environment
           command: make install
-          no_output_timeout: 20m
 
       - run:
           name: Add Falcon domain host into /etc/hosts
-          command: echo 127.0.0.1 falcon.docker.localhost | sudo tee -a /etc/hosts
+          command: echo 127.0.0.1 falcon.docker.localhost app.docker.localhost | sudo tee -a /etc/hosts
 
       - run:
-          name: Prepare tests
+          name: Install test dependencies
           command: make tests:prepare
 
       - run:
-          name: Run basic group tests
-          command: make tests:run -- -g basic
+          name: Run codeception basic group tests
+          command: make tests:codeception -- -g basic
 
       - run:
           name: Install additional modules
           command: make drush en \$\(ADDITIONAL_MODULES\)
 
       - run:
-          name: Run basic and additional groups tests
-          command: make tests:run -- -g basic -g additional
+          name: Run codeception basic and additional groups tests
+          command: make tests:codeception -- -g basic -g additional
 
       - run:
-          name: Run tests for demo content
-          command: make tests:run -- -g demo-content
+          name: Run TestCafe tests
+          command: make tests:testcafe
+
+      # Run demo content tests need after end of Acceptance tests,
+      # because demo-content will be deleted.
+      - run:
+          name: Run codeception tests for demo content
+          command: make tests:codeception -- -g demo-content
 
       - store_artifacts:
-          path: tests/_output
+          path: tests/_output/
+
+      - store_test_results:
+          path: tests/end-to-end/results
+
+  split_and_push:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - add_ssh_keys
+      - checkout
+      - run:
+          name: Split monorepo into child repositories for releasing.
+          command: .circleci/split/split.sh
 
 workflows:
   version: 2
 
   build_and_test:
     jobs:
-      - build_and_test
+      - build_and_test:
+          filters:
+            branches:
+              ignore:
+                - master
+
+  release:
+    jobs:
+      - build_and_test:
+          filters:
+            branches:
+              only:
+                - master
+
+      - split_and_push:
+          requires:
+            - build_and_test

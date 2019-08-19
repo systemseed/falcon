@@ -1,0 +1,105 @@
+{
+    "_links": {
+        "self": {
+            "href": "\/admin\/content\/falcon_default?config_pages=1&_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/config_pages\/falcon_default"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_media_logo": [
+            {
+                "href": "http:\/\/default\/media\/7?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": 1
+        }
+    ],
+    "uuid": [
+        {
+            "value": "ff3e6363-c2af-4487-9a54-d273670b21c8"
+        }
+    ],
+    "label": [
+        {
+            "value": "Falcon Default Settings"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "falcon_default"
+        }
+    ],
+    "context": [
+        {
+            "value": "a:0:{}"
+        }
+    ],
+    "changed": [
+        {
+            "value": "2019-07-28T14:35:49+00:00",
+            "lang": "und",
+            "format": "Y-m-d\\TH:i:sP"
+        }
+    ],
+    "metatag": [
+        {
+            "value": {
+                "title": "Default Consumer"
+            }
+        }
+    ],
+    "metatag_normalized": [
+        {
+            "tag": "meta",
+            "attributes": {
+                "name": "title",
+                "content": "Default Consumer"
+            },
+            "lang": "und"
+        }
+    ],
+    "field_footer_text": [
+        {
+            "value": "Falcon.  A Drupal distribution built by SystemSeed specifically for Charities and Non-Profits. We exist to serve you."
+        }
+    ],
+    "field_frontpage": [
+        {
+            "uri": "entity:node\/1",
+            "title": "",
+            "options": []
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/config_pages\/falcon_default\/field_media_logo": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/media\/7?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/media\/icons"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "f8750fab-6a8a-49c1-9b42-e8424f16dc8f"
+                    }
+                ]
+            }
+        ]
+    },
+    "field_menu": [
+        {
+            "target_id": "falcon-default"
+        }
+    ],
+    "field_site_name": [
+        {
+            "value": "Falcon Default"
+        }
+    ]
+}

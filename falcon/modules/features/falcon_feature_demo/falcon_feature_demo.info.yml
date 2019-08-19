@@ -1,0 +1,41 @@
+name: 'Falcon Demo feature'
+description: 'Adds configs for demo content.'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - config_pages
+  - entity_browser
+  - entity_reference_revisions
+  - falcon_feature_demo
+  - falcon_feature_media
+  - field
+  - field_group
+  - image
+  - link
+  - media
+  - media_library
+  - menu_link_config
+  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - paragraphs
+  - paragraphs_browser
+  - paragraphs_library
+  - path
+  - rest
+  - rest_entity_recursive
+  - rest_media_recursive
+  - rest_menu_recursive
+  - rest_paragraphs_recursive
+  - require_login
+  - scheduler
+  - serialization
+  - system
+  - taxonomy
+  - text
+  - user
+  - views
+version: 8.x-1.0
+package: 'Falcon Configurations'

@@ -1,0 +1,55 @@
+{
+  "name": "@systemseed/falcon",
+  "version": "0.0.0-semantic-release",
+  "main": "index.js",
+  "repository": "https://github.com/systemseed/falcon.js",
+  "author": "SystemSeed LLC",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.4",
+    "debug": "^3.2.6",
+    "express": "^4.16.4",
+    "he": "^1.2.0",
+    "nprogress": "^0.2.0",
+    "memory-cache": "^0.2.0",
+    "path-to-regexp": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "react-redux": "^6.0.1",
+    "serve-favicon": "^2.5.0",
+    "superagent": "^5.0.4",
+    "superagent-prefix": "^0.0.2"
+  },
+  "peerDependencies": {
+    "express-basic-auth": "^1.1.6",
+    "next": "^8.0.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "redux": "^4.0.4"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.13.18",
+    "semantic-release-slack-bot": "^1.1.2"
+  },
+  "scripts": {
+    "eslint": "eslint .",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      [
+        "semantic-release-slack-bot",
+        {
+          "notifyOnSuccess": true,
+          "notifyOnFail": true
+        }
+      ]
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

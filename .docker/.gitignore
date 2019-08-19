@@ -1,6 +1,6 @@
-# SSL certificates.
-/certs/*
-!/certs/.gitkeep
+# Composer cache
+/composer
+!/composer/.gitkeep
 
 # Docker mysql storage.
 /mysql/*

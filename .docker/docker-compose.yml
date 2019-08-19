@@ -1,6 +1,27 @@
-version: '2'
+version: '3'
 
 services:
+
+  node:
+    image: wodby/node:$NODE_TAG
+    container_name: "${PROJECT_NAME}_node"
+    working_dir: /falconjs
+    environment:
+      DEBUG: ${NODE_DEBUG}
+      ENVIRONMENT: ${ENVIRONMENT}
+      BACKEND_URL: ${BACKEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+      CONSUMER_ID: ${CONSUMER_ID}
+      PAYMENT_SECRET_HEADER_NAME: ${PAYMENT_SECRET_HEADER_NAME}
+      HTTP_AUTH_USER: ${HTTP_AUTH_USER}
+      HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}
+    labels:
+      - 'traefik.backend=node'
+      - 'traefik.port=3000'
+      - 'traefik.frontend.rule=Host:${FRONTEND_HOST}'
+    expose:
+      - "3000"
+    command: yarn start:dev
 
   mariadb:
     image: wodby/mariadb:$MARIADB_TAG
@@ -15,8 +36,6 @@ services:
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
-    depends_on:
-      - mariadb
     environment:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       DB_HOST: $DB_HOST
@@ -25,6 +44,12 @@ services:
       DB_NAME: $DB_NAME
       DB_DRIVER: $DB_DRIVER
       COLUMNS: 80 # Set 80 columns for docker exec -it.
+      ENVIRONMENT: ${ENVIRONMENT}
+      TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
+      PAYMENT_SECRET_HEADER_NAME: ${PAYMENT_SECRET_HEADER_NAME}
+      PAYMENT_SECRET_HEADER_VALUE: ${PAYMENT_SECRET_HEADER_VALUE}
+      HTTP_AUTH_USER: ${HTTP_AUTH_USER}
+      HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}
 
   nginx:
     image: wodby/nginx:$NGINX_TAG
@@ -36,11 +61,11 @@ services:
       NGINX_ERROR_LOG_LEVEL: debug
       NGINX_BACKEND_HOST: php
       NGINX_SERVER_ROOT: /var/www/html/web
-      NGINX_VHOST_PRESET: $NGINX_VHOST_PRESET
+      NGINX_VHOST_PRESET: drupal8
     labels:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
-      - 'traefik.frontend.rule=Host:falcon.${PROJECT_BASE_URL}'
+      - 'traefik.frontend.rule=Host:${BACKEND_HOST}'
 
   mailhog:
     image: mailhog/mailhog
@@ -50,40 +75,21 @@ services:
       - 'traefik.port=8025'
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
-  portainer:
-    image: portainer/portainer
-    container_name: "${PROJECT_NAME}_portainer"
-    command: --no-auth -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    labels:
-      - 'traefik.backend=portainer'
-      - 'traefik.port=9000'
-      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
-
   traefik:
     image: traefik
     container_name: "${PROJECT_NAME}_traefik"
-    command: -c /dev/null --web --docker --logLevel=INFO --defaultEntryPoints='https,http' --entryPoints='Name:https Address::443 TLS:/certs/cert.pem,/certs/key.pem' --entryPoints='Name:http Address::80'
+    command: -c /dev/null --web --docker --logLevel=INFO --defaultEntryPoints='https,http' --entryPoints='Name:http Address::80'
     ports:
       - '80:80'
       - '443:443'
       - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./certs:/certs
     networks:
       default:
         aliases:
-          - falcon.${PROJECT_BASE_URL}
-
-  omgwtfssl:
-    image: paulczar/omgwtfssl
-    container_name: "${PROJECT_NAME}_ssl"
-    environment:
-      SSL_SUBJECT: ${PROJECT_BASE_URL}
-    volumes:
-      - ./certs:/certs
+          - ${BACKEND_HOST}
+          - ${FRONTEND_HOST}
 
   codecept:
     image: systemseed/codeception:2.5.2-1.0-drupal
@@ -93,6 +99,21 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
-      URL: 'http://falcon.${PROJECT_BASE_URL}'
+      BACKEND_URL: ${BACKEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
       TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
       DEVELOPMENT_MODULES: ${DEVELOPMENT_MODULES}
+
+  testcafe:
+    image: testcafe/testcafe:alpha
+    shm_size: 1g
+    ports:
+      - "1337:1337"
+      - "1338:1338"
+    environment:
+      # Remove screen height workaround when https://github.com/DevExpress/testcafe/issues/3461 is resolved.
+      SCREEN_HEIGHT: 6000
+      BACKEND_URL: ${BACKEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+      HTTP_AUTH_USER: ${HTTP_AUTH_USER}
+      HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}

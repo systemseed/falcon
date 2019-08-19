@@ -1,15 +1,18 @@
-version: '2'
+version: '3'
 
 services:
 
+  node:
+    volumes:
+      - ../falconjs:/falconjs:cached
+      - ../tests/end-to-end:/tests:cached
+
   mariadb:
     volumes:
-      - ${MYSQL_DATA_DIR}/${MYSQL_DATA_DIR_DRUPAL}:/var/lib/mysql:cached
+      - ${MYSQL_DATA_DIR}:/var/lib/mysql:cached
 
   php:
-    environment:
-      TEST_USERS_PASSWORD: ${TEST_USERS_PASSWORD}
-      ENVIRONMENT: ${ENVIRONMENT}
+#    environment:
 ## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
 #      PHP_XDEBUG: 1
 #      PHP_XDEBUG_DEFAULT_ENABLE: 1
@@ -20,11 +23,12 @@ services:
 #      PHP_XDEBUG_REMOTE_HOST: 10.254.254.254 # macOS, Docker < 18.03
 #      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
     volumes:
-      - ../:/var/www/html:cached
+      - ../falcon/:/var/www/html:cached
+      - ./composer:/home/wodby/.composer/cache:cached
 
   nginx:
     volumes:
-      - ../:/var/www/html:cached
+      - ../falcon/:/var/www/html:cached
 
   codecept:
 #    environment:
@@ -66,3 +70,9 @@ services:
 #      - 'traefik.backend=${PROJECT_NAME}_pma'
 #      - 'traefik.port=80'
 #      - 'traefik.frontend.rule=Host:pma.${PROJECT_BASE_URL}'
+
+  testcafe:
+    volumes:
+      - ../tests/end-to-end/tests:/tests:ro
+      - ../tests/end-to-end/node_modules:/node_modules:ro
+      - ../tests/end-to-end/results:/results:cached

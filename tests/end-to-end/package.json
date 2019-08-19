@@ -1,0 +1,12 @@
+{
+  "name": "systemseed.com-testcafe",
+  "version": "1.0.0",
+  "description": "End-to-End tests for systemseed.com",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "faker": "^4.1.0",
+    "testcafe": "^1.0.1"
+  }
+}

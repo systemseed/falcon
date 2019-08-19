@@ -1,0 +1,184 @@
+{
+  "name": "systemseed/falcon",
+  "description": "Open sourced repository for charity organizations.",
+  "type": "drupal-profile",
+  "authors": [
+    {
+      "name": "SystemSeed",
+      "homepage": "https://systemseed.com",
+      "role": "Company"
+    }
+  ],
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "process-timeout": 0,
+    "sort-packages": true
+  },
+  "repositories": {
+    "0": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "1": {
+      "type": "vcs",
+      "url": "https://git.drupalcode.org/sandbox/duozersk-3005285.git"
+    },
+    "2": {
+      "type": "vcs",
+      "url": "git@github.com:systemseed/commerce_paypal_ec.git"
+    },
+    "3": {
+      "type": "vcs",
+      "url": "https://gitbox.apache.org/repos/asf/logging-log4php.git"
+    },
+    "rxp-remote-php": {
+      "type": "vcs",
+      "url": "https://github.com/systemseed/rxp-remote-php"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "composer drupal:scaffold",
+      "@falcon:scaffold"
+    ],
+    "post-update-cmd": [
+      "composer drupal:scaffold",
+      "@falcon:scaffold"
+    ],
+    "falcon:scaffold": [
+      "mkdir -p web/profiles/contrib/falcon",
+      "@falcon:links"
+    ],
+    "falcon:links": [
+      "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* .;",
+      "cd web/sites;ln -sf ../../settings/development.services.yml ./development.services.yml;"
+    ]
+  },
+  "extra": {
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "drupal-scaffold": {
+      "source": "https://raw.githubusercontent.com/drupal/drupal/{version}/{path}",
+      "initial": {
+        "sites/default/default.services.yml": "sites/default/services.yml",
+        "sites/default/default.settings.php": "sites/default/settings.php"
+      },
+      "excludes": [
+        "sites/development.services.yml"
+      ]
+    },
+    "enable-patching": true,
+    "patches": {
+      "drupal/core": {
+        "Media Library and Paragraphs": "https://www.drupal.org/files/issues/2018-12-05/drupal-media-library-paragraphs-3003150-19-8.x.patch",
+        "Pagination in rest views": "https://www.drupal.org/files/issues/2019-05-21/2982729-viewsRestInfo-13_0.patch"
+      },
+      "drupal/paragraphs_browser": {
+        "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
+      },
+      "drupal/metatag": {
+        "Jsonapi support": "https://www.drupal.org/files/issues/2019-01-18/computed_field_2945817_61.patch"
+      },
+      "drupal/commerce_decoupled_checkout": {
+        "Added new hook_alter": "https://www.drupal.org/files/issues/2019-02-22/commerce_decoupled_checkout-added_hook_alter-3033373-5.patch"
+      },
+      "drupal/consumers": {
+        "Fixed empty request object": "https://www.drupal.org/files/issues/2019-02-07/fix-negotiate-request_1.patch"
+      },
+      "drupal/require_login": {
+        "Fixed login from 403 and 404 pages": "https://www.drupal.org/files/issues/2019-06-24/require_login-fix-login-3063676-4-8.x.patch"
+      }
+    }
+  },
+  "require": {
+    "composer/installers": "^1.5.0",
+    "cweagans/composer-patches": "^1.6.0",
+    "drupal-composer/drupal-scaffold": "^2.5.0",
+    "drupal/admin_toolbar": "^1.23",
+    "drupal/cer": "^4.0@alpha",
+    "drupal/commerce": "^2.10",
+    "drupal/commerce_decoupled_checkout": "^1.0@beta",
+    "drupal/commerce_directdebit": "dev-8.x-1.x",
+    "drupal/commerce_globalpayments": "1.x-dev#ffac02ad",
+    "drupal/commerce_paypal_ec": "dev-8.x-1.x",
+    "drupal/commerce_stripe": "^1.0@RC",
+    "drupal/config_filter": "^1.2",
+    "drupal/config_ignore": "^2.1",
+    "drupal/config_pages": "^2.2",
+    "drupal/config_split": "^1.3",
+    "drupal/consumer_image_styles": "^3.0",
+    "drupal/consumers": "^1.0@beta",
+    "drupal/consumers_token": "^1.0@beta",
+    "drupal/contact_message_rest": "^1.0@alpha",
+    "drupal/core": "~8.6.0",
+    "drupal/decoupled_router": "^1.0",
+    "drupal/default_content": "^1.0@alpha",
+    "drupal/eck": "^1.0@alpha",
+    "drupal/entity": "^1.0@beta",
+    "drupal/entity_browser": "^2.0",
+    "drupal/entity_reference_revisions": "^1.5",
+    "drupal/entity_usage": "^2.0@alpha",
+    "drupal/features": "^3.7",
+    "drupal/field_group": "^3.0@beta",
+    "drupal/file_entity": "^2.0@beta",
+    "drupal/focal_point": "^1.0@beta",
+    "drupal/image_widget_crop": "^2.2",
+    "drupal/jsonapi": "^2.3",
+    "drupal/jsonapi_extras": "^3.4",
+    "drupal/mailsystem": "^4.1",
+    "drupal/menu_admin_per_menu": "^1.0",
+    "drupal/menu_item_extras": "^2.4",
+    "drupal/menu_link_config": "^1.0@alpha",
+    "drupal/metatag": "1.9.0",
+    "drupal/paragraphs": "1.7.0",
+    "drupal/paragraphs_browser": "1.x-dev#a0be32a",
+    "drupal/pathauto": "^1.3",
+    "drupal/queue_ui": "^2.0",
+    "drupal/redirect": "^1.2",
+    "drupal/require_login": "^2.1",
+    "drupal/rest_absolute_urls": "^1.0@beta",
+    "drupal/rest_entity_recursive": "^1.0@beta",
+    "drupal/restui": "^1.15",
+    "drupal/scheduler": "^1.0",
+    "drupal/smtp": "^1.0@beta",
+    "drupal/svg_image": "^1.8",
+    "drupal/token": "^1.3",
+    "drupal/ultimate_cron": "^2.0@alpha",
+    "drupal/video_embed_field": "^2.0",
+    "drupal/webform": "^5.2",
+    "drupal/webform_rest": "^2.0@beta"
+  },
+  "require-dev": {
+    "drupal/coder": "^8.2",
+    "drupal/config_distro": "^1.0@alpha",
+    "drupal/config_merge": "^1.0@alpha",
+    "drupal/config_provider": "^2.0@alpha",
+    "drupal/config_snapshot": "^1.0@alpha",
+    "drupal/config_sync": "^2.0@alpha",
+    "drupal/config_update": "^1.5",
+    "drupal/devel": "^1.2",
+    "drupal/entity_type_clone": "^1.3",
+    "drupal/reroute_email": "^1.0"
+  }
+}

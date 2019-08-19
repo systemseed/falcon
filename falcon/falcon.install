@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Install/uninstall functions for Falcon profile.
+ */
+
+/**
+ * Execute code after install profile.
+ */
+function falcon_install() {
+  // Creating list of default custom features which should be enabled.
+  // Custom features don't have dependency on 'Features' module so we should
+  // enable custom features after installing 'Features' module because
+  // it solves an issue with configuration conflicts.
+  // We can add dependency on 'features' module into every custom feature and
+  // then we can add custom features to falcon.info.yml.
+  $FEATURES_DEFAULT_ENABLED = [
+    'falcon_feature_appeal',
+    'falcon_feature_commerce',
+    'falcon_feature_commerce_direct_debit_gateway',
+    'falcon_feature_demo',
+    'falcon_feature_donation',
+    'falcon_feature_mail',
+    'falcon_feature_metatag',
+    'falcon_feature_text_format',
+    'falcon_feature_user'
+  ];
+
+  $module_installer = \Drupal::service('module_installer');
+
+  // Enable default custom features.
+  $module_installer->install($FEATURES_DEFAULT_ENABLED);
+
+  // We need to add image styles that were added in falcon_feature_demo to consumer.
+  $consumers = \Drupal::entityTypeManager()
+    ->getStorage('consumer')
+    ->loadByProperties(['label' => 'Falcon Frontend Application']);
+  $consumer = array_pop($consumers);
+  $consumer->set('image_styles', [['target_id' => 'full_size']])->save();
+
+  // Add demo content.
+  $module_installer->install(['falcon_demo_content']);
+}

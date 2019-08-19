@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  release:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - add_ssh_keys
+      - checkout
+      - run:
+          name: Install dependencies.
+          command: yarn install
+      - run:
+          name: Run semantic release.
+          command: yarn run semantic-release
+
+
+workflows:
+  version: 2
+
+  release:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only:
+                - master

@@ -1,0 +1,17 @@
+services:
+  falcon_normalizers.normalizer.url:
+    class: \Drupal\falcon_normalizers\Normalizer\UrlNormalizer
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: normalizer, priority: 9 }
+
+  falcon_normalizers.normalizer.node:
+    class: Drupal\falcon_normalizers\Normalizer\NodeNormalizer
+    tags:
+      - { name: normalizer, priority: 9 }
+
+  falcon_normalizers.normalizer.link:
+    class: Drupal\falcon_normalizers\Normalizer\FieldLinkItemNormalizer
+    tags:
+      - { name: normalizer, priority: 9 }

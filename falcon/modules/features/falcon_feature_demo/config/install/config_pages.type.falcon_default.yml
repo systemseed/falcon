@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: falcon_default
+label: 'Falcon Default Settings'
+context:
+  show_warning: true
+  group:
+    language: false
+menu:
+  path: /admin/content/falcon_default
+  weight: 0
+  description: ''
