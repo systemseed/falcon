@@ -30,7 +30,7 @@ jobs:
           when: always
 
       - run:
-          name: Install Falon on local development environment
+          name: Install Falcon on local development environment
           command: make install
 
       - run:
