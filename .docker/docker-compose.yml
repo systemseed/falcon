@@ -36,8 +36,6 @@ services:
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
-    depends_on:
-      - mariadb
     environment:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       DB_HOST: $DB_HOST
@@ -77,41 +75,21 @@ services:
       - 'traefik.port=8025'
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
-  portainer:
-    image: portainer/portainer
-    container_name: "${PROJECT_NAME}_portainer"
-    command: --no-auth -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    labels:
-      - 'traefik.backend=portainer'
-      - 'traefik.port=9000'
-      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
-
   traefik:
     image: traefik
     container_name: "${PROJECT_NAME}_traefik"
-    command: -c /dev/null --web --docker --logLevel=INFO --defaultEntryPoints='https,http' --entryPoints='Name:https Address::443 TLS:/certs/cert.pem,/certs/key.pem' --entryPoints='Name:http Address::80'
+    command: -c /dev/null --web --docker --logLevel=INFO --defaultEntryPoints='https,http' --entryPoints='Name:http Address::80'
     ports:
       - '80:80'
       - '443:443'
       - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./certs:/certs
     networks:
       default:
         aliases:
           - ${BACKEND_HOST}
           - ${FRONTEND_HOST}
-
-  omgwtfssl:
-    image: paulczar/omgwtfssl
-    container_name: "${PROJECT_NAME}_ssl"
-    environment:
-      SSL_SUBJECT: ${PROJECT_BASE_URL}
-    volumes:
-      - ./certs:/certs
 
   codecept:
     image: systemseed/codeception:2.5.2-1.0-drupal

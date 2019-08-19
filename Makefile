@@ -85,10 +85,10 @@ drush:
 	$(call message,Executing \"drush -r web $(COMMAND_ARGS) --yes\")
 	$(call docker-www-data, php drush -r web $(COMMAND_ARGS) --yes)
 
-prepare: | up
+prepare:
     # Prepare composer dependencies.
 	$(call message,$(PROJECT_NAME): Installing/updating composer dependencies)
-	-$(call docker-wodby, php composer install --no-suggest)
+	docker-compose run php composer install --no-suggest
 
 	$(call message,$(PROJECT_NAME): Installing dependencies for React.js application)
 	docker-compose run --rm node yarn install
@@ -97,27 +97,35 @@ prepare: | up
 	$(call message,$(PROJECT_NAME): Preparing public files directory)
 	$(call docker-wodby, php mkdir -p web/sites/default/files)
 	$(call docker-root, php chown -R www-data: web/sites/default/files)
+
     # Prepare settings.php file.
 	$(call message,$(PROJECT_NAME): Making settings.php writable)
 	$(call docker-wodby, php chmod 666 web/sites/default/settings.php)
-    # Prepare git hooks.
-	$(call message,$(PROJECT_NAME): Setting up git hooks)
-	ln -sf $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
 
-install: | prepare
-	$(call message,$(PROJECT_NAME): Installing Drupal)
+	# Prepare settings.local.php file.
 	@if [ $(ENVIRONMENT) = "development" ]; then \
 		$(call docker-wodby, php chmod +w web/sites/default); \
 		$(call docker-wodby, php cp web/sites/example.settings.local.php web/sites/default/settings.local.php); \
 		$(call docker-wodby, php sed -i \"/settings.local.php';/s/# //g\" web/sites/default/settings.php); \
     fi
-	sleep 5
+
+    # Prepare git hooks.
+	$(call message,$(PROJECT_NAME): Setting up git hooks)
+	ln -sf $(shell pwd)/.git-hooks/* $(shell pwd)/.git/hooks
+
+install: | prepare up
+	# Install Drupal using Falcon profile.
+	$(call message,$(PROJECT_NAME): Installing Drupal)
 	$(call docker-www-data, php drush -r web site-install falcon \
 		--db-url=mysql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_NAME) --site-name=$(PROJECT_NAME) --account-pass=admin \
 		install_configure_form.enable_update_status_module=NULL --yes)
+
+	# Enable dev modules.
+	$(call message,$(PROJECT_NAME): Enabling development modules)
 	@if [ $(ENVIRONMENT) = "development" ]; then \
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
 	fi
+
 	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
 
 code\:check:

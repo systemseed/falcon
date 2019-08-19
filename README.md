@@ -1,8 +1,12 @@
 [![CircleCI](https://circleci.com/gh/systemseed/falcon/tree/master.svg?style=svg)](https://circleci.com/gh/systemseed/falcon/tree/master)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
+This is a development repository for Falcon backend (powered by Drupal) and frontend (powered by Next.js).
+For quick demo or quick start of using Falcon you can use our one-command-install project [Falcon Starter Kit](https://github.com/systemseed/falcon-starter-kit).
+
 # Documentation
-Latest documentation is available at https://falcon-platform.readthedocs.io/
+
+The usage documentation is available at https://falcon-platform.readthedocs.io/
 
 # Installation
 
