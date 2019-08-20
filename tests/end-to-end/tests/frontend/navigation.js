@@ -7,30 +7,31 @@ fixture('Navigation')
 
 const page = new Page();
 
-test
-  ('Top menu links work without errors', async t => {
-    const menu = Selector('header div.ui.fixed.menu div.ui.container');
-    await t.expect(menu.exists).ok('Get in Touch! Navigation menu visible.');
+test('Top menu links work without errors', async t => {
+  const menu = Selector('.top-navigation');
+  await t.expect(menu.exists).ok('Top navigation menu is visible.');
 
-    const menuItems = Selector('header div.ui.fixed.menu div.ui.container a.item');
-    const count = await menuItems.count;
+  const menuItems = Selector('.top-navigation a.item');
+  const count = await menuItems.count;
 
-    await t
-      .expect(count)
-      .eql(3, 'Get in Touch! Navigation menu contains 3 links.');
+  const expectedMenuUrls = [
+    '/',
+    '/about',
+    '/frontend-only'
+  ];
 
-    const menuUrls = [
-      '/',
-      '/about',
-      '/frontend-only'
-    ];
+  await t
+    .expect(count)
+    .eql(expectedMenuUrls.length, 'Top menu contains correct number of links.');
 
-    for (let i = 0; i < count; i++) {
-      await t.click(menuItems.nth(i));
-      await page.pageLoaded();
-      const getPathname = ClientFunction(() => window.location.pathname);
-      await t.expect(await getPathname()).eql(menuUrls[i], `Current pathname = ${menuUrls[i]}`, { timeout: 5000 });
-      await t.expect(Selector('.page-content .error-page').exists).notOk('No 40x/50x error on the page.');
-    }
-  });
+  // Visit every link from the header and ensure it has correct URL and
+  // does not return an error page.
+  for (let i = 0; i < count; i++) {
+    await t.click(menuItems.nth(i));
+    await page.pageLoaded();
+    const getPathname = ClientFunction(() => window.location.pathname); // eslint-disable-line no-undef
+    await t.expect(await getPathname()).eql(expectedMenuUrls[i], `Current pathname = ${expectedMenuUrls[i]}`);
+    await t.expect(Selector('.error-page').exists).notOk('No 40x/50x error on the page.');
+  }
+});
 
