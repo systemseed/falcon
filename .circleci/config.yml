@@ -15,7 +15,7 @@ jobs:
           command: make pull
 
       - run:
-          name: Fix CircleCI files permissons
+          name: Fix CircleCI files permissions
           command: |
             sudo chown ubuntu:ubuntu -R *
             sudo chown ubuntu:ubuntu -R .[!.]*
@@ -65,6 +65,9 @@ jobs:
 
       - store_artifacts:
           path: tests/_output/
+
+      - store_artifacts:
+          path: tests/end-to-end/results
 
       - store_test_results:
           path: tests/end-to-end/results

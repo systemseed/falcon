@@ -1,12 +1,14 @@
 {
-  "name": "systemseed.com-testcafe",
+  "name": "falcon-testcafe",
   "version": "1.0.0",
-  "description": "End-to-End tests for systemseed.com",
+  "description": "End-to-End tests for Falcon",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.2.0"
+  },
   "dependencies": {
-    "faker": "^4.1.0",
-    "testcafe": "^1.0.1"
+    "testcafe": "^1.4.1"
   }
 }

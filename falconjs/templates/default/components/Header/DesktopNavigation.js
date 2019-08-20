@@ -24,7 +24,7 @@ const DesktopNavigation = ({ menu, logo, siteName, homeNextLink, router }) => (
         </Link>
       )}
     </Menu.Item>
-    <Container>
+    <Container className="top-navigation">
       {menu.map(link => (
         <Link {...link.nextLink} key={link.nextLink.url}>
           <Menu.Item active={link.nextLink.as === router.asPath} href={link.nextLink.url}>

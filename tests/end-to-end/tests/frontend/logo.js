@@ -1,16 +1,23 @@
-import { Selector } from 'testcafe';
+import { Selector, RequestLogger } from 'testcafe';
 import * as config from '../utils/config';
-import { getRequestResult } from '../utils/helpers';
+
+// Enable logging of all get requests during while running this fixture.
+const logger = RequestLogger({ method: 'get' });
 
 fixture('Logo')
-  .page(config.frontendURL).httpAuth(config.httpAuth).beforeEach(config.beforeEach);
+  .page(config.frontendURL)
+  .httpAuth(config.httpAuth)
+  .beforeEach(config.beforeEach)
+  .requestHooks(logger);
 
-test
-  ('Logo is visible', async t => {
-    const logo = Selector('a.falcon-logo > img');
-    await t.expect(logo.exists).ok('Get in Touch! Logo is visible.');
-    const logoUrl = await logo.getAttribute('src');
+test('Logo is visible', async t => {
+  const logo = Selector('a.falcon-logo > img');
+  await t.expect(logo.exists).ok('The site logo is visible.');
+  const logoUrl = await logo.getAttribute('src');
 
-    await t.expect(getRequestResult(logoUrl)).eql(200, 'Logo is loaded.');
-  });
+  // Check that actual image file was successfully loaded during page rendering.
+  await t.expect(logger.contains(
+    record => record.request.url === logoUrl && record.response.statusCode === 200)
+  ).ok();
+});
 
