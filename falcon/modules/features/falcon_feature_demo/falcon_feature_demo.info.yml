@@ -24,12 +24,13 @@ dependencies:
   - paragraphs_browser
   - paragraphs_library
   - path
+  - pathauto
+  - require_login
   - rest
   - rest_entity_recursive
   - rest_media_recursive
   - rest_menu_recursive
   - rest_paragraphs_recursive
-  - require_login
   - scheduler
   - serialization
   - system
