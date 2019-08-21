@@ -1,7 +1,6 @@
 const cache = require('memory-cache');
-const { getRequest } = require('../request/request.node');
-
 const debug = require('debug')('falconjs:routing/xmlsitemap');
+const { getRequest } = require('../request/request.node');
 
 const xmlSitemapProxy = async (req, res, app) => {
   try {
@@ -22,8 +21,8 @@ const xmlSitemapProxy = async (req, res, app) => {
 
     res
       .status(200)
-        .type('application/xml')
-        .send(xmlSitemapData);
+      .type('application/xml')
+      .send(xmlSitemapData);
   } catch (error) {
     debug('%O', debug);
     res.status(404);
