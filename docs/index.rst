@@ -27,3 +27,4 @@ Follow instructions in :doc:`install` section.
    content
    metatags
    email_configuration
+   customization
