@@ -25,6 +25,7 @@ function falcon_install() {
     'falcon_feature_metatag',
     'falcon_feature_text_format',
     'falcon_feature_user',
+    'falcon_feature_xml_sitemap',
   ];
 
   $module_installer = \Drupal::service('module_installer');

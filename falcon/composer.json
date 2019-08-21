@@ -161,6 +161,7 @@
     "drupal/rest_entity_recursive": "^1.0@beta",
     "drupal/restui": "^1.15",
     "drupal/scheduler": "^1.0",
+    "drupal/simple_sitemap": "^3.3",
     "drupal/smtp": "^1.0@beta",
     "drupal/svg_image": "^1.8",
     "drupal/token": "^1.3",

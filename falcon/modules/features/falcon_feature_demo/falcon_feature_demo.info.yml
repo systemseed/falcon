@@ -33,6 +33,7 @@ dependencies:
   - rest_paragraphs_recursive
   - scheduler
   - serialization
+  - simple_sitemap
   - system
   - taxonomy
   - text

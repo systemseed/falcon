@@ -76,6 +76,7 @@ dependencies:
   - restui
   - rest_absolute_urls
   - require_login
+  - simple_sitemap
   - smtp
   - token
   - ultimate_cron

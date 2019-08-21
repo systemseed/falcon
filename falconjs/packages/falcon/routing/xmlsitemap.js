@@ -1,26 +1,33 @@
 const cache = require('memory-cache');
 const { getRequest } = require('../request/request.node');
 
+const debug = require('debug')('falconjs:routing/xmlsitemap');
+
 const xmlSitemapProxy = async (req, res, app) => {
-  let xmlSitemapData = cache.get('xmlSitemapData');
+  try {
+    let xmlSitemapData = cache.get('xmlSitemapData');
 
-  if (!xmlSitemapData) {
-    const superAgent = getRequest(app.nextConfig);
-    const sitemapResp = await superAgent
-      .get('/concern/sitemap.xml')
-      .set('Accept', 'application/xml');
+    if (!xmlSitemapData) {
+      const superAgent = getRequest(app.nextConfig);
+      const response = await superAgent
+        .get('/falcon/sitemap.xml')
+        .set('Accept', 'application/xml');
 
-    xmlSitemapData = sitemapResp.body;
-    const cacheTTL = process.env.NODE_CACHE_TTL !== undefined
-      ? Number(process.env.NODE_CACHE_TTL)
-      : 1000;
-    cache.put('xmlSitemapData', xmlSitemapData, cacheTTL);
+      xmlSitemapData = response.body;
+      const cacheTTL = process.env.NODE_CACHE_TTL !== undefined
+        ? Number(process.env.NODE_CACHE_TTL)
+        : 1000;
+      cache.put('xmlSitemapData', xmlSitemapData, cacheTTL);
+    }
+
+    res
+      .status(200)
+        .type('application/xml')
+        .send(xmlSitemapData);
+  } catch (error) {
+    debug('%O', debug);
+    res.status(404);
   }
-
-  res
-    .status(200)
-    .type('application/xml')
-    .send(xmlSitemapData);
 };
 
 module.exports = xmlSitemapProxy;

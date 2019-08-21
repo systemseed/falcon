@@ -129,6 +129,9 @@ install: | prepare up
 		$(MAKE) -s drush en $(DEVELOPMENT_MODULES); \
 	fi
 
+	# Generate XML sitemap.
+	$(MAKE) -s drush simple-sitemap-generate
+
 	$(call message,Congratulations! You installed $(PROJECT_NAME)!)
 
 code\:check:
