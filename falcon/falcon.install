@@ -24,7 +24,7 @@ function falcon_install() {
     'falcon_feature_mail',
     'falcon_feature_metatag',
     'falcon_feature_text_format',
-    'falcon_feature_user'
+    'falcon_feature_user',
   ];
 
   $module_installer = \Drupal::service('module_installer');
@@ -33,12 +33,27 @@ function falcon_install() {
   $module_installer->install($FEATURES_DEFAULT_ENABLED);
 
   // We need to add image styles that were added in falcon_feature_demo to consumer.
-  $consumers = \Drupal::entityTypeManager()
-    ->getStorage('consumer')
-    ->loadByProperties(['label' => 'Falcon Frontend Application']);
   $consumer = array_pop($consumers);
   $consumer->set('image_styles', [['target_id' => 'full_size']])->save();
 
   // Add demo content.
   $module_installer->install(['falcon_demo_content']);
+
+  // Create a new default consumer.
+  $consumer = \Drupal::entityTypeManager()->getStorage('consumer')->create([
+    'uuid' => '114e3e1a-6f65-49a8-9a24-v0043fabd6e7',
+    'type' => 'consumer',
+    'label' => 'Falcon',
+    'is_default' => TRUE,
+    'image_styles' => [['target_id' => 'full_size']]
+  ]);
+  $consumer->save();
+
+  // Delete the old consumer created by Consumers module upon installation.
+  /* @var $consumers \Drupal\Core\Entity\ContentEntityInterface[] */
+  $consumers = \Drupal::entityTypeManager()
+    ->getStorage('consumer')
+    ->loadByProperties(['label' => 'Default Consumer']);
+  $default_consumer = array_shift($consumers);
+  $default_consumer->delete();
 }
