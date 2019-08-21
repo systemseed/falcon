@@ -30,4 +30,5 @@ the sources:
 
 Access the site
 ~~~~~~~~~~~~~~~
-Go to http://falcon.docker.localhost
+Go to http://frontend.docker.localhost to see the frontend and http://admin.docker.localhost to access the backend.
+

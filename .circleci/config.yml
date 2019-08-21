@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Add Falcon domain host into /etc/hosts
-          command: echo 127.0.0.1 falcon.docker.localhost app.docker.localhost | sudo tee -a /etc/hosts
+          command: echo 127.0.0.1 admin.docker.localhost frontend.docker.localhost | sudo tee -a /etc/hosts
 
       - run:
           name: Install test dependencies

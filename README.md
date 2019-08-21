@@ -33,9 +33,8 @@ the sources:
 * `.docker/docker-compose.override.yml` comes from `.docker/docker-compose.override.default.yml`.
 
 ### Access the site
-Backend: `http://falcon.docker.localhost` (credentials: admin / admin)
-Demo frontend (work in progress): `http://app.docker.localhost`
-
+Backend: `http://admin.docker.localhost` (credentials: `admin` / `admin`)
+Demo frontend (work in progress): `http://frontend.docker.localhost`
 
 ### Production-ready installations
 
