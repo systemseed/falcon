@@ -1,6 +1,6 @@
 name: Falcon
 type: profile
-description: 'Falcon distribution for API-First Drupal using JSON API.'
+description: 'Decoupled Drupal distribution for Charities.'
 core: 8.x
 
 # Optional: Declare your installation profile as a distribution
