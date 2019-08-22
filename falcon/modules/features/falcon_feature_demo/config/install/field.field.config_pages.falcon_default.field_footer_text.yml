@@ -8,7 +8,7 @@ id: config_pages.falcon_default.field_footer_text
 field_name: field_footer_text
 entity_type: config_pages
 bundle: falcon_default
-label: 'Footer text'
+label: 'Footer copy'
 description: ''
 required: false
 translatable: false

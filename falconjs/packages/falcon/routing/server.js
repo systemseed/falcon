@@ -3,6 +3,8 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const decoupledRouter = require('./decoupledRouter');
 const frontendOnlyRoutes = require('./frontendOnlyRoutes');
+const xmlSitemapProxy = require('./xmlsitemap');
+const robotsTxtProxy = require('./robotstxt');
 const { globalSettingsForApp, handleHomepageRequest } = require('./globalSettings');
 const clearCache = require('./clearCache');
 const applyFalconRoutingConfigurations = require('./applyFalconRoutingConfigurations');
@@ -69,6 +71,9 @@ const startFalconServer = (
 
       server.use(globalSettingsForApp(application, APPLICATION_NAME));
       server.use(handleHomepageRequest);
+
+      server.get('/sitemap.xml', async (req, res) => xmlSitemapProxy(req, res, application, falconConfig));
+      server.get('/robots.txt', async (req, res) => robotsTxtProxy(req, res, application, falconConfig));
 
       if (APP_ONLY_ROUTES) {
         server.use(frontendOnlyRoutes(application, APP_ONLY_ROUTES));

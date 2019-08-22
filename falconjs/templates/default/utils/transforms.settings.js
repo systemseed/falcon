@@ -39,6 +39,8 @@ export const header = (settings) => {
     };
   });
 
+  props.robotsTxt = field.getTextValue(settings, 'field_robots_txt');
+
   return props;
 };
 
