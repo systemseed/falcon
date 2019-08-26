@@ -42,14 +42,14 @@ class RestEntityRecursiveCest {
       'title' => 'Test news',
       'status' => 1,
       'field_content_category' => $this->category,
-      'path' => [['alias' => '/test-node']],
+      'path' => [['alias' => '/news/test-news']],
       'language' => 'und'
     ]);
     $this->article->save();
 
     $this->redirect = $this->entityTypeManager->getStorage('redirect')->create([
       'redirect_source' => 'test-redirect',
-      'redirect_redirect' => 'internal:/test-node',
+      'redirect_redirect' => 'internal:/news/test-news',
       'language' => 'und',
       'status_code' => '301',
     ]);
@@ -89,7 +89,7 @@ class RestEntityRecursiveCest {
     $I->seeResponseCodeIs(301);
 
     $location = $I->grabHttpHeader('Location');
-    $I->assertContains('/test-node', $location);
+    $I->assertContains('/news/test-news', $location);
 
   }
 
@@ -103,7 +103,7 @@ class RestEntityRecursiveCest {
     $I->amGoingTo('Get request to REST endpoint with json format and check exists reference entity fields in response');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
-    $I->sendGET('/test-node?_format=json');
+    $I->sendGET('/news/test-news?_format=json');
 
     $I->seeResponseCodeIs(200);
 
@@ -122,7 +122,7 @@ class RestEntityRecursiveCest {
     $I->amGoingTo('Get request to REST endpoint with json_recursive format and check exists reference entity fields in response');
     $I->haveHttpHeader('Content-Type', 'application/json');
 
-    $I->sendGET('/test-node?_format=json_recursive');
+    $I->sendGET('/news/test-news?_format=json_recursive');
 
     $I->expectTo('See category name in response.');
     $I->seeResponseContainsJson(['name' => [['value' => 'Test category']]]);

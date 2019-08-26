@@ -7,6 +7,7 @@ dependencies:
     - field.field.config_pages.falcon_default.field_frontpage
     - field.field.config_pages.falcon_default.field_media_logo
     - field.field.config_pages.falcon_default.field_menu
+    - field.field.config_pages.falcon_default.field_robots_txt
     - field.field.config_pages.falcon_default.field_site_name
   module:
     - link
@@ -51,6 +52,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_robots_txt:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
     region: content
   field_site_name:
     weight: 0

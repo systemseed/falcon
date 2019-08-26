@@ -24,7 +24,7 @@
     ],
     "label": [
         {
-            "value": "Falcon Default Settings"
+            "value": "Falcon Settings"
         }
     ],
     "type": [
@@ -39,7 +39,7 @@
     ],
     "changed": [
         {
-            "value": "2019-07-28T14:35:49+00:00",
+            "value": "2019-08-22T11:21:29+00:00",
             "lang": "und",
             "format": "Y-m-d\\TH:i:sP"
         }
@@ -47,7 +47,7 @@
     "metatag": [
         {
             "value": {
-                "title": "Default Consumer"
+                "title": "Falcon"
             }
         }
     ],
@@ -56,7 +56,7 @@
             "tag": "meta",
             "attributes": {
                 "name": "title",
-                "content": "Default Consumer"
+                "content": "Falcon"
             },
             "lang": "und"
         }
@@ -95,6 +95,11 @@
     "field_menu": [
         {
             "target_id": "falcon-default"
+        }
+    ],
+    "field_robots_txt": [
+        {
+            "value": "User-agent: *&#13;\nCrawl-delay: 10&#13;\n&#13;\n# Checkout URLs.&#13;\nDisallow: \/*\/checkout?&#13;\nDisallow: \/*\/checkout\/&#13;\nDisallow: \/*\/checkout$&#13;\n&#13;\n# Internal paths.&#13;\nDisallow: \/_&#13;\n"
         }
     ],
     "field_site_name": [

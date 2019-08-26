@@ -10,7 +10,7 @@ entity_type: config_pages
 bundle: falcon_default
 label: 'Site name'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

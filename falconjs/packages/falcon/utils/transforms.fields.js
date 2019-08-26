@@ -1,6 +1,6 @@
-import he from 'he';
-import getEntityURL from './getEntityURL';
-import { BACKEND_URL } from './constants';
+const he = require('he');
+const getEntityURL = require('./getEntityURL');
+const { BACKEND_URL } = require('./constants');
 
 /**
  * Returns single object item.

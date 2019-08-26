@@ -11,12 +11,12 @@ field_name: field_frontpage
 entity_type: config_pages
 bundle: falcon_default
 label: 'Front page'
-description: 'The link to the front page node.'
-required: false
+description: 'Choose the content to display on the front page.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 1
+  link_type: 17
   title: 0
 field_type: link

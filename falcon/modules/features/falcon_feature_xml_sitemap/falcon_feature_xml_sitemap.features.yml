@@ -1,0 +1,5 @@
+bundle: falcon_feature
+excluded:
+  - simple_sitemap.bundle_settings.falcon.node.news
+  - simple_sitemap.bundle_settings.falcon.node.page
+required: true

@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const debug = require('debug')('falconjs:routing/server');
 const basicAuth = require('express-basic-auth');
-const xmlSitemapProxy = require('./xmlsitemap');
 const internalRoutes = require('./internalRoutes');
 
 const applyFalconRoutingConfigurations = (app, expressServer = express(), falconConfig = {}) => {
@@ -37,8 +36,6 @@ const applyFalconRoutingConfigurations = (app, expressServer = express(), falcon
     maxAge: falconConfig.STATIC_CAHCE_MAX_AGE || '7d',
     fallthrough: false,
   }));
-
-  expressServer.get('/sitemap.xml', async (req, res) => xmlSitemapProxy(req, res, app, process.env.SITEMAP_NAME));
 
   // Fail fast on any express handler error.
   expressServer.use((err, req, res, next) => {

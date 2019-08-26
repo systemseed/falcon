@@ -1,0 +1,4 @@
+variants:
+  falcon:
+    label: Falcon
+    weight: 0
