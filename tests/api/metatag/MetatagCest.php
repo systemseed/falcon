@@ -24,7 +24,7 @@ class MetatagCest {
       'type' => 'appeal',
       'title' => 'Test appeal',
       'status' => 1,
-      'test_metatag_field' => serialize([
+      'field_meta_tags' => serialize([
         'description' => 'TEST DESCRIPTION',
         'keywords' => 'TEST KEYWORDS'
       ])
