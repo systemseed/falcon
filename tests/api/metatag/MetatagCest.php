@@ -9,10 +9,6 @@ namespace falcon_feature_metatag;
  */
 class MetatagCest {
 
-  private $field_storage_config;
-
-  private $field_config;
-
   private $appeal;
 
   /**
@@ -22,34 +18,8 @@ class MetatagCest {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function _before() {
-    $entity_type_manager = \Drupal::entityTypeManager();
-    $storage = $entity_type_manager->getStorage('field_storage_config');
-
-    // Create field storage config.
-    $this->field_storage_config = $storage->create([
-      'type' => 'metatag',
-      'field_name' => 'test_metatag_field',
-      'entity_type' => 'node',
-    ]);
-    $this->field_storage_config->save();
-
-    $storage = $entity_type_manager->getStorage('field_config');
-
-    // Create field config for node type "appeal".
-    $this->field_config = $storage
-      ->create([
-        'field_storage' => $this->field_storage_config,
-        'bundle' => 'appeal',
-      ]);
-    $this->field_config->save();
-
-    // Clear cache.
-    foreach (\Drupal\Core\Cache\Cache::getBins() as $service_id => $cache_backend) {
-      $cache_backend->deleteAll();
-    }
-
     // Create appeal.
-    $this->appeal = $entity_type_manager->getStorage('node')->create([
+    $this->appeal = \Drupal::entityTypeManager()->getStorage('node')->create([
       'uid' => 1,
       'type' => 'appeal',
       'title' => 'Test appeal',
@@ -69,8 +39,6 @@ class MetatagCest {
    */
   public function _after() {
     \Drupal::entityTypeManager()->getStorage('node')->delete([$this->appeal]);
-    $this->field_config->delete();
-    $this->field_storage_config->delete();
   }
 
   /**
