@@ -3,11 +3,9 @@ status: true
 dependencies: {  }
 id: dashboard_browse_donations
 title: 'Browse all donations'
-route_name: entity.commerce_order.collection
+route_name: view.donations.page_1
 route_parameters: {  }
-options:
-  query:
-    type: donation
+options: {  }
 expanded: false
 menu_name: falcon-dashboard
 enabled: true

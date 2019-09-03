@@ -6,8 +6,9 @@ dependencies:
       - commerce_order
 id: customer
 label: Customer
-registration: false
+display_label: null
 multiple: true
+registration: false
 roles:
   administrator: '0'
   authenticated: '0'
@@ -15,6 +16,5 @@ roles:
   content_manager: '0'
   appeals_manager: '0'
   donations_manager: '0'
-weight: 0
-use_revisions: false
-description: ''
+allow_revisions: false
+new_revision: false

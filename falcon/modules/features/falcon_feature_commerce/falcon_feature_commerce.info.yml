@@ -13,7 +13,10 @@ dependencies:
   - commerce_price
   - commerce_product
   - commerce_store
+  - entity_reference_revisions
   - falcon_commerce
+  - falcon_feature_donation
+  - falcon_feature_user
   - field
   - inline_entity_form
   - menu_link_config
@@ -29,5 +32,5 @@ dependencies:
   - user
   - views
 version: 8.x-1.1
-package: Falcon Configurations
+package: 'Falcon Configurations'
 description: 'Falcon Commerce feature.'
