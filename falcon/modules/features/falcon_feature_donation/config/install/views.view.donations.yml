@@ -1144,7 +1144,7 @@ display:
             widget: select
             multiple: false
             remember: false
-            default_group: All
+            default_group: '1'
             default_group_multiple: {  }
             group_items:
               1:
