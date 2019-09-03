@@ -4,10 +4,12 @@ type: module
 core: 8.x
 dependencies:
   - entity_reference_revisions
+  - falcon_feature_metatag
   - field
   - field_group
   - menu_link_config
   - menu_ui
+  - metatag
   - node
   - options
   - paragraphs

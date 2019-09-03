@@ -5,10 +5,12 @@ dependencies:
     - field.field.node.page.field_body_blocks
     - field.field.node.page.field_description
     - field.field.node.page.field_media_image
+    - field.field.node.page.field_meta_tags
     - node.type.page
   module:
     - entity_reference_revisions
     - field_group
+    - metatag
     - text
     - user
 third_party_settings:
@@ -82,6 +84,13 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
+  field_meta_tags:
+    weight: 24
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   links:
     weight: 0

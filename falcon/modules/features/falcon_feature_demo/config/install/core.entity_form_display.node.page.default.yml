@@ -5,10 +5,12 @@ dependencies:
     - field.field.node.page.field_body_blocks
     - field.field.node.page.field_description
     - field.field.node.page.field_media_image
+    - field.field.node.page.field_meta_tags
     - node.type.page
   module:
     - field_group
     - media_library
+    - metatag
     - paragraphs_browser
     - path
     - scheduler
@@ -103,6 +105,12 @@ content:
     weight: 14
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_meta_tags:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   path:
     type: path
