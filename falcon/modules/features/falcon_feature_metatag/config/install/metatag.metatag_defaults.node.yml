@@ -5,5 +5,12 @@ id: node
 label: Content
 tags:
   title: '[node:title] | [consumers:current-name]'
-  canonical_url: '[node:url]'
-  description: '[node:summary]'
+  description: '[node:field_description]'
+  abstract: '[node:field_description]'
+  article_modified_time: '[node:changed]'
+  article_published_time: '[node:created]'
+  og_image: '[node:field_media_image:entity:field_media_image:full_size:url]'
+  og_image_alt: '[node:field_media_image:entity:field_media_image:alt]'
+  og_updated_time: '[node:changed]'
+  og_description: '[node:field_description]'
+  og_title: '[node:title] | [consumers:current-name]'
