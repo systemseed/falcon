@@ -41,7 +41,7 @@ display:
             manager: manager
             donations_manager: donations_manager
       cache:
-        type: tag
+        type: none
         options: {  }
       query:
         type: views_query
@@ -54,8 +54,8 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
-          reset_button: false
+          submit_button: Filter
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -91,16 +91,33 @@ display:
           summary: ''
           description: ''
           columns:
+            order_number: order_number
+            changed: changed
             completed: completed
-            mail: mail
-            billing_profile__target_id: billing_profile__target_id
-            field_appeal: field_appeal
+            field_donation_type: field_donation_type
             state: state
-            payment_gateway: payment_gateway
-            payment_gateway_mode: payment_gateway_mode
-            type: type
             total_price__number: total_price__number
+            field_appeal: field_appeal
+            billing_profile__target_id: billing_profile__target_id
+            mail: mail
+            payment_gateway_mode: payment_gateway_mode
+            payment_gateway: payment_gateway
+            operations: operations
           info:
+            order_number:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            changed:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             completed:
               sortable: true
               default_sort_order: desc
@@ -108,21 +125,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            mail:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            billing_profile__target_id:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_appeal:
+            field_donation_type:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -136,7 +139,28 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            payment_gateway:
+            total_price__number:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_appeal:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            billing_profile__target_id:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            mail:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -150,16 +174,14 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            type:
+            payment_gateway:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            total_price__number:
-              sortable: true
-              default_sort_order: asc
+            operations:
               align: ''
               separator: ''
               empty_column: false
@@ -308,7 +330,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Completed/Created
+          label: Date
           exclude: false
           alter:
             alter_text: false
@@ -1256,7 +1278,18 @@ display:
       title: Donations
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: 'No donations available.'
+          plugin_id: text_custom
       relationships:
         payment_method:
           id: payment_method
@@ -1323,6 +1356,7 @@ display:
     display_options:
       display_extenders: {  }
       path: donations
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:
