@@ -1,9 +1,11 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - views.view.donations
 id: dashboard_donations_category
 title: Donations
-route_name: entity.commerce_order.collection
+route_name: view.donations.page_1
 route_parameters: {  }
 options:
   query:

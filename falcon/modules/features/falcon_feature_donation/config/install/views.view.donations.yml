@@ -5,9 +5,6 @@ dependencies:
     - commerce_order.commerce_order_type.donation
     - field.storage.commerce_order.field_appeal
     - field.storage.commerce_order_item.field_donation_type
-    - user.role.administrator
-    - user.role.donations_manager
-    - user.role.manager
   module:
     - commerce
     - commerce_order
@@ -34,12 +31,9 @@ display:
     position: 0
     display_options:
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
-            manager: manager
-            donations_manager: donations_manager
+          perm: 'view donation commerce_order'
       cache:
         type: none
         options: {  }
@@ -187,7 +181,7 @@ display:
               empty_column: false
               responsive: ''
           default: completed
-          empty_table: false
+          empty_table: true
       row:
         type: fields
       fields:
@@ -1344,7 +1338,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.commerce_order.field_appeal'
         - 'config:field.storage.commerce_order_item.field_donation_type'
@@ -1364,7 +1358,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.commerce_order.field_appeal'
         - 'config:field.storage.commerce_order_item.field_donation_type'
