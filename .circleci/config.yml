@@ -73,6 +73,11 @@ jobs:
             sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
+          name: Generate .env and docker-compose files
+          command: |
+            make down
+
+      - run:
           name: Install node dependencies (without docker-compose up)
           command: |
             docker-compose run --no-deps --rm node yarn install
