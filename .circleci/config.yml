@@ -1,18 +1,70 @@
 version: 2.1
 
-jobs:
-  build_and_test:
+orbs:
+  slack: circleci/slack@3.3.0
 
+defaults:
+  workspace_root: &workspace_root
+                    ~/falcon
+  # Default machine settings.
+  default_machine: &default_machine
+    working_directory: *workspace_root
     machine:
       enabled: true
-      image: circleci/classic:latest
+      image: ubuntu-1604:201903-01
+
+commands:
+  hosting_cli:
+    description: "Execute Hosting CLI"
+    parameters:
+      command:
+        type: string
+      title:
+        type: string
+    steps:
+      - run:
+          name: << parameters.title >>
+          command: |
+            docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD &&
+            docker run \
+              -v ${PWD}/.deployment:/.deployment:ro \
+              -v ${PWD}/.env:/.project-env-file \
+              systemseed/hosting-cli:latest << parameters.command >>
+
+  drupal_post_deploy:
+    description: "Perform Drupal post deployment steps"
+    parameters:
+      chart:
+        type: string
+      component:
+        type: string
+      title:
+        type: string
+    steps:
+      - hosting_cli:
+          title: << parameters.title >>
+          command: /.deployment/scripts/post-deploy.sh << parameters.chart >> << parameters.component >> $CIRCLE_BRANCH
+
+  urls_to_env:
+    description: "Prints URLs to project .env file"
+    parameters:
+      chart:
+        type: string
+    steps:
+      - hosting_cli:
+          title: "Prints URLs to project .env file"
+          command: /.deployment/scripts/urls_to_file.sh << parameters.chart >> $CIRCLE_BRANCH /.project-env-file
+
+
+jobs:
+  ######################################################
+  # PREPARE CIRCLE CI WORKSPACE TO REUSE IN OTHER JOBS #
+  ######################################################
+  prepare_workspace:
+    <<: *default_machine
 
     steps:
       - checkout
-
-      - run:
-          name: Pull Docker images
-          command: make pull
 
       - run:
           name: Fix CircleCI files permissions
@@ -21,56 +73,148 @@ jobs:
             sudo chown ubuntu:ubuntu -R .[!.]*
 
       - run:
-          name: Install Javascript dependencies
-          command: make yarn
+          name: Install node dependencies (without docker-compose up)
+          command: |
+            docker-compose run --no-deps --rm node yarn install
 
       - run:
-          name: Check PHP & Javascript code for compliance with Coding Standards.
-          command: make code:check
-          when: always
+          name: Install php dependencies (without docker-compose up)
+          command: |
+            docker-compose run --no-deps --user 0:0 --rm php bash -c "composer install --no-suggest"
 
       - run:
-          name: Install Falcon on local development environment
-          command: make install
+          name: Fix CircleCI files permissions
+          command: |
+            sudo chown circleci:circleci -R *
+            sudo chown circleci:circleci -R .[!.]*
+
+      # Share the whole folder with other jobs.
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - ./*
+  #######################################################
+  ############## BUILD AND DEPLOY TO AWS ################
+  #######################################################
+  aws_build_push_deploy:
+    <<: *default_machine
+
+    steps:
+      - attach_workspace:
+          at: *workspace_root
 
       - run:
-          name: Add Falcon domain host into /etc/hosts
-          command: echo 127.0.0.1 admin.docker.localhost frontend.docker.localhost | sudo tee -a /etc/hosts
+          name: Build Docker images and push to AWS
+          command: |
+            docker-compose pull awscli
+            make docker:login
+            make docker:tag-build-push
 
       - run:
-          name: Install test dependencies
-          command: make tests:prepare
+          name: Print image tags.
+          command: docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretArn \$masterPasswordAWSSecretArn
 
       - run:
-          name: Run codeception basic group tests
-          command: make tests:codeception -- -g basic
+          name: Print image tags.
+          command: cat .deployment/aws-values.yaml
+
+      - hosting_cli:
+          title: Whitelist CircleCI IP address
+          command: roaming-user.py circleci
+
+      - hosting_cli:
+          title: Perform deployment via Helm
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH"
+
+      - urls_to_env:
+          chart: falcon
 
       - run:
-          name: Install additional modules
-          command: make drush en \$\(ADDITIONAL_MODULES\)
+          name: Prepare Slack message.
+          command: |
+            source .env
+            echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
 
-      - run:
-          name: Run codeception basic and additional groups tests
-          command: make tests:codeception -- -g basic -g additional
+      - slack/status:
+          webhook: '${SLACK_NOTIFIER_WEBHOOK}'
+          include_job_number_field: false
+          include_project_field: false
+          failure_message: ':red_circle: $CIRCLE_BRANCH: deployment has failed! $SLACK_MENTIONS'
+          success_message: 'Environment is ready ($CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH). URLs: $SLACK_MESSAGE_URLS'
 
-      - run:
-          name: Run TestCafe tests
-          command: make tests:testcafe
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - .deployment/aws-values.yaml
+            - .env
 
-      # Run demo content tests need after end of Acceptance tests,
-      # because demo-content will be deleted.
-      - run:
-          name: Run codeception tests for demo content
-          command: make tests:codeception -- -g demo-content
-
-      - store_artifacts:
-          path: tests/_output/
-
-      - store_artifacts:
-          path: tests/end-to-end/results
-
-      - store_test_results:
-          path: tests/end-to-end/results
+#
+#  build_and_test:
+#
+#    steps:
+#      - checkout
+#
+#      - run:
+#          name: Pull Docker images
+#          command: make pull
+#
+#      - run:
+#          name: Fix CircleCI files permissions
+#          command: |
+#            sudo chown ubuntu:ubuntu -R *
+#            sudo chown ubuntu:ubuntu -R .[!.]*
+#
+#      - run:
+#          name: Install Javascript dependencies
+#          command: make yarn
+#
+#      - run:
+#          name: Check PHP & Javascript code for compliance with Coding Standards.
+#          command: make code:check
+#          when: always
+#
+#      - run:
+#          name: Install Falcon on local development environment
+#          command: make install
+#
+#      - run:
+#          name: Add Falcon domain host into /etc/hosts
+#          command: echo 127.0.0.1 admin.docker.localhost frontend.docker.localhost | sudo tee -a /etc/hosts
+#
+#      - run:
+#          name: Install test dependencies
+#          command: make tests:prepare
+#
+#      - run:
+#          name: Run codeception basic group tests
+#          command: make tests:codeception -- -g basic
+#
+#      - run:
+#          name: Install additional modules
+#          command: make drush en \$\(ADDITIONAL_MODULES\)
+#
+#      - run:
+#          name: Run codeception basic and additional groups tests
+#          command: make tests:codeception -- -g basic -g additional
+#
+#      - run:
+#          name: Run TestCafe tests
+#          command: make tests:testcafe
+#
+#      # Run demo content tests need after end of Acceptance tests,
+#      # because demo-content will be deleted.
+#      - run:
+#          name: Run codeception tests for demo content
+#          command: make tests:codeception -- -g demo-content
+#
+#      - store_artifacts:
+#          path: tests/_output/
+#
+#      - store_artifacts:
+#          path: tests/end-to-end/results
+#
+#      - store_test_results:
+#          path: tests/end-to-end/results
 
   split_and_push:
     docker:
@@ -87,11 +231,14 @@ workflows:
 
   build_and_test:
     jobs:
-      - build_and_test:
+      - prepare_workspace:
           filters:
             branches:
               ignore:
                 - master
+      - aws_build_push_deploy:
+          requires:
+            - prepare_workspace
 
   release:
     jobs:

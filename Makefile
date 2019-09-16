@@ -29,6 +29,30 @@ docker-www-data = docker-compose exec --user=82:82 $(firstword ${1}) time -f"%E"
 docker-wodby = docker-compose exec $(firstword ${1}) time -f"%E" sh -c "$(filter-out $(firstword ${1}), ${1})"
 docker-root = docker-compose exec --user=0:0 $(firstword ${1}) time -f"%E" sh -c "$(filter-out $(firstword ${1}), ${1})"
 
+# Helper funciton to build new docker images based on repo state, push to ECR
+# and update .deployment/aws-values.yaml with corresponding image tags for
+# further processing by Helm.
+define docker-tag-build-push
+	$(eval NAME:=${1})
+	$(eval FOLDER:=${2})
+	$(eval REPOSITORY:=${3})
+	$(eval BUILD_ARGS:=${4})
+	$(eval TAG:=$(shell .circleci/bin/splitsh-lite$(filter Darwin, $(shell uname)) --quiet --prefix=${FOLDER}))
+	$(call message,Looking for docker image ${REPOSITORY}:${TAG})
+	$(eval TAG_SEARCH_EXIT_CODE:=$(shell docker-compose run --rm awscli ecr describe-images --repository-name=${REPOSITORY} --image-ids=imageTag=${TAG} >/dev/null 2>/dev/null; echo $$?))
+	@$(if $(filter-out 0, ${TAG_SEARCH_EXIT_CODE}), \
+		$(call message,No image found. Building and pushing new image...) \
+		&& \
+		docker build -f ./.docker/${NAME}/Dockerfile . -t 675226414167.dkr.ecr.eu-west-1.amazonaws.com/${REPOSITORY}:${TAG} ${BUILD_ARGS} \
+		&& \
+		docker push "675226414167.dkr.ecr.eu-west-1.amazonaws.com/${REPOSITORY}:${TAG}" \
+		, \
+		$(call message,Image ${REPOSITORY}:${TAG} already exists. Reusing.) \
+		)
+	$(call message,Setting image tag in .deployment/aws-values.yaml file)
+	docker run --rm -v $(shell pwd)/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.$(subst -,,${NAME}).tag ${TAG}
+endef
+
 default: up
 
 pull:
@@ -170,10 +194,29 @@ logs:
 	$(call message,$(PROJECT_NAME): Streaming the Next.js application logs)
 	docker-compose logs -f node
 
-######################
-# Testing operations #
-######################
+###############################################
+############### AWS COMMANDS ##################
+###############################################
+docker\:login:
+	$(call message,Logging Docker daemon into AWS ECR registry...)
+	@eval $(shell docker-compose run -T --rm awscli ecr get-login --no-include-email)
 
+docker\:tag-build-push:
+	$(call message,$(PROJECT_NAME): Make some files read only for security purposes)
+	find backend-donations/web/sites/default backend-gifts/web/sites/default backend-api-bus/src/config \
+		-maxdepth 1 -type f -exec chmod a=r {} \;
+	$(call docker-tag-build-push,nginx,nginx,falcon-nginx,--build-arg NGINX_TAG=$(NGINX_TAG))
+	$(call docker-tag-build-push,php,php,falcon-php,--build-arg PHP_TAG=$(PHP_TAG))
+	$(call docker-tag-build-push,node,node,falcon-node,--build-arg NODE_TAG=$(NODE_TAG))
+	$(call message,$(PROJECT_NAME): Restore file permissions)
+	find falcon/web/sites/default \
+		-maxdepth 1 -type f -exec chmod 644 {} \;
+	$(call message,$(PROJECT_NAME): Done!)
+
+
+####################################################
+################ Testing operations ################
+####################################################
 # MAKE can't properly forward options starting with two dashes so we
 # introduce a new variable TESTMETA which corresponds to --test-meta option.
 ifdef TESTMETA
