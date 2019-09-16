@@ -203,7 +203,7 @@ docker\:login:
 
 docker\:tag-build-push:
 	$(call message,$(PROJECT_NAME): Make some files read only for security purposes)
-	find backend-donations/web/sites/default backend-gifts/web/sites/default backend-api-bus/src/config \
+	find falcon/web/sites/default \
 		-maxdepth 1 -type f -exec chmod a=r {} \;
 	$(call docker-tag-build-push,nginx,nginx,falcon-nginx,--build-arg NGINX_TAG=$(NGINX_TAG))
 	$(call docker-tag-build-push,php,php,falcon-php,--build-arg PHP_TAG=$(PHP_TAG))
