@@ -116,12 +116,12 @@ jobs:
             make docker:tag-build-push
 
       - run:
-          name: Print image tags.
+          name: Add master password AWS secret arn to dbOperator.
           command: docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretArn \$masterPasswordAWSSecretArn
 
-      - run:
-          name: Print image tags.
-          command: cat .deployment/aws-values.yaml
+#      - run:
+#          name: Print image tags.
+#          command: cat .deployment/aws-values.yaml
 
       - hosting_cli:
           title: Whitelist CircleCI IP address
