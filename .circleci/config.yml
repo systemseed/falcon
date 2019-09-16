@@ -240,14 +240,14 @@ workflows:
           requires:
             - prepare_workspace
 
-  release:
-    jobs:
-      - build_and_test:
-          filters:
-            branches:
-              only:
-                - master
-
-      - split_and_push:
-          requires:
-            - build_and_test
+#  release:
+#    jobs:
+#      - build_and_test:
+#          filters:
+#            branches:
+#              only:
+#                - master
+#
+#      - split_and_push:
+#          requires:
+#            - build_and_test
