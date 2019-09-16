@@ -115,3 +115,16 @@ services:
       FRONTEND_URL: ${FRONTEND_URL}
       HTTP_AUTH_USER: ${HTTP_AUTH_USER}
       HTTP_AUTH_PASS: ${HTTP_AUTH_PASS}
+
+  #########################
+  ####### AWS CLI #########
+  #########################
+  awscli:
+    image: garland/aws-cli-docker:1.16.140
+    entrypoint: aws
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+    volumes:
+      - ../:/falcon:cached
