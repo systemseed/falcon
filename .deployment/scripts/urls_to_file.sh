@@ -13,7 +13,7 @@ ENV_FILE=$3
 NAMESPACE="test"
 
 # Getting hosts from ingress.
-BACKEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=falcon-$BRANCH,component=php -o jsonpath={.items[0].spec.rules[0].host})
+BACKEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=falcon-$BRANCH,component=drupal -o jsonpath={.items[0].spec.rules[0].host})
 FRONTEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=falcon-$BRANCH,component=node -o jsonpath={.items[0].spec.rules[0].host})
 
 # Printing URLs in the same format as before.
