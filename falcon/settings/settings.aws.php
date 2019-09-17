@@ -11,3 +11,7 @@ $settings['php_storage']['twig']['directory'] = $settings['file_private_path'];
 // Specify that it works behind a reverse proxy.
 $settings['reverse_proxy'] = TRUE;
 $settings['reverse_proxy_addresses'] = [$_SERVER['REMOTE_ADDR']];
+
+// Enable css / js aggregation.
+$config['system.performance']['css']['preprocess'] = TRUE;
+$config['system.performance']['js']['preprocess'] = TRUE;
