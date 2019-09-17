@@ -43,9 +43,9 @@ define docker-tag-build-push
 	@$(if $(filter-out 0, ${TAG_SEARCH_EXIT_CODE}), \
 		$(call message,No image found. Building and pushing new image...) \
 		&& \
-		docker build -f ./.docker/${NAME}/Dockerfile . -t 675226414167.dkr.ecr.eu-west-1.amazonaws.com/${REPOSITORY}:${TAG} ${BUILD_ARGS} \
+		docker build -f ./.docker/${NAME}/Dockerfile . -t ${AWS_ECR_REGISTRY_PREFIX}/${REPOSITORY}:${TAG} ${BUILD_ARGS} \
 		&& \
-		docker push "675226414167.dkr.ecr.eu-west-1.amazonaws.com/${REPOSITORY}:${TAG}" \
+		docker push "${AWS_ECR_REGISTRY_PREFIX}/${REPOSITORY}:${TAG}" \
 		, \
 		$(call message,Image ${REPOSITORY}:${TAG} already exists. Reusing.) \
 		)

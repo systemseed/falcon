@@ -29,6 +29,12 @@ commands:
             docker run \
               -v ${PWD}/.deployment:/.deployment:ro \
               -v ${PWD}/.env:/.project-env-file \
+              -v ${PWD}/deploy.log:/deploy.log \
+              -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+              -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+              -e AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
+              -e AWS_DEFAULT_PROFILE=systemseed-Root \
+              -e AWS_DEFAULT_ROLE=arn:aws:iam::675226414167:role/cd-role \
               systemseed/hosting-cli:latest << parameters.command >>
 
   drupal_post_deploy:
@@ -87,6 +93,7 @@ jobs:
           command: |
             docker-compose run --no-deps --user 0:0 --rm php bash -c "composer install --no-suggest"
 
+
       - run:
           name: Fix CircleCI files permissions
           command: |
@@ -117,11 +124,12 @@ jobs:
 
       - run:
           name: Add master password AWS secret arn to dbOperator.
-          command: docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretArn \$masterPasswordAWSSecretArn
-
-#      - run:
-#          name: Print image tags.
-#          command: cat .deployment/aws-values.yaml
+          command: |
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretArn "$MASTER_PASSWORD_AWS_SECRET_ARN"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretKey "DB_MASTER_PASSWORD"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.php.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-php"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.nginx.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-nginx"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.node.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-node"
 
       - hosting_cli:
           title: Whitelist CircleCI IP address
@@ -129,29 +137,37 @@ jobs:
 
       - hosting_cli:
           title: Perform deployment via Helm
-          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH"
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run > deploy.log 2>&1
 
-      - urls_to_env:
-          chart: falcon
+      - store_artifacts:
+          path: deploy.log
 
-      - run:
-          name: Prepare Slack message.
-          command: |
-            source .env
-            echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
-
-      - slack/status:
-          webhook: '${SLACK_NOTIFIER_WEBHOOK}'
-          include_job_number_field: false
-          include_project_field: false
-          failure_message: ':red_circle: $CIRCLE_BRANCH: deployment has failed! $SLACK_MENTIONS'
-          success_message: 'Environment is ready ($CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH). URLs: $SLACK_MESSAGE_URLS'
-
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - .deployment/aws-values.yaml
-            - .env
+#      - drupal_post_deploy:
+#          title: "Install Falcon: post-deployment steps"
+#          chart: falcon
+#          component: php
+#
+#      - urls_to_env:
+#          chart: falcon
+#
+#      - run:
+#          name: Prepare Slack message.
+#          command: |
+#            source .env
+#            echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
+#
+#      - slack/status:
+#          webhook: '${SLACK_NOTIFIER_WEBHOOK}'
+#          include_job_number_field: false
+#          include_project_field: false
+#          failure_message: ':red_circle: $CIRCLE_BRANCH: deployment has failed! $SLACK_MENTIONS'
+#          success_message: 'Environment is ready ($CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH). URLs: $SLACK_MESSAGE_URLS'
+#
+#      - persist_to_workspace:
+#          root: *workspace_root
+#          paths:
+#            - .deployment/aws-values.yaml
+#            - .env
 
 #
 #  build_and_test:
