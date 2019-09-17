@@ -146,7 +146,7 @@ jobs:
           component: drupal
 
       - urls_to_env:
-          chart: falcon
+          chart: drupal
 
       - run:
           name: Prepare Slack message.
