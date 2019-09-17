@@ -92,6 +92,10 @@ jobs:
           command: |
             docker-compose run --no-deps --user 0:0 --rm php bash -c "composer install --no-suggest"
 
+      - run:
+          name: Create log file for deploy
+          command: |
+            echo '' > .deployment/deploy.log
 
       - run:
           name: Fix CircleCI files permissions
@@ -136,10 +140,10 @@ jobs:
 
       - hosting_cli:
           title: Perform deployment via Helm
-          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run > /.deployment/deploy.log 2>&1
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run > .deployment/deploy.log 2>&1
 
       - store_artifacts:
-          path: /.deployment/deploy.log
+          path: .deployment/deploy.log
 
 #      - drupal_post_deploy:
 #          title: "Install Falcon: post-deployment steps"
