@@ -40,7 +40,7 @@ define docker-tag-build-push
 	$(eval TAG:=$(shell .circleci/split/splitsh-lite$(filter Darwin, $(shell uname)) --quiet --prefix=${FOLDER}))
 	$(call message,Looking for docker image ${REPOSITORY}:${TAG})
 	$(eval TAG_SEARCH_EXIT_CODE:=$(shell docker-compose run --rm awscli ecr describe-images --repository-name=${REPOSITORY} --image-ids=imageTag=${TAG} >/dev/null 2>/dev/null; echo $$?))
-	@$(if $(filter-out 0, ${TAG_SEARCH_EXIT_CODE}), \
+	@$(if ${TAG}), \
 		$(call message,No image found. Building and pushing new image...) \
 		&& \
 		docker build -f ./.docker/${NAME}/Dockerfile . -t ${AWS_ECR_REGISTRY_PREFIX}/${REPOSITORY}:${TAG} ${BUILD_ARGS} \
