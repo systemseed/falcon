@@ -31,4 +31,4 @@ if (!empty($_ENV['AWS_ENVIRONMENT'])) {
   require_once __DIR__ . '/settings.aws.php';
 }
 
-include $app_root . '/' . $site_path . '/settings.local.php';
+require_once __DIR__ . '/settings.local.php';
