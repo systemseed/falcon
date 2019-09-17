@@ -14,10 +14,6 @@ shared:
       value: X-Payment-Secret
     - name: PAYMENT_SECRET_HEADER_VALUE
       value: 19pSIj1N5w5GFpeD88DssKEUe4QFwpE2
-    - name: HTTP_AUTH_USER
-      value: ''
-    - name: HTTP_AUTH_PASS
-      value: ''
     - name: TEST_USERS_PASSWORD
       value: secure_password
 
