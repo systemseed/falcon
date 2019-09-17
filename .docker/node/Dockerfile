@@ -1,9 +1,9 @@
 ARG NODE_TAG
 FROM wodby/node:$NODE_TAG
 
-COPY --chown=node:node ./falconjs /falconjs
+COPY --chown=node:node ./falconjs /app
 
-WORKDIR /falconjs
+WORKDIR /app
 
 RUN yarn build
 
