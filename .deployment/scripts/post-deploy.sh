@@ -13,10 +13,10 @@ BRANCH=$3
 NAMESPACE="test"
 
 # Waiting for the deployment to complete.
-kubectl -n $NAMESPACE rollout status -w deployment/$CHART-$BRANCH-$COMPONENT
+kubectl -n $NAMESPACE rollout status -w deployment/falcon-$BRANCH-$CHART-$COMPONENT
 
 # Getting recent Drupal pod ID from deployed release.
-POD_ID=$(kubectl -n $NAMESPACE get pods -l "release=$CHART-$BRANCH,component=$COMPONENT"  -o jsonpath={.items[*].metadata.name} --sort-by=.metadata.creationTimestamp | awk '{print $NF}')
+POD_ID=$(kubectl -n $NAMESPACE get pods -l "release=falcon-$BRANCH-$CHART,component=$COMPONENT"  -o jsonpath={.items[*].metadata.name} --sort-by=.metadata.creationTimestamp | awk '{print $NF}')
 echo "Selected POD ID for executing post-deployment tasks: $POD_ID"
 
 echo "Install drupal"
