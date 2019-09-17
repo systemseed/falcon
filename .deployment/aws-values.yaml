@@ -7,3 +7,6 @@ images:
     repository:
 
 dbOperator:
+  backup:
+    region: "eu-west-1"
+    bucketName: "host.systemseed.com-db-backups"

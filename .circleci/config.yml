@@ -143,7 +143,7 @@ jobs:
       - drupal_post_deploy:
           title: "Install Falcon: post-deployment steps"
           chart: falcon
-          component: php
+          component: drupal
 
       - urls_to_env:
           chart: falcon
