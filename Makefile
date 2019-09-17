@@ -63,7 +63,7 @@ pull:
 
 up:
 	$(call message,$(PROJECT_NAME): Build and run containers)
-	docker-compose up -d --remove-orphans --scale codecept=0 --scale testcafe=0
+	docker-compose up -d --remove-orphans --scale codecept=0 --scale testcafe=0 --scale awscli=0
 
 stop:
 	$(call message,$(PROJECT_NAME): Stopping containers)

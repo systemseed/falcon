@@ -28,7 +28,7 @@ $databases['default']['default'] = [
 
 // Settings for AWS environments.
 if (!empty($_ENV['AWS_ENVIRONMENT'])) {
-  require_once __DIR__ . '/settings.aws.php';
+  include $app_root . '/' . $site_path . '/settings.aws.php';
 }
 
-require_once __DIR__ . '/settings.local.php';
+include $app_root . '/' . $site_path . '/settings.local.php';
