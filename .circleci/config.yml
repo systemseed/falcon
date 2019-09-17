@@ -93,11 +93,6 @@ jobs:
             docker-compose run --no-deps --user 0:0 --rm php bash -c "composer install --no-suggest"
 
       - run:
-          name: Create log file for deploy
-          command: |
-            echo '' > .deployment/deploy.log
-
-      - run:
           name: Fix CircleCI files permissions
           command: |
             sudo chown circleci:circleci -R *
