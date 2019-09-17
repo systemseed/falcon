@@ -7,4 +7,4 @@ WORKDIR /app
 
 RUN yarn build
 
-CMD [ "yarn", "start:dev" ]
+CMD [ "yarn", "start" ]

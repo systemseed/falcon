@@ -8,7 +8,8 @@
   "scripts": {
     "eslint": "yarn workspaces run eslint",
     "start:dev": "yarn workspace @systemseed/falcon-app-default start:dev",
-    "build": "yarn workspace @systemseed/falcon-app-default build"
+    "build": "yarn workspace @systemseed/falcon-app-default build",
+    "start": "yarn workspace @systemseed/falcon-app-default start"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
