@@ -135,37 +135,37 @@ jobs:
 
       - hosting_cli:
           title: Perform deployment via Helm
-          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run > .deployment/deploy.log 2>&1
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" > .deployment/deploy.log 2>&1
 
       - store_artifacts:
           path: .deployment/deploy.log
 
-#      - drupal_post_deploy:
-#          title: "Install Falcon: post-deployment steps"
-#          chart: falcon
-#          component: php
-#
-#      - urls_to_env:
-#          chart: falcon
-#
-#      - run:
-#          name: Prepare Slack message.
-#          command: |
-#            source .env
-#            echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
-#
-#      - slack/status:
-#          webhook: '${SLACK_NOTIFIER_WEBHOOK}'
-#          include_job_number_field: false
-#          include_project_field: false
-#          failure_message: ':red_circle: $CIRCLE_BRANCH: deployment has failed! $SLACK_MENTIONS'
-#          success_message: 'Environment is ready ($CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH). URLs: $SLACK_MESSAGE_URLS'
-#
-#      - persist_to_workspace:
-#          root: *workspace_root
-#          paths:
-#            - .deployment/aws-values.yaml
-#            - .env
+      - drupal_post_deploy:
+          title: "Install Falcon: post-deployment steps"
+          chart: falcon
+          component: php
+
+      - urls_to_env:
+          chart: falcon
+
+      - run:
+          name: Prepare Slack message.
+          command: |
+            source .env
+            echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
+
+      - slack/status:
+          webhook: '${SLACK_NOTIFIER_WEBHOOK}'
+          include_job_number_field: false
+          include_project_field: false
+          failure_message: ':red_circle: $CIRCLE_BRANCH: deployment has failed! $SLACK_MENTIONS'
+          success_message: 'Environment is ready ($CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH). URLs: $SLACK_MESSAGE_URLS'
+
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - .deployment/aws-values.yaml
+            - .env
 
 #
 #  build_and_test:
