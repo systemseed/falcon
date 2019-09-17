@@ -1,7 +1,7 @@
 default:
   name: falcon-{{ branch|slugify }}
   namespace: test
-  chart: falcon
+  chart: drupal
   values:
     - aws-values.yaml
     - values.yaml
