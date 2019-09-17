@@ -27,6 +27,9 @@ node:
       value: falcon:*
     - name: NODE_CACHE_TTL
       value: 1000
+    - name: CONSUMER_ID
+      value: 114e3e1a-6f65-49a8-9a24-v0043fabd6e7
+
   # Node.js container readiness / health checks.
   healthChecks:
     enabled: true

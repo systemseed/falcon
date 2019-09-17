@@ -10,12 +10,11 @@ CHART=$1
 BRANCH=$2
 ENV_FILE=$3
 
-# TODO: fetch actual namespace from configs, not from branch names!
-[[ $BRANCH = "master" && $CHART != "falcon" ]] && NAMESPACE="prod" || NAMESPACE="test"
+NAMESPACE="test"
 
 # Getting hosts from ingress.
-BACKEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=$CHART-$BRANCH,component=php -o jsonpath={.items[0].spec.rules[0].host})
-FRONTEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=$CHART-$BRANCH,component=node -o jsonpath={.items[0].spec.rules[0].host})
+BACKEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=falcon-$BRANCH,component=php -o jsonpath={.items[0].spec.rules[0].host})
+FRONTEND_HOST=$(kubectl -n $NAMESPACE get ingress -l release=falcon-$BRANCH,component=node -o jsonpath={.items[0].spec.rules[0].host})
 
 # Printing URLs in the same format as before.
 echo "FRONTEND_URL=https://$FRONTEND_HOST/" >> $ENV_FILE
