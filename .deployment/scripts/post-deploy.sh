@@ -2,7 +2,7 @@
 
 # This is post-deployment script for Drupal backend. Usually executed from CI.
 # Usage:
-# - ./post-deploy.sh falcon php master
+# - ./post-deploy.sh drupal node master
 
 set -e
 
