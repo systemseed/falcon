@@ -2,13 +2,12 @@
 
 # Prints remote URLs to a given .env file.
 # Usage:
-# - ./urls_to_file.sh falcon stage /my/.env-file
+# - ./urls_to_file.sh stage /my/.env-file
 
 set -e
 
-CHART=$1
-BRANCH=$2
-ENV_FILE=$3
+BRANCH=$1
+ENV_FILE=$2
 
 NAMESPACE="test"
 

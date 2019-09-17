@@ -58,7 +58,7 @@ commands:
     steps:
       - hosting_cli:
           title: "Prints URLs to project .env file"
-          command: /.deployment/scripts/urls_to_file.sh << parameters.chart >> $CIRCLE_BRANCH /.project-env-file
+          command: /.deployment/scripts/urls_to_file.sh $CIRCLE_BRANCH /.project-env-file
 
 
 jobs:
@@ -147,8 +147,7 @@ jobs:
           chart: drupal
           component: drupal
 
-      - urls_to_env:
-          chart: drupal
+      - urls_to_env
 
       - run:
           name: Prepare Slack message.
