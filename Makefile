@@ -205,9 +205,9 @@ docker\:tag-build-push:
 	$(call message,$(PROJECT_NAME): Make some files read only for security purposes)
 	find falcon/web/sites/default \
 		-maxdepth 1 -type f -exec chmod a=r {} \;
-	$(call docker-tag-build-push,nginx,nginx,falcon-nginx,--build-arg NGINX_TAG=$(NGINX_TAG))
-	$(call docker-tag-build-push,php,php,falcon-php,--build-arg PHP_TAG=$(PHP_TAG))
-	$(call docker-tag-build-push,node,node,falcon-node,--build-arg NODE_TAG=$(NODE_TAG))
+	$(call docker-tag-build-push,nginx,falcon,falcon-nginx,--build-arg NGINX_TAG=$(NGINX_TAG))
+	$(call docker-tag-build-push,php,falcon,falcon-php,--build-arg PHP_TAG=$(PHP_TAG))
+	$(call docker-tag-build-push,node,falconjs,falcon-node,--build-arg NODE_TAG=$(NODE_TAG))
 	$(call message,$(PROJECT_NAME): Restore file permissions)
 	find falcon/web/sites/default \
 		-maxdepth 1 -type f -exec chmod 644 {} \;
