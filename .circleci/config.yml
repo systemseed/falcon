@@ -170,7 +170,9 @@ jobs:
   ############# BUILD AND TESTS IN CIRCLE ###############
   #######################################################
   build_and_test:
-    <<: *default_machine
+    machine:
+      enabled: true
+      image: circleci/classic:latest
 
     steps:
       - checkout
