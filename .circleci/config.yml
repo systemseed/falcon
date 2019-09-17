@@ -52,9 +52,6 @@ commands:
 
   urls_to_env:
     description: "Prints URLs to project .env file"
-    parameters:
-      chart:
-        type: string
     steps:
       - hosting_cli:
           title: "Prints URLs to project .env file"
