@@ -15,3 +15,11 @@ $settings['reverse_proxy_addresses'] = [$_SERVER['REMOTE_ADDR']];
 // Enable css / js aggregation.
 $config['system.performance']['css']['preprocess'] = TRUE;
 $config['system.performance']['js']['preprocess'] = TRUE;
+
+// Adds http creds if exists.
+if (
+  !empty(str_replace("'", '', $_ENV['HTTP_AUTH_USER']))
+  && !empty(str_replace("'", '', $_ENV['HTTP_AUTH_PASS']))
+) {
+  include $app_root . '/' . $site_path . '/http_auth.php';
+}

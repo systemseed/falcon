@@ -9,6 +9,7 @@ set -e
 CHART=$1
 COMPONENT=$2
 BRANCH=$3
+PASSWORD=$4
 
 NAMESPACE="test"
 
@@ -20,7 +21,7 @@ POD_ID=$(kubectl -n $NAMESPACE get pods -l "release=falcon-$BRANCH,component=$CO
 echo "Selected POD ID for executing post-deployment tasks: $POD_ID"
 
 echo "Install drupal"
-time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c 'drush -r web site-install falcon	--site-name=$PROJECT_NAME --account-pass=admin install_configure_form.enable_update_status_module=NULL --yes; (exit $?)'
+time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c 'drush -r web site-install falcon	--site-name=$PROJECT_NAME --account-pass=$PASSWORD install_configure_form.enable_update_status_module=NULL --yes; (exit $?)'
 echo "Enabling development modules"
 time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c 'drush -r web en $DEVELOPMENT_MODULES --yes; (exit $?)'
 echo "Generate sitemap"

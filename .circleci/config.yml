@@ -48,7 +48,7 @@ commands:
     steps:
       - hosting_cli:
           title: << parameters.title >>
-          command: /.deployment/scripts/post-deploy.sh << parameters.chart >> << parameters.component >> $CIRCLE_BRANCH
+          command: /.deployment/scripts/post-deploy.sh << parameters.chart >> << parameters.component >> $CIRCLE_BRANCH $TEST_USER_PASSWORD
 
   urls_to_env:
     description: "Prints URLs to project .env file"
@@ -121,7 +121,7 @@ jobs:
             make docker:tag-build-push
 
       - run:
-          name: Add master password AWS secret arn to dbOperator.
+          name: Add master password AWS secret arn to dbOperator. Add repositories to images.
           command: |
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretArn "$MASTER_PASSWORD_AWS_SECRET_ARN"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretKey "DB_MASTER_PASSWORD"
