@@ -5,6 +5,7 @@ images:
     repository:
   node:
     repository:
+    imagePullPolicy: "Always"
 
 dbOperator:
   backup:
