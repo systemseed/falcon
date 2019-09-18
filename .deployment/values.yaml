@@ -33,7 +33,7 @@ node:
   # Node.js container readiness / health checks.
   healthChecks:
     enabled: true
-    path: /_healthcheck
+    path: /favicon.ico
     periodSeconds: 15
     timeoutSeconds: 5
 
