@@ -143,7 +143,7 @@ jobs:
 
       - hosting_cli:
           title: Perform deployment via Helm
-          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH"
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run
 
       - drupal_post_deploy:
           title: "Install Falcon: post-deployment steps"
