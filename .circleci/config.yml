@@ -136,6 +136,7 @@ jobs:
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[1].value "$HTTP_AUTH_USER"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[2].value "$HTTP_AUTH_PASS"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[3].value "$TEST_USERS_PASSWORD"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml node.healthChecks.authorization 'Basic {{ "$HTTP_AUTH_USER:$HTTP_AUTH_PASS" | base64 }}'
 
       - hosting_cli:
           title: Whitelist CircleCI IP address
