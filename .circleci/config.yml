@@ -129,6 +129,18 @@ jobs:
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.nginx.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-nginx"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.node.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-node"
 
+      - run:
+          name: Add HTTP AUTH credensials to env variables for AWS.
+          command: |
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq n shared.environmentVariables[+].name "HTTP_AUTH_USER" > temp-values.yaml
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i temp-values.yaml shared.environmentVariables[0].value "$HTTP_AUTH_USER"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i temp-values.yaml shared.environmentVariables[1].name "HTTP_AUTH_PASS"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i temp-values.yaml shared.environmentVariables[1].value "$HTTP_AUTH_PASS"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i temp-values.yaml shared.environmentVariables[2].name "TEST_USERS_PASSWORD"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i temp-values.yaml shared.environmentVariables[2].value "$TEST_USERS_PASSWORD"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq m -i -a values.yaml temp-values.yaml
+            rm -rf temp-values.yaml
+
       - hosting_cli:
           title: Whitelist CircleCI IP address
           command: roaming-user.py circleci
