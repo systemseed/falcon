@@ -34,7 +34,7 @@ commands:
               -e AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
               -e AWS_DEFAULT_PROFILE=systemseed-Root \
               -e AWS_DEFAULT_ROLE=arn:aws:iam::675226414167:role/cd-role \
-              systemseed/hosting-cli:latest << parameters.command >>
+              systemseed/hosting-cli:latest << parameters.command >> >> .deployment/deploy.log 2>&1 exit $?
 
   drupal_post_deploy:
     description: "Perform Drupal post deployment steps"
@@ -73,17 +73,6 @@ jobs:
           command: |
             sudo chown ubuntu:ubuntu -R *
             sudo chown ubuntu:ubuntu -R .[!.]*
-
-      - run:
-          name: test 1
-          command: echo asd >> .deployment/deploy.log 2>&1 exit $?
-
-      - run:
-          name: test 2 failed
-          command: echoredd asd >> .deployment/deploy.log 2>&1 exit $?
-
-      - store_artifacts:
-          path: .deployment/deploy.log
 
       - run:
           name: Generate .env and docker-compose files
@@ -153,7 +142,7 @@ jobs:
 
       - hosting_cli:
           title: Perform deployment via Helm
-          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run >> .deployment/deploy.log 2>&1 exit $?
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH"
 
       - drupal_post_deploy:
           title: "Install Falcon: post-deployment steps"
