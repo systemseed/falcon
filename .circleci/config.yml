@@ -34,8 +34,7 @@ commands:
               -e AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
               -e AWS_DEFAULT_PROFILE=systemseed-Root \
               -e AWS_DEFAULT_ROLE=arn:aws:iam::675226414167:role/cd-role \
-              systemseed/hosting-cli:latest << parameters.command >> >> .deployment/deploy.log 2>&1 &&
-            exit $?
+              systemseed/hosting-cli:latest << parameters.command >>
 
   drupal_post_deploy:
     description: "Perform Drupal post deployment steps"
@@ -143,7 +142,7 @@ jobs:
 
       - hosting_cli:
           title: Perform deployment via Helm
-          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" --dry-run >> .deployment/deploy.log 2>&1 && exit $?
 
       - drupal_post_deploy:
           title: "Install Falcon: post-deployment steps"
@@ -152,14 +151,14 @@ jobs:
 
       - urls_to_env
 
+      - store_artifacts:
+          path: .deployment/deploy.log
+
       - run:
           name: Prepare Slack message.
           command: |
             source .env
             echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
-
-      - store_artifacts:
-          path: .deployment/deploy.log
 
       - slack/status:
           webhook: '${SLACK_NOTIFIER_WEBHOOK}'
