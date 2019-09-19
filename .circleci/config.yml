@@ -132,6 +132,7 @@ jobs:
       - run:
           name: Change env variables for AWS with variables from CI.
           command: |
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[0].value "$CIRCLE_BRANCH"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[1].value "$HTTP_AUTH_USER"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[2].value "$HTTP_AUTH_PASS"
             docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[3].value "$TEST_USERS_PASSWORD"

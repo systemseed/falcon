@@ -6,16 +6,15 @@ replicas:
 shared:
   # Environment variables for PHP +  Node.js containers.
   environmentVariables:
-    # This variables have to be first, because they will be replaced on fly. (using position index).
+    # This variables have to be first, because they will be replaced on the fly. (using position index).
     - name: AWS_ENVIRONMENT
-      value: {{ branch }}
+      value: 'Will be changed in CI'
     - name: HTTP_AUTH_USER
-      value: 'Will be changed on fly'
+      value: 'Will be changed in CI'
     - name: HTTP_AUTH_PASS
-      value: 'Will be changed on fly'
+      value: 'Will be changed in CI'
     - name: TEST_USERS_PASSWORD
-      value: 'Will be changed on fly'
-
+      value: 'Will be changed in CI'
     - name: ENVIRONMENT
       value: development
     - name: PAYMENT_SECRET_HEADER_NAME
