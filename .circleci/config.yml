@@ -153,14 +153,15 @@ jobs:
 
       - urls_to_env
 
-      - store_artifacts:
-          path: .deployment/deploy.log
-
       - run:
           name: Prepare Slack message.
           command: |
             source .env
+            cat .env >> .deployment/deploy.log 2>&1
             echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
+
+      - store_artifacts:
+          path: .deployment/deploy.log
 
       - slack/status:
           webhook: '${SLACK_NOTIFIER_WEBHOOK}'
