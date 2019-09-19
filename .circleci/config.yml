@@ -34,7 +34,7 @@ commands:
               -e AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
               -e AWS_DEFAULT_PROFILE=systemseed-Root \
               -e AWS_DEFAULT_ROLE=arn:aws:iam::675226414167:role/cd-role \
-              systemseed/hosting-cli:latest roaming-user.py circleci >> .deployment/deploy.log 2>&1 &&
+              systemseed/hosting-cli:latest << parameters.command >> >> .deployment/deploy.log 2>&1 &&
             exit $?
 
   drupal_post_deploy:
