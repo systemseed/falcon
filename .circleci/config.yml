@@ -76,11 +76,14 @@ jobs:
 
       - run:
           name: test 1
-          command: echo asd >> .deployment/deploy.log 2>$1 exit $?
+          command: echo asd >> .deployment/deploy.log 2>&1 exit $?
 
       - run:
           name: test 2 failed
-          command: echoredd asd >> .deployment/deploy.log 2>$1 exit $?
+          command: echoredd asd >> .deployment/deploy.log 2>&1 exit $?
+
+      - store_artifacts:
+          path: .deployment/deploy.log
 
       - run:
           name: Generate .env and docker-compose files
