@@ -1,0 +1,125 @@
+# Number of replicas for each deployment.
+replicas:
+  drupal: 1
+  node: 1
+
+shared:
+  # Environment variables for PHP +  Node.js containers.
+  environmentVariables:
+    # This variables have to be first, because they will be replaced on the fly. (using position index).
+    - name: AWS_ENVIRONMENT
+      value: 'Will be changed in CI'
+    - name: HTTP_AUTH_USER
+      value: 'Will be changed in CI'
+    - name: HTTP_AUTH_PASS
+      value: 'Will be changed in CI'
+    - name: TEST_USERS_PASSWORD
+      value: 'Will be changed in CI'
+    - name: ENVIRONMENT
+      value: development
+    - name: PAYMENT_SECRET_HEADER_NAME
+      value: X-Payment-Secret
+    - name: PAYMENT_SECRET_HEADER_VALUE
+      value: 19pSIj1N5w5GFpeD88DssKEUe4QFwpE2
+
+# Settings related to the node deployment
+node:
+  # Enable the node deployment (using images pushed to the node repository).
+  enabled: true
+  # Environment variables for Node.js container.
+  environmentVariables:
+    - name: DEBUG
+      value: falcon:*
+    - name: NODE_CACHE_TTL
+      value: 1000
+    - name: CONSUMER_ID
+      value: 114e3e1a-6f65-49a8-9a24-v0043fabd6e7
+
+  # Node.js container readiness / health checks.
+  healthChecks:
+    enabled: true
+    path: /favicon.ico
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+# Settings related to the nginx pod in the drupal deployment
+nginx:
+  # The mount point that should be used for the shared, persistent nginx/php volume
+  volumeMountPath: /var/www/html/web/sites/default/files
+  environmentVariables:
+    - name: NGINX_ERROR_LOG_LEVEL
+      value: info
+    - name: NGINX_SERVER_ROOT
+      value: /var/www/html/web
+    - name: NGINX_PAGESPEED
+      value: on
+    - name: NGINX_VHOST_PRESET
+      value: drupal8
+  healthChecks:
+    enabled: true
+    # As soon as nginx is ready to serve something - the container
+    # should be considered as ready.
+    path: /core/modules/system/images/no_screenshot.png
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+# Settings related to the php pod in the drupal deployment
+php:
+  # The mount point that should be used for the shared, persistent nginx/php volume
+  volumeMountPath: /var/www/html/web/sites/default/files
+
+  # Should there be a shared temporary volume between all php
+  # containers in the deployment? And if so, where should it be
+  # mounted.
+  tmp:
+    volume: true
+    mountPath: /tmp/drupal
+  # Should there be a shared private (ie, not within the web root)
+  # volume between all php containers in the deployment? And if so,
+  # where should it be mounted.
+  private:
+    volume: true
+    mountPath: /private/drupal
+
+  # Settings for the scheduled job. If enabled, this creates a pod
+  # using the PHP container, with all the same env-vars and volumes,
+  # but just runs the configured command. Note that if the command
+  # exits with a non-zero exit code, the job will be restarted until
+  # it does give a zero exit code.
+  cronjob:
+    enabled: false
+
+  # Environment variables for PHP container.
+  environmentVariables:
+    - name: COLUMNS
+      value: 120
+    - name: DEVELOPMENT_MODULES
+      value: devel falcon_development reroute_email config_update_ui features_ui config_distro config_merge config_provider config_snapshot config_sync
+    - name: ADDITIONAL_MODULES
+      value: rest_entity_recursive falcon_feature_thankq falcon_thankq falcon_navigation falcon_gift_ecards falcon_feature_commerce_example_gateway falcon_feature_example falcon_feature_gifts falcon_feature_gifts_bundle falcon_feature_gift_cards falcon_feature_gifts_bundle_cards falcon_feature_webform
+    - name: PROJECT_NAME
+      value: FALCON
+
+# Settings to control ingress for the services.
+ingress:
+  drupal:
+    enabled: true
+    # Hostnames on which the drupal deployment should respond. Note
+    # that the first of these hosts is passed to the Node containers
+    # as BACKEND_URL.
+    hosts:
+      - admin-falcon-{{ branch|slugify }}.host.systemseed.com
+  node:
+    enabled: true
+    # Hostnames on which the node deployment should respond. Note that
+    # the first of these hosts is passed to the PHP containers as
+    # FRONTEND_URL.
+    hosts:
+      - falcon-{{ branch|slugify }}.host.systemseed.com
+
+# Database configuration. Note that the username and password are
+# handled by dbOperator.
+database:
+  # Development database cluster.
+  backup:
+    enabled: false
