@@ -21,8 +21,6 @@ shared:
       value: X-Payment-Secret
     - name: PAYMENT_SECRET_HEADER_VALUE
       value: 19pSIj1N5w5GFpeD88DssKEUe4QFwpE2
-    - name: TEST_USERS_PASSWORD
-      value: secure_password
 
 # Settings related to the node deployment
 node:

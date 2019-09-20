@@ -87,9 +87,9 @@ jobs:
       - run:
           name: Install php dependencies (without docker-compose up)
           command: |
-            docker-compose run --no-deps --user 0:0 --rm php bash -c "composer install --no-suggest"
-            docker-compose run --no-deps --user 0:0 --rm php bash -c "chmod +w web/sites/default"
-            docker-compose run --no-deps --user 0:0 --rm php bash -c "cp web/sites/example.settings.local.php web/sites/default/settings.local.php"
+            docker-compose run --no-deps --rm php bash -c "composer install --no-suggest"
+            docker-compose run --no-deps --rm php bash -c "chmod +w web/sites/default"
+            docker-compose run --no-deps --rm php bash -c "cp web/sites/example.settings.local.php web/sites/default/settings.local.php"
 
       - run:
           name: Fix CircleCI files permissions
