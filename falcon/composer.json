@@ -54,7 +54,10 @@
     ],
     "falcon:links": [
       "cd web/profiles/contrib/falcon;ln -fs ../../../../config .;ln -fs ../../../../modules .;ln -fs ../../../../falcon.* .;",
-      "cd web/sites;ln -sf ../../settings/development.services.yml ./development.services.yml;"
+      "cd web/sites;ln -sf ../../settings/development.services.yml ./development.services.yml;",
+      "cd web/sites/default;ln -sf ../../../settings/settings.php ./settings.php;",
+      "cd web/sites/default;ln -sf ../../../settings/http_auth.php ./http_auth.php;",
+      "cd web/sites/default;ln -sf ../../../settings/settings.aws.php ./settings.aws.php;"
     ]
   },
   "extra": {

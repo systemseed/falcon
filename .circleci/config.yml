@@ -1,8 +1,185 @@
 version: 2.1
 
-jobs:
-  build_and_test:
+orbs:
+  slack: circleci/slack@3.3.0
 
+defaults:
+  workspace_root: &workspace_root
+                    ~/falcon
+  # Default machine settings.
+  default_machine: &default_machine
+    working_directory: *workspace_root
+    machine:
+      enabled: true
+      image: ubuntu-1604:201903-01
+
+commands:
+  hosting_cli:
+    description: "Execute Hosting CLI"
+    parameters:
+      command:
+        type: string
+      title:
+        type: string
+    steps:
+      - run:
+          name: << parameters.title >>
+          command: |
+            docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD &&
+            docker run \
+              -v ${PWD}/.deployment:/.deployment:ro \
+              -v ${PWD}/.env:/.project-env-file \
+              -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+              -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+              -e AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
+              -e AWS_DEFAULT_PROFILE="$AWS_DEFAULT_PROFILE" \
+              -e AWS_DEFAULT_ROLE="$AWS_DEFAULT_ROLE" \
+              systemseed/hosting-cli:latest << parameters.command >>
+
+  drupal_post_deploy:
+    description: "Perform Drupal post deployment steps"
+    parameters:
+      chart:
+        type: string
+      component:
+        type: string
+      title:
+        type: string
+    steps:
+      - hosting_cli:
+          title: << parameters.title >>
+          command: /.deployment/scripts/post-deploy.sh << parameters.chart >> << parameters.component >> $CIRCLE_BRANCH $TEST_USER_PASSWORD
+
+  urls_to_env:
+    description: "Prints URLs to project .env file"
+    steps:
+      - hosting_cli:
+          title: "Prints URLs to project .env file"
+          command: /.deployment/scripts/urls_to_file.sh $CIRCLE_BRANCH /.project-env-file
+
+
+jobs:
+  ######################################################
+  # PREPARE CIRCLE CI WORKSPACE TO REUSE IN OTHER JOBS #
+  ######################################################
+  prepare_workspace_for_aws:
+    <<: *default_machine
+
+    steps:
+      - checkout
+
+      - run:
+          name: Fix CircleCI files permissions
+          command: |
+            sudo chown ubuntu:ubuntu -R *
+            sudo chown ubuntu:ubuntu -R .[!.]*
+
+      - run:
+          name: Generate .env and docker-compose files
+          command: |
+            make down
+
+      - run:
+          name: Install node dependencies (without docker-compose up)
+          command: |
+            docker-compose run --no-deps --rm node yarn install
+
+      - run:
+          name: Install php dependencies (without docker-compose up)
+          command: |
+            docker-compose run --no-deps --user 0:0 --rm php bash -c "composer install --no-suggest"
+            docker-compose run --no-deps --user 0:0 --rm php bash -c "chmod +w web/sites/default"
+            docker-compose run --no-deps --user 0:0 --rm php bash -c "cp web/sites/example.settings.local.php web/sites/default/settings.local.php"
+
+      - run:
+          name: Fix CircleCI files permissions
+          command: |
+            sudo chown circleci:circleci -R *
+            sudo chown circleci:circleci -R .[!.]*
+
+      # Share the whole folder with other jobs.
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - ./*
+
+  #######################################################
+  ############## BUILD AND DEPLOY TO AWS ################
+  #######################################################
+  aws_build_push_deploy:
+    <<: *default_machine
+
+    steps:
+      - attach_workspace:
+          at: *workspace_root
+
+      - run:
+          name: Build Docker images and push to AWS
+          command: |
+            docker-compose pull awscli
+            make docker:login
+            make docker:tag-build-push
+
+      - run:
+          name: Add master password AWS secret arn to dbOperator. Add repositories to images.
+          command: |
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretArn "$MASTER_PASSWORD_AWS_SECRET_ARN"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml dbOperator.masterPasswordAWSSecretKey "DB_MASTER_PASSWORD"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.php.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-php"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.nginx.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-nginx"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq write -i aws-values.yaml images.node.repository "$AWS_ECR_REGISTRY_PREFIX/falcon-node"
+
+      - run:
+          name: Change env variables for AWS with variables from CI. Add database host.
+          command: |
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[0].value "$CIRCLE_BRANCH"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[1].value "$HTTP_AUTH_USER"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[2].value "$HTTP_AUTH_PASS"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml shared.environmentVariables[3].value "$TEST_USERS_PASSWORD"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml node.healthChecks.authorization "Basic {{ '$HTTP_AUTH_USER:$HTTP_AUTH_PASS' | base64 }}"
+            docker run --rm -v /home/circleci/falcon/.deployment:/workdir mikefarah/yq yq w -i values.yaml database.host "$DATABASE_HOST"
+
+      - hosting_cli:
+          title: Whitelist CircleCI IP address
+          command: roaming-user.py circleci
+
+      - hosting_cli:
+          title: Perform deployment via Helm
+          command: ./bin/deploy.py --app-deployment-dir /.deployment --image "not-used" --repo-name "$CIRCLE_PROJECT_REPONAME" --branch-name "$CIRCLE_BRANCH" >> .deployment/deploy.log 2>&1
+
+      - drupal_post_deploy:
+          title: "Install Falcon: post-deployment steps"
+          chart: drupal
+          component: drupal
+
+      - urls_to_env
+
+      - run:
+          name: Prepare Slack message.
+          command: |
+            source .env
+            echo "export SLACK_MESSAGE_URLS=\"$FRONTEND_URL, $BACKEND_URL\"" >> $BASH_ENV
+
+      - store_artifacts:
+          path: .deployment/deploy.log
+
+      - slack/status:
+          webhook: '${SLACK_NOTIFIER_WEBHOOK}'
+          include_job_number_field: false
+          include_project_field: false
+          failure_message: ':red_circle: $CIRCLE_BRANCH: deployment has failed! $SLACK_MENTIONS'
+          success_message: 'Environment is ready ($CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH). URLs: $SLACK_MESSAGE_URLS'
+
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - .deployment/aws-values.yaml
+            - .env
+
+  #######################################################
+  ############# BUILD AND TESTS IN CIRCLE ###############
+  #######################################################
+  build_and_test:
     machine:
       enabled: true
       image: circleci/classic:latest
@@ -72,6 +249,9 @@ jobs:
       - store_test_results:
           path: tests/end-to-end/results
 
+  #######################################################
+  ################### RELEASE PACKAGES ##################
+  #######################################################
   split_and_push:
     docker:
       - image: buildpack-deps:trusty
@@ -85,13 +265,24 @@ jobs:
 workflows:
   version: 2
 
-  build_and_test:
+  build_and_test_in_ci:
     jobs:
       - build_and_test:
           filters:
             branches:
               ignore:
                 - master
+
+  aws_build:
+    jobs:
+      - prepare_workspace_for_aws:
+          filters:
+            branches:
+              ignore:
+                - master
+      - aws_build_push_deploy:
+          requires:
+            - prepare_workspace_for_aws
 
   release:
     jobs:
@@ -101,6 +292,17 @@ workflows:
               only:
                 - master
 
+      - prepare_workspace_for_aws:
+          filters:
+            branches:
+              only:
+                - master
+
+      - aws_build_push_deploy:
+          requires:
+            - prepare_workspace_for_aws
+
       - split_and_push:
           requires:
             - build_and_test
+            - aws_build_push_deploy

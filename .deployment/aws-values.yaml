@@ -1,0 +1,12 @@
+images:
+  php:
+    repository:
+  nginx:
+    repository:
+  node:
+    repository:
+
+dbOperator:
+  backup:
+    region: "eu-west-1"
+    bucketName: "host.systemseed.com-db-backups"
