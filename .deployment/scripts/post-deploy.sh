@@ -25,4 +25,4 @@ time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c "drush -r web site
 echo "Enabling development modules"
 time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c 'drush -r web en $DEVELOPMENT_MODULES --yes; (exit $?)'
 echo "Generate sitemap"
-time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c 'drush -r web simple-sitemap-generate; (exit $?)''
+time kubectl -n $NAMESPACE exec -it $POD_ID -c php -- bash -c 'drush -r web simple-sitemap-generate; (exit $?)'
