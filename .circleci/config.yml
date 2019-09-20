@@ -48,7 +48,7 @@ commands:
     steps:
       - hosting_cli:
           title: << parameters.title >>
-          command: /.deployment/scripts/post-deploy.sh << parameters.chart >> << parameters.component >> $CIRCLE_BRANCH $TEST_USER_PASSWORD
+          command: /.deployment/scripts/post-deploy.sh << parameters.chart >> << parameters.component >> $CIRCLE_BRANCH $TEST_USERS_PASSWORD
 
   urls_to_env:
     description: "Prints URLs to project .env file"
