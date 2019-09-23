@@ -76,7 +76,7 @@ services:
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
   traefik:
-    image: traefik
+    image: traefik:$TRAEFIK_TAG
     container_name: "${PROJECT_NAME}_traefik"
     command: -c /dev/null --web --docker --logLevel=INFO --defaultEntryPoints='https,http' --entryPoints='Name:http Address::80'
     ports:
