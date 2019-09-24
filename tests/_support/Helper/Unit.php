@@ -11,7 +11,7 @@ class Unit extends \Codeception\Module
      */
     public function getDevelopmentModules()
     {
-        $modules = explode(' ', str_replace('"','', getenv('DEVELOPMENT_MODULES')));
+        $modules = explode(' ', getenv('DEVELOPMENT_MODULES'));
         return (empty($modules) ? [] : $modules);
     }
 }
