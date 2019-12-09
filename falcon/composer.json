@@ -149,7 +149,7 @@
     "drupal/jsonapi_extras": "^3.4",
     "drupal/mailsystem": "^4.1",
     "drupal/menu_admin_per_menu": "^1.0",
-    "drupal/menu_item_extras": "^2.4",
+    "drupal/menu_item_extras": "^2.9",
     "drupal/menu_link_config": "^1.0@alpha",
     "drupal/metatag": "1.9.0",
     "drupal/paragraphs": "1.7.0",

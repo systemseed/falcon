@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19839a6b74ee923aaf334f5e33e8fa68",
+    "content-hash": "c2f03e076e5cbea4728e5fae68577ffb",
     "packages": [
         {
             "name": "apache/log4php",
@@ -4173,17 +4173,17 @@
         },
         {
             "name": "drupal/menu_item_extras",
-            "version": "2.8.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/menu_item_extras.git",
-                "reference": "8.x-2.8"
+                "reference": "8.x-2.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/menu_item_extras-8.x-2.8.zip",
-                "reference": "8.x-2.8",
-                "shasum": "e427c4682dab2c43da64c4b8375507426cfff356"
+                "url": "https://ftp.drupal.org/files/projects/menu_item_extras-8.x-2.9.zip",
+                "reference": "8.x-2.9",
+                "shasum": "cf0455722cd3aff878979091ec0eb2e2aa2bfcb5"
             },
             "require": {
                 "drupal/core": "*"
@@ -4194,13 +4194,19 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.8",
-                    "datestamp": "1572279487",
+                    "version": "8.x-2.9",
+                    "datestamp": "1575835084",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                },
+                "patches_applied": []
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
