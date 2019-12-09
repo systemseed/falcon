@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2f03e076e5cbea4728e5fae68577ffb",
+    "content-hash": "7554798350eb3b87b312500b7ebf7447",
     "packages": [
         {
             "name": "apache/log4php",
@@ -2284,7 +2284,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Compatibility with drupal 8.8 REST api. Expose entity by string ID via rest": "patches/config_pages-expose-entity-by-string-id-via-rest.patch"
+                    "Compatibility with drupal 8.8 REST api. Expose entity by string ID via rest": "https://www.drupal.org/files/issues/2019-12-09/config_pages-expose-entity-by-string-id-via-rest-3099665-2_0.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
