@@ -93,20 +93,11 @@
       "drupal/core": {
         "Pagination in rest views": "https://www.drupal.org/files/issues/2019-05-21/2982729-viewsRestInfo-13_0.patch"
       },
-      "drupal/jsonapi_extras": {
-        "Compatibility with drupal 8.8": "https://www.drupal.org/files/issues/2019-12-02/3089444-24.patch"
-      },
-      "drupal/config_pages": {
-        "Compatibility with drupal 8.8 REST api. Expose entity by string ID via rest": "https://www.drupal.org/files/issues/2019-12-09/config_pages-expose-entity-by-string-id-via-rest-3099665-2_0.patch"
-      },
       "drupal/paragraphs_browser": {
         "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
       },
       "drupal/metatag": {
         "Jsonapi support": "https://www.drupal.org/files/issues/2019-01-18/computed_field_2945817_61.patch"
-      },
-      "drupal/commerce_decoupled_checkout": {
-        "Added new hook_alter": "https://www.drupal.org/files/issues/2019-02-22/commerce_decoupled_checkout-added_hook_alter-3033373-5.patch"
       },
       "drupal/require_login": {
         "Fixed login from 403 and 404 pages": "https://www.drupal.org/files/issues/2019-06-24/require_login-fix-login-3063676-4-8.x.patch"

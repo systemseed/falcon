@@ -97,9 +97,9 @@ class FalconMailSystem extends PhpMail {
   public function replaceRelativeUrlsWithSaveStyles($body) {
     try {
       // Create Global dom document.
-      $html = new \DOMDocument();
+      $html = new \DOMDocument('1.0', 'UTF-8');
       // Add html. Disable errors and warnings for it.
-      $html->loadHTML($body, LIBXML_NOWARNING | LIBXML_NOERROR);
+      $html->loadHTML(mb_convert_encoding($body, 'HTML-ENTITIES', 'UTF-8'), LIBXML_NOWARNING | LIBXML_NOERROR);
 
       // If $html does't have body than return $body with replaced tokens.
       if (empty($html->getElementsByTagName('body')->count())) {
