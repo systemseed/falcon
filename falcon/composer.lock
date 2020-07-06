@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2751948da2329a3996c054e92fe657e6",
+    "content-hash": "ae568d96af69e7044e6006f30770b389",
     "packages": [
         {
             "name": "apache/log4php",
@@ -1551,6 +1551,9 @@
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
+                },
+                "patches_applied": {
+                    "Added new hook_alter": "https://www.drupal.org/files/issues/2019-02-22/commerce_decoupled_checkout-added_hook_alter-3033373-5.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

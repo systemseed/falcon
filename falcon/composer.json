@@ -99,6 +99,9 @@
       "drupal/metatag": {
         "Jsonapi support": "https://www.drupal.org/files/issues/2019-01-18/computed_field_2945817_61.patch"
       },
+      "drupal/commerce_decoupled_checkout": {
+        "Added new hook_alter": "https://www.drupal.org/files/issues/2019-02-22/commerce_decoupled_checkout-added_hook_alter-3033373-5.patch"
+      },
       "drupal/require_login": {
         "Fixed login from 403 and 404 pages": "https://www.drupal.org/files/issues/2019-06-24/require_login-fix-login-3063676-4-8.x.patch"
       }
