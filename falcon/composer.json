@@ -93,12 +93,6 @@
       "drupal/core": {
         "Pagination in rest views": "https://www.drupal.org/files/issues/2019-05-21/2982729-viewsRestInfo-13_0.patch"
       },
-      "drupal/jsonapi_extras": {
-        "Compatibility with drupal 8.8": "https://www.drupal.org/files/issues/2019-12-02/3089444-24.patch"
-      },
-      "drupal/config_pages": {
-        "Compatibility with drupal 8.8 REST api. Expose entity by string ID via rest": "https://www.drupal.org/files/issues/2019-12-09/config_pages-expose-entity-by-string-id-via-rest-3099665-2_0.patch"
-      },
       "drupal/paragraphs_browser": {
         "Bring back actions menu": "https://www.drupal.org/files/issues/2019-01-22/paragraphs_browser-extend-from-ParagraphsWidget-2917656-14_0.patch"
       },
