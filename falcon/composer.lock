@@ -1525,17 +1525,11 @@
         },
         {
             "name": "drupal/commerce_decoupled_checkout",
-            "version": "1.0.0-beta2",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/commerce_decoupled_checkout.git",
-                "reference": "8.x-1.0-beta2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/commerce_decoupled_checkout-8.x-1.0-beta2.zip",
-                "reference": "8.x-1.0-beta2",
-                "shasum": "452756224c9f236cdcffc06b3c31f30f5ca74156"
+                "reference": "e6235a2e"
             },
             "require": {
                 "drupal/commerce_checkout": "*",
@@ -1545,16 +1539,14 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-beta2",
-                    "datestamp": "1566221885",
+                    "version": "8.x-1.0-beta2+1-dev",
+                    "datestamp": "1592819488",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
                 },
-                "patches_applied": {
-                    "Added new hook_alter": "https://www.drupal.org/files/issues/2019-02-22/commerce_decoupled_checkout-added_hook_alter-3033373-5.patch"
-                }
+                "patches_applied": []
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
