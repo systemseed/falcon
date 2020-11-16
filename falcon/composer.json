@@ -113,7 +113,7 @@
     "drupal/commerce": "^2.10",
     "drupal/commerce_decoupled_checkout": "1.x-dev",
     "drupal/commerce_directdebit": "dev-8.x-1.x",
-    "drupal/commerce_globalpayments": "1.x-dev#edbff85d",
+    "drupal/commerce_globalpayments": "1.x-dev",
     "drupal/commerce_paypal_ec": "dev-8.x-1.x",
     "drupal/commerce_stripe": "^1.0@RC",
     "drupal/config_filter": "^1.2",
