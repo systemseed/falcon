@@ -124,7 +124,7 @@
     "drupal/consumers": "^1.0@beta",
     "drupal/consumers_token": "^1.0@beta",
     "drupal/contact_message_rest": "^1.0@alpha",
-    "drupal/core": "~8.8.0",
+    "drupal/core": "^8.8.0",
     "drupal/decoupled_router": "^1.0",
     "drupal/default_content": "^1.0@alpha",
     "drupal/eck": "^1.0@alpha",
