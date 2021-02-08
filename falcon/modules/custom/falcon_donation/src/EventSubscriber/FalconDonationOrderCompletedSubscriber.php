@@ -79,6 +79,18 @@ class FalconDonationOrderCompletedSubscriber implements EventSubscriberInterface
       $subject = $appeal->get('field_thankyou_email_subject')->value;
       $body = $appeal->get('field_thankyou_email_body')->value;
 
+      // Allow different email configuration for recurring donations.
+      $donation_type = $order->order_items->entity->field_donation_type->value;
+      if ($donation_type === 'recurring_donation'
+        && $appeal->hasField('field_thankyou_email_subject_rg')
+        && $appeal->hasField('field_thankyou_email_body_rg')
+        && !$appeal->get('field_thankyou_email_subject_rg')->isEmpty()
+        && !$appeal->get('field_thankyou_email_body_rg')->isEmpty()
+      ) {
+        $subject = $appeal->get('field_thankyou_email_subject_rg')->value;
+        $body = $appeal->get('field_thankyou_email_body_rg')->value;
+      }
+
       // Check subject and body for thank you email.
       if (empty($subject) || empty($body)) {
         $this->logger
