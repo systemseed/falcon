@@ -28,7 +28,7 @@
     "redux": "^4.0.4"
   },
   "devDependencies": {
-    "semantic-release": "^15.13.18",
+    "semantic-release": "^17.2.3",
     "semantic-release-slack-bot": "^1.1.2"
   },
   "scripts": {
