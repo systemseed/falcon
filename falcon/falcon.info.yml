@@ -69,6 +69,7 @@ dependencies:
   - jsonapi_extras
   - mailsystem
   - metatag
+  - metatag_open_graph
   - paragraphs
   - pathauto
   - queue_ui

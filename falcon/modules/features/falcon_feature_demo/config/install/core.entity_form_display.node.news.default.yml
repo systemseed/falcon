@@ -6,10 +6,12 @@ dependencies:
     - field.field.node.news.field_content_category
     - field.field.node.news.field_description
     - field.field.node.news.field_media_image
+    - field.field.node.news.field_meta_tags
     - node.type.news
   module:
     - field_group
     - media_library
+    - metatag
     - paragraphs_browser
     - path
     - scheduler
@@ -125,6 +127,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_meta_tags:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   path:
     type: path

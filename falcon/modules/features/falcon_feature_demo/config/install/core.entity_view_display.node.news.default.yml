@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.news.field_content_category
     - field.field.node.news.field_description
     - field.field.node.news.field_media_image
+    - field.field.node.news.field_meta_tags
     - node.type.news
   module:
     - entity_reference_revisions
+    - metatag
     - text
     - user
 id: node.news.default
@@ -48,6 +50,13 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
+  field_meta_tags:
+    weight: 110
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   links:
     weight: 100

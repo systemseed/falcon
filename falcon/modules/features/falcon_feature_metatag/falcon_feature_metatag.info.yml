@@ -4,6 +4,8 @@ type: module
 core: 8.x
 dependencies:
   - consumers_token
+  - field
   - metatag
+  - node
 version: 8.x-1.0
-package: Falcon Configurations
+package: 'Falcon Configurations'

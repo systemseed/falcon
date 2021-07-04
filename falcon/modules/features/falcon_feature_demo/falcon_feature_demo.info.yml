@@ -9,6 +9,7 @@ dependencies:
   - entity_reference_revisions
   - falcon_feature_demo
   - falcon_feature_media
+  - falcon_feature_metatag
   - field
   - field_group
   - image
@@ -18,6 +19,7 @@ dependencies:
   - menu_link_config
   - menu_link_content
   - menu_ui
+  - metatag
   - node
   - options
   - paragraphs
