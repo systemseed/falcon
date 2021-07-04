@@ -2,23 +2,29 @@ name: 'Falcon Donation feature'
 type: module
 core: 8.x
 version: 8.x-1.0
-package: Falcon Configurations
+package: 'Falcon Configurations'
 description: 'Falcon Donation feature.'
 dependencies:
+  - commerce
   - commerce_cart
   - commerce_checkout
   - commerce_order
+  - commerce_payment
   - commerce_price
   - commerce_product
   - entity_reference_revisions
   - falcon_donation
   - falcon_feature_appeal
   - falcon_feature_commerce
+  - falcon_feature_user
   - field
   - inline_entity_form
+  - menu_link_config
+  - node
   - options
   - path
   - rest
   - serialization
   - state_machine
   - user
+  - views

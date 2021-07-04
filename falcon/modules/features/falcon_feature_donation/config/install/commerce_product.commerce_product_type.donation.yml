@@ -5,6 +5,7 @@ id: donation
 label: Donation
 description: ''
 variationType: donation
+multipleVariations: true
 injectVariationFields: true
 traits: {  }
 locked: false
